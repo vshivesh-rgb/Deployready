@@ -1870,6 +1870,15 @@
     #hero::after { display: none; }
 
     .problem-inner { grid-template-columns: 1fr; gap: 48px; }
+    .gap-diagram { padding: 24px 16px; }
+    .worlds-row { flex-direction: row; gap: 0; }
+    .world-block { padding: 16px 6px 14px; }
+    .world-name { font-size: 0.6rem; letter-spacing: 0.06em; }
+    .world-desc { font-size: 0.62rem; }
+    .world-block-icon { font-size: 1rem; margin-bottom: 6px; }
+    .gap-diagram-title { font-size: 0.6rem; margin-bottom: 20px; }
+    .gap-label { font-size: 0.65rem; }
+    .gap-center { font-size: 0.7rem; padding: 6px 12px; }
     .what-inner { grid-template-columns: 1fr; gap: 40px; }
     .what-pillars { grid-template-columns: 1fr; }
     .diagnostic-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -1962,7 +1971,7 @@
       <p class="problem-subheading reveal">AI deployments fail across technical, operational, and governance layers — and break down completely at the handoffs, as each has its own frameworks, its own specialists, and no common vocabulary for the work between them.</p>
     </div>
 
-    <div class="problem-inner" style="grid-template-columns:1fr 1fr; max-width:100%; margin:0;">
+    <div class="problem-inner">
       <div class="gap-diagram reveal">
         <p class="gap-diagram-title">Why pilots stall before production</p>
         <div class="worlds-row">
