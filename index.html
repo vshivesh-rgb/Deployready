@@ -1926,7 +1926,7 @@
     <a href="#what" class="nav-link">Why DeployReady</a>
     <a href="#team" class="nav-link">Team</a>
   </div>
-
+  <button class="nav-cta" onclick="openExpertModal()" style="background:var(--gold);color:var(--forest);border-color:var(--gold);font-weight:600;">Talk to Us</button>
 </nav>
 
 <!-- ─── SECTION 1: HERO ─── -->
@@ -2339,20 +2339,20 @@
   </div>
 </section>
 
-<!-- ─── LAST SECTION: CLOSING CTA (V1 style) ─── -->
+<!-- ─── LAST SECTION: CLOSING CTA ─── -->
 <section id="close-cta">
   <div class="container">
-    <div class="close-eyebrow">Start here</div>
+    <div class="close-eyebrow">Get started</div>
     <h2 class="close-heading reveal">
       If the deployment gap<br>is a <em>live problem</em><br>in your organisation —
     </h2>
-    <p class="close-sub reveal">Find out exactly where it is. The diagnostic identifies your three highest-risk deployment capability gaps and tells you what to do about them. Free. In your inbox in minutes.</p>
+    <p class="close-sub reveal">Talk to one of our experts. We'll understand your context, identify where the gaps are, and tell you exactly how DeployReady can help.</p>
     <div class="close-actions reveal">
-      <button class="btn-primary-large" data-tally-open="rjEgrM" data-tally-layout="modal" data-tally-emoji-text="👋" data-tally-emoji-animation="wave">
-        Diagnose Your Deployment
+      <button class="btn-primary-large" onclick="openExpertModal()">
+        Book a Consultation
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11M10 4.5l4.5 4.5L10 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="close-meta">15 questions · 5 minutes · free maturity score delivered to your inbox</div>
+      <div class="close-meta">One of our team will be in touch within 1 business day</div>
     </div>
   </div>
 </section>
@@ -2402,6 +2402,32 @@
   </div>
 </div>
 
+<!-- EXPERT CONSULTATION MODAL -->
+<div class="contact-modal-overlay" id="expertModal" onclick="handleExpertOverlayClick(event)">
+  <div class="contact-modal">
+    <button class="contact-modal-close" onclick="closeExpertModal()">×</button>
+    <div class="contact-modal-body" id="expertModalBody">
+      <div class="contact-modal-tag">Book a Consultation</div>
+      <h3 class="contact-modal-heading">Talk to one of our experts</h3>
+      <div class="contact-modal-fields">
+        <input class="form-input" id="expertName" type="text" placeholder="Name *" />
+        <input class="form-input" id="expertOrg" type="text" placeholder="Organisation *" />
+        <input class="form-input" id="expertEmail" type="email" placeholder="Work email *" />
+        <input class="form-input" id="expertPhone" type="tel" placeholder="Phone *" />
+      </div>
+      <button class="form-submit" onclick="submitExpertModal()">
+        Book Consultation
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="contact-modal-success" id="expertModalSuccess">
+      <div class="success-icon">✓</div>
+      <p class="success-heading">Consultation request received.</p>
+      <p class="success-sub">One of our team will be in touch within 1 business day.</p>
+    </div>
+  </div>
+</div>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Scroll reveal - elements are visible by default, animate in smoothly
   const reveals = document.querySelectorAll('.reveal');
@@ -2419,6 +2445,70 @@
     }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
     reveals.forEach(el => observer.observe(el));
   }, 100);
+
+  function openExpertModal() {
+    ['expertName','expertOrg','expertEmail','expertPhone'].forEach(id => {
+      document.getElementById(id).value = '';
+      document.getElementById(id).style.borderColor = '';
+    });
+    document.getElementById('expertModalBody').style.display = 'block';
+    document.getElementById('expertModalSuccess').style.display = 'none';
+    document.getElementById('expertModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeExpertModal() {
+    document.getElementById('expertModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleExpertOverlayClick(e) {
+    if (e.target === document.getElementById('expertModal')) closeExpertModal();
+  }
+
+  function submitExpertModal() {
+    const name  = document.getElementById('expertName').value.trim();
+    const org   = document.getElementById('expertOrg').value.trim();
+    const email = document.getElementById('expertEmail').value.trim();
+    const phone = document.getElementById('expertPhone').value.trim();
+    let valid = true;
+
+    ['expertName','expertOrg','expertEmail','expertPhone'].forEach(id => {
+      document.getElementById(id).style.borderColor = '';
+    });
+
+    if (!name)  { document.getElementById('expertName').style.borderColor  = 'rgba(201,168,76,0.8)'; valid = false; }
+    if (!org)   { document.getElementById('expertOrg').style.borderColor   = 'rgba(201,168,76,0.8)'; valid = false; }
+    if (!email) { document.getElementById('expertEmail').style.borderColor = 'rgba(201,168,76,0.8)'; valid = false; }
+    if (!phone) { document.getElementById('expertPhone').style.borderColor = 'rgba(201,168,76,0.8)'; valid = false; }
+    if (!valid) return;
+
+    const accessKey = document.getElementById('web3formsKey').value;
+    const payload = {
+      access_key: accessKey,
+      subject: 'New Consultation Request: ' + name + ' — ' + org,
+      name:  name,
+      organisation: org,
+      email: email,
+      phone: phone,
+      form: 'expert-consultation'
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(() => {
+      document.getElementById('expertModalBody').style.display = 'none';
+      document.getElementById('expertModalSuccess').style.display = 'flex';
+    })
+    .catch(() => {
+      document.getElementById('expertModalBody').style.display = 'none';
+      document.getElementById('expertModalSuccess').style.display = 'flex';
+    });
+  }
 
   function openContactModal(track, label) {
     document.getElementById('contactModalTag').textContent = track;
