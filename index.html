@@ -663,15 +663,29 @@
   }
 
   /* Why points (right column) */
+  .why-points-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
   .why-points {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 0;
   }
 
   .why-point {
-    padding-bottom: 32px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     border-bottom: 1px solid var(--border);
+  }
+
+  .why-point:first-of-type {
+    padding-top: 0;
   }
 
   .why-point:last-child {
@@ -685,7 +699,7 @@
     font-weight: 300;
     color: rgba(201,168,76,0.3);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   .why-point-title {
@@ -733,7 +747,7 @@
     margin-bottom: 16px;
   }
 
-  .what-para strong { color: var(--cream-dim); font-weight: 400; }
+  .what-para strong { color: var(--cream); font-weight: 500; }
 
   /* Three-element system blocks */
   .system-elements {
@@ -1962,17 +1976,37 @@
   </div>
 </section>
 
-<!-- ─── SECTION 2: THE DEPLOYMENT GAP (V2 style) ─── -->
+<!-- ─── SECTION 2: THE DEPLOYMENT GAP ─── -->
 <section id="problem">
   <div class="container">
     <div class="problem-top reveal" style="text-align:left;align-items:flex-start;">
       <div class="section-label">The Deployment Gap</div>
-      <h2 class="problem-heading" style="text-align:left;">Three worlds. No shared language. <em>Nothing ships.</em></h2>
-      <p class="problem-subheading reveal">AI deployments fail across technical, operational, and governance layers — and break down completely at the handoffs, as each has its own frameworks, its own specialists, and no common vocabulary for the work between them.</p>
     </div>
 
     <div class="problem-inner">
-      <div class="gap-diagram reveal">
+
+      <!-- LEFT: Pain points -->
+      <div class="why-points reveal">
+        <div class="why-points-heading">Three ways organisations stay stuck</div>
+        <div class="why-point">
+          <div class="why-point-num">01</div>
+          <div class="why-point-title">Decision paralysis</div>
+          <p class="why-point-body">Organisations know AI needs to move into production. Large consultancies are too expensive. Internal teams don't know where to start. AI sits as a pilot forever.</p>
+        </div>
+        <div class="why-point">
+          <div class="why-point-num">02</div>
+          <div class="why-point-title">Wasted training spend</div>
+          <p class="why-point-body">Organisations invest in generic AI courses to train teams. Teams complete them. Nothing changes in deployment capability. Budget gone, problem remains.</p>
+        </div>
+        <div class="why-point">
+          <div class="why-point-num">03</div>
+          <div class="why-point-title">Post-consultancy collapse</div>
+          <p class="why-point-body">Organisations hire consultancies to deploy AI. The project completes. Consultants leave. Nobody inside knows how to monitor, maintain, or build on it. Back to square one.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Diagram -->
+      <div class="gap-diagram reveal reveal-delay-1">
         <p class="gap-diagram-title">Why pilots stall before production</p>
         <div class="worlds-row">
           <div class="world-block technical">
@@ -2002,28 +2036,11 @@
         </div>
       </div>
 
-      <div class="why-points reveal reveal-delay-1">
-        <div class="why-point">
-          <div class="why-point-num">01</div>
-          <div class="why-point-title">The model is not the bottleneck</div>
-          <p class="why-point-body">Most failed AI initiatives had working models. They collapsed on deployment, monitoring, data governance, and accountability — none of which were built into the plan.</p>
-        </div>
-        <div class="why-point">
-          <div class="why-point-num">02</div>
-          <div class="why-point-title">Enterprises lack a system to manage the full lifecycle</div>
-          <p class="why-point-body">AI initiatives fail because no enterprise capability exists to manage the complete deployment lifecycle — from readiness and gaps through capability building to sustained production monitoring. This is a systems problem, not a skills problem.</p>
-        </div>
-        <div class="why-point">
-          <div class="why-point-num">03</div>
-          <div class="why-point-title">India's regulatory layer adds pressure</div>
-          <p class="why-point-body">DPDP Act, RBI FREE-AI, MeitY Guidelines, IRDAI. Most global frameworks do not account for this. Most teams are not equipped for it.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ─── SECTION 3: WHAT DEPLOYREADY DOES (V1 style, reframed as capability system) ─── -->
+<!-- ─── SECTION 3: WHAT DEPLOYREADY DOES ─── -->
 <section id="what">
   <div class="container">
     <div class="what-inner">
@@ -2035,10 +2052,13 @@
         </h2>
         <div class="gold-rule"></div>
         <p class="what-para">
-          DeployReady gives enterprises the end-to-end system to take AI from pilot to production. <strong>Not generic AI awareness. Not a one-off workshop.</strong> A structured deployment capability system with three integrated elements.
+          DeployReady's 8–12 week programme builds deployment-specific capability — use case validation, testing and assurance, governance automation, and production monitoring — skills teams can apply from Day 1.
         </p>
         <p class="what-para">
-          The core delivery mechanism is an <strong>8–12 week capability-building programme</strong> — embedded within a pre-deployment readiness assessment and ongoing post-deployment monitoring support. Together, they form a ramp for successful AI deployment.
+          The programme sits within a three-part system: a pre-deployment readiness assessment that identifies where the organisation stands, the core capability programme, and post-deployment monitoring support to ensure what's built holds in production.
+        </p>
+        <p class="what-para">
+          We guarantee a <strong>0.5 point improvement</strong> in your organisation's AI maturity score. If we don't deliver — <strong style="color:var(--gold);letter-spacing:0.06em;">SECOND COHORT FREE.</strong>
         </p>
       </div>
 
