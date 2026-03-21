@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DeployReady — AI Deployment Diagnostic — Horizon Bank</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: Arial, sans-serif;
+  background: #F7F4EE;
+  color: #1A1A1A;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.page {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #FDFCFA;
+}
+
+/* ── HEADER ── */
+.header { background:#0D1F1A; padding:26px 32px 22px; }
+.header-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+.brand { font-size:22px; font-weight:700; color:#C4973A; letter-spacing:0.5px; }
+.brand-tag { font-size:10.5px; color:#7AAA8A; margin-top:3px; }
+.report-meta { text-align:right; font-size:10.5px; color:#7AAA8A; line-height:1.7; }
+.report-meta strong { color:#C4973A; font-weight:600; }
+.header-divider { border:none; border-top:1px solid #2A4A3A; margin:12px 0 14px; }
+.report-title { font-size:17px; font-weight:700; color:#FFF; line-height:1.3; margin-bottom:5px; }
+.report-subtitle { font-size:11px; color:#7AAA8A; }
+
+/* ── BODY ── */
+.body { padding:24px 32px; }
+
+/* ── ORIENTATION ── */
+.orientation {
+  border-left:3px solid #C4973A;
+  padding:10px 14px;
+  margin-bottom:24px;
+  background:#F7F4EE;
+  border-radius:0 4px 4px 0;
+}
+.orientation p { font-size:12px; color:#444440; line-height:1.6; }
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-size:9.5px; font-weight:700; color:#C4973A;
+  letter-spacing:1.8px; text-transform:uppercase; margin-bottom:10px;
+}
+
+/* ── LIFECYCLE BAR ── */
+.lifecycle-bar { display:flex; gap:7px; margin-bottom:26px; }
+.lc-block { flex:1; padding:12px 8px; text-align:center; border-radius:5px; }
+.lc-score { display:block; font-size:22px; font-weight:700; font-family:Georgia,serif; margin-bottom:3px; }
+.lc-label { display:block; font-size:9.5px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; }
+.lc-sublabel { display:block; font-size:9.5px; opacity:0.85; }
+.lc-classification { display:block; font-size:8.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-top:5px; opacity:0.75; }
+.lc-critical { background:#FDECEA; color:#C0392B; border:1.5px solid #E8A09A; }
+.lc-significant { background:#FFF8E1; color:#E67E22; border:1.5px solid #F0C96A; }
+.lc-managed { background:#E8F5E9; color:#27AE60; border:1.5px solid #88C99A; }
+
+/* ── GAP CARDS ── */
+.gap-cards { display:flex; flex-direction:column; gap:14px; margin-bottom:26px; }
+
+.gap-card {
+  background:#FFF;
+  border:1px solid #E0DDD5;
+  border-radius:6px;
+  overflow:visible;
+}
+
+.gap-card-header {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 18px 11px;
+  border-bottom:1px solid #F0EDE5;
+}
+.gap-card.critical .gap-card-header { border-left:4px solid #C0392B; }
+.gap-card.significant .gap-card-header { border-left:4px solid #E67E22; }
+
+.gap-number {
+  font-size:26px; font-weight:700; color:#C4973A;
+  font-family:Georgia,serif; line-height:1; min-width:28px;
+}
+.gap-header-text { flex:1; }
+.gap-cluster {
+  font-size:9px; font-weight:600; letter-spacing:1.1px;
+  text-transform:uppercase; color:#888880; margin-bottom:2px;
+}
+.gap-name { font-size:13px; font-weight:700; color:#0D1F1A; }
+.risk-pill {
+  font-size:9.5px; font-weight:700; padding:3px 10px;
+  border-radius:10px; letter-spacing:0.5px; white-space:nowrap;
+}
+.risk-critical { background:#FDECEA; color:#C0392B; }
+.risk-significant { background:#FFF8E1; color:#E67E22; }
+
+.gap-card-body { padding:14px 18px; }
+
+.gap-row { margin-bottom:10px; }
+.gap-row:last-child { margin-bottom:0; }
+.gap-row-label {
+  font-size:9px; font-weight:700; letter-spacing:0.8px;
+  text-transform:uppercase; color:#AAAAAA;
+  margin-bottom:3px;
+}
+.gap-row-text { font-size:12.5px; line-height:1.62; }
+.gap-row-text.failure { color:#7A1A1A; }
+.gap-row-text.consequence { color:#2A2A28; }
+.gap-row-text.good { color:#1A5C2A; font-style:italic; }
+.gap-inner-divider {
+  border:none; border-top:1px solid #F0EDE5; margin:10px 0;
+}
+
+/* ── SYNTHESIS ── */
+.synthesis {
+  background:#162E26; border-radius:6px;
+  padding:20px 24px; margin-bottom:24px;
+}
+.synthesis-title {
+  font-size:9.5px; font-weight:700; color:#C4973A;
+  letter-spacing:1.8px; text-transform:uppercase; margin-bottom:12px;
+}
+.synthesis p { color:#D0CCC0; font-size:12.5px; line-height:1.8; }
+.synthesis p + p { margin-top:10px; }
+.synthesis strong { color:#EAE6DC; font-weight:600; }
+
+/* ── SECTION DIVIDER ── */
+.section-divider { border:none; border-top:1px solid #E8E5DC; margin:22px 0; }
+
+/* ── OFFERINGS ── */
+.offerings { margin-bottom:22px; }
+.offering-item {
+  display:flex; gap:14px; padding:13px 0;
+  border-bottom:1px solid #ECEAE3; align-items:flex-start;
+}
+.offering-item:last-child { border-bottom:none; padding-bottom:0; }
+.offering-num {
+  width:26px; height:26px; background:#0D1F1A; color:#C4973A;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; flex-shrink:0; margin-top:1px;
+}
+.offering-title { font-size:12.5px; font-weight:700; color:#0D1F1A; margin-bottom:4px; }
+.offering-desc { font-size:12px; color:#444440; line-height:1.65; }
+
+/* ── CLOSING ── */
+.closing {
+  background:#0D1F1A; border-radius:6px;
+  padding:18px 22px;
+}
+.closing p { color:#D0CCC0; font-size:12.5px; line-height:1.68; }
+.closing a { color:#C4973A; font-weight:600; text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="brand">DeployReady</div>
+        <div class="brand-tag">Enterprise AI Deployment Training · India</div>
+      </div>
+      <div class="report-meta">
+        <strong>AI Deployment Diagnostic</strong><br>
+        Horizon Bank · Banking and Financial Services<br>
+        Head of AI and Data · March 2026
+      </div>
+    </div>
+    <hr class="header-divider">
+    <div class="report-title">Where your AI deployment will stall — and what to fix first</div>
+    <div class="report-subtitle">Based on your responses across 15 deployment readiness indicators · Confidential</div>
+  </div>
+
+  <div class="body">
+
+    <!-- ORIENTATION -->
+    <div class="orientation">
+      <p>This report identifies the specific gaps in your AI deployment lifecycle based on your responses — designed to surface where your next initiative is most likely to stall.</p>
+    </div>
+
+    <!-- LIFECYCLE BAR -->
+    <div class="section-label">Deployment readiness across three phases</div>
+    <div class="lifecycle-bar">
+      <div class="lc-block lc-critical">
+        <span class="lc-score">2.1</span>
+        <span class="lc-label">Use Case &amp;</span>
+        <span class="lc-sublabel">Data Readiness</span>
+        <span class="lc-classification">Critical</span>
+      </div>
+      <div class="lc-block lc-significant">
+        <span class="lc-score">3.0</span>
+        <span class="lc-label">Deployment &amp;</span>
+        <span class="lc-sublabel">Testing</span>
+        <span class="lc-classification">Significant</span>
+      </div>
+      <div class="lc-block lc-critical">
+        <span class="lc-score">2.2</span>
+        <span class="lc-label">Governance &amp;</span>
+        <span class="lc-sublabel">Monitoring</span>
+        <span class="lc-classification">Critical</span>
+      </div>
+    </div>
+
+    <!-- GAP CARDS -->
+    <div class="section-label">Your three highest-risk deployment gaps</div>
+    <div class="gap-cards">
+
+      <!-- GAP 1 -->
+      <div class="gap-card critical">
+        <div class="gap-card-header">
+          <div class="gap-number">01</div>
+          <div class="gap-header-text">
+            <div class="gap-cluster">Use Case &amp; Data Readiness · Score 2.1</div>
+            <div class="gap-name">Data Readiness Not Confirmed Before Build</div>
+          </div>
+          <span class="risk-pill risk-critical">Critical</span>
+        </div>
+        <div class="gap-card-body">
+          <div class="gap-row">
+            <div class="gap-row-label">The gap</div>
+            <div class="gap-row-text failure">Use cases are approved and builds begin before confirming whether the data exists, is of sufficient quality, or carries valid consent. Problems surface mid-build — after resources and timelines are already committed.</div>
+          </div>
+          <hr class="gap-inner-divider">
+          <div class="gap-row">
+            <div class="gap-row-label">Consequence</div>
+            <div class="gap-row-text consequence">Builds stall or proceed on unsuitable data, producing unreliable models. This is the most common reason AI pilots at Indian banks do not reach production — not the model, the data layer beneath it.</div>
+          </div>
+          <hr class="gap-inner-divider">
+          <div class="gap-row">
+            <div class="gap-row-label">What good looks like</div>
+            <div class="gap-row-text good">A formal data readiness gate — availability, quality, lineage, and consent confirmed — is mandatory before any use case enters build. No exceptions.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 2 -->
+      <div class="gap-card critical">
+        <div class="gap-card-header">
+          <div class="gap-number">02</div>
+          <div class="gap-header-text">
+            <div class="gap-cluster">Governance &amp; Monitoring · Score 2.2</div>
+            <div class="gap-name">No Model Inventory and Reactive Compliance</div>
+          </div>
+          <span class="risk-pill risk-critical">Critical</span>
+        </div>
+        <div class="gap-card-body">
+          <div class="gap-row">
+            <div class="gap-row-label">The gap</div>
+            <div class="gap-row-text failure">Horizon Bank cannot list all AI models currently in production — their owners, last validation dates, or data sources. Regulatory requirements are addressed only when an audit or incident forces a review.</div>
+          </div>
+          <hr class="gap-inner-divider">
+          <div class="gap-row">
+            <div class="gap-row-label">Consequence</div>
+            <div class="gap-row-text consequence">Models degrade silently and regulations update without anyone tracking the exposure. Without an inventory the organisation cannot identify which models are at risk. Post-hoc remediation after a regulatory finding costs significantly more than designed-in governance.</div>
+          </div>
+          <hr class="gap-inner-divider">
+          <div class="gap-row">
+            <div class="gap-row-label">What good looks like</div>
+            <div class="gap-row-text good">A maintained model inventory with named owners and review dates, and a proactive regulatory calendar aligned to DPDP Act and RBI FREE-AI update cycles.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 3 -->
+      <div class="gap-card significant">
+        <div class="gap-card-header">
+          <div class="gap-number">03</div>
+          <div class="gap-header-text">
+            <div class="gap-cluster">Deployment &amp; Testing · Score 3.0</div>
+            <div class="gap-name">Build-to-Operations Handoff Undermanaged</div>
+          </div>
+          <span class="risk-pill risk-significant">Significant</span>
+        </div>
+        <div class="gap-card-body">
+          <div class="gap-row">
+            <div class="gap-row-label">The gap</div>
+            <div class="gap-row-text failure">Testing practices are reasonable but the handoff from build team to operations is verbal and undocumented. The build team exits at go-live leaving operations without a runbook, monitoring setup, or escalation path.</div>
+          </div>
+          <hr class="gap-inner-divider">
+          <div class="gap-row">
+            <div class="gap-row-label">Consequence</div>
+            <div class="gap-row-text consequence">Technical successes at go-live fail quietly six months later. Model drift is invisible until it becomes a customer complaint or operational incident. The 33% of organisations that reach production but cannot sustain deployment share this exact profile.</div>
+          </div>
+          <hr class="gap-inner-divider">
+          <div class="gap-row">
+            <div class="gap-row-label">What good looks like</div>
+            <div class="gap-row-text good">A formal handover document — technical, governance, and monitoring responsibilities — with a named accountable owner signed off before every go-live.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SYNTHESIS -->
+    <div class="synthesis">
+      <div class="synthesis-title">What these gaps mean together</div>
+      <p>These three gaps form a single connected failure. Horizon Bank is committing to AI builds without confirming the data is ready. When models do reach production, the handoff to operations is informal and the governance infrastructure needed to sustain them does not exist. Nobody owns the deployment end to end. Nobody can list what is running or when it was last validated.</p>
+      <p><strong>For a bank operating under RBI FREE-AI and DPDP Act obligations, these are not just operational gaps — they are live regulatory exposures.</strong> A model risk review conducted today would produce findings across all three clusters. Addressing these now, before the next deployment cycle, costs significantly less than addressing them after a regulatory event.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- OFFERINGS -->
+    <div class="section-label">How DeployReady addresses this</div>
+    <div class="offerings">
+
+      <div class="offering-item">
+        <div class="offering-num">1</div>
+        <div class="offering-content">
+          <div class="offering-title">About this diagnostic</div>
+          <div class="offering-desc">This is DeployReady's AI Deployment Readiness Check — a 15-question quick diagnostic that surfaces critical gaps in your deployment lifecycle. A more comprehensive facilitated assessment is available for organisations that want deeper analysis across all deployment dimensions.</div>
+        </div>
+      </div>
+
+      <div class="offering-item">
+        <div class="offering-num">2</div>
+        <div class="offering-content">
+          <div class="offering-title">Capability Building — 8 to 12 weeks</div>
+          <div class="offering-desc">DeployReady trains practitioners responsible for each of these gaps — use case selection, data readiness, deployment, testing, governance, and change management — simultaneously. India-specific: DPDP Act, MeitY Guidelines, and RBI FREE-AI obligations embedded at practitioner level throughout. The goal is the capability to move an initiative from pilot to production.</div>
+        </div>
+      </div>
+
+      <div class="offering-item">
+        <div class="offering-num">3</div>
+        <div class="offering-content">
+          <div class="offering-title">Post-Programme Monitoring Support</div>
+          <div class="offering-desc">Deployments do not end at go-live. Post-programme support covers model drift monitoring, governance currency as regulations update, and a scaling playbook that prevents these gaps from reappearing in subsequent initiatives.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CLOSING -->
+    <div class="closing">
+      <p>To discuss these findings — book a 30-minute conversation at <a href="https://deployready.ai">deployready.ai</a>. No commitment. No pitch. We will map your specific deployment context and tell you where to start.</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
