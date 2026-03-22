@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeployReady — AI Deployment Capability System for Enterprises · India</title>
+
+<!-- ─── SEO: Core ─── -->
+<meta name="description" content="DeployReady is India's AI deployment capability system for organisations stuck between pilot and production. Full-lifecycle programme, role-specific tracks, NASSCOM-benchmarked. Get your free AI Deployment Maturity Score.">
+<meta name="keywords" content="AI deployment India, enterprise AI training, AI pilot to production, AI maturity assessment, AI governance training, MLOps training India, DPDP compliance AI, NASSCOM AI, AI deployment analyst, AI deployment programme India">
+<meta name="author" content="DeployReady">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://deployready.ai/v2">
+
+<!-- ─── SEO: Open Graph ─── -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://deployready.ai/">
+<meta property="og:title" content="DeployReady — India's AI Deployment Capability System">
+<meta property="og:description" content="Stop stalling between pilot and production. DeployReady builds deployment capability inside enterprises and trains individuals for the roles that make AI work. Free AI Deployment Maturity Score.">
+<meta property="og:image" content="https://deployready.ai/og-image.png">
+<meta property="og:site_name" content="DeployReady">
+<meta property="og:locale" content="en_IN">
+
+<!-- ─── SEO: Twitter/X Card ─── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://deployready.ai/">
+<meta name="twitter:title" content="DeployReady — India's AI Deployment Capability System">
+<meta name="twitter:description" content="Stop stalling between pilot and production. DeployReady builds enterprise AI deployment capability and trains professionals for the roles that make AI reach production.">
+<meta name="twitter:image" content="https://deployready.ai/og-image.png">
+
+<!-- ─── SEO: Schema.org Structured Data ─── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "DeployReady",
+  "url": "https://deployready.ai",
+  "logo": "https://deployready.ai/og-image.png",
+  "description": "India's AI deployment capability system. Full-lifecycle enterprise programme and role-specific individual tracks for AI Deployment Analyst, AI Governance & Risk Lead, and AI Integration & MLOps Engineer.",
+  "areaServed": "IN",
+  "knowsAbout": ["AI Deployment", "Enterprise AI", "AI Implementation", "AI Maturity Assessment", "MLOps", "AI Governance", "DPDP Compliance", "LLMOps"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "DeployReady Programmes",
+    "itemListElement": [
+      {
+        "@type": "Course",
+        "name": "Enterprise AI Deployment Programme",
+        "description": "Full-lifecycle AI deployment capability programme for enterprises — from readiness assessment to production monitoring. NASSCOM-benchmarked.",
+        "provider": { "@type": "Organization", "name": "DeployReady" },
+        "courseMode": "blended",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Course",
+        "name": "AI Deployment Analyst — Track A",
+        "description": "Role-specific certification track for professionals moving into AI deployment project management roles.",
+        "provider": { "@type": "Organization", "name": "DeployReady" },
+        "courseMode": "blended",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Course",
+        "name": "AI Governance & Risk Lead — Track B",
+        "description": "Role-specific certification track covering AI risk frameworks, DPDP Act compliance, and LLM governance.",
+        "provider": { "@type": "Organization", "name": "DeployReady" },
+        "courseMode": "blended",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Course",
+        "name": "AI Integration & MLOps Engineer — Track C",
+        "description": "Technical certification track covering LLM integration, MLOps pipelines, CI/CD for AI, and production monitoring.",
+        "provider": { "@type": "Organization", "name": "DeployReady" },
+        "courseMode": "blended",
+        "inLanguage": "en"
+      }
+    ]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+:root {
+  --ink:    #0D1F1A;
+  --navy:   #162E26;
+  --teal:   #C4973A;
+  --teal-d: #A67C28;
+  --teal-l: rgba(196,151,58,0.09);
+  --warm:   #F7F4EE;
+  --paper:  #FDFCF8;
+  --rule:   rgba(13,31,26,0.09);
+  --rule-l: rgba(255,255,255,0.08);
+  --white:  #FFFFFF;
+  --body:   #2E3D38;
+  --muted:  #7A8C87;
+  --gold:   #C4973A;
+  --amber:  #A67C28;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%;
+  background: rgba(12,18,33,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--rule-l);
+}
+.logo {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 1rem;
+  color: var(--white); text-decoration: none;
+  letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 8px;
+}
+.logo-pip { width:7px; height:7px; background:var(--teal); border-radius:50%; }
+.nav-links { list-style:none; display:flex; align-items:center; gap:2.2rem; }
+.nav-links a {
+  font-size:0.82rem; font-weight:400;
+  color:rgba(255,255,255,0.48); text-decoration:none;
+  letter-spacing:0.01em; transition:color 0.2s;
+}
+.nav-links a:hover { color:rgba(255,255,255,0.85); }
+.nav-cta {
+  background:var(--teal) !important; color:var(--white) !important;
+  padding:0.42rem 1.1rem; border-radius:3px;
+  font-weight:500 !important; transition:background 0.2s !important;
+  border:none !important; cursor:pointer; font-family:inherit; font-size:inherit;
+}
+.nav-cta:hover { background:var(--teal-d) !important; }
+
+/* ── HERO ── */
+#hero {
+  min-height:100vh; background:var(--ink);
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column; padding:0 5%;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 55% 60% at 80% 30%, rgba(196,151,58,0.07) 0%, transparent 100%),
+    radial-gradient(ellipse 45% 55% at 5% 85%, rgba(22,46,38,0.8) 0%, transparent 100%);
+}
+.hero-line {
+  position:absolute; top:0; right:28%; width:1px; height:100%;
+  background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.04) 70%, transparent 100%);
+}
+.hero-body {
+  position:relative; z-index:2;
+  flex:1; display:flex; flex-direction:column; justify-content:center;
+  padding-top:130px; padding-bottom:60px; max-width:760px;
+  animation: rise 1s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes rise {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hero-label { display:flex; align-items:center; gap:10px; margin-bottom:2.2rem; }
+.hero-label-line { width:24px; height:1px; background:var(--teal); flex-shrink:0; }
+.hero-label-text { font-size:0.68rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); }
+h1 {
+  font-family:'Cormorant Garamond', Georgia, serif;
+  font-size:clamp(3rem, 5.5vw, 5rem);
+  font-weight:500; color:var(--white);
+  line-height:1.06; letter-spacing:-0.02em; margin-bottom:1.8rem;
+}
+h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
+.hero-p {
+  font-size:0.98rem; font-weight:300;
+  color:rgba(255,255,255,0.48); line-height:1.82;
+  max-width:640px; margin-bottom:2.8rem;
+}
+.hero-btns { display:flex; gap:1rem; align-items:center; }
+.btn-primary {
+  background:var(--teal); color:var(--white);
+  padding:0.75rem 1.6rem; border-radius:3px;
+  font-size:0.85rem; font-weight:500; text-decoration:none;
+  transition:background 0.2s, transform 0.2s;
+  border:none; cursor:pointer; font-family:inherit; display:inline-block;
+}
+.btn-primary:hover { background:var(--teal-d); transform:translateY(-1px); }
+.btn-text {
+  color:rgba(255,255,255,0.38); font-size:0.85rem; font-weight:400;
+  text-decoration:none; display:flex; align-items:center; gap:0.4rem; transition:color 0.2s;
+}
+.btn-text:hover { color:rgba(255,255,255,0.7); }
+.btn-text::after { content:'→'; }
+
+.hero-foot {
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--rule-l);
+  animation: rise 1s 0.15s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hf { padding:1.8rem 0; border-right:1px solid var(--rule-l); }
+.hf:last-child { border-right:none; padding-left:2rem; }
+.hf:nth-child(2) { padding-left:2rem; }
+.hf-n { font-family:'Cormorant Garamond', serif; font-size:1.9rem; font-weight:400; color:var(--white); line-height:1; margin-bottom:0.3rem; }
+.hf-n em { color:var(--teal); font-style:italic; }
+.hf-l { font-size:0.73rem; color:rgba(255,255,255,0.3); line-height:1.4; font-weight:300; }
+
+/* ── SPLIT PATHS ── */
+#paths { display:grid; grid-template-columns:1fr 1fr; }
+.path-panel { padding:72px 5%; cursor:pointer; transition:background 0.25s; }
+.path-ent { background:var(--navy); border-right:1px solid rgba(255,255,255,0.06); }
+.path-ent:hover { background:#1E3D30; }
+.path-ind { background:var(--warm); }
+.path-ind:hover { background:#F0EDE6; }
+
+.pp-tag { font-size:0.67rem; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:1.4rem; }
+.tag-ent { color:rgba(196,151,58,0.9); }
+.tag-ind { color:var(--teal); }
+.pp-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.5rem, 2.5vw, 2rem); font-weight:500; line-height:1.2; letter-spacing:-0.02em; margin-bottom:1rem; }
+.ent-h { color:var(--white); }
+.ind-h { color:var(--ink); }
+.pp-p { font-size:0.88rem; line-height:1.78; font-weight:300; margin-bottom:2rem; }
+.ent-p { color:rgba(255,255,255,0.45); }
+.ind-p { color:var(--body); }
+.pp-link {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  font-size:0.82rem; font-weight:500; color:var(--teal);
+  text-decoration:none; margin-bottom:1.5rem; transition:gap 0.2s;
+}
+.path-panel:hover .pp-link { gap:0.65rem; }
+.pp-details { display:flex; flex-direction:column; gap:0.5rem; padding-top:1.5rem; border-top:1px solid; }
+.ent-details { border-color:rgba(255,255,255,0.06); }
+.ind-details  { border-color:var(--rule); }
+.pp-detail { font-size:0.8rem; font-weight:300; display:flex; align-items:center; gap:0.6rem; }
+.ent-detail { color:rgba(255,255,255,0.35); }
+.ind-detail  { color:var(--muted); }
+.pp-detail::before { content:''; width:3px; height:3px; border-radius:50%; background:var(--teal); flex-shrink:0; }
+
+/* ── STATS ── */
+#stats {
+  background:var(--teal); padding:2.4rem 5%;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2rem;
+}
+.stat-item { text-align:center; position:relative; }
+.stat-item:not(:last-child)::after {
+  content:''; position:absolute; right:0; top:10%; bottom:10%;
+  width:1px; background:rgba(255,255,255,0.15);
+}
+.stat-n { font-family:'Cormorant Garamond', serif; font-size:2.2rem; font-weight:500; color:var(--white); line-height:1; letter-spacing:-0.02em; margin-bottom:0.3rem; }
+.stat-label { font-size:0.72rem; font-weight:400; color:rgba(255,255,255,0.7); line-height:1.4; }
+.stat-source { font-size:0.6rem; color:rgba(255,255,255,0.35); margin-top:0.2rem; }
+
+/* ── SHARED SECTION STYLES ── */
+.sec-eyebrow { font-size:0.67rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal); margin-bottom:0.5rem; }
+.sec-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.15; }
+.sec-row { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:1.4rem; border-bottom:1px solid var(--rule); flex-wrap:wrap; gap:1rem; }
+.sec-aside { font-size:0.8rem; color:var(--muted); font-weight:300; text-align:right; max-width:220px; line-height:1.55; }
+.link-teal { font-size:0.82rem; font-weight:500; color:var(--teal); text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem; transition:gap 0.2s; }
+.link-teal:hover { gap:0.65rem; }
+.link-teal::after { content:'→'; }
+
+/* ── ENTERPRISE PROGRAMME ── */
+#programme { padding:80px 5%; background:var(--warm); }
+.prog-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--rule); border:1px solid var(--rule);
+}
+.prog-card { background:var(--warm); padding:2rem 1.8rem; cursor:pointer; transition:background 0.2s; }
+.prog-card:hover { background:#EDE9E2; }
+.prog-num { font-family:'Cormorant Garamond', serif; font-size:2.4rem; font-weight:400; font-style:italic; color:var(--teal); opacity:0.2; line-height:1; margin-bottom:0.8rem; }
+.prog-title { font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:0.4rem; letter-spacing:-0.01em; }
+.prog-desc { font-size:0.8rem; color:var(--body); line-height:1.65; font-weight:300; }
+.prog-tag { display:inline-block; margin-top:0.8rem; background:var(--teal-l); color:var(--teal); border:1px solid rgba(196,151,58,0.2); font-size:0.63rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; padding:0.2rem 0.55rem; border-radius:2px; }
+
+/* ── READINESS METER ── */
+#meter { padding:80px 5%; background:var(--paper); }
+.meter-inner { display:grid; grid-template-columns:1fr 1.2fr; gap:6rem; align-items:center; }
+.meter-left h2 { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.18; margin-top:0.5rem; margin-bottom:1rem; }
+.meter-left p { font-size:0.88rem; color:var(--body); line-height:1.82; font-weight:300; margin-bottom:0.8rem; }
+.meter-visual { background:var(--white); border:1px solid var(--rule); border-radius:4px; padding:2rem; }
+.mv-title { font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:1.4rem; }
+.mv-pillar { display:grid; grid-template-columns:110px 1fr 28px; align-items:center; gap:0.8rem; margin-bottom:0.75rem; }
+.mv-pillar:last-child { margin-bottom:0; }
+.mv-name { font-size:0.76rem; color:var(--body); }
+.mv-bar-track { height:4px; background:rgba(12,18,33,0.06); border-radius:3px; overflow:hidden; }
+.mv-bar-fill { height:100%; background:var(--teal); border-radius:3px; }
+.mv-score { font-size:0.7rem; font-weight:500; color:var(--ink); text-align:right; }
+.mv-benchmark { margin-top:1.2rem; padding-top:1.1rem; border-top:1px solid var(--rule); display:flex; justify-content:space-between; align-items:center; }
+.mv-bench-label { font-size:0.7rem; color:var(--muted); font-weight:300; }
+.mv-bench-score { font-family:'Cormorant Garamond', serif; font-size:1.3rem; font-weight:500; color:var(--ink); }
+.mv-bench-score span { font-family:'DM Sans',sans-serif; font-size:0.7rem; color:var(--muted); font-weight:300; }
+
+/* ── CURRICULUM ── */
+#modules { background:var(--ink); padding:80px 5%; position:relative; overflow:hidden; }
+#modules::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 70% at 90% 50%, rgba(196,151,58,0.05) 0%, transparent 100%); pointer-events:none; }
+.modules-header { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:1.4rem; border-bottom:1px solid var(--rule-l); flex-wrap:wrap; gap:1rem; }
+.modules-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--white); letter-spacing:-0.02em; line-height:1.15; margin-top:0.5rem; }
+.modules-aside { font-size:0.8rem; color:rgba(255,255,255,0.28); font-weight:300; max-width:200px; text-align:right; line-height:1.55; }
+.mrow { display:grid; grid-template-columns:42px 1fr 110px 80px 20px; align-items:center; gap:2rem; padding:1.4rem 0; border-bottom:1px solid var(--rule-l); cursor:pointer; transition:all 0.18s; }
+.mrow:hover { background:rgba(255,255,255,0.02); padding-left:0.8rem; padding-right:0.8rem; margin:0 -0.8rem; }
+.mrow:hover .marr { opacity:1; transform:translateX(0); }
+.mnum { font-family:'Cormorant Garamond', serif; font-size:1.4rem; font-style:italic; color:rgba(255,255,255,0.18); font-weight:400; }
+.mname { font-size:0.9rem; font-weight:500; color:var(--white); margin-bottom:0.2rem; letter-spacing:-0.01em; }
+.mtags { font-size:0.75rem; color:rgba(255,255,255,0.28); font-weight:300; line-height:1.4; }
+.mdur { font-size:0.75rem; color:rgba(255,255,255,0.4); text-align:right; }
+.mphase { font-size:0.65rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-top:0.2rem; color:var(--teal); text-align:right; }
+.mweeks { font-size:0.88rem; font-weight:500; color:rgba(255,255,255,0.65); text-align:right; white-space:nowrap; }
+.mweeks small { display:block; font-size:0.65rem; color:rgba(255,255,255,0.25); font-weight:300; margin-top:0.1rem; }
+.marr { font-size:0.85rem; color:var(--teal); opacity:0; transform:translateX(-8px); transition:all 0.18s; }
+.mfoot { display:flex; align-items:center; justify-content:space-between; margin-top:2rem; flex-wrap:wrap; gap:1rem; }
+.mfoot p { font-size:0.75rem; color:rgba(255,255,255,0.2); font-weight:300; }
+
+/* ── HOW IT WORKS ── */
+#how { background:var(--navy); padding:80px 5%; position:relative; overflow:hidden; }
+#how::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 40% 60% at 95% 50%, rgba(196,151,58,0.06) 0%, transparent 100%); }
+.how-inner { position:relative; z-index:1; }
+.how-header { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:1.4rem; border-bottom:1px solid var(--rule-l); flex-wrap:wrap; gap:1rem; }
+.how-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--white); letter-spacing:-0.02em; line-height:1.15; margin-top:0.5rem; }
+.how-steps { display:grid; grid-template-columns:repeat(4,1fr); }
+.how-step { padding:2.6rem 2rem 2.6rem 0; border-right:1px solid var(--rule-l); position:relative; }
+.how-step:last-child { border-right:none; padding-right:0; }
+.how-step:first-child { padding-left:0; }
+.how-step:not(:first-child) { padding-left:2rem; }
+.how-num { font-family:'Cormorant Garamond', serif; font-size:3rem; font-weight:400; color:rgba(255,255,255,0.04); line-height:1; margin-bottom:1.2rem; letter-spacing:-0.04em; }
+.how-step-title { font-size:0.88rem; font-weight:600; color:var(--white); margin-bottom:0.5rem; letter-spacing:-0.01em; }
+.how-step-p { font-size:0.78rem; color:rgba(255,255,255,0.32); line-height:1.68; font-weight:300; }
+.how-connector { position:absolute; top:50%; right:0; transform:translateY(-50%) translateX(50%); width:18px; height:18px; background:var(--teal); border-radius:50%; z-index:2; display:flex; align-items:center; justify-content:center; }
+.how-step:last-child .how-connector { display:none; }
+.how-connector::after { content:'→'; font-size:0.5rem; color:var(--white); }
+
+/* ── INDIVIDUAL TRACKS ── */
+#individual { padding:80px 5%; background:var(--paper); }
+
+.launch-banner {
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--ink); padding:1rem 1.6rem;
+  margin-bottom:0; flex-wrap:wrap; gap:1rem;
+}
+.lb-left { display:flex; align-items:center; gap:1rem; }
+.lb-dot { width:8px; height:8px; background:var(--teal); border-radius:50%; flex-shrink:0; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.lb-text { font-size:0.82rem; font-weight:500; color:var(--white); }
+.lb-text span { color:var(--teal); }
+.lb-sub { font-size:0.75rem; color:rgba(255,255,255,0.35); font-weight:300; }
+
+.tracks-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); }
+
+.track-card { background:var(--paper); padding:2rem 1.8rem; border-top:3px solid transparent; transition:background 0.2s; }
+.track-card:hover { background:var(--warm); }
+.tc-a { border-top-color:var(--teal); }
+.tc-b { border-top-color:var(--amber); }
+.tc-c { border-top-color:#534AB7; }
+
+.track-letter { font-family:'Cormorant Garamond', serif; font-size:2.2rem; font-weight:400; font-style:italic; color:var(--muted); opacity:0.45; line-height:1; margin-bottom:0.9rem; }
+.track-name { font-size:0.95rem; font-weight:600; color:var(--ink); letter-spacing:-0.01em; line-height:1.3; margin-bottom:0.3rem; }
+.track-hook { font-size:0.78rem; color:var(--muted); font-style:italic; line-height:1.55; margin-bottom:1rem; }
+
+.track-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+.track-price { font-size:0.75rem; font-weight:400; color:var(--muted); }
+.track-price small { font-size:0.65rem; font-weight:300; color:var(--muted); display:inline; margin-left:4px; }
+.track-prereq-pill {
+  font-size:0.62rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase;
+  padding:0.2rem 0.55rem; border-radius:2px;
+}
+.pill-teal   { background:var(--teal-l); color:var(--teal); border:1px solid rgba(196,151,58,0.2); }
+.pill-amber  { background:rgba(212,137,10,0.08); color:var(--amber); border:1px solid rgba(212,137,10,0.15); }
+.pill-purple { background:rgba(83,74,183,0.08); color:#534AB7; border:1px solid rgba(83,74,183,0.15); }
+
+.track-divider { height:1px; background:var(--rule); margin-bottom:1rem; }
+.track-from-label { font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.3rem; }
+.track-from { font-size:0.78rem; color:var(--body); font-weight:300; line-height:1.55; margin-bottom:0.9rem; }
+.track-outcome-label { font-size:0.65rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.3rem; }
+.track-outcome { font-size:0.78rem; color:var(--ink); font-weight:400; line-height:1.55; margin-bottom:1.2rem; }
+
+/* Registration form */
+.reg-form { border-top:1px solid var(--rule); padding-top:1.2rem; }
+.reg-label { font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:0.7rem; display:block; }
+.reg-fields { display:flex; flex-direction:column; gap:0.5rem; margin-bottom:0.7rem; }
+.reg-input {
+  width:100%; padding:0.55rem 0.75rem;
+  font-family:'DM Sans', sans-serif; font-size:0.82rem; font-weight:300;
+  color:var(--ink); background:var(--white);
+  border:1px solid var(--rule); border-radius:2px;
+  outline:none; transition:border-color 0.2s;
+  -webkit-appearance:none;
+}
+.reg-input:focus { border-color:var(--teal); }
+.reg-input::placeholder { color:var(--muted); }
+.reg-btn {
+  width:100%; padding:0.6rem;
+  background:var(--teal); color:var(--white);
+  font-family:'DM Sans', sans-serif; font-size:0.82rem; font-weight:500;
+  border:none; border-radius:2px; cursor:pointer;
+  transition:background 0.2s; letter-spacing:0.01em;
+}
+.reg-btn:hover { background:var(--teal-d); }
+.reg-success {
+  display:none; padding:0.6rem 0.75rem;
+  background:var(--teal-l); border:1px solid rgba(13,155,138,0.2);
+  border-radius:2px; font-size:0.78rem; color:var(--teal);
+  font-weight:500; text-align:center;
+}
+
+.tracks-foot { display:flex; align-items:center; justify-content:space-between; margin-top:1.6rem; flex-wrap:wrap; gap:1rem; }
+.tracks-foot p { font-size:0.78rem; color:var(--muted); font-weight:300; }
+
+/* ── WHY ── */
+#why { background:var(--warm); padding:80px 5%; }
+.why-inner { display:grid; grid-template-columns:1fr 1.6fr; gap:7rem; align-items:start; }
+.why-left h2 { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.18; margin-top:0.5rem; margin-bottom:1.2rem; }
+.why-left p { font-size:0.88rem; color:var(--body); line-height:1.78; font-weight:300; }
+.why-points { display:flex; flex-direction:column; }
+.why-point { padding:1.4rem 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:20px 1fr; gap:1.2rem; align-items:start; }
+.why-point:first-child { padding-top:0; border-top:1px solid var(--rule); }
+.wp-dash { color:var(--teal); font-size:0.9rem; padding-top:0.18rem; opacity:0.7; }
+.wp-t { font-size:0.9rem; font-weight:600; color:var(--ink); margin-bottom:0.25rem; letter-spacing:-0.01em; }
+.wp-p { font-size:0.82rem; color:var(--body); line-height:1.68; font-weight:300; }
+
+/* ── ABOUT ── */
+#about { background:var(--paper); padding:80px 5%; }
+.about-inner { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
+.about-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.18; margin-top:0.5rem; margin-bottom:1.2rem; }
+.about-p { font-size:0.88rem; color:var(--body); line-height:1.82; font-weight:300; }
+.about-right { padding-left:4rem; border-left:1px solid var(--rule); }
+.about-right-p { font-size:0.86rem; color:var(--body); line-height:1.82; font-weight:300; margin-bottom:1.8rem; margin-top:1.2rem; }
+.about-contact { padding-top:1.5rem; border-top:1px solid var(--rule); }
+
+/* ── CTA ── */
+#cta { background:var(--navy); padding:80px 5%; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+.cta-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.6rem, 2.8vw, 2.1rem); font-weight:500; color:var(--white); letter-spacing:-0.02em; line-height:1.2; margin-bottom:0.4rem; }
+.cta-p { font-size:0.87rem; color:rgba(255,255,255,0.4); font-weight:300; max-width:460px; line-height:1.7; }
+.cta-btns { display:flex; gap:1rem; align-items:center; flex-shrink:0; }
+.btn-w { background:var(--white); color:var(--navy); padding:0.75rem 1.6rem; border-radius:3px; font-size:0.85rem; font-weight:500; text-decoration:none; white-space:nowrap; transition:opacity 0.2s; border:none; cursor:pointer; font-family:inherit; }
+.btn-w:hover { opacity:0.9; }
+.btn-free-report { color:rgba(255,255,255,0.45); font-size:0.82rem; font-weight:400; font-style:italic; margin:0; }
+
+/* ── FOOTER ── */
+footer { background:var(--ink); padding:2.8rem 5%; }
+.foot-top { display:flex; justify-content:space-between; align-items:center; padding-bottom:1.8rem; border-bottom:1px solid var(--rule-l); margin-bottom:1.6rem; flex-wrap:wrap; gap:1.5rem; }
+.foot-logo { font-size:0.88rem; font-weight:600; color:rgba(255,255,255,0.6); }
+.fnav { list-style:none; display:flex; gap:2rem; flex-wrap:wrap; }
+.fnav a { font-size:0.76rem; color:rgba(255,255,255,0.28); text-decoration:none; transition:color 0.2s; }
+.fnav a:hover { color:rgba(255,255,255,0.65); }
+.foot-btm { display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.foot-meta { font-size:0.7rem; color:rgba(255,255,255,0.18); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .meter-inner { grid-template-columns:1fr; gap:3rem; }
+  .about-inner { grid-template-columns:1fr; gap:3rem; }
+  .about-right { border-left:none; padding-left:0; border-top:1px solid var(--rule); padding-top:2rem; }
+  .why-inner { grid-template-columns:1fr; gap:3rem; }
+  .tracks-grid { grid-template-columns:1fr; }
+  .prog-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width: 820px) {
+  #paths { grid-template-columns:1fr; }
+  .path-ent { border-right:none; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .hero-foot { grid-template-columns:1fr; }
+  .hf { border-right:none; border-bottom:1px solid var(--rule-l); padding-left:0 !important; }
+  .hf:last-child { border-bottom:none; }
+  .nav-links { display:none; }
+  #cta { flex-direction:column; }
+  .sec-aside { display:none; }
+  .how-steps { grid-template-columns:1fr 1fr; }
+  .how-step { border-right:none; border-bottom:1px solid var(--rule-l); padding-left:0 !important; }
+  .how-connector { display:none; }
+  #stats { grid-template-columns:1fr; }
+  .stat-item::after { display:none; }
+  .mrow { grid-template-columns:36px 1fr; }
+  .mweeks, .mdur, .marr { display:none; }
+  .prog-grid { grid-template-columns:1fr; }
+  .launch-banner { flex-direction:column; align-items:flex-start; }
+}
+
+
+/* ── CONTACT & EXPERT MODALS (web3forms) ── */
+.contact-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(13,31,26,0.88); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center; padding: 1.5rem;
+}
+.contact-modal-overlay.open { display: flex; }
+.contact-modal {
+  background: var(--paper); width: 100%; max-width: 480px;
+  padding: 2.8rem 2.4rem; position: relative;
+  border: 1px solid var(--rule);
+  animation: modalIn 0.28s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes modalIn {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.contact-modal-close {
+  position: absolute; top: 1.2rem; right: 1.5rem;
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 1.3rem; line-height: 1; transition: color 0.2s; padding: 0;
+}
+.contact-modal-close:hover { color: var(--ink); }
+.contact-modal-tag {
+  font-size: 0.67rem; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem;
+}
+.contact-modal-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 500; color: var(--ink);
+  margin-bottom: 1.8rem; line-height: 1.2; letter-spacing: -0.01em;
+}
+.contact-modal-fields {
+  display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.2rem;
+}
+.form-input {
+  width: 100%; padding: 0.65rem 0.85rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 300;
+  color: var(--ink); background: var(--white);
+  border: 1px solid var(--rule); border-radius: 2px;
+  outline: none; transition: border-color 0.2s;
+}
+.form-input::placeholder { color: var(--muted); }
+.form-input:focus { border-color: var(--teal); }
+textarea.form-input { resize: none; line-height: 1.55; }
+.form-submit {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal); color: var(--white);
+  border: none; border-radius: 2px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+  padding: 0.7rem 1.6rem; transition: background 0.2s; letter-spacing: 0.01em;
+  width: 100%; justify-content: center; margin-top: 0.3rem;
+}
+.form-submit:hover { background: var(--teal-d); }
+.contact-modal-success {
+  display: none; flex-direction: column; align-items: center;
+  text-align: center; padding: 1.5rem 0; gap: 0.8rem;
+}
+.success-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--teal-l); border: 1px solid rgba(196,151,58,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal); font-size: 1.2rem; margin-bottom: 0.5rem;
+}
+.success-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 500; color: var(--ink);
+}
+.success-sub { font-size: 0.82rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+.modal-overlay {
+  display:none; position:fixed; inset:0; z-index:200;
+  background:rgba(13,31,26,0.82); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center; padding:1.5rem;
+}
+.modal-overlay.open { display:flex; }
+.modal-box {
+  background:var(--paper); width:100%; max-width:560px;
+  border-radius:4px; overflow:hidden;
+  animation: modalIn 0.28s cubic-bezier(0.16,1,0.3,1) both;
+  max-height:90vh; overflow-y:auto;
+}
+@keyframes modalIn {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.modal-head {
+  background:var(--ink); padding:1.5rem 2rem 1.2rem;
+  position:sticky; top:0; z-index:10;
+}
+.modal-progress-track {
+  height:2px; background:rgba(255,255,255,0.1);
+  border-radius:2px; margin-bottom:1rem;
+}
+.modal-progress-fill {
+  height:100%; background:var(--gold);
+  border-radius:2px; transition:width 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.modal-step-label {
+  font-size:0.68rem; font-weight:500; letter-spacing:0.14em;
+  text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:0.5rem;
+}
+.modal-q-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem; font-weight:500; color:var(--white);
+  line-height:1.3; letter-spacing:-0.01em;
+}
+.modal-close {
+  position:absolute; top:1.2rem; right:1.5rem;
+  background:none; border:none; cursor:pointer;
+  color:rgba(255,255,255,0.3); font-size:1rem; line-height:1;
+  transition:color 0.2s; padding:0;
+}
+.modal-close:hover { color:rgba(255,255,255,0.7); }
+.modal-body { padding:1.5rem 2rem; }
+.modal-hint {
+  font-size:0.72rem; color:var(--muted); font-weight:300;
+  margin-bottom:1.2rem; font-style:italic;
+}
+
+/* MCQ option cards */
+.mcq-options { display:flex; flex-direction:column; gap:0.5rem; }
+.mcq-opt {
+  padding:0.75rem 1rem;
+  background:var(--white); border:1px solid var(--rule);
+  border-radius:2px; cursor:pointer;
+  transition:all 0.15s; user-select:none;
+  display:flex; align-items:center; gap:0.8rem;
+}
+.mcq-opt:hover { border-color:var(--gold); background:var(--warm); }
+.mcq-opt.selected {
+  border-color:var(--gold); background:rgba(196,151,58,0.06);
+}
+.mcq-dot {
+  width:16px; height:16px; border-radius:50%;
+  border:1.5px solid var(--rule); flex-shrink:0;
+  transition:all 0.15s; background:var(--white);
+  display:flex; align-items:center; justify-content:center;
+}
+.mcq-opt.selected .mcq-dot {
+  border-color:var(--gold); background:var(--gold);
+}
+.mcq-dot::after {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--white); opacity:0; transition:opacity 0.15s;
+}
+.mcq-opt.selected .mcq-dot::after { opacity:1; }
+.mcq-checkbox {
+  width:16px; height:16px; border-radius:2px;
+  border:1.5px solid var(--rule); flex-shrink:0;
+  transition:all 0.15s; background:var(--white);
+  display:flex; align-items:center; justify-content:center;
+}
+.mcq-opt.selected .mcq-checkbox {
+  border-color:var(--gold); background:var(--gold);
+}
+.mcq-checkbox::after {
+  content:'✓'; font-size:10px; color:var(--white);
+  opacity:0; transition:opacity 0.15s; line-height:1;
+}
+.mcq-opt.selected .mcq-checkbox::after { opacity:1; }
+.mcq-text { font-size:0.85rem; color:var(--ink); font-weight:300; line-height:1.4; }
+
+/* Scale options */
+.scale-options { display:grid; grid-template-columns:repeat(5,1fr); gap:0.5rem; }
+.scale-opt {
+  padding:0.9rem 0.5rem; text-align:center;
+  background:var(--white); border:1px solid var(--rule);
+  border-radius:2px; cursor:pointer; transition:all 0.15s;
+}
+.scale-opt:hover { border-color:var(--gold); background:var(--warm); }
+.scale-opt.selected { border-color:var(--gold); background:rgba(196,151,58,0.06); }
+.scale-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:400; color:var(--ink);
+  line-height:1; margin-bottom:0.3rem;
+}
+.scale-opt.selected .scale-num { color:var(--gold); }
+.scale-label { font-size:0.65rem; color:var(--muted); font-weight:300; line-height:1.35; }
+
+/* Nav buttons */
+.modal-nav { display:flex; align-items:center; justify-content:space-between; margin-top:1.5rem; padding-top:1.2rem; border-top:1px solid var(--rule); }
+.modal-back {
+  background:none; border:none; cursor:pointer;
+  font-family:'DM Sans',sans-serif; font-size:0.82rem;
+  color:var(--muted); font-weight:300; padding:0;
+  transition:color 0.2s;
+}
+.modal-back:hover { color:var(--body); }
+.modal-next {
+  background:var(--gold); color:var(--white);
+  border:none; border-radius:2px; cursor:pointer;
+  font-family:'DM Sans',sans-serif; font-size:0.85rem; font-weight:500;
+  padding:0.65rem 1.6rem; transition:background 0.2s; letter-spacing:0.01em;
+}
+.modal-next:hover { background:var(--amber); }
+.modal-next:disabled { background:rgba(196,151,58,0.3); cursor:not-allowed; }
+
+/* Opt-in step */
+.optin-intro {
+  font-size:0.88rem; color:var(--body); line-height:1.75;
+  font-weight:300; margin-bottom:1.5rem;
+}
+.optin-field { margin-bottom:0.9rem; }
+.optin-label {
+  display:block; font-size:0.68rem; font-weight:600;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:0.4rem;
+}
+.optin-input {
+  width:100%; padding:0.6rem 0.8rem;
+  font-family:'DM Sans',sans-serif; font-size:0.85rem;
+  color:var(--ink); background:var(--white);
+  border:1px solid var(--rule); border-radius:2px;
+  outline:none; transition:border-color 0.2s;
+}
+.optin-input:focus { border-color:var(--gold); }
+.optin-input::placeholder { color:var(--muted); }
+.optin-skip {
+  font-size:0.78rem; color:var(--muted); font-weight:300;
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline; text-underline-offset:2px;
+  padding:0; transition:color 0.2s; margin-top:0.5rem;
+}
+.optin-skip:hover { color:var(--body); }
+
+/* Success */
+.modal-success {
+  padding:3rem 2rem; text-align:center;
+}
+.modal-success-check {
+  width:52px; height:52px; border-radius:50%;
+  background:rgba(196,151,58,0.1); border:1px solid rgba(196,151,58,0.2);
+  margin:0 auto 1.2rem;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; color:var(--gold);
+}
+.modal-success-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:500; color:var(--ink);
+  margin-bottom:0.6rem; letter-spacing:-0.01em;
+}
+.modal-success-p {
+  font-size:0.84rem; color:var(--muted);
+  font-weight:300; line-height:1.7; max-width:340px; margin:0 auto;
+}
+</style>
+<script async src="https://tally.so/widgets/embed.js"></script>
+</head>
+<body>
+
+<!-- WEB3FORMS ACCESS KEY -->
+<input type="hidden" id="web3formsKey" value="741af212-2431-4266-86ff-fc5e9ce5e65a">
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#"><span class="logo-pip"></span>DeployReady</a>
+  <ul class="nav-links">
+    <li><a href="#paths">Enterprise</a></li>
+    <li><a href="#programme">Programme</a></li>
+    <li><a href="#modules">Curriculum</a></li>
+    <li><a href="#individual">Individual Tracks</a></li>
+    <li><a href="#why">Why DeployReady</a></li>
+    <li><a href="#about">About</a></li>
+    <li><button class="nav-cta" onclick="openExpertModal()">Talk to Us</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-body">
+    <div class="hero-label">
+      <div class="hero-label-line"></div>
+      <div class="hero-label-text">India's First Full-Lifecycle AI Deployment Programme · 2026</div>
+    </div>
+    <h1>
+      The skills to deploy AI<br>
+      in enterprises <em>do not<br>
+      come with the technology.</em>
+    </h1>
+    <p class="hero-p">
+      DeployReady is an end-to-end AI deployment capability programme for companies <strong style="color:rgba(255,255,255,0.75);font-weight:500;">stuck between pilot and production.</strong><br>
+      We build the capability to get AI there — and keep it there.
+    </p>
+    <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;font-weight:400;margin:0 0 1.2rem;font-style:italic;letter-spacing:0.01em;">Who are you?</p>
+    <div class="hero-btns" style="flex-direction:column;align-items:flex-start;gap:0.75rem;">
+      <button data-tally-open="rjEgrM" data-tally-layout="modal" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" class="btn-primary" style="display:flex;align-items:center;gap:0.75rem;">
+        <span style="font-size:0.78rem;opacity:0.7;font-weight:400;">I lead AI in my organisation</span>
+        <span style="opacity:0.4;font-size:0.8rem;">→</span>
+        <span>Diagnose Your Deployment</span>
+      </button>
+      <a href="#individual" class="btn-primary" style="background:rgba(196,151,58,0.12);border:1px solid rgba(196,151,58,0.3);display:flex;align-items:center;gap:0.75rem;">
+        <span style="font-size:0.78rem;opacity:0.7;font-weight:400;">I want to work in AI deployment</span>
+        <span style="opacity:0.4;font-size:0.8rem;">→</span>
+        <span>See Individual Tracks</span>
+      </a>
+    </div>
+    <p style="color:rgba(255,255,255,0.25);font-size:0.75rem;font-weight:300;margin:1rem 0 0;font-style:italic;">
+      <strong style="color:rgba(196,151,58,0.7);font-weight:500;">Free AI Deployment Maturity Score</strong>
+      &nbsp;·&nbsp;
+      <a href="sample-report.html" target="_blank" style="color:rgba(196,151,58,0.6);text-decoration:none;border-bottom:1px solid rgba(196,151,58,0.3);padding-bottom:1px;transition:color 0.2s;" onmouseover="this.style.color='rgba(196,151,58,1)'" onmouseout="this.style.color='rgba(196,151,58,0.6)'">See a Sample Report →</a>
+      &nbsp;·&nbsp; Individual tracks: June 2026
+    </p>
+  </div>
+  <div class="hero-foot">
+    <div class="hf">
+      <div class="hf-n"><em>88%</em></div>
+      <div class="hf-l">of AI pilots never reach production</div>
+    </div>
+    <div class="hf">
+      <div class="hf-n">India's <em>first</em></div>
+      <div class="hf-l">Full-lifecycle AI deployment programme</div>
+    </div>
+    <div class="hf">
+      <div class="hf-n">Day <em>one</em></div>
+      <div class="hf-l">ROI visibility built into every cohort</div>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT PATHS -->
+<section id="paths">
+  <div class="path-panel path-ent">
+    <div class="pp-tag tag-ent">For Enterprises</div>
+    <h2 class="pp-h ent-h">The full ramp. Assessment to production.</h2>
+    <p class="pp-p ent-p">An 8–12 week managed programme — readiness assessment, deployment training, handholding, and post-go-live monitoring. Delivered in the context of your organisation, your systems, your use cases. Not a course. A guaranteed maturity uplift.</p>
+    <a href="#programme" class="pp-link">See the enterprise programme</a>
+    <div class="pp-details ent-details">
+      <div class="pp-detail ent-detail">Assessment + Ramp + Handholding + Post-monitoring</div>
+      <div class="pp-detail ent-detail">NASSCOM-benchmarked Readiness Meter included</div>
+      <div class="pp-detail ent-detail">CXO ROI Dashboard + 0.5-point maturity guarantee</div>
+      <div class="pp-detail ent-detail">20–40 seat cohorts · contact us for pricing</div>
+    </div>
+  </div>
+  <div class="path-panel path-ind">
+    <div class="pp-tag tag-ind">For Individuals</div>
+    <h2 class="pp-h ind-h">A credential for the role enterprises need.</h2>
+    <p class="pp-p ind-p">Three role-destination tracks for professionals moving into AI deployment. Practitioner-built curriculum, small cohorts, outcome-focused certification. First batch opens 1st June 2026 — register your interest now.</p>
+    <a href="#individual" class="pp-link">See individual tracks</a>
+    <div class="pp-details ind-details">
+      <div class="pp-detail ind-detail">AI Deployment Analyst · Governance &amp; Risk · Integration Engineer</div>
+      <div class="pp-detail ind-detail">First batch — 1st June 2026</div>
+      <div class="pp-detail ind-detail">₹45,000–55,000 per track · EMI available</div>
+      <div class="pp-detail ind-detail">Register interest — no commitment required</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY THEY NEED THIS -->
+<section id="why-need">
+  <style>
+    #why-need {
+      background: var(--paper);
+      padding: 80px 5%;
+    }
+    .wn-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 3rem;
+    }
+    .wn-tab {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.75rem 2rem 0.75rem 0;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .wn-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+    .wn-tab:hover { color: var(--ink); }
+    .wn-panel { display: none; }
+    .wn-panel.active { display: block; }
+    .wn-header {
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+    .wn-header-eyebrow {
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    .wn-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .wn-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+    .wn-card {
+      background: var(--paper);
+      padding: 2.2rem 2rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .wn-card:hover { background: var(--warm); }
+    .wn-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--teal);
+      opacity: 0.18;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .wn-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.7rem;
+      line-height: 1.3;
+    }
+    .wn-card-body {
+      font-size: 0.82rem;
+      color: var(--body);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .wn-card-sting {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--teal);
+      text-transform: uppercase;
+      border-top: 1px solid var(--rule);
+      padding-top: 0.8rem;
+      width: 100%;
+    }
+    @media (max-width: 820px) {
+      .wn-cards { grid-template-columns: 1fr; }
+      .wn-tabs { gap: 0; }
+      .wn-tab { padding: 0.75rem 1.2rem 0.75rem 0; font-size: 0.72rem; }
+    }
+  </style>
+
+  <!-- Tab toggles -->
+  <div class="wn-tabs">
+    <button class="wn-tab active" onclick="switchTab('ent', this)">For Enterprises</button>
+    <button class="wn-tab" onclick="switchTab('ind', this)">For Individuals</button>
+  </div>
+
+  <!-- Enterprise panel -->
+  <div class="wn-panel active" id="wn-ent">
+    <div class="wn-header">
+      <div class="wn-header-eyebrow">Why enterprises need this</div>
+      <h2>Three reasons AI stays stuck as a pilot — and never becomes a business outcome.</h2>
+    </div>
+    <div class="wn-cards">
+      <div class="wn-card">
+        <div class="wn-card-num">01</div>
+        <div class="wn-card-title">Decision paralysis</div>
+        <p class="wn-card-body">Organisations know AI needs to move into production. Large consultancies are too expensive. Internal teams don't know where to start. AI sits as a pilot forever — budget allocated, deadline missed, problem unchanged.</p>
+        <span class="wn-card-sting">The result → perpetual pilot mode</span>
+      </div>
+      <div class="wn-card">
+        <div class="wn-card-num">02</div>
+        <div class="wn-card-title">Wasted training spend</div>
+        <p class="wn-card-body">Organisations invest in generic AI courses to upskill teams. Teams complete them. Awareness goes up. Deployment capability does not move. Budget is gone and the same pilots are still stalled six months later.</p>
+        <span class="wn-card-sting">The result → awareness without capability</span>
+      </div>
+      <div class="wn-card">
+        <div class="wn-card-num">03</div>
+        <div class="wn-card-title">Post-consultancy collapse</div>
+        <p class="wn-card-body">Organisations hire consultancies to deploy AI. The project completes. Consultants leave. Nobody inside knows how to monitor, maintain, or build on it. Institutional knowledge walks out the door. Back to square one.</p>
+        <span class="wn-card-sting">The result → dependency, not capability</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Individual panel -->
+  <div class="wn-panel" id="wn-ind">
+    <div class="wn-header">
+      <div class="wn-header-eyebrow">Why individuals need this</div>
+      <h2>Three reasons existing AI courses won't get you hired for the roles enterprises actually need to fill.</h2>
+    </div>
+    <div class="wn-cards">
+      <div class="wn-card">
+        <div class="wn-card-num">01</div>
+        <div class="wn-card-title">Market courses are foundational and generic</div>
+        <p class="wn-card-body">Every major AI certification teaches you what AI is and how models work. None of them teach you how to take a model into a real enterprise environment — integration, governance, compliance, monitoring. That is the gap enterprises cannot fill.</p>
+        <span class="wn-card-sting">The result → certified but not deployable</span>
+      </div>
+      <div class="wn-card">
+        <div class="wn-card-num">02</div>
+        <div class="wn-card-title">They don't build on your existing experience</div>
+        <p class="wn-card-body">A risk officer, a business analyst, a DevOps engineer — each has domain depth enterprises already value. Generic AI courses ignore that. DeployReady tracks are designed to layer deployment capability directly onto the professional experience you already have.</p>
+        <span class="wn-card-sting">The result → your background becomes your advantage</span>
+      </div>
+      <div class="wn-card">
+        <div class="wn-card-num">03</div>
+        <div class="wn-card-title">No clear role to target at the end</div>
+        <p class="wn-card-body">Most AI courses end with a certificate and no defined job title. DeployReady is built around three specific roles enterprises are actively trying to hire — AI Deployment Analyst, Governance &amp; Risk Lead, Integration &amp; MLOps Engineer. You leave knowing exactly what you are.</p>
+        <span class="wn-card-sting">The result → a job title, not just a credential</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+function switchTab(panel, btn) {
+  document.querySelectorAll('.wn-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.wn-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('wn-' + panel).classList.add('active');
+}
+</script>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stat-item">
+    <div class="stat-n">88%</div>
+    <div class="stat-label">of AI POCs never reach production</div>
+    <div class="stat-source">IDC / Lenovo Research, 2025</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">95%</div>
+    <div class="stat-label">of GenAI pilots fail to drive revenue</div>
+    <div class="stat-source">MIT NANDA Report, 2025</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">2.47</div>
+    <div class="stat-label">India's AI maturity score — out of 4.0</div>
+    <div class="stat-source">NASSCOM AI Adoption Index, 2024</div>
+  </div>
+</div>
+
+<!-- ENTERPRISE PROGRAMME -->
+<section id="programme">
+  <div class="sec-row" style="margin-bottom:0;">
+    <div>
+      <div class="sec-eyebrow">Enterprise Programme</div>
+      <div class="sec-h">Five things that make this different.</div>
+    </div>
+    <div class="sec-aside">Built for India's enterprise AI deployment gap.</div>
+  </div>
+  <div class="prog-grid">
+    <div class="prog-card">
+      <div class="prog-num">01</div>
+      <div class="prog-title">Full-Lifecycle Ramp</div>
+      <p class="prog-desc">8–12 weeks from readiness assessment to post-production monitoring. Every phase has measurable exit criteria. Not a course — a structured programme with accountability at every stage.</p>
+      <span class="prog-tag">12 weeks · 6 modules · 60–80 hrs</span>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">02</div>
+      <div class="prog-title">NASSCOM-Benchmarked Readiness Meter</div>
+      <p class="prog-desc">Proprietary 9-pillar diagnostic benchmarked against India's AI Adoption Index. Baseline set day one, exit score measured at close. Board-ready PDF scorecard included.</p>
+      <span class="prog-tag">9-pillar assessment</span>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">03</div>
+      <div class="prog-title">50/50 Deterministic + GenAI</div>
+      <p class="prog-desc">Equal depth on classical ML and non-deterministic AI — LLMs, RAG, agents, hallucination controls. The only programme in India that covers both production realities.</p>
+      <span class="prog-tag">Rare in the market</span>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">04</div>
+      <div class="prog-title">India-Specific Regulatory Depth</div>
+      <p class="prog-desc">DPDP Act compliance, MeitY AI Guidelines alignment, and sectoral coverage — RBI, IRDAI, SEBI. Built for India's regulatory environment, not adapted from global frameworks.</p>
+      <span class="prog-tag">DPDP · MeitY · Sectoral</span>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">05</div>
+      <div class="prog-title">CXO ROI Dashboard</div>
+      <p class="prog-desc">Board-ready scorecard tracking AI maturity, deployment velocity, and risk posture across four quadrants. Delivered to every enterprise client at programme close.</p>
+      <span class="prog-tag">Board-ready reporting</span>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">06</div>
+      <div class="prog-title">Success Guarantee</div>
+      <p class="prog-desc">If your maturity score doesn't rise by 0.5 points on the NASSCOM scale within 6 months of completion, the next cohort is delivered free. Our risk, not yours.</p>
+      <span class="prog-tag">Our risk, not yours</span>
+    </div>
+  </div>
+</section>
+
+<!-- READINESS METER -->
+<section id="meter">
+  <div class="meter-inner">
+    <div class="meter-left">
+      <div class="sec-eyebrow">AI Readiness Meter</div>
+      <h2>Know exactly where you stand before you spend a rupee.</h2>
+      <p>Free 10–15 minute assessment. Instant PDF scorecard across 9 pillars benchmarked against NASSCOM's AI Adoption Index. Organisations scoring below 2.8 receive a free 45-minute consultation.</p>
+      <p>Enterprise clients get a facilitated 90-minute diagnostic — stakeholder interviews, peer benchmarks, and a prioritised 90-day action roadmap.</p>
+      <span style="display:inline-block; margin-top:1.4rem;">
+        <button data-tally-open="rjEgrM" data-tally-layout="modal" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" style="padding:0.75rem 1.6rem; border-radius:3px; font-size:0.85rem; font-weight:500; background:var(--teal); color:var(--white); border:none; cursor:pointer; font-family:'DM Sans',sans-serif; letter-spacing:0.01em; transition:background 0.2s;" onmouseover="this.style.background='var(--teal-d)'" onmouseout="this.style.background='var(--teal)'">Get Your Free Readiness Score →</button>
+      </span>
+    </div>
+    <div class="meter-visual">
+      <div class="mv-title">Sample Score — BFSI Enterprise</div>
+      <div class="mv-pillar"><div class="mv-name">AI Strategy</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:62%"></div></div><div class="mv-score">2.5</div></div>
+      <div class="mv-pillar"><div class="mv-name">Data Readiness</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:45%"></div></div><div class="mv-score">1.8</div></div>
+      <div class="mv-pillar"><div class="mv-name">Talent &amp; Skills</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:38%"></div></div><div class="mv-score">1.5</div></div>
+      <div class="mv-pillar"><div class="mv-name">Governance</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:72%"></div></div><div class="mv-score">2.9</div></div>
+      <div class="mv-pillar"><div class="mv-name">Use Case Maturity</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:55%"></div></div><div class="mv-score">2.2</div></div>
+      <div class="mv-pillar"><div class="mv-name">Deployment Process</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:32%"></div></div><div class="mv-score">1.3</div></div>
+      <div class="mv-pillar"><div class="mv-name">DPDP Compliance</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:58%"></div></div><div class="mv-score">2.3</div></div>
+      <div class="mv-pillar"><div class="mv-name">Exec Sponsorship</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:80%"></div></div><div class="mv-score">3.2</div></div>
+      <div class="mv-pillar"><div class="mv-name">POC→Production Rate</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:28%"></div></div><div class="mv-score">1.1</div></div>
+      <div class="mv-benchmark">
+        <div><div class="mv-bench-label">Your composite score</div><div class="mv-bench-score">2.09 <span>/ 4.0 · Enthusiast stage</span></div></div>
+        <div style="text-align:right"><div class="mv-bench-label">NASSCOM India average</div><div class="mv-bench-score">2.47 <span>/ 4.0</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="modules">
+  <div class="how-inner">
+    <div class="modules-header">
+      <div>
+        <div class="sec-eyebrow" style="color:rgba(196,151,58,0.8)">Curriculum</div>
+        <div class="modules-h">Six modules. Twelve weeks. Full lifecycle.</div>
+      </div>
+      <div class="modules-aside">Equal depth on deterministic and GenAI models.</div>
+    </div>
+    <div class="mlist">
+
+      <div class="mrow">
+        <div class="mnum">M1</div>
+        <div>
+          <div class="mname">AI Foundations &amp; Types</div>
+          <div class="mtags">Deterministic vs non-deterministic · India context (IndiaAI, DPDP, MeitY) · AI literacy · prompt engineering</div>
+        </div>
+        <div><div class="mdur">All audiences</div><div class="mphase">Week 1</div></div>
+        <div class="mweeks">1 wk <small>~8 hrs</small></div>
+        <div class="marr">→</div>
+      </div>
+
+      <div class="mrow" style="background:rgba(196,151,58,0.04); border-left:2px solid var(--teal);">
+        <div class="mnum" style="color:var(--teal);opacity:1;">M2</div>
+        <div>
+          <div class="mname">Use Case Readiness &amp; Strategy</div>
+          <div class="mtags">Readiness Meter · NASSCOM 9-pillar scorecard · use case prioritisation (ROI, feasibility, risk) · data readiness</div>
+        </div>
+        <div><div class="mdur">Integrated</div><div class="mphase">Weeks 2–3</div></div>
+        <div class="mweeks">2 wks <small>~16 hrs</small></div>
+        <div class="marr">→</div>
+      </div>
+
+      <div class="mrow">
+        <div class="mnum">M3</div>
+        <div>
+          <div class="mname">Ethics, Governance &amp; Responsible AI</div>
+          <div class="mtags">Bias detection · fairness audits · hallucination mitigation · DPDP compliance · explainability · MeitY AI Guidelines</div>
+        </div>
+        <div><div class="mdur">All + Risk deep-dive</div><div class="mphase">Integrated</div></div>
+        <div class="mweeks">Integrated <small>across M2–M4</small></div>
+        <div class="marr">→</div>
+      </div>
+
+      <div class="mrow">
+        <div class="mnum">M4</div>
+        <div>
+          <div class="mname">Validation &amp; Deployment</div>
+          <div class="mtags">Testing frameworks (deterministic + LLM metrics) · MLOps / CI-CD · legacy integration · hands-on: ML + LLM + RAG deploy</div>
+        </div>
+        <div><div class="mdur">Technical labs + oversight</div><div class="mphase">Weeks 4–6</div></div>
+        <div class="mweeks">3 wks <small>~24 hrs</small></div>
+        <div class="marr">→</div>
+      </div>
+
+      <div class="mrow">
+        <div class="mnum">M5</div>
+        <div>
+          <div class="mname">Maintenance, Monitoring &amp; Scaling</div>
+          <div class="mtags">Drift detection · retraining · cost optimisation · governance loops · scaling playbook (POC → enterprise) · change management</div>
+        </div>
+        <div><div class="mdur">All audiences</div><div class="mphase">Weeks 7–8</div></div>
+        <div class="mweeks">2 wks <small>~16 hrs</small></div>
+        <div class="marr">→</div>
+      </div>
+
+      <div class="mrow" style="background:rgba(196,151,58,0.03); border-left:2px solid var(--gold);">
+        <div class="mnum" style="color:var(--gold);opacity:1;">M6</div>
+        <div>
+          <div class="mname">Capstone &amp; Roadmap</div>
+          <div class="mtags">Org-specific project · readiness → build → validate → deploy → maintain a hybrid use case · maturity scorecard · 3-month mentoring begins</div>
+        </div>
+        <div><div class="mdur">Cross-functional</div><div class="mphase">Weeks 9–12</div></div>
+        <div class="mweeks">4 wks <small>~32 hrs</small></div>
+        <div class="marr">→</div>
+      </div>
+
+    </div>
+    <div class="mfoot">
+      <p>6 modules · 12 weeks · 60–80 hours · post-programme 3-month mentoring included</p>
+      <a href="#cta" class="link-teal" style="color:rgba(196,151,58,0.85);">Request full syllabus</a>
+    </div>
+  </div>
+</section>
+
+<!-- INDIVIDUAL TRACKS -->
+<section id="individual">
+
+  <div class="launch-banner">
+    <div class="lb-left">
+      <div class="lb-dot"></div>
+      <div>
+        <div class="lb-text">First cohort opens <span>1st June 2026</span> — waitlist now open</div>
+        <div class="lb-sub">Join the waitlist below. No commitment. Waitlist members get confirmed pricing and first access before public launch.</div>
+      </div>
+    </div>
+    <div style="background:rgba(196,151,58,0.12);border:1px solid rgba(196,151,58,0.25);padding:0.5rem 1rem;border-radius:2px;text-align:center;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:var(--gold);line-height:1;" id="waitlist-count">—</div>
+      <div style="font-size:0.65rem;color:rgba(255,255,255,0.35);font-weight:300;margin-top:0.2rem;">on waitlist</div>
+    </div>
+  </div>
+
+  <div class="sec-row" style="margin-bottom:0; margin-top:2rem;">
+    <div>
+      <div class="sec-eyebrow">Individual Tracks</div>
+      <div class="sec-h">Three tracks. Three career destinations.</div>
+    </div>
+    <div class="sec-aside">For professionals moving into AI deployment roles.</div>
+  </div>
+
+  <div class="tracks-grid">
+
+    <div class="track-card tc-a">
+      <div class="track-letter">A</div>
+      <div class="track-name">AI Deployment Analyst</div>
+      <div class="track-hook">"I want to own the project that gets AI from pilot to production."</div>
+      <div class="track-meta">
+        <div class="track-price">₹45,000 <small>indicative</small></div>
+        <span class="track-prereq-pill pill-teal">No tech prereqs</span>
+      </div>
+      <div class="track-divider"></div>
+      <div class="track-from-label">Comes from</div>
+      <div class="track-from">Business analysts, project managers, consultants — people already operating at the enterprise layer.</div>
+      <div class="track-outcome-label">Leaves with</div>
+      <div class="track-outcome">Use case scoring, deployment business case, POC-to-production management. The generalist deployment role every enterprise needs.</div>
+      <div class="reg-form" id="form-a">
+        <button class="reg-btn" onclick="openContactModal('AI Deployment Analyst — Track A', 'Join the waitlist')">Join Waitlist — Track A →</button>
+      </div>
+    </div>
+
+    <div class="track-card tc-b">
+      <div class="track-letter">B</div>
+      <div class="track-name">AI Governance &amp; Risk Lead</div>
+      <div class="track-hook">"I want to be the person who keeps AI deployments compliant and safe."</div>
+      <div class="track-meta">
+        <div class="track-price">₹50,000 <small>indicative</small></div>
+        <span class="track-prereq-pill pill-amber">Governance background</span>
+      </div>
+      <div class="track-divider"></div>
+      <div class="track-from-label">Comes from</div>
+      <div class="track-from">Risk officers, compliance, legal, internal audit — people with governance experience entering the AI risk domain.</div>
+      <div class="track-outcome-label">Leaves with</div>
+      <div class="track-outcome">AI risk frameworks, DPDP Act compliance, LLM testing protocols, hallucination audits. The role regulators are beginning to require.</div>
+      <div class="reg-form" id="form-b">
+        <button class="reg-btn" onclick="openContactModal('AI Governance &amp; Risk Lead — Track B', 'Join the waitlist')">Join Waitlist — Track B →</button>
+      </div>
+    </div>
+
+    <div class="track-card tc-c">
+      <div class="track-letter">C</div>
+      <div class="track-name">AI Integration &amp; MLOps Engineer</div>
+      <div class="track-hook">"I want to build and run AI in production environments."</div>
+      <div class="track-meta">
+        <div class="track-price">₹55,000 <small>indicative</small></div>
+        <span class="track-prereq-pill pill-purple">Python / cloud required</span>
+      </div>
+      <div class="track-divider"></div>
+      <div class="track-from-label">Comes from</div>
+      <div class="track-from">Software engineers, DevOps, cloud architects — technical professionals extending their skills into AI deployment and operations.</div>
+      <div class="track-outcome-label">Leaves with</div>
+      <div class="track-outcome">LLM-to-enterprise integration, MLOps pipelines, CI/CD for AI, monitoring and observability. The most in-demand technical role in production AI.</div>
+      <div class="reg-form" id="form-c">
+        <button class="reg-btn" onclick="openContactModal('AI Integration &amp; MLOps Engineer — Track C', 'Join the waitlist')">Join Waitlist — Track C →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="tracks-foot">
+    <p>First cohort — 1st June 2026 · Small cohorts of 12–18 · Pricing confirmed to waitlist members · EMI available</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="why-inner">
+    <div class="why-left">
+      <div class="sec-eyebrow">Why DeployReady</div>
+      <h2>The gap nobody else is filling.</h2>
+      <p>India's AI training market runs from free awareness courses to expensive IT consulting. Neither addresses the execution layer — the structured process, governance, and organisational readiness that determines whether AI reaches production.</p>
+    </div>
+    <div class="why-points">
+      <div class="why-point">
+        <div class="wp-dash">—</div>
+        <div>
+          <div class="wp-t">Deployment training, not awareness training</div>
+          <p class="wp-p">Most AI programmes produce AI-literate employees. DeployReady produces professionals who can take an initiative from pilot to production — with governance, integration, and adoption in place.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="wp-dash">—</div>
+        <div>
+          <div class="wp-t">NASSCOM-aligned, not NASSCOM-generic</div>
+          <p class="wp-p">Benchmarked against India's own AI Adoption Index — with sector-specific weights, India-only case studies, and the DPDP compliance module every regulated enterprise needs.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="wp-dash">—</div>
+        <div>
+          <div class="wp-t">Measured outcomes, not inputs</div>
+          <p class="wp-p">Every enterprise cohort enters with a baseline Readiness Meter score and exits with a post-programme score. The CXO Dashboard tracks ROI and deployment velocity in board language.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="wp-dash">—</div>
+        <div>
+          <div class="wp-t">Built by practitioners, not academics</div>
+          <p class="wp-p">Our founding team has run enterprise AI across model risk, consulting, and large-scale transformation. The curriculum reflects what actually goes wrong — not what's theoretically important.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<style>
+.about-v2 { padding: 80px 5%; background: var(--paper); }
+.about-v2-top {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 4rem;
+}
+.founders-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+}
+.founder-card {
+  background: var(--paper); padding: 2rem 1.6rem;
+  transition: background 0.2s;
+}
+.founder-card:hover { background: var(--warm); }
+.founder-avatar-img {
+  width: 64px; height: 64px; border-radius: 50%;
+  object-fit: cover; object-position: center top;
+  margin-bottom: 1.2rem; flex-shrink: 0;
+  border: 2px solid rgba(196,151,58,0.25);
+  display: block;
+}
+.founder-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 500; color: var(--gold);
+  margin-bottom: 1.2rem; flex-shrink: 0;
+  border: 1px solid rgba(196,151,58,0.2);
+}
+.founder-name {
+  font-size: 0.95rem; font-weight: 600; color: var(--ink);
+  letter-spacing: -0.01em; margin-bottom: 0.2rem;
+}
+.founder-identity {
+  font-size: 0.75rem; font-weight: 500;
+  color: var(--gold); letter-spacing: 0.04em;
+  text-transform: uppercase; margin-bottom: 0.9rem;
+  line-height: 1.4;
+}
+.founder-divider { height: 1px; background: var(--rule); margin-bottom: 0.9rem; }
+.founder-bio {
+  font-size: 0.8rem; color: var(--body);
+  line-height: 1.72; font-weight: 300; margin-bottom: 1.2rem;
+}
+.founder-tags {
+  display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.2rem;
+}
+.founder-tag {
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 0.18rem 0.5rem; border-radius: 2px;
+  background: var(--teal-l); color: var(--gold);
+  border: 1px solid rgba(196,151,58,0.15);
+}
+.founder-li {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; font-weight: 500;
+  color: var(--gold); text-decoration: none;
+  opacity: 0.7; transition: opacity 0.2s;
+}
+.founder-li:hover { opacity: 1; }
+.founder-li svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+@media (max-width: 820px) {
+  .founders-grid { grid-template-columns: 1fr 1fr; }
+  .about-v2-top { grid-template-columns: 1fr; gap: 3rem; }
+}
+</style>
+
+<section id="about" class="about-v2">
+  <div class="about-v2-top">
+    <div>
+      <div class="sec-eyebrow">About</div>
+      <h2 class="about-h">Built by people who have watched AI fail inside real enterprises.</h2>
+      <p class="about-p">DeployReady was founded on a precise observation — not about AI's potential, but about where it breaks down. Enterprises spend on pilots. Most stall before production. The failure is almost never the model. It is the process, governance, and deployment layer that nobody owned, nobody trained for, and nobody was accountable for.<br><br>We built the training that addresses that layer specifically. Full lifecycle, India-specific, measurable, practitioner-led.</p>
+    </div>
+    <div style="padding-left:4rem; border-left:1px solid var(--rule);">
+      <div class="sec-eyebrow">The Team</div>
+      <p class="about-p" style="margin-top:1.2rem;">Three practitioners with a combined 65+ years of enterprise technology, AI governance, and transformation experience — across McKinsey, Accenture, financial services, and cloud-native AI platforms. We have each personally experienced the deployment failure modes DeployReady addresses: stalled pilots, compliance gaps, post-consultancy collapse, and capability that walked out the door with the vendor.<br><br>Collectively our team has delivered AI across BFSI, retail, telecom, hospitality, and manufacturing — in regulated environments across India and the US. We built DeployReady because no programme existed that addressed the specific layer where AI actually fails.</p>
+    </div>
+  </div>
+
+  <div class="founders-grid">
+
+    <!-- Dushyant -->
+    <div class="founder-card">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAC6ALADASIAAhEBAxEB/8QAHQAAAQUBAQEBAAAAAAAAAAAAAAQFBgcIAwIBCf/EAEQQAAEDAwIDBQQIAwYEBwAAAAEAAgMEBREGIRIxQQcTUWFxFCKBkQgjMkKhscHRJDNSFTRTYnLhc4Lw8USDkqKys8L/xAAbAQEAAwEBAQEAAAAAAAAAAAAAAQIDBQQGB//EACMRAAMAAgIBBAMBAAAAAAAAAAABAgMRBCESEyIxQQVRYUL/2gAMAwEAAhEDEQA/ANloQhACEIQAhCEAIQSACSQAOZKQTXajjfwMeZXf5OXzQC9CZqm7TBuY2MYPPcqPXK+XEE8NU9v+kAIRsnSFArZca+U5fWVB/wDMKXOuNcx2G1EnxOUBL0KP01zrQzL3Nf8A6m/sldPeWuPDNEQfFpyhI6oXOGeKYZjeD5dV0QAhCEAIQhACEIQAhCEAIQhACbbleKakcYmESzDm0HZvqU1aivzsOpaB+OjpR+Tf3TFRMc/xU6K+Xeh2nuE9W/65/u9GjYBDGdQF8p6YcyljAxvMqCUN9U2QjyTNcGHkU56svlq0/Z57pdquOmpYRlz3fgAOp8lnDWfbpNcXSR2KFtHSjOJZd5HD05BQ7Ul5xu30X3SXC3W9vHX1tPTNPLvZA3PzSWo7RdC08nBLf6UO8QHEfPCyRWaoul1cX1FS6biPNxOSPI52SaaCV7BIMRtd0/fxXmrkd/B7Z4S18myqbtA0bUtDYb9SZPRzuH80+UU8FVG2op5o5Y3cnscCD8QsQUzKiDDonucD1bnb5KcaM1zqXTtLP7BwPeBxOhlBdHJ54zsfMKZ5Cb0yL4bS2jWEk/AAWuwR1CWUF3kBDKgcbf6hzH7qp+y3tLteuInQD+DusIzPSPO/m5viPyVi0rOIr0prR4WmnolsUjJWB8bg5p6hekyUjnU7uJjvUdCnannZOzLTuOY8EB1QhCAEIQgBCEIAUe1RcnNaaKB2M/zHD8k73Kp9npyW/bds391Crg8ulJJQhiSoIaEvtL2FuNspgvNQYoSQVw0/cnSSYzyK0+jPemTsvDGpsutxioaOetqJBHBBG6SRx5Na0ZJ+QXaOYPjGSol2xvMXZXqeWP7Qtk+PiwhZmiMidsfajc+0S/5j44LZTuLKOmB5j+t3i4/gmTTdhq7m/ikbw4+y3B3+CbuzmnjqdSRCVoMbTxHIWg7BSRRvwI2AdNlz+XyHjekdbg8ZZJ8qK/Gir1EwGkh4yRuOYyn6y9nd3fAJqub68nJ97b0wrXtdIC0ADHonYUeByXOfJto6PoxLK4tujailBL3xsyMENGy91Fhp4YnNADXDO/mrBkpf6imO7QYLg074ysKuvk3hT8FA6pNz0jqelv1rndBNDIHtkb4jofEfmtnaB1HT6k0ba7/DwtFZTtkc0H7L+Th8HAhZg7TaRk1hqg4Dia3iHqFN/ovXd7uzOGj43H2erlZgnlkh3/6Xe4eR3j7Pn/yGNY8m19l81NzLSQ0pvF8qqSqbPESS3m08nDwKSx8Uoycr17KTzGV7EznPbLEtFwgudCyrpz7rtnNPNp6gpWq9sFxNluA704pZiGyjo3wd8PyVhDcZChl0wQhCgkEISC/VXslslkBw53uN9T/tlANlyq2zTudxDhGzfRRq5yt4yQvlTO/mCkM73OByhVsZ77OXxloSbTjHsmyc80puUbSMrzanhr1fT0Z7WySuqO7iByoV2s3Yv7O9Q0wOS+3TNAxz9wp9uFSRFgKt9eXZkVNUUZidO+WJ7S3fh3HIkcsql0oW6Zrim8teMLbMv6Hmcy9RsjBJAzgdVo7S4c6milk+0QNln7QNK6LVGHt4XRtflp6Y2/VXRb9RUlHCInzRiQdHOwuRzp866O7+Pfjj7LUt5wxpbhOTHE81VVJ2oW63ydxW04xnDZGStIP4qZWvWVpuUTXQSAcXIEheN4qlbZ6/LyfQ+VhcTsmuvjc6MnHTcrjeNTUdvgdNI5uBn7RwAqrvva7JPWOpaWRjIdgXRQuedzgb/gpjC8nwTWT012O+tqH2qgnha7Be0gHzXH6JL3ez36ildgQ1EbgD4kOB/wDiExW7VcFymNOzvpA4++57SN127ILTXUWq7zU08z4Wtrmt2H2hkux6YIXQ4tejLTOfzcfr0tf01PRmCMAEhOLZKct6KFQVz8ZJXcXMjmV2PSo+f9eRy1C+MxO4cclJuza8m6WQ08ruKoo3CN2+5b90/LI+Crm6XAPjIyu3ZddfYtXRwudiOrBhcPM7t/EAfFQ4egsi8i6UIQsj0Ao1rWRznUtM07bvd+Q/VSVRy/Rd9dcnk1gH6/qiIZH30riwHCQ1kfC0hSl8IEeEx3KL3iFKK0uiL1oJBC40DD3idKun907LlQU573kvSteJ5Wns41sZcAFE9VWuMObI5me8IGf+vgp9U0p22TVqe3mezvLch8fvggeH/WfgvHy8fni0jofj8vo8hP6fRmOttzaPtFMwiEcdVHI0Y5OLcZP4pfd9JNuT43cDHgjlnBPxT1rilldW0lW7hZ7M88O2+4II9CDlO2kKmKpjx7jnN2wei4t5KSVI+kx458qloitk0XbaO7MrJLLUyOYwtML+EwuPCW5IPPY+PNO9o0jQ0dfHNRxTwO7wF0YJ4APDmVZdNTwluXcIPrskFVJG2rf7O3vO7HvlvRZ5ORdTpm2PjxNblaGvWthpKsUjpYDJC0e+wHmcfuo2dIwzmmkgstHI6k/kvfLwlm/FvgDJzvvlWBXd6+2sqWMLgOYKS0MtK5xhlw2Zu+WnYhUjLcfBasM0uyHR6Xjpar22qYw1DiS7gGAP3PmVIdJU7af2ydhAM87XgDxDGtP5Fd9TTMZRuOQcDZfdJxOkpqU/4jxy3Jyf2WmKqp9/tGWWZlb/AIyYuODgJHUyuadk8x0TnHdJ663OAJwvsppfB+euK3sYZZnuO5SWOqkpKyKpicWyRPD2nwIOQl89M5pO2E1V7CCVGt0XfSNO0U7Kqjhqo/sTRtkb6EZC6pg7OpjPoe0PJzimaz/0+7+if1zqWm0dSXtJgmW5D+PkPp+QT0mq5R/xRPiAoJErsFmCme4sHGnkxnhTbXxniREMZKlgOy62+lHFnC6VEJylVDEQ1aeXRmp7PslI1+F4qbaySndG7k4EFLCHNGyYda6utOkrNJcbvUBgAxFC0/WSu/paOvryCpv6LpfZTHbTbItN0UHtddC8Vc4jpmY+tcc756YG2T6DG6gVkmdQVrZmOOHbHfmo52l6vuGsdUf2tc3FkTHt7mFp92KMOzgefn1KdKSoDKqSkncA+NxGf1XO5XHUTuV0dnhcmsle99lix3SRzWAuxnlk81xuFFUTONRQXKellefeawgtd6gpFaHCuohDHKyOdu3ERnC+91qGlrBTx1lE2E8pRAS4fAlc6JWzsVdPpHaJ+sJKf2OaSAQAEPe3PE4enIJDDTvoYTHEXskzkOcSQT5lO1VQX405dJqdnDjlHTYd88phtNr7ysllr62pq2t5CSUlo88DbK2cyl2U96W0z3dqurnpY2THBdzHgrt7OtNUsembbWth/iJacOc5ziefgCcDbwWfr/d6dlU7g2ZEOFo8VaWje3S1wUNNQXSzPp44Y2xtfTycQwBge6ceHivbwcbS8tHI/J5t6lMtuK28B3Xivt4LMgZTFbu1TRle4NZdBA48hPGW/jy/FSekutvr4i+jrKepb1MUgcPwXTVNHF8EQ660BaCQFFq6mLpCAFYd9dGQcYUXggbLUnbbK9GPJ9s82XH3pFpdlzDHoW3MdzHef/a9SZNWkYRT6coogMAMJ+ZJ/VOq8lvdNnshalIEiuLPrGO8RhLUmuWG0rpD9zf4KpYQ4w1IKxoL13FZE4bPB+KRVFTGZNnBAJawBoXymna1u5Awo92gausmmKHv7rWsic4Zjhb70kno39eSzh2g9q961G2ShoHPt1tdsY43e/KP87h08ht6q6XRX7Lh7S+2q1WPvrbp/u7lcRlrpc5ghPqPtHyG3n0WcNR3u6aiuctwu9dLV1D+bnnkPADkB5DZNJdxD/de4R9aQeWB19VpMykUbYiq2ZdyzspMymnudhjutFl1VRAQ1bBz4R9l/oRsfMFNz6YSN2AH6JfpG6TWG7RVgBkj/lzx9JIzzGPxUOJyLxZeclY35IU6Y1IKe4Rd8Sz7rsq14oYbnRtka4EEcweShOudDQ1UAvmm2iSGVokMLPA75b+3/ZRix6tu1jZ7PJEZo27YPMLj8nhVFdHd4vOVLbLXi0xSE8Usszx4PkcR8iU16vq6Ky20iHDSQQAFDKztUqHM7qG3yiTHU7JroBd9XXmCKoc7jneGtaOTB1d8Bk/BZxx6ppUa5eXKl+JzukM0dVE2pcOKopm1DQPuB2cfgE3ueWYzkEHp1Uq7VIRRaypY42hkb6FrYx/ody+TgoxVsBeSTjqF31Cx+1I+aq3kfk2emVMgGziD6pda9QXG3VDZ6Srnp5m8nxSFp+YTUWkEbrzIz72VH8H9Lj7PO1Cqnq2WnUVV30c54YKqQ+8x3Rrj1B8en5WpbAXVOBuSVkcZDeIbYWmvo23OXU3scM7jJNRuxM483NaMtJ9dh6qPhMrS20zRdDD7PRQQf4cbW/ILshCwNwXmRjZI3RvGWuBBHiCvSEBWVbDWUFfPSSFx7tx4XeLeh+Sp3tL7XxbJpbZpuRlRVtJbJVH3mRnwb0cfPl6q1/pQ2/UE3ZxU3DT0rmOpt69sY+sfTYPFg+AO58s+G+JnSOcck81aI32RVaFt4utdda2WtuFXNVVEhy6SVxcT80j4sjmvDRknPVe2tA2J2WiSKvfyem7tPNdqP+845ks238D/ALr5G0Dr6rp7NBPhrwPXqFaWitJjnTR8TcOyCPNejAGnjDRjKT2y3yU0xcaueSMj3YnnPxyd/wAU7AADJA81P0R9kw7Kb22Go/sGuf8AUTHNM533Xnm30PTz9VL9Tdn9qvQdJ3fs9SR/NjHM/wCYdfz81UTBwSh7Dwlpy1w6eCtJ/aFPTaENxo7TPdLrCOCSJjfdaf63eXXA39Oa1SVzqkU24rcsrbUOgL1aa5sHdUkkbwXNm71rW8I5k8RGOY57KX9lsOkqN0rINRW2vvUgMZjilH1beobn7Wcbkf8AemNS3m5aju0lffZXS1TxgBzMBg6NaOgGUg05b6GTWVrp7nxex1FQISWu4S3i91rsjlhxBVVw5xPzRpXMvKvBlsdvVundW2y7wsJhppu5mI6CQDH4tCg88bnQjGx5bjKvat0o06HuNplramu4ouKF9QeJ7S3do4uZwRzO6piWP6pu24GDkdVbJ+zKP0NrGOMY4wAc42KTyZa8tPyTnwHuyMdMpqqziXnzWb/Rdfs6FoMRAHMLVf0MtLVFu0fXamrGOY+5yd1TA/4MZOXD1cSP+QeKz52V6RrNb6vo7FRgtZI7jqZgMiGEfbcfyHiSB1W9rVQUlrtlNbaGFsFLSxNhhjbyaxowB8gsbZpIpQhCzLghCEB8kYyRjmPa1zHAhzXDII8CsUfSQ7K5dCX513tML36duEhMOP8Awsh3MR8uZafDbmMnbCQags9tv9mqrPd6SOroaphZLE8bEfoQdwRuCAQpT0Q1s/NyEtc3I3XQfd5eCsbtu7I7v2c3V9bTNlrdOTuxDWAZMRPJkuOTumeTumDkCvGAY2WstFXvR2hA8UoZEXHBJ32yFxgznYdMpwjG42xt4q60qKvbk726TiaYpN5mbOHj4H0/3SsOIdjZxKSTRHjbUQkd6wbDlxDqClVPwzRhzQWjrnmPL1Uy1L7K0m0e2dWEYHQ5Uk0Hdha74wTOApqnEUmeWc+6fgfwJUcPCfdx6DzX13vNPFzTbVDpon3aToW136kq6ikDKavpWh7HtGA5rgdj47hyzrK8zQF8DszRODmlvTB2/FaZsd6jq9EVdbOWuqKalkimJ58QblrviPxJWUKbigu7cEkB+4PVepV1ow8ezaGkbmL3pShuQx/F0jXuAOcOLfeHwOQqQvkPc19bTtH8uZ2PnkJ57AdXmG4zaNrSA13HPQOPnlz4/wA3D4+S4a7hNLqivjwBxO4h8VlftTRpPemRuJwxgjdNjKGquFxioKGnfUVU8gjhiYMue4nAAHiU822jq7hcIaC308tTVTP4IoYm8Tnk9AFqvsG7HqbRbf7fvjI6jUMzfdGzmUbSN2tPV56u+A2yThVJdmkzvoeewXs2g7PdLBlTwS3qtDX10w3DT0iaf6W5O/U5PgBYyELBvb2bJaBCEKACEIQAhCEBwr6OluFFNRV1NFU007CyWGVgcx7TzBB2IWZe1r6OlTRvmu2gM1FPu59skd9ZH/wnH7Q/ynfzK1ChSnoH5zzUlVQVklLW08tNUROLZIpYyx7D4EHcFdmggNwdvRbs1voPS2soAy/WqKaZoxHUs9yZno8b48jkeSo7V30b7nA982lr1DVw8xT1uY5B5B7QWuPqGrVXL+TPxaKOjdho3+6vpk4AJG7/ANQxz81Ir72e62sMjm3PTdwYxp3liiMsYH+tmW/io2+PHuua4OBwQQtKctlF5aFOWkBw5EZC+cWN8+uUjZJ3Enc5+reTwHHI+H7Ls45IPQcwrb/yRr/R2lvE1ssd3jZvFU0b4yB/UAS0/mPiqqZGTX8Wzgd89VbFHableSae3W2rr3Hbgp4HSH5AFO2lPo4do95qg6ot9NaKNrvcluEwa4t/0N4n59QFbFSXVEWm/gquCvktF9tl5gLg6jmZJ5kA7g+RGR8Voes0DqHXep6aoslJ/BSwtdJXS+7A1p3Bz94+QyVYuhfo16Ms5iqtSSS6jq48EMlb3dMD/wAMHLv+YkHwV2U0EFLTx01NDHBBE0MjjjaGtY0bAADYDyVc+eaftJxYqS9xCeyzswsGgqYy0rTWXWVvDPXStHER1awfcb5cz1J2U6QhePez0AhCEAIQhACEIQAhCEAIQhACEIQAklbbLbXf3230lTn/ABoWv/MJWhAR6bQuiZiTLo/TzyTkl1thOf8A2pTSaV0vSHNJpuz058YqGNv5NTwhTsHmKOOKMRxMaxg5NaMAL0hCgAhCEAIQhACEIQAhCEAIQhACEIQAhCEAIQhACEIQAhCEAIQhACEIQAhCEAIQhACEIQH/2Q==" class="founder-avatar-img" alt="Dushyant Singh Sengar">
+      <div class="founder-name">Dushyant Singh Sengar</div>
+      <div class="founder-identity">AI &amp; Model Risk Leader · Author · 20+ Years Financial Services</div>
+      <div class="founder-divider"></div>
+      <p class="founder-bio">AI governance and model risk specialist with 20+ years in financial services. Founder of RegVizion — helping banks and credit unions operationalise AI governance and model risk management. Built and scaled RegTech practices from zero. Author of 10+ peer-reviewed publications on AI, data science, and model risk. Expert in SR 11-7 compliance, GenAI validation, and responsible AI for regulated institutions. MS Data Science, Northwestern University.</p>
+      <div class="founder-tags">
+        <span class="founder-tag">Model Risk</span>
+        <span class="founder-tag">AI Governance</span>
+        <span class="founder-tag">RegTech</span>
+        <span class="founder-tag">GenAI</span>
+        <span class="founder-tag">BFSI</span>
+      </div>
+      <a class="founder-li" href="https://www.linkedin.com/in/dushyant-singh-sengar-51561738/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+
+    <!-- Ashwani -->
+    <div class="founder-card">
+      <img src="data:image/png;base64,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" class="founder-avatar-img" alt="Ashwani Agarwal">
+      <div class="founder-name">Ashwani Agarwal</div>
+      <div class="founder-identity">Enterprise Technology Leader · 22+ Years · Cloud &amp; AI Platforms</div>
+      <div class="founder-divider"></div>
+      <p class="founder-bio">Enterprise technology leader with over 22 years building large-scale platforms across cloud, AI, and enterprise systems. Co-founder and CTO of GTMVantage — an AI-powered go-to-market platform — bringing hands-on product and AI deployment experience to DeployReady. Deep expertise in AIOps, digital transformation, and bridging technology with business outcomes at scale. B.Tech Electronics, HBTI Kanpur. AWS Certified.</p>
+      <div class="founder-tags">
+        <span class="founder-tag">Cloud &amp; AI Platforms</span>
+        <span class="founder-tag">AIOps</span>
+        <span class="founder-tag">Digital Transformation</span>
+        <span class="founder-tag">Enterprise Systems</span>
+      </div>
+      <a class="founder-li" href="https://www.linkedin.com/in/ashwani-agarwal-352359b5/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+
+
+    <!-- Pavan Verma -->
+    <div class="founder-card">
+      <img src="data:image/png;base64,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" class="founder-avatar-img" alt="Pavan Verma">
+      <div class="founder-name">Pavan Verma</div>
+      <div class="founder-identity">AI Strategy Executive · 25+ Years · xMcKinsey · xAccenture · TOGAF® · MBA Boston University</div>
+      <div class="founder-divider"></div>
+      <p class="founder-bio">AI Strategy Executive with 25+ years driving enterprise-scale AI adoption across BFSI, retail, telecom, and hospitality. Principal Architect at McKinsey — built GenAI platforms, MLOps pipelines, and multi-agent systems at scale. Currently Senior Director Product Strategy AI at Agilysys. TOGAF-certified enterprise architect with deep expertise in Agentic AI, LLM orchestration, RAG pipelines, and cloud-native AI across Azure, AWS, and GCP. MBA, Boston University. Author: Cloud Native Development with Azure.</p>
+      <div class="founder-tags">
+        <span class="founder-tag">Agentic AI</span>
+        <span class="founder-tag">Enterprise Architecture</span>
+        <span class="founder-tag">MLOps</span>
+        <span class="founder-tag">LLMOps</span>
+        <span class="founder-tag">Cloud AI</span>
+      </div>
+      <a class="founder-li" href="https://www.linkedin.com/in/pavankumarverma/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn Profile
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div>
+    <div class="cta-h">Ready to close the deployment gap?</div>
+    <p class="cta-p">Talk to one of our experts — enterprise programme, individual tracks, or just a conversation about where your AI initiative is stuck. No obligation.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-w" onclick="openExpertModal()">Talk to Us</button>
+    <p class="btn-free-report">Or <button data-tally-open="rjEgrM" data-tally-layout="modal" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.45);font-size:0.82rem;font-weight:400;font-style:italic;padding:0;font-family:'DM Sans',sans-serif;">diagnose your deployment free — 15 questions, 5 minutes →</button></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-logo">DeployReady</div>
+    <ul class="fnav">
+      <li><a href="#paths">Enterprise</a></li>
+      <li><a href="#programme">Programme</a></li>
+      <li><a href="#modules">Curriculum</a></li>
+      <li><a href="#individual">Individual Tracks</a></li>
+      <li><a href="#why">Why DeployReady</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#325a575e5e5d725657425e5d4b405753564b1c5b5c">Contact</a></li>
+    </ul>
+  </div>
+  <div class="foot-btm">
+    <div class="foot-meta">© 2026 DeployReady · India's First Full-Lifecycle AI Deployment Programme</div>
+    <div class="foot-meta">NASSCOM-aligned · DPDP Act · MeitY AI Guidelines</div>
+  </div>
+</footer>
+
+
+<!-- CONTACT MODAL (individual tracks waitlist) -->
+<div class="contact-modal-overlay" id="contactModal" onclick="handleOverlayClick(event)">
+  <div class="contact-modal">
+    <button class="contact-modal-close" onclick="closeContactModal()">×</button>
+    <div class="contact-modal-body" id="contactModalBody">
+      <div class="contact-modal-tag" id="contactModalTag"></div>
+      <h3 class="contact-modal-heading" id="contactModalHeading"></h3>
+      <div class="contact-modal-fields">
+        <input type="hidden" id="contactTrackField" name="track" value="">
+        <input class="form-input" id="contactName" type="text" placeholder="Your name *">
+        <input class="form-input" id="contactEmail" type="email" placeholder="Work email *">
+        <input class="form-input" id="contactPhone" type="tel" placeholder="Phone number *">
+        <textarea class="form-input" id="contactChallenge" rows="2" placeholder="What deployment challenge are you trying to solve? (optional)"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitContactModal()">
+        Submit
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="contact-modal-success" id="contactModalSuccess">
+      <div class="success-icon">✓</div>
+      <p class="success-heading">You're on the waitlist.</p>
+      <p class="success-sub">We'll confirm your spot and pricing before June 2026. We'll reach out within 1–2 business days.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERT MODAL (Talk to Us) -->
+<div class="contact-modal-overlay" id="expertModal" onclick="handleExpertOverlayClick(event)">
+  <div class="contact-modal">
+    <button class="contact-modal-close" onclick="closeExpertModal()">×</button>
+    <div class="contact-modal-body" id="expertModalBody">
+      <div class="contact-modal-tag">Talk to Us</div>
+      <h3 class="contact-modal-heading">Talk to one of our experts</h3>
+      <div class="contact-modal-fields">
+        <input class="form-input" id="expertName" type="text" placeholder="Name *">
+        <input class="form-input" id="expertOrg" type="text" placeholder="Organisation *">
+        <input class="form-input" id="expertEmail" type="email" placeholder="Work email *">
+        <input class="form-input" id="expertPhone" type="tel" placeholder="Phone *">
+        <textarea class="form-input" id="expertChallenge" rows="2" placeholder="What are you trying to solve? (optional)"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitExpertModal()">
+        Book Consultation
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7h9M8 3.5l3.5 3.5L8 10.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="contact-modal-success" id="expertModalSuccess">
+      <div class="success-icon">✓</div>
+      <p class="success-heading">Consultation request received.</p>
+      <p class="success-sub">One of our team will be in touch within 1 business day.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Waitlist counter ──
+  var waitlistBase = 23;
+  document.addEventListener('DOMContentLoaded', function() {
+    var el = document.getElementById('waitlist-count');
+    if (el) {
+      var stored = parseInt(localStorage.getItem('dr_waitlist') || waitlistBase);
+      el.textContent = stored;
+    }
+  });
+
+  // ── Contact modal (individual tracks) ──
+  function openContactModal(track, label) {
+    document.getElementById('contactModalTag').textContent = track;
+    document.getElementById('contactModalHeading').textContent = label;
+    document.getElementById('contactTrackField').value = track;
+    ['contactName','contactEmail','contactPhone','contactChallenge'].forEach(function(id) {
+      var el = document.getElementById(id);
+      el.value = '';
+      el.style.borderColor = '';
+    });
+    document.getElementById('contactModalBody').style.display = 'block';
+    document.getElementById('contactModalSuccess').style.display = 'none';
+    document.getElementById('contactModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeContactModal() {
+    document.getElementById('contactModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('contactModal')) closeContactModal();
+  }
+
+  function submitContactModal() {
+    var name      = document.getElementById('contactName').value.trim();
+    var email     = document.getElementById('contactEmail').value.trim();
+    var phone     = document.getElementById('contactPhone').value.trim();
+    var challenge = document.getElementById('contactChallenge').value.trim();
+    var track     = document.getElementById('contactTrackField').value;
+    var valid = true;
+
+    ['contactName','contactEmail','contactPhone'].forEach(function(id) {
+      document.getElementById(id).style.borderColor = '';
+    });
+    if (!name)  { document.getElementById('contactName').style.borderColor  = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!email) { document.getElementById('contactEmail').style.borderColor = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!phone) { document.getElementById('contactPhone').style.borderColor = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!valid) return;
+
+    // Update waitlist counter
+    var current = parseInt(localStorage.getItem('dr_waitlist') || waitlistBase);
+    var next = current + 1;
+    localStorage.setItem('dr_waitlist', next);
+    var counterEl = document.getElementById('waitlist-count');
+    if (counterEl) counterEl.textContent = next;
+
+    var accessKey = document.getElementById('web3formsKey').value;
+    var payload = {
+      access_key: accessKey,
+      subject: 'New Waitlist Registration: ' + track,
+      name: name,
+      email: email,
+      phone: phone,
+      track: track,
+      deployment_challenge: challenge,
+      form: 'individual-waitlist'
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) { return res.json(); })
+    .then(function() {
+      document.getElementById('contactModalBody').style.display = 'none';
+      document.getElementById('contactModalSuccess').style.display = 'flex';
+    })
+    .catch(function() {
+      document.getElementById('contactModalBody').style.display = 'none';
+      document.getElementById('contactModalSuccess').style.display = 'flex';
+    });
+  }
+
+  // ── Expert modal (Talk to Us) ──
+  function openExpertModal() {
+    ['expertName','expertOrg','expertEmail','expertPhone','expertChallenge'].forEach(function(id) {
+      var el = document.getElementById(id);
+      el.value = '';
+      el.style.borderColor = '';
+    });
+    document.getElementById('expertModalBody').style.display = 'block';
+    document.getElementById('expertModalSuccess').style.display = 'none';
+    document.getElementById('expertModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeExpertModal() {
+    document.getElementById('expertModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleExpertOverlayClick(e) {
+    if (e.target === document.getElementById('expertModal')) closeExpertModal();
+  }
+
+  function submitExpertModal() {
+    var name      = document.getElementById('expertName').value.trim();
+    var org       = document.getElementById('expertOrg').value.trim();
+    var email     = document.getElementById('expertEmail').value.trim();
+    var phone     = document.getElementById('expertPhone').value.trim();
+    var challenge = document.getElementById('expertChallenge').value.trim();
+    var valid = true;
+
+    ['expertName','expertOrg','expertEmail','expertPhone'].forEach(function(id) {
+      document.getElementById(id).style.borderColor = '';
+    });
+    if (!name)  { document.getElementById('expertName').style.borderColor  = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!org)   { document.getElementById('expertOrg').style.borderColor   = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!email) { document.getElementById('expertEmail').style.borderColor = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!phone) { document.getElementById('expertPhone').style.borderColor = 'rgba(196,151,58,0.8)'; valid = false; }
+    if (!valid) return;
+
+    var accessKey = document.getElementById('web3formsKey').value;
+    var payload = {
+      access_key: accessKey,
+      subject: 'New Consultation Request: ' + name + ' — ' + org,
+      name: name,
+      organisation: org,
+      email: email,
+      phone: phone,
+      deployment_challenge: challenge,
+      form: 'expert-consultation'
+    };
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(res) { return res.json(); })
+    .then(function() {
+      document.getElementById('expertModalBody').style.display = 'none';
+      document.getElementById('expertModalSuccess').style.display = 'flex';
+    })
+    .catch(function() {
+      document.getElementById('expertModalBody').style.display = 'none';
+      document.getElementById('expertModalSuccess').style.display = 'flex';
+    });
+  }
+
+  // ── Keyboard close ──
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeContactModal();
+      closeExpertModal();
+    }
+  });
+
+  // ── Tally diagnostic — keep nav survey modal working ──
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tally is loaded via script tag in head — no further init needed
+  });
+</script>
+</body>
+</html>
