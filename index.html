@@ -750,6 +750,218 @@ textarea.form-input { resize: none; line-height: 1.55; }
 .founder-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 2px; background: var(--teal-l); color: var(--gold); border: 1px solid rgba(196,151,58,0.15); }
 @media (max-width: 820px) { .founders-grid { grid-template-columns: 1fr; } }
 
+/* ── ENTERPRISE PROGRAMMES SCROLL ── */
+#enterprise-programmes { padding: 80px 5% 0; background: var(--warm); }
+.scroll-section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;
+}
+.scroll-hint { font-size: 0.72rem; color: var(--muted); font-weight: 300; font-style: italic; }
+
+.course-scroll-wrap {
+  overflow: hidden;
+  margin: 0 -5%;
+  padding: 0 5%;
+}
+.course-scroll-row {
+  display: flex; gap: 1.25rem;
+  overflow-x: auto; padding-bottom: 2rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196,151,58,0.3) transparent;
+}
+.course-scroll-row::-webkit-scrollbar { height: 3px; }
+.course-scroll-row::-webkit-scrollbar-thumb { background: rgba(196,151,58,0.3); border-radius: 2px; }
+
+/* ── COURSE CARD (shared) ── */
+.course-card {
+  flex: 0 0 320px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  display: flex; flex-direction: column;
+  scroll-snap-align: start;
+  transition: box-shadow 0.2s;
+  overflow: hidden;
+  position: relative;
+}
+.course-card:hover { box-shadow: 0 4px 24px rgba(13,31,26,0.1); }
+
+.cc-bar { height: 3px; flex-shrink: 0; }
+.ccb-gold   { background: var(--gold); }
+.ccb-amber  { background: var(--amber); }
+.ccb-purple { background: #534AB7; }
+.ccb-muted  { background: rgba(13,31,26,0.12); }
+
+/* Familiar card muting */
+.cc-familiar {
+  background: rgba(13,31,26,0.03);
+  opacity: 0.68;
+}
+.cc-familiar:hover { opacity: 0.82; box-shadow: none; }
+
+.cc-body { padding: 1.5rem 1.5rem 1rem; flex: 1; }
+
+.cc-track-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.9rem; flex-wrap: wrap; gap: 6px;
+}
+.cc-type {
+  font-size: 0.62rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 0.18rem 0.55rem; border-radius: 2px;
+}
+.cct-gold   { background: var(--teal-l); color: var(--gold); border: 1px solid rgba(196,151,58,0.2); }
+.cct-amber  { background: rgba(166,124,40,0.08); color: var(--amber); border: 1px solid rgba(166,124,40,0.2); }
+.cct-purple { background: rgba(83,74,183,0.07); color: #534AB7; border: 1px solid rgba(83,74,183,0.15); }
+.cct-muted  { background: rgba(13,31,26,0.05); color: var(--muted); border: 1px solid var(--rule); }
+
+.cc-badge {
+  font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 0.18rem 0.5rem; border-radius: 2px;
+}
+.ccb-first { background: var(--gold); color: var(--white); }
+.ccb-dr    { background: var(--teal-l); color: var(--gold); border: 1px solid rgba(196,151,58,0.2); }
+.ccb-fam   { background: rgba(13,31,26,0.06); color: var(--muted); border: 1px solid var(--rule); }
+
+.cc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem; font-weight: 500; color: var(--ink);
+  line-height: 1.25; margin-bottom: 0.25rem; letter-spacing: -0.01em;
+}
+.cc-familiar .cc-name { color: rgba(13,31,26,0.45); }
+
+.cc-programme { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.65rem; font-weight: 300; line-height: 1.4; }
+.cc-familiar .cc-programme { color: rgba(13,31,26,0.3); }
+
+.cc-desc {
+  font-size: 0.8rem; color: var(--body); line-height: 1.65;
+  margin-bottom: 0.85rem; font-weight: 300;
+}
+.cc-familiar .cc-desc { color: rgba(13,31,26,0.35); }
+
+.cc-meta-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 0.85rem; }
+.cc-pill {
+  font-size: 0.68rem; color: var(--body);
+  background: rgba(13,31,26,0.04); border: 1px solid var(--rule);
+  padding: 0.15rem 0.55rem; border-radius: 2px;
+}
+.cc-familiar .cc-pill { opacity: 0.5; }
+
+/* Comes from / Leaves with */
+.cc-fl { margin-bottom: 0.75rem; }
+.cc-fl-label {
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem;
+}
+.cc-fl-text { font-size: 0.78rem; color: var(--body); font-weight: 300; line-height: 1.55; }
+.cc-familiar .cc-fl-text { color: rgba(13,31,26,0.35); }
+.cc-fl-text.leaves { color: var(--ink); font-weight: 400; }
+
+/* Expand toggle */
+.cc-expand-btn {
+  width: 100%; padding: 0.65rem 1.5rem;
+  border: none; border-top: 1px solid var(--rule);
+  background: rgba(13,31,26,0.02); cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem; font-weight: 500; color: var(--body);
+  transition: background 0.15s; flex-shrink: 0; letter-spacing: 0.01em;
+}
+.cc-expand-btn:hover { background: rgba(13,31,26,0.04); }
+.cc-familiar .cc-expand-btn { color: var(--muted); }
+.cc-chevron {
+  font-size: 0.7rem; color: var(--teal); transition: transform 0.25s;
+}
+.cc-familiar .cc-chevron { color: var(--muted); }
+.cc-expand-btn.open .cc-chevron { transform: rotate(180deg); }
+
+/* Topics panel */
+.cc-topics-panel { max-height: 0; overflow: hidden; transition: max-height 0.32s ease; }
+.cc-topics-panel.open { max-height: 600px; }
+.cc-topics-inner {
+  padding: 0.85rem 1.5rem 1rem;
+  border-top: 1px solid var(--rule);
+  background: rgba(13,31,26,0.015);
+}
+.cc-familiar .cc-topics-inner { background: rgba(13,31,26,0.02); }
+.cc-topics-label {
+  font-size: 0.62rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 0.55rem;
+}
+.tl-gold   { color: var(--gold); }
+.tl-amber  { color: var(--amber); }
+.tl-purple { color: #534AB7; }
+.tl-muted  { color: var(--muted); }
+
+.cc-topics-list {
+  list-style: none;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px;
+}
+.cc-topic {
+  display: flex; align-items: flex-start; gap: 5px;
+  font-size: 0.72rem; color: var(--body); line-height: 1.35; font-weight: 300;
+}
+.cc-familiar .cc-topic { color: rgba(13,31,26,0.35); }
+.cc-tdot {
+  width: 3px; height: 3px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 5px;
+}
+.ccd-gold   { background: var(--gold); }
+.ccd-amber  { background: var(--amber); }
+.ccd-purple { background: #534AB7; }
+.ccd-muted  { background: rgba(13,31,26,0.2); }
+
+/* Card footer */
+.cc-footer {
+  padding: 0.8rem 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0; flex-wrap: wrap; gap: 0.5rem;
+  background: rgba(13,31,26,0.01);
+}
+.cc-familiar .cc-footer { background: rgba(13,31,26,0.02); }
+.cc-foot-meta { font-size: 0.7rem; color: var(--muted); font-weight: 300; line-height: 1.35; }
+.cc-familiar-note {
+  padding: 0.5rem 1.5rem;
+  background: rgba(13,31,26,0.03);
+  border-top: 1px solid var(--rule);
+  font-size: 0.68rem; color: var(--muted); font-style: italic;
+  flex-shrink: 0;
+}
+
+/* Legend */
+.scroll-legend {
+  display: flex; gap: 1.25rem; margin-bottom: 1.25rem;
+  flex-wrap: wrap; align-items: center;
+}
+.sl-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--muted); font-weight: 300; }
+.sl-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.ss-muted  { background: rgba(13,31,26,0.1); border: 1px solid var(--rule); }
+.ss-gold   { background: var(--teal-l); border: 1px solid rgba(196,151,58,0.3); }
+.ss-amber  { background: rgba(166,124,40,0.08); border: 1px solid rgba(166,124,40,0.25); }
+.ss-purple { background: rgba(83,74,183,0.07); border: 1px solid rgba(83,74,183,0.2); }
+
+/* Individual tracks section update */
+.ind-scroll-wrap { overflow: hidden; margin: 0 -5%; padding: 0 5%; }
+.ind-scroll-row {
+  display: flex; gap: 1.25rem;
+  overflow-x: auto; padding-bottom: 2rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196,151,58,0.3) transparent;
+}
+.ind-scroll-row::-webkit-scrollbar { height: 3px; }
+.ind-scroll-row::-webkit-scrollbar-thumb { background: rgba(196,151,58,0.3); }
+
+.track-card { flex: 0 0 300px; scroll-snap-align: start; }
+
+@media (max-width: 820px) {
+  .track-card { flex: 0 0 80vw; }
+  .course-card { flex: 0 0 80vw; }
+}
+
 </style>
 
 </head>
@@ -763,8 +975,8 @@ textarea.form-input { resize: none; line-height: 1.55; }
   <a class="logo" href="#"><span class="logo-pip"></span>DeployReady</a>
   <ul class="nav-links">
     <li><a href="#paths">Enterprise</a></li>
-    <li><a href="#paths">Enterprise</a></li>
-      <li><a href="#modules">Curriculum</a></li>
+    <li><a href="#enterprise-programmes">Programmes</a></li>
+    <li><a href="#modules">Curriculum</a></li>
     <li><a href="#individual">Individual Tracks</a></li>
     <li><a href="#why">Why DeployReady</a></li>
     <li><a href="#about">About</a></li>
@@ -830,7 +1042,7 @@ textarea.form-input { resize: none; line-height: 1.55; }
     <div class="pp-tag tag-ent">For Enterprises</div>
     <h2 class="pp-h ent-h">The full ramp. Assessment to production.</h2>
     <p class="pp-p ent-p">An 8–12 week managed programme — readiness assessment, deployment training, handholding, and post-go-live monitoring. Delivered in the context of your organisation, your systems, your use cases. Not a course. A guaranteed maturity uplift.</p>
-    <a href="#programme" class="pp-link">See the enterprise programme</a>
+    <a href="#enterprise-programmes" class="pp-link">See enterprise programmes</a>
     <div class="pp-details ent-details">
       <div class="pp-detail ent-detail">Assessment + Ramp + Handholding + Post-monitoring</div>
       <div class="pp-detail ent-detail">NASSCOM-benchmarked Readiness Meter included</div>
@@ -841,10 +1053,10 @@ textarea.form-input { resize: none; line-height: 1.55; }
   <div class="path-panel path-ind">
     <div class="pp-tag tag-ind">For Individuals</div>
     <h2 class="pp-h ind-h">A credential for the role enterprises need.</h2>
-    <p class="pp-p ind-p">Three role-destination tracks for professionals moving into AI deployment. Practitioner-built curriculum, small cohorts, outcome-focused certification. First batch opens 1st June 2026 — register your interest now.</p>
+    <p class="pp-p ind-p">Four role-destination tracks for professionals moving into AI deployment. Practitioner-built curriculum, small cohorts, outcome-focused certification. First batch opens 1st June 2026 — register your interest now.</p>
     <a href="#individual" class="pp-link">See individual tracks</a>
     <div class="pp-details ind-details">
-      <div class="pp-detail ind-detail">AI Deployment Analyst · Governance &amp; Risk · Integration Engineer</div>
+      <div class="pp-detail ind-detail">AI &amp; ML Engineering · Deployment Analyst · Governance &amp; Risk · Integration Engineer</div>
       <div class="pp-detail ind-detail">First batch — 1st June 2026</div>
       <div class="pp-detail ind-detail">Price on request · EMI available</div>
       <div class="pp-detail ind-detail">Register interest — no commitment required</div>
@@ -871,7 +1083,126 @@ textarea.form-input { resize: none; line-height: 1.55; }
   </div>
 </div>
 
-<!-- READINESS METER -->
+<!-- ENTERPRISE PROGRAMMES -->
+<section id="enterprise-programmes">
+  <div class="scroll-section-header">
+    <div>
+      <div class="sec-eyebrow">Enterprise programmes</div>
+      <div class="sec-h" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:500;color:var(--ink);letter-spacing:-0.02em;line-height:1.2;margin-top:0.5rem;">Enterprise AI Adoption Mastery — driving organisation-wide deployment at scale</div>
+    </div>
+    <div class="scroll-hint">Click any card to expand curriculum</div>
+  </div>
+
+  <div class="scroll-legend">
+    <div class="sl-item"><span class="sl-swatch ss-gold"></span> DeployReady Exclusive</div>
+    <div class="sl-item"><span class="sl-swatch ss-amber"></span> DeployReady · New</div>
+  </div>
+
+  <div class="course-scroll-wrap">
+    <div class="course-scroll-row">
+
+      <!-- DR: Executive Programme in Enterprise AI Deployment -->
+      <div class="course-card">
+        <div class="cc-bar ccb-gold"></div>
+        <div class="cc-body">
+          <div class="cc-track-row">
+            <span class="cc-type cct-gold">Executive Programme · Flagship</span>
+            <span class="cc-badge ccb-dr">DeployReady</span>
+          </div>
+          <div class="cc-name">Executive Programme in Enterprise AI Deployment</div>
+          <div class="cc-programme">12-week managed cohort · Cross-functional implementation teams</div>
+          <div class="cc-desc">For the team that deploys AI — analysts, engineers, and governance leads working together on a real enterprise AI programme. Assessment to production, in your context.</div>
+          <div class="cc-meta-pills">
+            <span class="cc-pill">12 weeks</span>
+            <span class="cc-pill">Live cohort</span>
+            <span class="cc-pill">20–40 seats</span>
+            <span class="cc-pill">Enterprise context required</span>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Leaves with</div>
+            <div class="cc-fl-text leaves">A deployed, monitored AI use case. NASSCOM maturity score uplift of 0.5 points guaranteed. Full governance documentation.</div>
+          </div>
+        </div>
+        <button class="cc-expand-btn" onclick="toggleCourse(this)">
+          <span>See curriculum topics</span>
+          <span class="cc-chevron" style="color:var(--gold)">▾</span>
+        </button>
+        <div class="cc-topics-panel">
+          <div class="cc-topics-inner">
+            <div class="cc-topics-label tl-gold">What this programme covers</div>
+            <ul class="cc-topics-list">
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI use case scoring &amp; prioritisation</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Deployment readiness assessment</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI vendor evaluation</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI-specific UAT design</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>SAP · Salesforce · Workday integration</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Hallucination testing · red-teaming</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Bias audit framework</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>DPDP Act 2023 · RBI · IRDAI</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Phased rollout · go/no-go criteria</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>CI/CD for AI · drift detection</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>90-day post-launch operations</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Enterprise capstone deployment</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <div class="cc-foot-meta">June 2026 · Cohort 1<br>Contact us for pricing</div>
+          <button class="btn-primary" style="font-size:0.78rem;padding:0.55rem 1.1rem;" onclick="openExpertModal()">Talk to Us →</button>
+        </div>
+      </div>
+
+      <!-- DR: Executive Certificate in AI Deployment Leadership -->
+      <div class="course-card">
+        <div class="cc-bar ccb-amber"></div>
+        <div class="cc-body">
+          <div class="cc-track-row">
+            <span class="cc-type cct-amber">Executive Certificate · New</span>
+            <span class="cc-badge ccb-first">First in India</span>
+          </div>
+          <div class="cc-name">Executive Certificate in AI Deployment Leadership</div>
+          <div class="cc-programme">4-week programme · Senior leaders who commission AI deployments</div>
+          <div class="cc-desc">For VPs, heads of function, and programme sponsors who sign off on AI deployments — without attending a 12-month ML engineering course.</div>
+          <div class="cc-meta-pills">
+            <span class="cc-pill">4 weeks</span>
+            <span class="cc-pill">Live sessions</span>
+            <span class="cc-pill">Leadership role required</span>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Leaves with</div>
+            <div class="cc-fl-text leaves">Ability to evaluate AI business cases, oversee governance obligations, and manage vendors — without writing code or attending a 12-month ML programme.</div>
+          </div>
+        </div>
+        <button class="cc-expand-btn" onclick="toggleCourse(this)">
+          <span>See curriculum topics</span>
+          <span class="cc-chevron" style="color:var(--amber)">▾</span>
+        </button>
+        <div class="cc-topics-panel">
+          <div class="cc-topics-inner">
+            <div class="cc-topics-label tl-amber">What this programme covers</div>
+            <ul class="cc-topics-list">
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Evaluating an AI business case</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Questions every sponsor must ask</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Reading a deployment readiness brief</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Governance obligations a sponsor owns</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>DPDP / RBI obligations at leadership level</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>AI vendor relationship management</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Why AI deployments fail post-launch</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Workforce change management for AI</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <div class="cc-foot-meta">June 2026 · Cohort 1<br>Contact us for pricing</div>
+          <button class="btn-primary" style="font-size:0.78rem;padding:0.55rem 1.1rem;background:var(--amber);" onmouseover="this.style.background='#8a6218'" onmouseout="this.style.background='var(--amber)'" onclick="openExpertModal()">Talk to Us →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 <section id="meter">
   <div class="meter-inner">
     <div class="meter-left">
@@ -1006,76 +1337,239 @@ textarea.form-input { resize: none; line-height: 1.55; }
     </div>
   </div>
 
-  <div class="sec-row" style="margin-bottom:0; margin-top:2rem;">
-    <div>
-      <div class="sec-eyebrow">Individual Tracks</div>
-      <div class="sec-h">Three tracks. Three career destinations.</div>
+  <div style="padding:2rem 5% 0;">
+    <div class="sec-row" style="margin-bottom:0;">
+      <div>
+        <div class="sec-eyebrow">Individual Tracks</div>
+        <div class="sec-h">Four courses. Four career destinations.</div>
+      </div>
+      <div class="sec-aside">For professionals moving into AI deployment roles. Click any card to expand the full curriculum.</div>
     </div>
-    <div class="sec-aside">For professionals moving into AI deployment roles.</div>
+
+    <div class="scroll-legend" style="margin-top:1.25rem;">
+      <div class="sl-item"><span class="sl-swatch ss-gold"></span> DeployReady course</div>
+      <div class="sl-item"><span class="sl-swatch ss-amber"></span> DeployReady · First in India</div>
+      <div class="sl-item"><span class="sl-swatch ss-purple"></span> DeployReady · First in India</div>
+    </div>
   </div>
 
-  <div class="tracks-grid">
+  <div class="ind-scroll-wrap" style="padding:1rem 5% 0;">
+    <div class="ind-scroll-row">
 
-    <div class="track-card tc-a">
-      <div class="track-letter">A</div>
-      <div class="track-name">AI Deployment Analyst</div>
-      <div class="track-hook">"I want to own the project that gets AI from pilot to production."</div>
-      <div class="track-meta">
-        <div class="track-price">Price on request</div>
-        <span class="track-prereq-pill pill-teal">No tech prereqs</span>
+      <!-- CARD 1: AI & ML Engineering (DeployReady condensed) -->
+      <div class="course-card" style="background:var(--paper);border-color:var(--rule);">
+        <div class="cc-bar ccb-gold"></div>
+        <div class="cc-body">
+          <div class="cc-track-row">
+            <span class="cc-type cct-gold">Foundation · Condensed</span>
+            <span class="cc-badge ccb-dr">DeployReady</span>
+          </div>
+          <div class="cc-name">Professional Certificate in AI &amp; Machine Learning Engineering</div>
+          <div class="cc-programme">3-month online assisted · Compressed from 6–18 month market standard</div>
+          <div class="cc-desc">The same technical foundation as IITM Pravartak or IBM Coursera — compressed to 3 months with assisted learning. The ideal entry point before Track C.</div>
+          <div class="cc-meta-pills">
+            <span class="cc-pill">3 months</span>
+            <span class="cc-pill">Online assisted</span>
+            <span class="cc-pill">Python basics helpful</span>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Comes from</div>
+            <div class="cc-fl-text">Engineers, analysts, and career-changers with basic Python familiarity who want a structured AI/ML foundation — or a fast entry point before enrolling in Track C.</div>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Leaves with</div>
+            <div class="cc-fl-text leaves">Working knowledge of ML fundamentals, LLM APIs, and RAG basics — sufficient foundation for Track C or standalone career entry.</div>
+          </div>
+        </div>
+        <button class="cc-expand-btn" onclick="toggleCourse(this)">
+          <span>See curriculum topics</span>
+          <span class="cc-chevron" style="color:var(--gold)">▾</span>
+        </button>
+        <div class="cc-topics-panel">
+          <div class="cc-topics-inner">
+            <div class="cc-topics-label tl-gold">What this course covers</div>
+            <ul class="cc-topics-list">
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Python for AI · data handling</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Statistics &amp; probability essentials</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>ML algorithms (supervised · unsupervised)</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Neural networks · deep learning intro</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>NLP fundamentals</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>LLM APIs · prompt engineering</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>LangChain · RAG intro</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Model evaluation basics</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Capstone project</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <div class="cc-foot-meta">June 2026<br>Price on request · EMI available</div>
+          <button class="reg-btn" style="width:auto;padding:0.55rem 1rem;font-size:0.78rem;" onclick="openContactModal('Professional Certificate in AI &amp; ML Engineering', 'Join the waitlist')">Join Waitlist →</button>
+        </div>
       </div>
-      <div class="track-divider"></div>
-      <div class="track-from-label">Comes from</div>
-      <div class="track-from">Business analysts, project managers, consultants — people already operating at the enterprise layer.</div>
-      <div class="track-outcome-label">Leaves with</div>
-      <div class="track-outcome">Use case scoring, deployment business case, POC-to-production management. The generalist deployment role every enterprise needs.</div>
-      <div class="reg-form" id="form-a">
-        <button class="reg-btn" onclick="openContactModal('AI Deployment Analyst — Track A', 'Join the waitlist')">Join Waitlist — Track A →</button>
+
+      <!-- CARD 2: Track A — Enterprise AI Deployment and Implementation -->
+      <div class="course-card" style="background:var(--paper);border-color:var(--rule);border-top:3px solid var(--teal);">
+        <div class="cc-body">
+          <div class="cc-track-row">
+            <span class="cc-type cct-gold">Track A · Deployment Analyst</span>
+            <span class="cc-badge ccb-first">First in India</span>
+          </div>
+          <div class="cc-name">Professional Certificate in Enterprise AI Deployment and Implementation</div>
+          <div class="cc-programme">8 weeks · No coding required · Analysts · PMs · Consultants</div>
+          <div class="cc-desc">Trains the person who manages an enterprise AI deployment end-to-end — from use case scoring through monitored production. No code, no model building.</div>
+          <div class="cc-meta-pills">
+            <span class="cc-pill">8 weeks</span>
+            <span class="cc-pill">40–50 hrs</span>
+            <span class="cc-pill">No tech prereqs</span>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Comes from</div>
+            <div class="cc-fl-text">Business analysts, project managers, consultants — people already operating at the enterprise layer.</div>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Leaves with</div>
+            <div class="cc-fl-text leaves">Use case scoring, deployment business case, POC-to-production management. The generalist deployment role every enterprise needs.</div>
+          </div>
+        </div>
+        <button class="cc-expand-btn" onclick="toggleCourse(this)">
+          <span>See curriculum topics</span>
+          <span class="cc-chevron" style="color:var(--gold)">▾</span>
+        </button>
+        <div class="cc-topics-panel">
+          <div class="cc-topics-inner">
+            <div class="cc-topics-label tl-gold">What this course covers</div>
+            <ul class="cc-topics-list">
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI use case scoring framework</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Deployment readiness assessment</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI vendor evaluation</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI-specific UAT design</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Business case for CFO sign-off</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Phased rollout planning</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Go / no-go decision criteria</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>RBI · IRDAI · DPDP Act 2023</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>90-day post-launch operations</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Capstone: deployment readiness brief</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <div class="cc-foot-meta">June 2026 · Cohort 1<br>Price on request · EMI available</div>
+          <button class="reg-btn" style="width:auto;padding:0.55rem 1rem;font-size:0.78rem;" onclick="openContactModal('Professional Certificate in Enterprise AI Deployment and Implementation — Track A', 'Join the waitlist')">Join Waitlist — Track A →</button>
+        </div>
       </div>
+
+      <!-- CARD 3: Track B — AI Risk, Governance and Regulatory Compliance -->
+      <div class="course-card" style="background:var(--paper);border-color:var(--rule);border-top:3px solid var(--amber);">
+        <div class="cc-body">
+          <div class="cc-track-row">
+            <span class="cc-type cct-amber">Track B · Governance</span>
+            <span class="cc-badge ccb-first">First in India</span>
+          </div>
+          <div class="cc-name">Professional Certificate in Enterprise AI Risk, Governance and Regulatory Compliance</div>
+          <div class="cc-programme">6 weeks · No ML background · Risk · Compliance · Audit</div>
+          <div class="cc-desc">Trains the practitioner who tests AI systems, produces governance evidence, and faces regulators — not just someone who understands policy frameworks.</div>
+          <div class="cc-meta-pills">
+            <span class="cc-pill">6 weeks</span>
+            <span class="cc-pill">35–45 hrs</span>
+            <span class="cc-pill">Governance background</span>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Comes from</div>
+            <div class="cc-fl-text">Risk officers, compliance, legal, internal audit — people with governance experience entering the AI risk domain.</div>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Leaves with</div>
+            <div class="cc-fl-text leaves">AI risk frameworks, DPDP Act compliance, LLM testing protocols, hallucination audits. The role regulators are beginning to require.</div>
+          </div>
+        </div>
+        <button class="cc-expand-btn" onclick="toggleCourse(this)">
+          <span>See curriculum topics</span>
+          <span class="cc-chevron" style="color:var(--amber)">▾</span>
+        </button>
+        <div class="cc-topics-panel">
+          <div class="cc-topics-inner">
+            <div class="cc-topics-label tl-amber">What this course covers</div>
+            <ul class="cc-topics-list">
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Reading AI model performance reports</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Hallucination detection methodology</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Red-teaming · OWASP LLM Top 10</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Bias audit (credit · insurance · hiring)</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>DPDP Act 2023 — testable obligations</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>RBI Model Risk Management</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>IRDAI algorithmic decision rules</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Regulator evidence pack design</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Agentic AI testing · human override</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-amber"></span>Capstone: governance evidence pack</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <div class="cc-foot-meta">June 2026 · Cohort 1<br>Price on request · EMI available</div>
+          <button class="reg-btn" style="width:auto;padding:0.55rem 1rem;font-size:0.78rem;background:var(--amber);" onmouseover="this.style.background='#8a6218'" onmouseout="this.style.background='var(--amber)'" onclick="openContactModal('Professional Certificate in Enterprise AI Risk, Governance and Regulatory Compliance — Track B', 'Join the waitlist')">Join Waitlist — Track B →</button>
+        </div>
+      </div>
+
+      <!-- CARD 4: Track C — Enterprise AI Integration and MLOps -->
+      <div class="course-card" style="background:var(--paper);border-color:var(--rule);border-top:3px solid #534AB7;">
+        <div class="cc-body">
+          <div class="cc-track-row">
+            <span class="cc-type cct-purple">Track C · Integration Engineer</span>
+            <span class="cc-badge ccb-first" style="background:#534AB7;">First in India</span>
+          </div>
+          <div class="cc-name">Professional Certificate in Enterprise AI Integration and MLOps</div>
+          <div class="cc-programme">10 weeks · Python + REST required · Engineers · DevOps</div>
+          <div class="cc-desc">For engineers who can code but need to connect AI to SAP, Salesforce, and Workday — and keep it running reliably in production.</div>
+          <div class="cc-meta-pills">
+            <span class="cc-pill">10 weeks</span>
+            <span class="cc-pill">60–75 hrs</span>
+            <span class="cc-pill">Python / cloud required</span>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Comes from</div>
+            <div class="cc-fl-text">Software engineers, DevOps, cloud architects — technical professionals extending their skills into AI deployment and operations.</div>
+          </div>
+          <div class="cc-fl">
+            <div class="cc-fl-label">Leaves with</div>
+            <div class="cc-fl-text leaves">LLM-to-enterprise integration, MLOps pipelines, CI/CD for AI, monitoring and observability. The most in-demand technical role in production AI.</div>
+          </div>
+        </div>
+        <button class="cc-expand-btn" onclick="toggleCourse(this)">
+          <span>See curriculum topics</span>
+          <span class="cc-chevron" style="color:#534AB7">▾</span>
+        </button>
+        <div class="cc-topics-panel">
+          <div class="cc-topics-inner">
+            <div class="cc-topics-label tl-purple">What this course covers</div>
+            <ul class="cc-topics-list">
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>LLM API integration fundamentals</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>SAP BAPI / IDOC integration</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>Salesforce Apex + AI</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>Workday Studio integration</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>ServiceNow AI integration</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>RAG pipelines over enterprise data</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>LangChain · LangGraph agents</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>CI/CD for AI · quality gates</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>Canary deployment · rollback</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>Drift detection · monitoring</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>DLP · PII scrubbing · DPDP Act</li>
+              <li class="cc-topic"><span class="cc-tdot ccd-purple"></span>Capstone: enterprise integration project</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cc-footer">
+          <div class="cc-foot-meta">June 2026 · Cohort 1<br>Price on request · EMI available</div>
+          <button class="reg-btn" style="width:auto;padding:0.55rem 1rem;font-size:0.78rem;background:#534AB7;" onmouseover="this.style.background='#3d3690'" onmouseout="this.style.background='#534AB7'" onclick="openContactModal('Professional Certificate in Enterprise AI Integration and MLOps — Track C', 'Join the waitlist')">Join Waitlist — Track C →</button>
+        </div>
+      </div>
+
     </div>
-
-    <div class="track-card tc-b">
-      <div class="track-letter">B</div>
-      <div class="track-name">AI Governance &amp; Risk Lead</div>
-      <div class="track-hook">"I want to be the person who keeps AI deployments compliant and safe."</div>
-      <div class="track-meta">
-        <div class="track-price">Price on request</div>
-        <span class="track-prereq-pill pill-amber">Governance background</span>
-      </div>
-      <div class="track-divider"></div>
-      <div class="track-from-label">Comes from</div>
-      <div class="track-from">Risk officers, compliance, legal, internal audit — people with governance experience entering the AI risk domain.</div>
-      <div class="track-outcome-label">Leaves with</div>
-      <div class="track-outcome">AI risk frameworks, DPDP Act compliance, LLM testing protocols, hallucination audits. The role regulators are beginning to require.</div>
-      <div class="reg-form" id="form-b">
-        <button class="reg-btn" onclick="openContactModal('AI Governance &amp; Risk Lead — Track B', 'Join the waitlist')">Join Waitlist — Track B →</button>
-      </div>
-    </div>
-
-    <div class="track-card tc-c">
-      <div class="track-letter">C</div>
-      <div class="track-name">AI Integration &amp; MLOps Engineer</div>
-      <div class="track-hook">"I want to build and run AI in production environments."</div>
-      <div class="track-meta">
-        <div class="track-price">Price on request</div>
-        <span class="track-prereq-pill pill-purple">Python / cloud required</span>
-      </div>
-      <div class="track-divider"></div>
-      <div class="track-from-label">Comes from</div>
-      <div class="track-from">Software engineers, DevOps, cloud architects — technical professionals extending their skills into AI deployment and operations.</div>
-      <div class="track-outcome-label">Leaves with</div>
-      <div class="track-outcome">LLM-to-enterprise integration, MLOps pipelines, CI/CD for AI, monitoring and observability. The most in-demand technical role in production AI.</div>
-      <div class="reg-form" id="form-c">
-        <button class="reg-btn" onclick="openContactModal('AI Integration &amp; MLOps Engineer — Track C', 'Join the waitlist')">Join Waitlist — Track C →</button>
-      </div>
-    </div>
-
   </div>
 
-  <div class="tracks-foot">
+  <div class="tracks-foot" style="padding:0 5% 2.5rem;">
     <p>First cohort — 1st June 2026 · Small cohorts of 12–18 · Pricing confirmed to waitlist members · EMI available</p>
   </div>
 </section>
+
 
 
 <!-- WHY -->
@@ -1105,7 +1599,7 @@ textarea.form-input { resize: none; line-height: 1.55; }
         <div class="wp-dash">—</div>
         <div>
           <div class="wp-t">Role-specific, not role-agnostic</div>
-          <p class="wp-p">Most AI training ignores the professional experience your team already has. DeployReady is structured around the specific roles enterprises need filled — AI Deployment Analyst, Governance &amp; Risk Lead, Integration Engineer — so every learner leaves with a job title, not just a credential.</p>
+          <p class="wp-p">Most AI training ignores the professional experience your team already has. DeployReady is structured around the specific roles enterprises need filled — AI &amp; ML Engineering, Deployment Analyst, Governance &amp; Risk Lead, Integration Engineer — so every learner leaves with a job title, not just a credential.</p>
         </div>
       </div>
       <div class="why-point">
@@ -1258,6 +1752,16 @@ textarea.form-input { resize: none; line-height: 1.55; }
 </div>
 
 <script>
+  // ── Course expand/collapse ──
+  function toggleCourse(btn) {
+    var panel = btn.nextElementSibling;
+    var isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.querySelector('span:first-child').textContent =
+      isOpen ? 'See curriculum topics' : 'Hide curriculum topics';
+  }
+
   // ── Waitlist counter ──
   var waitlistBase = 23;
   document.addEventListener('DOMContentLoaded', function() {
