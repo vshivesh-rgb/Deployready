@@ -163,21 +163,18 @@ nav {
     radial-gradient(ellipse 55% 60% at 80% 30%, rgba(196,151,58,0.07) 0%, transparent 100%),
     radial-gradient(ellipse 45% 55% at 5% 85%, rgba(22,46,38,0.8) 0%, transparent 100%);
 }
-.hero-line {
-  position:absolute; top:0; right:28%; width:1px; height:100%;
-  background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.04) 70%, transparent 100%);
-}
+
 .hero-body {
   position:relative; z-index:2;
-  flex:1; display:flex; flex-direction:column; justify-content:center;
-  padding-top:130px; padding-bottom:60px; max-width:760px;
+  flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center;
+  padding-top:130px; padding-bottom:60px; max-width:900px; width:100%; margin:0 auto; text-align:center;
   animation: rise 1s cubic-bezier(0.16,1,0.3,1) both;
 }
 @keyframes rise {
   from { opacity:0; transform:translateY(24px); }
   to   { opacity:1; transform:translateY(0); }
 }
-.hero-label { display:flex; align-items:center; gap:10px; margin-bottom:2.2rem; }
+.hero-label { display:flex; align-items:center; gap:10px; margin-bottom:2.2rem; justify-content:center; }
 .hero-label-line { width:24px; height:1px; background:var(--teal); flex-shrink:0; }
 .hero-label-text { font-size:0.68rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); }
 h1 {
@@ -190,9 +187,9 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .hero-p {
   font-size:0.98rem; font-weight:300;
   color:rgba(255,255,255,0.48); line-height:1.82;
-  max-width:640px; margin-bottom:2.8rem;
+  max-width:700px; margin-bottom:2.8rem; text-align:center;
 }
-.hero-btns { display:flex; gap:1rem; align-items:center; }
+.hero-btns { display:flex; flex-direction:row; gap:1.5rem; align-items:flex-start; justify-content:center; flex-wrap:wrap; margin-bottom:0; }
 .btn-primary {
   background:var(--teal); color:var(--white);
   padding:0.75rem 1.6rem; border-radius:3px;
@@ -295,7 +292,7 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .meter-left p { font-size:0.88rem; color:var(--body); line-height:1.82; font-weight:300; margin-bottom:0.8rem; }
 .meter-visual { background:var(--white); border:1px solid var(--rule); border-radius:4px; padding:2rem; }
 .mv-title { font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:1.4rem; }
-.mv-pillar { display:grid; grid-template-columns:110px 1fr 28px; align-items:center; gap:0.8rem; margin-bottom:0.75rem; }
+.mv-pillar { display:grid; grid-template-columns:145px 1fr 28px; align-items:center; gap:0.8rem; margin-bottom:0.75rem; }
 .mv-pillar:last-child { margin-bottom:0; }
 .mv-name { font-size:0.76rem; color:var(--body); }
 .mv-bar-track { height:4px; background:rgba(12,18,33,0.06); border-radius:3px; overflow:hidden; }
@@ -460,7 +457,48 @@ footer { background:var(--ink); padding:2.8rem 5%; }
 .foot-btm { display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
 .foot-meta { font-size:0.7rem; color:rgba(255,255,255,0.18); }
 
-/* ── RESPONSIVE ── */
+/* ── HERO READINESS BUTTON GLOW ── */
+.hero-readiness-btn {
+  animation: heroCtaGlow 2.8s ease-in-out 1.2s infinite;
+  position: relative;
+}
+@keyframes heroCtaGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,151,58,0); }
+  35% { box-shadow: 0 0 0 7px rgba(196,151,58,0.25), 0 0 28px 6px rgba(196,151,58,0.2); }
+  65% { box-shadow: 0 0 0 3px rgba(196,151,58,0.1); }
+}
+
+/* ── READINESS CTA HIGHLIGHT ANIMATION ── */
+.hf-readiness-cta {
+  position: relative;
+  padding: 1.4rem 1.6rem !important;
+  border-radius: 2px;
+  background: rgba(196,151,58,0.04);
+  border: 1px solid rgba(196,151,58,0.18) !important;
+  animation: readinessPulseGlow 3s ease-in-out 1.5s infinite;
+  border-right: 1px solid rgba(196,151,58,0.18) !important;
+  border-left: 1px solid rgba(196,151,58,0.18) !important;
+}
+@keyframes readinessPulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,151,58,0); border-color: rgba(196,151,58,0.18); background: rgba(196,151,58,0.04); }
+  40% { box-shadow: 0 0 0 6px rgba(196,151,58,0.12), 0 0 32px 4px rgba(196,151,58,0.13); border-color: rgba(196,151,58,0.55); background: rgba(196,151,58,0.09); }
+  70% { box-shadow: 0 0 0 3px rgba(196,151,58,0.06); border-color: rgba(196,151,58,0.3); background: rgba(196,151,58,0.06); }
+}
+
+/* ── METER SECTION CTA HIGHLIGHT ── */
+.meter-cta-highlight {
+  display: inline-block;
+  position: relative;
+  animation: meterCtaPulse 3s ease-in-out 2s infinite;
+  border-radius: 3px;
+}
+@keyframes meterCtaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196,151,58,0); }
+  40% { box-shadow: 0 0 0 6px rgba(196,151,58,0.22), 0 0 24px 2px rgba(196,151,58,0.18); }
+  70% { box-shadow: 0 0 0 3px rgba(196,151,58,0.1); }
+}
+
+/* ── HERO BG POSITIONING ── */
 @media (max-width: 900px) {
   .meter-inner { grid-template-columns:1fr; gap:3rem; }
   .about-inner { grid-template-columns:1fr; gap:3rem; }
@@ -988,38 +1026,41 @@ textarea.form-input { resize: none; line-height: 1.55; }
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-line"></div>
+
   <div class="hero-body">
     <div class="hero-label">
       <div class="hero-label-line"></div>
       <div class="hero-label-text">India's First Full-Lifecycle AI Deployment Programme · 2026</div>
+      <div class="hero-label-line"></div>
     </div>
     <h1>
       Deployment&#8209;Specific<br>
-      <em>AI Programme for Enterprises<br>
-      and Professionals</em>
+      <em>AI Programme for Enterprises<br>and Professionals</em>
     </h1>
     <p class="hero-p">
       Structured programmes covering every stage of the AI adoption lifecycle: readiness, governance, integration, validation and monitoring — with each stage connected to measurable business impact. Built for organisations <strong style="color:rgba(255,255,255,0.75);font-weight:500;">stuck between pilot and production.</strong>
     </p>
     <p style="color:rgba(255,255,255,0.38);font-size:0.82rem;font-weight:400;margin:0 0 1.2rem;font-style:italic;letter-spacing:0.01em;">Who are you?</p>
-    <div class="hero-btns" style="flex-direction:column;align-items:flex-start;gap:0.75rem;">
-      <button onclick="window.open('assessment.html','_blank')" class="btn-primary" style="display:flex;align-items:center;gap:0.75rem;">
-        <span style="font-size:0.78rem;opacity:0.7;font-weight:400;">I lead AI in my organisation</span>
-        <span style="opacity:0.4;font-size:0.8rem;">→</span>
-        <span>Check Your AI Readiness</span>
-      </button>
-      <a href="#individual" class="btn-primary" style="background:rgba(196,151,58,0.12);border:1px solid rgba(196,151,58,0.3);display:flex;align-items:center;gap:0.75rem;">
-        <span style="font-size:0.78rem;opacity:0.7;font-weight:400;">I want to work in AI deployment</span>
-        <span style="opacity:0.4;font-size:0.8rem;">→</span>
-        <span>See Individual Tracks</span>
-      </a>
+    <div class="hero-btns">
+      <!-- CTA 1: Enterprise -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <button onclick="window.open('assessment.html','_blank')" class="btn-primary hero-readiness-btn" style="display:flex;align-items:center;gap:0.75rem;">
+          <span style="font-size:0.78rem;opacity:0.7;font-weight:400;">I lead AI in my organisation</span>
+          <span style="opacity:0.4;font-size:0.8rem;">→</span>
+          <span>Check Your AI Readiness</span>
+        </button>
+        <span style="font-size:0.72rem;color:var(--teal);font-weight:500;letter-spacing:0.03em;opacity:0.9;">✦ Free AI Deployment Maturity Score</span>
+      </div>
+      <!-- CTA 2: Individual -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <a href="#individual" class="btn-primary" style="background:rgba(196,151,58,0.12);border:1px solid rgba(196,151,58,0.3);display:flex;align-items:center;gap:0.75rem;">
+          <span style="font-size:0.78rem;opacity:0.7;font-weight:400;">I want to work in AI deployment</span>
+          <span style="opacity:0.4;font-size:0.8rem;">→</span>
+          <span>See Individual Tracks</span>
+        </a>
+        <span style="font-size:0.72rem;color:rgba(255,255,255,0.28);font-weight:300;">First cohort: June 2026</span>
+      </div>
     </div>
-    <p style="color:rgba(255,255,255,0.25);font-size:0.75rem;font-weight:300;margin:1rem 0 0;font-style:italic;">
-      <strong style="color:rgba(196,151,58,0.7);font-weight:500;">Free AI Deployment Maturity Score</strong>
-
-      &nbsp;·&nbsp; Individual tracks: June 2026
-    </p>
   </div>
   <div class="hero-foot">
     <div class="hf">
@@ -1045,7 +1086,7 @@ textarea.form-input { resize: none; line-height: 1.55; }
     <p class="pp-p ent-p">An 8–12 week managed programme — readiness assessment, deployment training, handholding, and post-go-live monitoring. Delivered in the context of your organisation, your systems, your use cases. Not a course. A guaranteed maturity uplift.</p>
     <a href="#enterprise-programmes" class="pp-link">See enterprise programmes</a>
     <div class="pp-details ent-details">
-      <div class="pp-detail ent-detail">Assessment + Ramp + Handholding + Post-monitoring</div>
+      <div class="pp-detail ent-detail">Diagnosis → Strategy → Governance → Deployment → Monitoring → Measured ROI</div>
       <div class="pp-detail ent-detail">NASSCOM-benchmarked Readiness Meter included</div>
       <div class="pp-detail ent-detail">CXO ROI Dashboard + 0.5-point maturity guarantee</div>
       <div class="pp-detail ent-detail">20–40 seat cohorts · contact us for pricing</div>
@@ -1136,7 +1177,6 @@ textarea.form-input { resize: none; line-height: 1.55; }
               <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Deployment readiness assessment</li>
               <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI vendor evaluation</li>
               <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>AI-specific UAT design</li>
-              <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>SAP · Salesforce · Workday integration</li>
               <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Hallucination testing · red-teaming</li>
               <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>Bias audit framework</li>
               <li class="cc-topic"><span class="cc-tdot ccd-gold"></span>DPDP Act 2023 · RBI · IRDAI</li>
@@ -1211,21 +1251,21 @@ textarea.form-input { resize: none; line-height: 1.55; }
       <h2>Know exactly where you stand before you spend a rupee.</h2>
       <p>Free 10–15 minute assessment. Instant PDF scorecard across 9 pillars benchmarked against NASSCOM's AI Adoption Index. Organisations scoring below 2.8 receive a free 45-minute consultation.</p>
       <p>Enterprise clients get a facilitated 90-minute diagnostic — stakeholder interviews, peer benchmarks, and a prioritised 90-day action roadmap.</p>
-      <span style="display:inline-block; margin-top:1.4rem;">
+      <span class="meter-cta-highlight" style="display:inline-block; margin-top:1.4rem;">
         <button onclick="window.open('assessment.html','_blank')" style="padding:0.75rem 1.6rem; border-radius:3px; font-size:0.85rem; font-weight:500; background:var(--teal); color:var(--white); border:none; cursor:pointer; font-family:'DM Sans',sans-serif; letter-spacing:0.01em; transition:background 0.2s;" onmouseover="this.style.background='var(--teal-d)'" onmouseout="this.style.background='var(--teal)'">Get Your Free Readiness Score →</button>
       </span>
     </div>
     <div class="meter-visual">
       <div class="mv-title">Sample Score — BFSI Enterprise</div>
-      <div class="mv-pillar"><div class="mv-name">AI Strategy</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:62%"></div></div><div class="mv-score">2.5</div></div>
-      <div class="mv-pillar"><div class="mv-name">Data Readiness</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:45%"></div></div><div class="mv-score">1.8</div></div>
+      <div class="mv-pillar"><div class="mv-name">Leadership &amp; Strategy</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:62%"></div></div><div class="mv-score">2.5</div></div>
+      <div class="mv-pillar"><div class="mv-name">Data Infrastructure</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:45%"></div></div><div class="mv-score">1.8</div></div>
       <div class="mv-pillar"><div class="mv-name">Talent &amp; Skills</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:38%"></div></div><div class="mv-score">1.5</div></div>
-      <div class="mv-pillar"><div class="mv-name">Governance</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:72%"></div></div><div class="mv-score">2.9</div></div>
-      <div class="mv-pillar"><div class="mv-name">Use Case Maturity</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:55%"></div></div><div class="mv-score">2.2</div></div>
-      <div class="mv-pillar"><div class="mv-name">Deployment Process</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:32%"></div></div><div class="mv-score">1.3</div></div>
-      <div class="mv-pillar"><div class="mv-name">DPDP Compliance</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:58%"></div></div><div class="mv-score">2.3</div></div>
-      <div class="mv-pillar"><div class="mv-name">Exec Sponsorship</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:80%"></div></div><div class="mv-score">3.2</div></div>
-      <div class="mv-pillar"><div class="mv-name">POC→Production Rate</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:28%"></div></div><div class="mv-score">1.1</div></div>
+      <div class="mv-pillar"><div class="mv-name">Technology &amp; Cloud</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:72%"></div></div><div class="mv-score">2.9</div></div>
+      <div class="mv-pillar"><div class="mv-name">Use Case Pipeline</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:55%"></div></div><div class="mv-score">2.2</div></div>
+      <div class="mv-pillar"><div class="mv-name">Governance &amp; Risk</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:32%"></div></div><div class="mv-score">1.3</div></div>
+      <div class="mv-pillar"><div class="mv-name">Deployment &amp; MLOps</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:58%"></div></div><div class="mv-score">2.3</div></div>
+      <div class="mv-pillar"><div class="mv-name">Maintenance &amp; Monitoring</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:80%"></div></div><div class="mv-score">3.2</div></div>
+      <div class="mv-pillar"><div class="mv-name">Exec Sponsorship</div><div class="mv-bar-track"><div class="mv-bar-fill" style="width:28%"></div></div><div class="mv-score">1.1</div></div>
       <div class="mv-benchmark">
         <div><div class="mv-bench-label">Your composite score</div><div class="mv-bench-score">2.09 <span>/ 4.0 · Enthusiast stage</span></div></div>
         <div style="text-align:right"><div class="mv-bench-label">NASSCOM India average</div><div class="mv-bench-score">2.47 <span>/ 4.0</span></div></div>
@@ -1638,9 +1678,9 @@ textarea.form-input { resize: none; line-height: 1.55; }
     <div class="founder-card">
       <div class="founder-avatar">P</div>
       <div class="founder-name">Pavan Verma</div>
-      <div class="founder-identity">AI Strategy · xMcKinsey · xAccenture · Senior Director, Agilysys · TOGAF®</div>
+      <div class="founder-identity">AI Strategy · xMcKinsey · xAccenture · TOGAF®</div>
       <div class="founder-divider"></div>
-      <p class="founder-bio">25+ years driving enterprise-scale AI adoption across BFSI, retail, telecom, and hospitality. Principal Architect at McKinsey — built GenAI platforms, MLOps pipelines, and multi-agent systems at scale. Currently Senior Director Product Strategy AI at Agilysys.</p>
+      <p class="founder-bio">25+ years driving enterprise-scale AI adoption across BFSI, retail, telecom, and hospitality. Principal Architect at McKinsey — built GenAI platforms, MLOps pipelines, and multi-agent systems at scale. Deep expertise in agentic AI and enterprise architecture.</p>
       <div class="founder-tags">
         <span class="founder-tag">Agentic AI</span>
         <span class="founder-tag">Enterprise Architecture</span>
