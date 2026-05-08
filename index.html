@@ -231,7 +231,7 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .link-teal::after { content:'→'; }
 
 /* ── ENTERPRISE PROGRAMME ── */
-#programme { padding:80px 5%; background:var(--warm); }
+#programme { padding:52px 5%; background:var(--warm); }
 .prog-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:1px; background:var(--rule); border:1px solid var(--rule);
@@ -244,7 +244,7 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .prog-tag { display:inline-block; margin-top:0.8rem; background:var(--teal-l); color:var(--teal); border:1px solid rgba(196,151,58,0.2); font-size:0.63rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; padding:0.2rem 0.55rem; border-radius:2px; }
 
 /* ── READINESS METER ── */
-#meter { padding:80px 5%; background:var(--paper); }
+#meter { padding:52px 5%; background:var(--paper); }
 .meter-inner { display:grid; grid-template-columns:1fr 1.2fr; gap:6rem; align-items:center; }
 .meter-left h2 { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.18; margin-top:0.5rem; margin-bottom:1rem; }
 .meter-left p { font-size:0.88rem; color:var(--body); line-height:1.82; font-weight:300; margin-bottom:0.8rem; }
@@ -282,7 +282,7 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .mfoot p { font-size:0.75rem; color:rgba(255,255,255,0.2); font-weight:300; }
 
 /* ── HOW IT WORKS ── */
-#how { background:var(--navy); padding:80px 5%; position:relative; overflow:hidden; }
+#how { background:var(--navy); padding:52px 5%; position:relative; overflow:hidden; }
 #how::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 40% 60% at 95% 50%, rgba(196,151,58,0.06) 0%, transparent 100%); }
 .how-inner { position:relative; z-index:1; }
 .how-header { display:flex; align-items:flex-end; justify-content:space-between; padding-bottom:1.4rem; border-bottom:1px solid var(--rule-l); flex-wrap:wrap; gap:1rem; }
@@ -376,7 +376,7 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .tracks-foot p { font-size:0.78rem; color:var(--muted); font-weight:300; }
 
 /* ── WHY ── */
-#why { background:var(--warm); padding:80px 5%; }
+#why { background:var(--warm); padding:52px 5%; }
 .why-inner { display:grid; grid-template-columns:1fr 1.6fr; gap:7rem; align-items:start; }
 .why-left h2 { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.18; margin-top:0.5rem; margin-bottom:1.2rem; }
 .why-left p { font-size:0.88rem; color:var(--body); line-height:1.78; font-weight:300; }
@@ -388,7 +388,7 @@ h1 em { font-style:italic; color:rgba(255,255,255,0.45); }
 .wp-p { font-size:0.82rem; color:var(--body); line-height:1.68; font-weight:300; }
 
 /* ── ABOUT ── */
-#about { background:var(--paper); padding:80px 5%; }
+#about { background:var(--paper); padding:52px 5%; }
 .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
 .about-h { font-family:'Cormorant Garamond', serif; font-size:clamp(1.7rem, 2.8vw, 2.3rem); font-weight:500; color:var(--ink); letter-spacing:-0.02em; line-height:1.18; margin-top:0.5rem; margin-bottom:1.2rem; }
 .about-p { font-size:0.88rem; color:var(--body); line-height:1.82; font-weight:300; }
@@ -1074,6 +1074,46 @@ textarea.form-input { resize: none; line-height: 1.55; }
   .founder-tags { gap: 0.3rem !important; }
   .founder-tag { font-size: 0.6rem !important; }
 }
+
+/* ── BENEFIT CARDS ── */
+.benefit-card:hover { background: #F7F4EE !important; }
+
+/* ── FAQ ACCORDION ── */
+.faq-list-dr { display: flex; flex-direction: column; }
+.faq-item-dr { border-bottom: 1px solid rgba(13,31,26,0.09); }
+.faq-item-dr:first-child { border-top: 1px solid rgba(13,31,26,0.09); }
+.faq-btn-dr {
+  width: 100%; background: none; border: none;
+  padding: 1rem 0; display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 1.5rem;
+  cursor: pointer; text-align: left; font-family: 'DM Sans', sans-serif;
+}
+.faq-btn-dr:hover .faq-q-dr { color: var(--teal); }
+.faq-q-dr {
+  font-size: 0.9rem; font-weight: 500; color: var(--ink);
+  line-height: 1.4; letter-spacing: -0.01em;
+  transition: color 0.2s; flex: 1;
+}
+.faq-btn-dr.open .faq-q-dr { color: var(--teal); }
+.faq-icon-dr {
+  width: 18px; height: 18px; flex-shrink: 0;
+  border: 1px solid rgba(13,31,26,0.18); border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px; transition: background 0.2s;
+  color: var(--muted); font-size: 13px;
+}
+.faq-btn-dr.open .faq-icon-dr {
+  background: rgba(196,151,58,0.08);
+  border-color: rgba(196,151,58,0.3);
+  color: var(--teal);
+}
+.faq-body-dr { max-height: 0; overflow: hidden; transition: max-height 0.32s ease; }
+.faq-body-dr.open { max-height: 500px; }
+.faq-inner-dr {
+  font-size: 0.82rem; color: var(--body);
+  font-weight: 300; line-height: 1.72;
+  max-width: 680px; padding: 0 0 1rem;
+}
 </style>
 
 </head>
@@ -1322,6 +1362,103 @@ textarea.form-input { resize: none; line-height: 1.55; }
 </section>
 
 
+<!-- BENEFIT CARDS -->
+<section id="benefits" style="background:#F7F4EE;padding:52px 5%;font-family:'DM Sans',sans-serif;">
+  <div style="margin-bottom:1.8rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(13,31,26,0.09);display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <span style="font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#C4973A;display:block;margin-bottom:0.6rem;">How organisations benefit</span>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,2.8vw,2.3rem);font-weight:500;color:#0D1F1A;letter-spacing:-0.02em;line-height:1.15;margin-top:0.4rem;">Move your organisation from AI ambition to AI maturity.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(13,31,26,0.09);border:1px solid rgba(13,31,26,0.09);">
+
+    <div class="benefit-card" style="background:#FDFCF8;display:flex;flex-direction:column;transition:background 0.2s;">
+      <div style="height:170px;background:#EDE9E0;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="280" height="170" fill="#EDE9E0"/>
+          <rect x="44" y="118" width="28" height="34" rx="2" fill="#C4B89A"/>
+          <rect x="84" y="98" width="28" height="54" rx="2" fill="#B4A88A"/>
+          <rect x="124" y="74" width="28" height="78" rx="2" fill="#C4973A" opacity="0.7"/>
+          <rect x="164" y="50" width="28" height="102" rx="2" fill="#C4973A" opacity="0.85"/>
+          <rect x="204" y="30" width="28" height="122" rx="2" fill="#C4973A"/>
+          <circle cx="218" cy="24" r="8" fill="#A67C28"/>
+          <polyline points="58,116 98,96 138,72 178,48 218,28" stroke="#A67C28" stroke-width="1.5" fill="none" stroke-dasharray="5,3" opacity="0.7"/>
+        </svg>
+      </div>
+      <div style="padding:1.5rem 1.5rem 1.75rem;flex:1;display:flex;flex-direction:column;">
+        <div style="font-size:0.9rem;font-weight:500;color:#0D1F1A;letter-spacing:-0.01em;line-height:1.35;margin-bottom:0.45rem;">Use cases identified and ranked by business impact, data readiness, and regulatory exposure</div>
+        <div style="font-size:0.78rem;color:#2E3D38;font-weight:300;line-height:1.68;margin-bottom:0.75rem;flex:1;">A prioritised backlog with a defensible business case per initiative gives leadership a clear view of where AI investment will deliver and where execution risk is highest.</div>
+        <a href="#archetypes" style="font-size:0.78rem;font-weight:500;color:#C4973A;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">How the diagnostic works →</a>
+      </div>
+    </div>
+
+    <div class="benefit-card" style="background:#FDFCF8;display:flex;flex-direction:column;transition:background 0.2s;">
+      <div style="height:170px;background:#EDE9E0;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="280" height="170" fill="#EDE9E0"/>
+          <circle cx="140" cy="85" r="44" fill="none" stroke="#C4B89A" stroke-width="1"/>
+          <circle cx="140" cy="85" r="26" fill="none" stroke="#B4A88A" stroke-width="1"/>
+          <circle cx="140" cy="85" r="10" fill="#C4973A"/>
+          <line x1="72" y1="85" x2="104" y2="85" stroke="#C4973A" stroke-width="1.5" opacity="0.8"/>
+          <line x1="176" y1="85" x2="208" y2="85" stroke="#C4973A" stroke-width="1.5" opacity="0.8"/>
+          <line x1="140" y1="27" x2="140" y2="53" stroke="#C4973A" stroke-width="1.5" opacity="0.8"/>
+          <line x1="140" y1="117" x2="140" y2="143" stroke="#C4973A" stroke-width="1.5" opacity="0.8"/>
+          <rect x="48" y="72" width="22" height="22" rx="2" fill="#C4B89A"/>
+          <rect x="210" y="72" width="22" height="22" rx="2" fill="#C4B89A"/>
+          <rect x="129" y="17" width="22" height="18" rx="2" fill="#C4B89A"/>
+          <rect x="129" y="135" width="22" height="18" rx="2" fill="#C4B89A"/>
+        </svg>
+      </div>
+      <div style="padding:1.5rem 1.5rem 1.75rem;flex:1;display:flex;flex-direction:column;">
+        <div style="font-size:0.9rem;font-weight:500;color:#0D1F1A;letter-spacing:-0.01em;line-height:1.35;margin-bottom:0.45rem;">Architecture and vendor decisions assessed against your existing infrastructure and operational constraints</div>
+        <div style="font-size:0.78rem;color:#2E3D38;font-weight:300;line-height:1.68;margin-bottom:0.75rem;flex:1;">Build-vs-buy choices are evaluated against your systems, data maturity, and integration requirements. Every recommendation is documented and justified.</div>
+        <a href="#why" style="font-size:0.78rem;font-weight:500;color:#C4973A;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">Our tool-agnostic approach →</a>
+      </div>
+    </div>
+
+    <div class="benefit-card" style="background:#FDFCF8;display:flex;flex-direction:column;transition:background 0.2s;">
+      <div style="height:170px;background:#EDE9E0;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="280" height="170" fill="#EDE9E0"/>
+          <path d="M140 28 L190 52 L190 100 Q190 132 140 148 Q90 132 90 100 L90 52 Z" fill="none" stroke="#C4B89A" stroke-width="1.5"/>
+          <path d="M140 44 L176 62 L176 100 Q176 124 140 136 Q104 124 104 100 L104 62 Z" fill="rgba(196,151,58,0.07)" stroke="#C4973A" stroke-width="1" opacity="0.6"/>
+          <path d="M122 90 L134 102 L158 76" stroke="#C4973A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="140" y="159" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#A67C28" font-weight="600" letter-spacing="1">DPDP · RBI · IRDAI · MeitY · NABH</text>
+        </svg>
+      </div>
+      <div style="padding:1.5rem 1.5rem 1.75rem;flex:1;display:flex;flex-direction:column;">
+        <div style="font-size:0.9rem;font-weight:500;color:#0D1F1A;letter-spacing:-0.01em;line-height:1.35;margin-bottom:0.45rem;">Governance and regulatory compliance built into deployment workflows from the first stage</div>
+        <div style="font-size:0.78rem;color:#2E3D38;font-weight:300;line-height:1.68;margin-bottom:0.75rem;flex:1;">DPDP, RBI, IRDAI, MeitY and NABH requirements are addressed across every stage of the engagement. Risk and legal teams receive documentation they can act on at go-live.</div>
+        <div style="font-size:0.63rem;font-weight:600;letter-spacing:0.08em;color:#A67C28;margin-top:auto;">DPDP · RBI · IRDAI · MeitY · NABH</div>
+      </div>
+    </div>
+
+    <div class="benefit-card" style="background:#FDFCF8;display:flex;flex-direction:column;transition:background 0.2s;">
+      <div style="height:170px;background:#EDE9E0;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <svg viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <rect width="280" height="170" fill="#EDE9E0"/>
+          <rect x="70" y="115" width="140" height="24" rx="2" fill="#C4B89A"/>
+          <rect x="82" y="90" width="116" height="28" rx="2" fill="#B4A88A"/>
+          <rect x="96" y="66" width="88" height="27" rx="2" fill="#C4973A" opacity="0.6"/>
+          <rect x="110" y="44" width="60" height="25" rx="2" fill="#C4973A" opacity="0.8"/>
+          <rect x="122" y="24" width="36" height="22" rx="2" fill="#C4973A"/>
+          <circle cx="140" cy="18" r="6" fill="#A67C28"/>
+          <line x1="200" y1="100" x2="222" y2="100" stroke="#C4973A" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="228" cy="100" r="5" fill="none" stroke="#C4973A" stroke-width="1.5"/>
+          <line x1="200" y1="78" x2="218" y2="78" stroke="#C4973A" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="224" cy="78" r="4" fill="none" stroke="#C4973A" stroke-width="1.5" opacity="0.7"/>
+        </svg>
+      </div>
+      <div style="padding:1.5rem 1.5rem 1.75rem;flex:1;display:flex;flex-direction:column;">
+        <div style="font-size:0.9rem;font-weight:500;color:#0D1F1A;letter-spacing:-0.01em;line-height:1.35;margin-bottom:0.45rem;">A governed AI system in production with monitoring, a 12-month roadmap, and internal ownership in place</div>
+        <div style="font-size:0.78rem;color:#2E3D38;font-weight:300;line-height:1.68;margin-bottom:0.75rem;flex:1;">The engagement closes when a live, monitored AI workflow is in production. Drift detection, retraining triggers, and capability handover are included as part of delivery.</div>
+        <a href="#archetypes" style="font-size:0.78rem;font-weight:500;color:#C4973A;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">The implementation engagement →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- WHY -->
 <section id="why">
   <div class="why-inner">
@@ -1365,84 +1502,158 @@ textarea.form-input { resize: none; line-height: 1.55; }
 
 <!-- ABOUT -->
 <section id="about" class="about-v2">
-  <div style="margin-bottom:2.4rem;">
-    <div class="sec-eyebrow">About</div>
-    <div class="sec-h" style="margin-top:0.5rem;">The team behind every engagement.</div>
+  <div style="margin-bottom:1.8rem;">
+    <div class="sec-eyebrow">Advisory Team</div>
+    <div class="sec-h" style="margin-top:0.5rem;">80+ years of implementation advisory experience.</div>
   </div>
 
-  <!-- Two-column layout: founder compact left, advisors stacked right -->
-  <div class="about-two-col" style="display:grid;grid-template-columns:1fr 2fr;gap:2rem;align-items:start;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);">
 
-    <!-- Founder — compact card -->
-    <div class="founder-card">
+    <div class="founder-card advisor-card-inner" style="display:flex;flex-direction:column;align-items:flex-start;">
       <div class="founder-avatar">S</div>
-      <div class="founder-name">Shivesh Verma</div>
-      <div class="founder-identity">Founder</div>
-      <div class="founder-divider"></div>
-      <p class="founder-bio">Senior consulting and implementation professional with 15+ years across enterprise strategy, large-scale business transformation, and AI adoption. Worked with McKinsey and held VP-level strategy roles inside leading consumer organisations. Built and scaled a consumer brand from inception through exit. DeployReady is founded on his direct experience navigating the gap between AI ambition and production outcomes inside large organisations.</p>
-      <div class="founder-tags" style="margin-top:1rem;">
-        <span class="founder-tag">AI Implementation</span>
-        <span class="founder-tag">Enterprise Strategy</span>
-        <span class="founder-tag">McKinsey</span>
+      <div>
+        <div class="founder-name">Shivesh Verma</div>
+        <div class="founder-identity">Founder · Enterprise Strategy &amp; AI Implementation · ex-McKinsey · 15+ Years</div>
+        <div class="founder-divider"></div>
+        <p class="founder-bio">Senior consulting and implementation professional with 18+ years across enterprise strategy and large-scale business transformation. Worked with McKinsey and held senior strategy roles inside leading organisations. Earlier built and scaled a consumer brand from inception through exit.</p>
+        <div class="founder-tags" style="margin-top:0.75rem;">
+          <span class="founder-tag">AI Implementation</span>
+          <span class="founder-tag">Enterprise Strategy</span>
+          <span class="founder-tag">McKinsey</span>
+        </div>
       </div>
     </div>
 
-    <!-- Advisors — stacked rows on the right -->
-    <div>
-      <div class="sec-eyebrow" style="margin-bottom:1rem;">Advisory Team</div>
-      <div style="display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);">
-
-        <div class="founder-card advisor-card-inner" style="display:grid;grid-template-columns:52px 1fr;gap:1.25rem;align-items:start;">
-          <div class="founder-avatar">D</div>
-          <div>
-            <div class="founder-name">Dushyant Singh Sengar</div>
-            <div class="founder-identity">AI Governance &amp; Model Risk · Founder, RegVizion LLC · 20+ Years</div>
-            <div class="founder-divider"></div>
-            <p class="founder-bio">AI governance and model risk specialist with 20+ years in financial services. Founder of RegVizion LLC. Deep expertise in DPDP Act compliance, GenAI validation, and responsible AI frameworks for regulated institutions.</p>
-            <div class="founder-tags" style="margin-top:0.75rem;">
-              <span class="founder-tag">Model Risk</span>
-              <span class="founder-tag">AI Governance</span>
-              <span class="founder-tag">DPDP</span>
-              <span class="founder-tag">BFSI</span>
-            </div>
-          </div>
+    <div class="founder-card advisor-card-inner" style="display:flex;flex-direction:column;align-items:flex-start;">
+      <div class="founder-avatar">D</div>
+      <div>
+        <div class="founder-name">Dushyant Singh Sengar</div>
+        <div class="founder-identity">AI Governance &amp; Model Risk · Founder, RegVizion LLC · 20+ Years</div>
+        <div class="founder-divider"></div>
+        <p class="founder-bio">AI governance and model risk specialist with 20+ years in financial services. Founder of RegVizion LLC. Deep expertise in DPDP Act compliance, GenAI validation, and responsible AI frameworks for regulated institutions.</p>
+        <div class="founder-tags" style="margin-top:0.75rem;">
+          <span class="founder-tag">Model Risk</span>
+          <span class="founder-tag">AI Governance</span>
+          <span class="founder-tag">DPDP</span>
+          <span class="founder-tag">BFSI</span>
         </div>
+      </div>
+    </div>
 
-        <div class="founder-card advisor-card-inner" style="display:grid;grid-template-columns:52px 1fr;gap:1.25rem;align-items:start;">
-          <div class="founder-avatar">P</div>
-          <div>
-            <div class="founder-name">Pavan Verma</div>
-            <div class="founder-identity">AI Strategy &amp; Architecture · ex-McKinsey · ex-Accenture · 25+ Years</div>
-            <div class="founder-divider"></div>
-            <p class="founder-bio">25+ years driving enterprise-scale AI adoption across BFSI, retail, and telecom. Principal Architect at McKinsey — built GenAI platforms, MLOps pipelines, and multi-agent systems at scale. Deep expertise in agentic AI and enterprise architecture.</p>
-            <div class="founder-tags" style="margin-top:0.75rem;">
-              <span class="founder-tag">Agentic AI</span>
-              <span class="founder-tag">Enterprise Architecture</span>
-              <span class="founder-tag">MLOps</span>
-            </div>
-          </div>
+    <div class="founder-card advisor-card-inner" style="display:flex;flex-direction:column;align-items:flex-start;">
+      <div class="founder-avatar">P</div>
+      <div>
+        <div class="founder-name">Pavan Verma</div>
+        <div class="founder-identity">AI Strategy &amp; Architecture · ex-McKinsey · ex-Accenture · 25+ Years</div>
+        <div class="founder-divider"></div>
+        <p class="founder-bio">25+ years driving enterprise-scale AI adoption across BFSI, retail, and telecom. Principal Architect at McKinsey — built GenAI platforms, MLOps pipelines, and multi-agent systems at scale. Deep expertise in agentic AI and enterprise architecture.</p>
+        <div class="founder-tags" style="margin-top:0.75rem;">
+          <span class="founder-tag">Agentic AI</span>
+          <span class="founder-tag">Enterprise Architecture</span>
+          <span class="founder-tag">MLOps</span>
         </div>
+      </div>
+    </div>
 
-        <div class="founder-card advisor-card-inner" style="display:grid;grid-template-columns:52px 1fr;gap:1.25rem;align-items:start;">
-          <div class="founder-avatar">A</div>
-          <div>
-            <div class="founder-name">Ashwani Agarwal</div>
-            <div class="founder-identity">Enterprise Technology &amp; AI Platforms · Co-founder, GTMVantage · 22+ Years</div>
-            <div class="founder-divider"></div>
-            <p class="founder-bio">Enterprise technology leader with 22+ years building large-scale platforms across cloud, AI, and enterprise systems. Co-founder, GTMVantage. Deep expertise in AIOps, digital transformation, and AI deployment at scale.</p>
-            <div class="founder-tags" style="margin-top:0.75rem;">
-              <span class="founder-tag">Cloud &amp; AI</span>
-              <span class="founder-tag">AIOps</span>
-              <span class="founder-tag">Enterprise Systems</span>
-            </div>
-          </div>
+    <div class="founder-card advisor-card-inner" style="display:flex;flex-direction:column;align-items:flex-start;">
+      <div class="founder-avatar">A</div>
+      <div>
+        <div class="founder-name">Ashwani Agarwal</div>
+        <div class="founder-identity">Enterprise Technology &amp; AI Platforms · Co-founder, GTMVantage · 22+ Years</div>
+        <div class="founder-divider"></div>
+        <p class="founder-bio">Enterprise technology leader with 22+ years building large-scale platforms across cloud, AI, and enterprise systems. Co-founder, GTMVantage. Deep expertise in AIOps, digital transformation, and AI deployment at scale.</p>
+        <div class="founder-tags" style="margin-top:0.75rem;">
+          <span class="founder-tag">Cloud &amp; AI</span>
+          <span class="founder-tag">AIOps</span>
+          <span class="founder-tag">Enterprise Systems</span>
         </div>
-
       </div>
     </div>
 
   </div>
-  <p style="font-size:0.78rem;color:var(--muted);font-weight:300;margin-top:1.8rem;text-align:center;">Combined experience: 80+ years across AI implementation, governance, enterprise architecture, and large-scale technology transformation in India and the US.</p>
+  <p style="font-size:0.78rem;color:var(--muted);font-weight:300;margin-top:1.5rem;text-align:center;">Combined experience: 80+ years across AI implementation, governance, enterprise architecture, and large-scale technology transformation in India and the US.</p>
+</section>
+
+<!-- FAQS -->
+<section id="faqs" style="background:#F7F4EE;padding:52px 5%;font-family:'DM Sans',sans-serif;">
+  <div style="margin-bottom:1.6rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(13,31,26,0.09);">
+    <span style="font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#C4973A;display:block;margin-bottom:0.5rem;">Frequently asked</span>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,2.8vw,2.3rem);font-weight:500;color:#0D1F1A;letter-spacing:-0.02em;line-height:1.15;margin-top:0.35rem;">Your most common queries, answered.</div>
+  </div>
+
+  <div class="faq-list-dr">
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">How is DeployReady different from an IT consultant or system integrator?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">System integrators implement technology their clients have already decided on. DeployReady works earlier and broader — diagnosing whether the right problem is being solved, identifying which use cases are viable, selecting the appropriate approach, and managing the full adoption journey including governance, post-deployment monitoring, and internal capability handover. The engagement is problem-led and tool-agnostic throughout.</div>
+      </div>
+    </div>
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">We already have a relationship with an AI vendor. Does that conflict with your engagement?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">No. DeployReady holds no vendor relationships and receives no referral fees from any platform or tool provider. Existing vendor relationships are assessed as part of the engagement — evaluated against your infrastructure, data maturity, and use case requirements. Where a vendor is the right fit, that is the recommendation. Where it is not, that is also the recommendation.</div>
+      </div>
+    </div>
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">What does a typical engagement look like in practice?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">Most engagements begin with The Diagnostic — a consultant-led assessment that establishes your AI maturity baseline, identifies viable use cases, and produces a 90-day action roadmap. That diagnostic determines the scope and depth of what follows. We do not quote timelines or deliverables before understanding where an organisation currently stands. Each engagement is scoped after the diagnostic, not before it.</div>
+      </div>
+    </div>
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">Do you work across industries or is your depth concentrated in specific sectors?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">The DeployReady framework applies across sectors. Regulatory depth is currently strongest in BFSI, retail, and manufacturing — where India-specific requirements under DPDP, RBI Model Risk Management guidelines, and IRDAI algorithmic decision frameworks are most complex. Engagements in other sectors are assessed on the basis of use case viability and data readiness rather than sector familiarity alone.<br><br><span style="font-size:0.63rem;font-weight:600;letter-spacing:0.08em;color:#A67C28;">BFSI · Retail · Manufacturing · DPDP · RBI · IRDAI</span></div>
+      </div>
+    </div>
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">What does DPDP compliance mean for our AI deployment?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">The Digital Personal Data Protection Act 2023 has direct implications for any AI system that processes personal data — which includes most customer-facing and HR applications. In practice this means consent frameworks need to be built into data pipelines, algorithmic decisions affecting individuals require documented justification, and data localisation requirements affect where models can be trained and where outputs can be stored. DeployReady addresses these requirements as part of the governance stage — as engineering and documentation decisions embedded in the deployment workflow, not as a legal opinion.</div>
+      </div>
+    </div>
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">Our internal IT team is already working on AI initiatives. Where does DeployReady fit?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">DeployReady functions as an orchestration and governance layer alongside internal teams. The diagnostic establishes what internal teams are already doing well, where gaps exist, and how the engagement should be structured to complement existing work. The capability handover at the end of the engagement is designed specifically to strengthen internal ownership so the organisation is less dependent on external support over time.</div>
+      </div>
+    </div>
+
+    <div class="faq-item-dr">
+      <button class="faq-btn-dr" onclick="drToggle(this)">
+        <span class="faq-q-dr">What happens after the engagement ends?</span>
+        <span class="faq-icon-dr">+</span>
+      </button>
+      <div class="faq-body-dr">
+        <div class="faq-inner-dr">The full implementation engagement includes 90 days of post-launch monitoring and hyper-care support as part of the standard scope. The engagement closes with a 12-month AI roadmap and a full internal capability handover — structured so the organisation can sustain and scale what was built. Advisory retainer arrangements are available for organisations that want continued access to the team, but they are not a requirement of the engagement model.</div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- CTA -->
@@ -1723,14 +1934,6 @@ textarea.form-input { resize: none; line-height: 1.55; }
 }
 .anim-up.in { opacity: 1; transform: translateY(0); }
 
-/* Stat number pulse on count-up finish */
-@keyframes statPop {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.06); }
-  100% { transform: scale(1); }
-}
-.stat-pop { animation: statPop 0.35s ease-out; }
-
 /* Why-point border glow on enter */
 .why-point {
   transition: border-color 0.4s, background 0.4s;
@@ -1860,43 +2063,18 @@ textarea.form-input { resize: none; line-height: 1.55; }
 
 <script>
 /* ═══════════════════════════════════
-   2. STAT COUNTER — counts up on scroll
+   2. STAT COUNTER — static, no animation
 ═══════════════════════════════════ */
 (function(){
   const items=[
-    {sel:'.stat-item:nth-child(1) .stat-n', end:88,  dec:0, suf:'%'},
-    {sel:'.stat-item:nth-child(2) .stat-n', end:95,  dec:0, suf:'%'},
-    {sel:'.stat-item:nth-child(3) .stat-n', end:2.47,dec:2, suf:''}
+    {sel:'.stat-item:nth-child(1) .stat-n', val:'88%'},
+    {sel:'.stat-item:nth-child(2) .stat-n', val:'95%'},
+    {sel:'.stat-item:nth-child(3) .stat-n', val:'2.47'}
   ];
-  let done=false;
-
-  function countUp(el, end, dec, suf, delay){
-    setTimeout(()=>{
-      const dur=1600, start=performance.now();
-      function step(now){
-        const p=Math.min((now-start)/dur,1);
-        const ease=1-Math.pow(1-p,3);
-        el.textContent=(end*ease).toFixed(dec)+suf;
-        if(p<1){ requestAnimationFrame(step); }
-        else { el.textContent=end.toFixed(dec)+suf; el.classList.add('stat-pop'); }
-      }
-      requestAnimationFrame(step);
-    }, delay);
-  }
-
-  const obs=new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting && !done){
-      done=true;
-      items.forEach((item,i)=>{
-        const el=document.querySelector(item.sel);
-        if(el) countUp(el, item.end, item.dec, item.suf, i*200);
-      });
-      obs.disconnect();
-    }
-  },{threshold:0.6});
-
-  const stats=document.getElementById('stats');
-  if(stats) obs.observe(stats);
+  items.forEach(item=>{
+    const el=document.querySelector(item.sel);
+    if(el) el.textContent=item.val;
+  });
 })();
 </script>
 
@@ -1982,6 +2160,23 @@ textarea.form-input { resize: none; line-height: 1.55; }
     }
   },{passive:true});
 })();
+
+/* ── FAQ TOGGLE ── */
+function drToggle(btn){
+  const body=btn.nextElementSibling;
+  const icon=btn.querySelector('.faq-icon-dr');
+  const isOpen=btn.classList.contains('open');
+  document.querySelectorAll('.faq-btn-dr.open').forEach(b=>{
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+    b.querySelector('.faq-icon-dr').textContent='+';
+  });
+  if(!isOpen){
+    btn.classList.add('open');
+    body.classList.add('open');
+    icon.textContent='−';
+  }
+}
 </script>
 
 </body>
