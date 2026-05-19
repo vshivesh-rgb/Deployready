@@ -745,152 +745,652 @@ document.getElementById('engagements').innerHTML = engagements.map(e=>`
 document.getElementById('demoContainer').innerHTML = `
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-.demo-wrap{width:100%;background:#0f1117;border-radius:12px;overflow:hidden;font-family:system-ui,sans-serif;position:relative;}
-.browser-chrome{background:#1c1e26;padding:10px 14px 8px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2d3a;}
+.dw{width:100%;background:#0f1117;border-radius:12px;overflow:hidden;font-family:system-ui,sans-serif;position:relative;}
+.bc{background:#1c1e26;padding:10px 14px 8px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2d3a;}
 .dots{display:flex;gap:6px;}.dot{width:10px;height:10px;border-radius:50%;}
 .dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
-.url-bar{flex:1;background:#13151d;border-radius:6px;padding:4px 12px;font-size:11px;color:#6b7280;display:flex;align-items:center;gap:6px;}
-.url-domain{color:#e2e8f0;}.url-path{color:#4b5563;}
-.dscreen{background:#0d0f18;position:relative;overflow:hidden;height:400px;}
-.dframe{position:absolute;inset:0;opacity:0;transition:opacity 0.6s ease;display:flex;flex-direction:column;}
-.dframe.active{opacity:1;}
-.topbar{background:#111420;border-bottom:1px solid #1e2235;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;}
-.dlogo{font-size:12px;font-weight:600;color:#e2e8f0;}.dlogo span{color:#3b82f6;}
-.nav-tabs{display:flex;gap:2px;}.nav-tab{padding:4px 10px;border-radius:5px;font-size:10px;color:#6b7280;}
-.nav-tab.act{background:#1e2235;color:#e2e8f0;}
-.badge-demo{background:#1e2235;color:#6b7280;font-size:9px;padding:2px 7px;border-radius:4px;border:1px solid #2a2d3a;}
-.dcontent{padding:12px 16px;flex:1;overflow:hidden;}
-.page-title{font-size:14px;font-weight:600;color:#e2e8f0;}.page-sub{font-size:10px;color:#4b5563;margin-top:1px;margin-bottom:10px;}
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:10px;}
-.kpi-card{background:#111420;border:1px solid #1e2235;border-radius:6px;padding:8px 10px;position:relative;}
-.kpi-label{font-size:8px;color:#4b5563;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.4px;}
-.kpi-value{font-size:14px;font-weight:700;color:#e2e8f0;}.kpi-delta{font-size:8px;color:#10b981;margin-top:1px;}
-.ai-dot{position:absolute;top:5px;right:5px;width:5px;height:5px;border-radius:50%;background:#3b82f6;animation:dpulse 2s infinite;}
-@keyframes dpulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.mid-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;}
-.chart-card{background:#111420;border:1px solid #1e2235;border-radius:6px;padding:10px;}
-.card-title{font-size:9px;font-weight:600;color:#6b7280;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px;}
-.table-card{background:#111420;border:1px solid #1e2235;border-radius:6px;overflow:hidden;}
-.table-header{padding:7px 10px;border-bottom:1px solid #1e2235;font-size:9px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;display:flex;justify-content:space-between;align-items:center;}
-.live-badge{background:#0d2818;color:#10b981;font-size:8px;padding:2px 6px;border-radius:8px;border:1px solid #10b981;display:flex;align-items:center;gap:3px;}
-.live-dot{width:4px;height:4px;border-radius:50%;background:#10b981;animation:dpulse 1s infinite;}
-.table-row{display:grid;grid-template-columns:1.4fr 0.5fr 0.5fr 0.8fr 0.5fr 0.5fr;padding:5px 10px;border-bottom:1px solid #13151d;align-items:center;font-size:9px;color:#6b7280;}
-.table-row.new-row{animation:drowIn 0.5s ease forwards;}
-@keyframes drowIn{from{opacity:0;transform:translateY(-6px);background:#162033}to{opacity:1;transform:translateY(0);background:transparent}}
-.claim-id{color:#3b82f6;font-family:monospace;font-size:8px;}
-.sbadge{padding:2px 5px;border-radius:3px;font-size:8px;font-weight:600;}
-.s-ok{background:#0d2818;color:#10b981;}.s-rev{background:#1c1400;color:#f59e0b;}.s-siu{background:#1a0d2e;color:#a78bfa;}
-.roi-box{background:#0d1f0d;border:1px solid #10b981;border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:10px;margin-top:6px;}
-.roi-num{font-size:20px;font-weight:700;color:#10b981;font-family:monospace;}
-.roi-lbl{font-size:9px;color:#6b7280;}.roi-sub{font-size:8px;color:#4b5563;margin-top:1px;}
-.examiner-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:10px;}
-.queue-list{background:#111420;border:1px solid #1e2235;border-radius:6px;overflow:hidden;}
-.queue-header{padding:8px 10px;border-bottom:1px solid #1e2235;font-size:9px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;}
-.queue-item{padding:7px 10px;border-bottom:1px solid #13151d;display:flex;justify-content:space-between;align-items:center;}
-.queue-item.sel{background:#162033;border-left:2px solid #3b82f6;}
-.qi-id{font-size:9px;color:#3b82f6;font-family:monospace;}.qi-info{font-size:8px;color:#4b5563;}
-.risk-chip{padding:2px 5px;border-radius:3px;font-size:8px;font-weight:600;}
-.rh{background:#1c0a0a;color:#f87171;}.rm{background:#1c1400;color:#f59e0b;}
-.detail-panel{background:#111420;border:1px solid #1e2235;border-radius:6px;padding:12px;}
-.detail-title{font-size:11px;font-weight:600;color:#e2e8f0;margin-bottom:10px;}
-.ai-box{background:#0d1420;border:1px solid #1e3a5f;border-radius:5px;padding:8px 10px;margin-bottom:8px;}
-.ai-lbl{font-size:8px;color:#3b82f6;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;}
-.ai-text{font-size:9px;color:#9ca3af;line-height:1.6;}
-.conf-bar{height:5px;background:#1e2235;border-radius:3px;margin:6px 0 3px;overflow:hidden;}
-.conf-fill{height:100%;border-radius:3px;transition:width 1.5s ease;}
-.action-row{display:flex;gap:5px;margin-top:8px;}
-.action-btn{padding:5px 10px;border-radius:4px;font-size:9px;font-weight:600;border:none;cursor:pointer;}
-.btn-ap{background:#0d2818;color:#10b981;border:1px solid #10b981;}.btn-dn{background:#1c0a0a;color:#f87171;border:1px solid #f87171;}.btn-hl{background:#1c1400;color:#f59e0b;border:1px solid #f59e0b;}
-.fraud-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.fraud-stat{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
-.fsl{font-size:9px;color:#6b7280;}.fsv{font-size:12px;font-weight:600;color:#e2e8f0;}
+.ub{flex:1;background:#13151d;border-radius:6px;padding:4px 12px;font-size:11px;color:#6b7280;display:flex;align-items:center;gap:6px;}
+.ud{color:#e2e8f0;}.up{color:#4b5563;}
+.dscr{background:#0d0f18;position:relative;overflow:hidden;height:460px;}
+.df{position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;display:flex;flex-direction:column;}
+.df.act{opacity:1;}
+.tb{background:#111420;border-bottom:1px solid #1e2235;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.tl{font-size:12px;font-weight:600;color:#e2e8f0;}.tl span{color:#3b82f6;}
+.nt{display:flex;gap:2px;}.nt-i{padding:4px 10px;border-radius:5px;font-size:10px;color:#6b7280;cursor:pointer;}
+.nt-i.a{background:#1e2235;color:#e2e8f0;}
+.dm{background:#1e2235;color:#6b7280;font-size:9px;padding:2px 7px;border-radius:4px;border:1px solid #2a2d3a;}
+.co{padding:10px 14px;flex:1;overflow:hidden;}
+.pt{font-size:13px;font-weight:600;color:#e2e8f0;margin-bottom:2px;}
+.ps{font-size:9px;color:#4b5563;margin-bottom:8px;}
+/* KPI row */
+.kr{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:8px;}
+.kc{background:#111420;border:1px solid #1e2235;border-radius:5px;padding:6px 8px;position:relative;}
+.kl{font-size:7px;color:#4b5563;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.4px;}
+.kv{font-size:13px;font-weight:700;color:#e2e8f0;}.kd{font-size:7px;color:#10b981;margin-top:1px;}
+.ad{position:absolute;top:4px;right:4px;width:4px;height:4px;border-radius:50%;background:#3b82f6;animation:dp 2s infinite;}
+@keyframes dp{0%,100%{opacity:1}50%{opacity:0.3}}
+/* mid row */
+.mr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;}
+.cc{background:#111420;border:1px solid #1e2235;border-radius:5px;padding:8px;}
+.ct{font-size:8px;font-weight:600;color:#6b7280;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.4px;}
+/* table */
+.tc{background:#111420;border:1px solid #1e2235;border-radius:5px;overflow:hidden;}
+.th2{padding:6px 8px;border-bottom:1px solid #1e2235;font-size:8px;font-weight:600;color:#6b7280;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;}
+.lb{background:#0d2818;color:#10b981;font-size:7px;padding:2px 5px;border-radius:6px;border:1px solid #10b981;display:flex;align-items:center;gap:2px;}
+.ld{width:3px;height:3px;border-radius:50%;background:#10b981;animation:dp 1s infinite;}
+.tr2{display:grid;grid-template-columns:1.4fr 0.4fr 0.4fr 0.8fr 0.4fr 0.4fr 0.4fr;padding:4px 8px;border-bottom:1px solid #13151d;align-items:center;font-size:8px;color:#6b7280;}
+.tr2.nr{animation:ri 0.5s ease forwards;}
+@keyframes ri{from{opacity:0;transform:translateY(-5px);background:#162033}to{opacity:1;transform:translateY(0);background:transparent}}
+.ci{color:#3b82f6;font-family:monospace;font-size:7px;}
+.sb{padding:2px 4px;border-radius:3px;font-size:7px;font-weight:600;}
+.so{background:#0d2818;color:#10b981;}.sr{background:#1c1400;color:#f59e0b;}.ss{background:#1a0d2e;color:#a78bfa;}.sd{background:#1c0a0a;color:#f87171;}
+/* ROI */
+.rb{background:#0d1f0d;border:1px solid #10b981;border-radius:5px;padding:6px 8px;display:flex;align-items:center;gap:8px;margin-top:4px;}
+.rn{font-size:18px;font-weight:700;color:#10b981;font-family:monospace;}
+.rl{font-size:8px;color:#6b7280;}.rs{font-size:7px;color:#4b5563;margin-top:1px;}
+/* insight pills */
+.ip{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.ipl{background:#111420;border:1px solid #1e2235;border-radius:10px;padding:3px 7px;font-size:7px;color:#9ca3af;}
+/* donut */
+.dw2{display:flex;align-items:center;gap:6px;}
+.dl{display:flex;flex-direction:column;gap:2px;}
+.li{display:flex;align-items:center;gap:3px;font-size:7px;color:#9ca3af;}
+.ld2{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+/* scene title card */
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#080a10;z-index:10;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
+.sc.act{opacity:1;}
+.sc-mod{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#b91c1c;margin-bottom:10px;}
+.sc-title{font-size:22px;font-weight:700;color:#e2e8f0;text-align:center;line-height:1.3;max-width:320px;}
+.sc-sub{font-size:11px;color:#4b5563;margin-top:8px;text-align:center;}
+/* examiner */
+.eg{display:grid;grid-template-columns:200px 1fr;gap:8px;}
+.ql{background:#111420;border:1px solid #1e2235;border-radius:5px;overflow:hidden;}
+.qh{padding:6px 8px;border-bottom:1px solid #1e2235;font-size:8px;font-weight:600;color:#6b7280;text-transform:uppercase;display:flex;justify-content:space-between;}
+.qi{padding:6px 8px;border-bottom:1px solid #13151d;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background 0.15s;}
+.qi.s{background:#162033;border-left:2px solid #3b82f6;}
+.qi:hover{background:#111a28;}
+.qid{font-size:8px;color:#3b82f6;font-family:monospace;}.qin{font-size:7px;color:#4b5563;}
+.rc{padding:2px 4px;border-radius:3px;font-size:7px;font-weight:600;}
+.rr{background:#1c0a0a;color:#f87171;}.rm2{background:#1c1400;color:#f59e0b;}.rlo{background:#0d2818;color:#10b981;}
+.dp2{background:#111420;border:1px solid #1e2235;border-radius:5px;padding:10px;}
+.dpt{font-size:10px;font-weight:600;color:#e2e8f0;margin-bottom:8px;}
+.ab{background:#0d1420;border:1px solid #1e3a5f;border-radius:4px;padding:7px 9px;margin-bottom:7px;}
+.al{font-size:7px;color:#3b82f6;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:3px;}
+.at{font-size:8px;color:#9ca3af;line-height:1.6;}
+.cb{height:4px;background:#1e2235;border-radius:2px;margin:5px 0 2px;overflow:hidden;}
+.cf{height:100%;border-radius:2px;transition:width 1.5s ease;}
+.arow{display:flex;gap:4px;margin-top:7px;}
+.ab2{padding:5px 10px;border-radius:4px;font-size:8px;font-weight:600;border:none;cursor:pointer;}
+.ba{background:#0d2818;color:#10b981;border:1px solid #10b981;}
+.bd{background:#1c0a0a;color:#f87171;border:1px solid #f87171;}
+.bh{background:#1c1400;color:#f59e0b;border:1px solid #f59e0b;}
+/* claim lines */
+.cl{background:#0d0f18;border-radius:4px;margin-bottom:7px;overflow:hidden;}
+.cl-h{display:grid;grid-template-columns:1fr 0.6fr 0.6fr 0.4fr;padding:4px 7px;font-size:7px;color:#374151;border-bottom:1px solid #1e2235;text-transform:uppercase;}
+.cl-r{display:grid;grid-template-columns:1fr 0.6fr 0.6fr 0.4fr;padding:4px 7px;font-size:8px;color:#9ca3af;border-bottom:1px solid #111420;align-items:center;}
+.cl-r.hl{background:#162033;}
+.cl-badge{font-size:7px;padding:1px 4px;border-radius:2px;}
+/* benefit calc */
+.bc2{background:#0d1420;border:1px solid #1e2235;border-radius:4px;padding:7px;margin-top:7px;}
+.bc-row{display:flex;justify-content:space-between;font-size:8px;padding:2px 0;border-bottom:1px solid #1e2235;}
+.bc-row:last-child{border-bottom:none;color:#10b981;font-weight:600;}
+/* fraud */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.fs{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.fsl{font-size:8px;color:#6b7280;}.fsv{font-size:11px;font-weight:600;color:#e2e8f0;}
 .fsv.g{color:#10b981;}.fsv.a{color:#f59e0b;}
-.fraud-ring-alert{background:#1c1400;border:1px solid #92400e;border-radius:5px;padding:4px 7px;font-size:8px;color:#f59e0b;margin-top:6px;}
-.dcursor{position:absolute;width:18px;height:18px;pointer-events:none;z-index:100;transition:left 0.9s cubic-bezier(0.25,0.46,0.45,0.94),top 0.9s cubic-bezier(0.25,0.46,0.45,0.94);}
-.cursor-ring{position:absolute;width:26px;height:26px;border:2px solid rgba(59,130,246,0.6);border-radius:50%;top:-4px;left:-4px;transition:all 0.3s ease;}
-.cursor-dot{position:absolute;width:5px;height:5px;background:#3b82f6;border-radius:50%;top:6px;left:6px;}
-.dcursor.clicking .cursor-ring{width:16px;height:16px;top:1px;left:1px;border-color:rgba(59,130,246,0.9);}
-.dripple{position:absolute;width:36px;height:36px;border-radius:50%;background:rgba(59,130,246,0.15);transform:scale(0);animation:drip 0.5s ease-out forwards;pointer-events:none;z-index:99;}
-@keyframes drip{to{transform:scale(2.5);opacity:0}}
-.progress-bar{position:absolute;bottom:0;left:0;height:2px;background:#3b82f6;transition:width linear;z-index:50;}
-.caption-bar{background:#080a10;border-top:1px solid #1e2235;padding:0 24px;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
-.caption-main{font-size:18px;font-weight:700;color:#f8fafc;letter-spacing:-0.3px;opacity:0;transition:opacity 0.4s ease;line-height:1.3;flex:1;}
-.caption-main.visible{opacity:1;}
-.caption-main em{color:#60a5fa;font-style:normal;}.caption-main strong{color:#34d399;font-style:normal;}
-.scene-dots{display:flex;gap:6px;align-items:center;flex-shrink:0;}
-.scene-dot{width:6px;height:6px;border-radius:50%;background:#1e2235;transition:background 0.3s;}
-.scene-dot.active-dot{background:#3b82f6;}
-.donut-wrap{display:flex;align-items:center;gap:8px;}
-.donut-legend{display:flex;flex-direction:column;gap:3px;}
-.legend-item{display:flex;align-items:center;gap:4px;font-size:8px;color:#9ca3af;}
-.legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.insight-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
-.insight-pill{background:#111420;border:1px solid #1e2235;border-radius:12px;padding:4px 8px;font-size:8px;color:#9ca3af;display:flex;align-items:center;gap:4px;}
+.fa{background:#1c1400;border:1px solid #92400e;border-radius:4px;padding:3px 6px;font-size:7px;color:#f59e0b;margin-top:4px;}
+/* provider portal */
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pstat{background:#111420;border:1px solid #1e2235;border-radius:5px;padding:8px 10px;}
+.psn{font-size:18px;font-weight:700;color:#e2e8f0;margin-bottom:2px;}
+.psl{font-size:8px;color:#4b5563;}
+.psub{font-size:7px;margin-top:2px;}
+/* cursor */
+.dc{position:absolute;width:16px;height:16px;pointer-events:none;z-index:100;transition:left 0.85s cubic-bezier(0.25,0.46,0.45,0.94),top 0.85s cubic-bezier(0.25,0.46,0.45,0.94);}
+.cr{position:absolute;width:24px;height:24px;border:2px solid rgba(59,130,246,0.6);border-radius:50%;top:-4px;left:-4px;transition:all 0.3s ease;}
+.cd{position:absolute;width:4px;height:4px;background:#3b82f6;border-radius:50%;top:6px;left:6px;}
+.dc.ck .cr{width:14px;height:14px;top:1px;left:1px;border-color:rgba(59,130,246,0.9);}
+.rp{position:absolute;width:32px;height:32px;border-radius:50%;background:rgba(59,130,246,0.15);transform:scale(0);animation:rpa 0.5s ease-out forwards;pointer-events:none;z-index:99;}
+@keyframes rpa{to{transform:scale(2.5);opacity:0}}
+.pb{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,#b91c1c,#3b82f6);transition:width linear;z-index:50;}
+/* caption */
+.cap{background:#080a10;border-top:1px solid #1e2235;padding:0 20px;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;}
+.cm{font-size:17px;font-weight:700;color:#f8fafc;letter-spacing:-0.3px;opacity:0;transition:opacity 0.4s ease;line-height:1.3;flex:1;}
+.cm.v{opacity:1;}
+.cm em{color:#60a5fa;font-style:normal;}.cm strong{color:#34d399;font-style:normal;}
+.sds{display:flex;gap:5px;align-items:center;flex-shrink:0;}
+.sdt{width:5px;height:5px;border-radius:50%;background:#1e2235;transition:background 0.3s;}
+.sdt.a{background:#b91c1c;}
+/* module nav indicator */
+.mni{display:flex;gap:0;border-bottom:1px solid #1e2235;flex-shrink:0;}
+.mn{flex:1;padding:5px 4px;font-size:8px;color:#4b5563;text-align:center;border-bottom:2px solid transparent;transition:all 0.3s;font-weight:600;}
+.mn.a{color:#e2e8f0;border-bottom-color:#b91c1c;}
 </style>
-<div class="demo-wrap">
-  <div class="browser-chrome"><div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div><div class="url-bar"><span>🔒</span><span class="url-domain">clarityclaims.ai</span><span class="url-path">/dashboard</span></div></div>
-  <div class="dscreen" id="dscreen">
-    <div class="dframe active" id="df1">
-      <div class="topbar"><div class="dlogo"><span>Clarity</span>AI Claims ✦</div><div class="nav-tabs"><div class="nav-tab act">Executive Dashboard</div><div class="nav-tab">Examiner Workbench</div><div class="nav-tab">Fraud Investigation</div><div class="nav-tab">Plan Config</div></div><div class="badge-demo">Demo Mode</div></div>
-      <div class="dcontent">
-        <div class="page-title">Executive Dashboard</div><div class="page-sub">Real-time AI adjudication performance · updated 09:42 ET</div>
-        <div class="kpi-row"><div class="kpi-card"><div class="ai-dot"></div><div class="kpi-label">Auto-Adjudication</div><div class="kpi-value">83.2%</div><div class="kpi-delta">↑ 2.1% MoM</div></div><div class="kpi-card"><div class="ai-dot"></div><div class="kpi-label">Claims Today</div><div class="kpi-value">48,392</div><div class="kpi-delta">↑ 12% vs yesterday</div></div><div class="kpi-card"><div class="ai-dot"></div><div class="kpi-label">Avg TAT</div><div class="kpi-value">4.2h</div><div class="kpi-delta">↓ 38% (was 6.8h)</div></div><div class="kpi-card"><div class="ai-dot"></div><div class="kpi-label">AI Accuracy</div><div class="kpi-value">98.7%</div><div class="kpi-delta">↑ 0.3% MoM</div></div><div class="kpi-card"><div class="ai-dot"></div><div class="kpi-label">Queue Reduction</div><div class="kpi-value">61.4%</div><div class="kpi-delta">↑ 5% MoM</div></div></div>
-        <div class="mid-row">
-          <div class="chart-card"><div class="card-title">Claim Volume by Plan</div><div class="donut-wrap"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="none" stroke="#1e2235" stroke-width="9"/><circle cx="32" cy="32" r="22" fill="none" stroke="#3b82f6" stroke-width="9" stroke-dasharray="72 66" stroke-dashoffset="22" stroke-linecap="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#10b981" stroke-width="9" stroke-dasharray="38 66" stroke-dashoffset="-50" stroke-linecap="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#f59e0b" stroke-width="9" stroke-dasharray="16 66" stroke-dashoffset="-88" stroke-linecap="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#a78bfa" stroke-width="9" stroke-dasharray="10 66" stroke-dashoffset="-104" stroke-linecap="round"/><text x="32" y="36" text-anchor="middle" font-size="9" font-weight="700" fill="#e2e8f0">48K</text></svg><div class="donut-legend"><div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>PPO 52%</div><div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>HMO 28%</div><div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>EPO 12%</div><div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>POS 8%</div></div></div></div>
-          <div class="chart-card"><div class="card-title">AI Cost Savings (MTD)</div><div style="display:flex;align-items:flex-end;gap:4px;height:50px;margin-bottom:4px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:65%;background:#f87171;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:7px;color:#4b5563">Fraud</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:82%;background:#3b82f6;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:7px;color:#4b5563">Overpay</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:55%;background:#10b981;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:7px;color:#4b5563">Hours</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:38%;background:#a78bfa;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:7px;color:#4b5563">Dupes</div></div></div><div class="roi-box"><div class="roi-num">10×</div><div><div class="roi-lbl">Platform ROI</div><div class="roi-sub">$4.28M saved · $0.31M cost</div></div></div></div>
-          <div class="chart-card"><div class="card-title">Fraud Detection</div><div class="fraud-stat"><span class="fsl">Flagged</span><span class="fsv a">214</span></div><div class="fraud-stat"><span class="fsl">Pre-pay holds</span><span class="fsv a">47</span></div><div class="fraud-stat"><span class="fsl">Recovered MTD</span><span class="fsv g">$612K</span></div><div class="fraud-ring-alert">⚠ Graph AI: 3 new fraud rings detected</div></div>
+
+<div class="dw">
+  <div class="bc">
+    <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+    <div class="ub"><span>🔒</span><span class="ud">clarityclaims.ai</span><span class="up" id="durl">/dashboard</span></div>
+    <div class="dm">Demo Mode</div>
+  </div>
+  <div class="mni">
+    <div class="mn a" id="mn0">Executive Dashboard</div>
+    <div class="mn" id="mn1">Examiner Workbench</div>
+    <div class="mn" id="mn2">Fraud Investigation</div>
+    <div class="mn" id="mn3">Provider Portal</div>
+  </div>
+  <div class="dscr" id="dscr">
+
+    <!-- SCENE CARD: Exec Dashboard -->
+    <div class="sc act" id="sc0">
+      <div class="sc-mod">Module 01</div>
+      <div class="sc-title">Executive Dashboard</div>
+      <div class="sc-sub">Real-time AI adjudication performance overview</div>
+    </div>
+
+    <!-- FRAME 1: Executive Dashboard -->
+    <div class="df" id="df1">
+      <div class="tb">
+        <div class="tl"><span>Clarity</span>AI Claims ✦</div>
+        <div class="nt">
+          <div class="nt-i a">Executive Dashboard</div>
+          <div class="nt-i">Examiner Workbench</div>
+          <div class="nt-i">Fraud Investigation</div>
+          <div class="nt-i">Provider Portal</div>
         </div>
-        <div class="table-card"><div class="table-header">Recent AI Decisions <div class="live-badge"><div class="live-dot"></div>Live</div></div><div style="display:grid;grid-template-columns:1.4fr 0.5fr 0.5fr 0.8fr 0.5fr 0.5fr;padding:4px 10px;font-size:7px;color:#374151;border-bottom:1px solid #1e2235;text-transform:uppercase;letter-spacing:0.4px"><span>Claim ID</span><span>Plan</span><span>Time</span><span>AI Decision</span><span>Confidence</span><span>Status</span></div><div id="dtbody"><div class="table-row"><span class="claim-id">CLM-2026-084712</span><span>PPO</span><span style="font-size:8px;color:#374151;font-family:monospace">09:42</span><span><span class="sbadge s-ok">Auto-Approved</span></span><span style="color:#10b981;font-size:9px">96%</span><span style="color:#10b981;font-size:9px">Posted</span></div><div class="table-row"><span class="claim-id">CLM-2026-084713</span><span>HMO</span><span style="font-size:8px;color:#374151;font-family:monospace">09:42</span><span><span class="sbadge s-ok">Auto-Approved</span></span><span style="color:#10b981;font-size:9px">94%</span><span style="color:#10b981;font-size:9px">Posted</span></div><div class="table-row"><span class="claim-id">CLM-2026-084714</span><span>PPO</span><span style="font-size:8px;color:#374151;font-family:monospace">09:41</span><span><span class="sbadge s-rev">In Review</span></span><span style="color:#f59e0b;font-size:9px">58%</span><span style="color:#10b981;font-size:9px">Posted</span></div><div class="table-row"><span class="claim-id">CLM-2026-084717</span><span>HMO</span><span style="font-size:8px;color:#374151;font-family:monospace">09:40</span><span><span class="sbadge s-siu">SIU Hold</span></span><span style="color:#f59e0b;font-size:9px">71%</span><span style="color:#a78bfa;font-size:9px">Hold</span></div></div></div>
-        <div class="insight-row"><div class="insight-pill">🤖 83% of claims never touch an examiner</div><div class="insight-pill">⚡ 4.2hr TAT — down from 3.8 days</div><div class="insight-pill">🛡️ $1.84M fraud stopped pre-payment</div></div>
+      </div>
+      <div class="co">
+        <div class="pt">Executive Dashboard</div>
+        <div class="ps">Real-time AI adjudication performance · updated 09:42 ET · MTD view</div>
+        <div class="kr">
+          <div class="kc"><div class="ad"></div><div class="kl">Auto-Adjudication</div><div class="kv">83.2%</div><div class="kd">↑ 2.1% MoM</div></div>
+          <div class="kc"><div class="ad"></div><div class="kl">Claims Today</div><div class="kv">48,392</div><div class="kd">↑ 12% vs yesterday</div></div>
+          <div class="kc"><div class="ad"></div><div class="kl">Avg TAT (hrs)</div><div class="kv">4.2h</div><div class="kd">↓ 38% (was 6.8h)</div></div>
+          <div class="kc"><div class="ad"></div><div class="kl">AI Accuracy</div><div class="kv">98.7%</div><div class="kd">↑ 0.3% MoM</div></div>
+          <div class="kc"><div class="ad"></div><div class="kl">Queue Reduction</div><div class="kv">61.4%</div><div class="kd">↑ 5% MoM</div></div>
+        </div>
+        <div class="mr">
+          <div class="cc"><div class="ct">Claim Volume by Plan</div><div class="dw2"><svg width="60" height="60" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="none" stroke="#1e2235" stroke-width="9"/><circle cx="32" cy="32" r="22" fill="none" stroke="#3b82f6" stroke-width="9" stroke-dasharray="72 66" stroke-dashoffset="22" stroke-linecap="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#10b981" stroke-width="9" stroke-dasharray="38 66" stroke-dashoffset="-50" stroke-linecap="round"/><circle cx="32" cy="32" r="22" fill="none" stroke="#f59e0b" stroke-width="9" stroke-dasharray="16 66" stroke-dashoffset="-88" stroke-linecap="round"/><text x="32" y="36" text-anchor="middle" font-size="9" font-weight="700" fill="#e2e8f0">48K</text></svg><div class="dl"><div class="li"><div class="ld2" style="background:#3b82f6"></div>PPO 52%</div><div class="li"><div class="ld2" style="background:#10b981"></div>HMO 28%</div><div class="li"><div class="ld2" style="background:#f59e0b"></div>EPO 12%</div><div class="li"><div class="ld2" style="background:#a78bfa"></div>POS 8%</div></div></div></div>
+          <div class="cc"><div class="ct">AI Cost Savings (MTD)</div><div style="display:flex;align-items:flex-end;gap:3px;height:44px;margin-bottom:3px"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:65%;background:#f87171;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:6px;color:#4b5563">Fraud</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:82%;background:#3b82f6;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:6px;color:#4b5563">Overpay</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:55%;background:#10b981;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:6px;color:#4b5563">Hours</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;height:38%;background:#a78bfa;border-radius:2px 2px 0 0;opacity:0.8"></div><div style="font-size:6px;color:#4b5563">Dupes</div></div></div><div class="rb"><div class="rn">10×</div><div><div class="rl">Platform ROI</div><div class="rs">$4.28M saved · $0.31M cost</div></div></div></div>
+          <div class="cc"><div class="ct">Fraud Detection</div><div class="fs"><span class="fsl">Flagged</span><span class="fsv a">214</span></div><div class="fs"><span class="fsl">Pre-pay holds</span><span class="fsv a">47</span></div><div class="fs"><span class="fsl">Recovered MTD</span><span class="fsv g">$612K</span></div><div class="fa">⚠ Graph AI: 3 new fraud rings detected</div></div>
+        </div>
+        <div class="tc"><div class="th2">Recent AI Decisions <div class="lb"><div class="ld"></div>Live</div></div>
+          <div style="display:grid;grid-template-columns:1.4fr 0.4fr 0.4fr 0.8fr 0.4fr 0.4fr 0.4fr;padding:3px 8px;font-size:6px;color:#374151;border-bottom:1px solid #1e2235;text-transform:uppercase;letter-spacing:0.4px"><span>Claim ID</span><span>Plan</span><span>Time</span><span>AI Decision</span><span>Conf</span><span>Fraud</span><span>Status</span></div>
+          <div id="dtbody">
+            <div class="tr2"><span class="ci">CLM-2026-084712</span><span>PPO</span><span style="font-size:7px;font-family:monospace">09:42</span><span><span class="sb so">Auto-Approved</span></span><span style="color:#10b981;font-size:8px">96%</span><span style="color:#10b981;font-size:8px">8</span><span style="color:#10b981;font-size:8px">Posted</span></div>
+            <div class="tr2"><span class="ci">CLM-2026-084713</span><span>HMO</span><span style="font-size:7px;font-family:monospace">09:42</span><span><span class="sb so">Auto-Approved</span></span><span style="color:#10b981;font-size:8px">94%</span><span style="color:#10b981;font-size:8px">11</span><span style="color:#10b981;font-size:8px">Posted</span></div>
+            <div class="tr2"><span class="ci">CLM-2026-084714</span><span>PPO</span><span style="font-size:7px;font-family:monospace">09:41</span><span><span class="sb sr">In Review</span></span><span style="color:#f59e0b;font-size:8px">58%</span><span style="color:#f59e0b;font-size:8px">42</span><span style="color:#6b7280;font-size:8px">Queued</span></div>
+            <div class="tr2"><span class="ci">CLM-2026-084717</span><span>HMO</span><span style="font-size:7px;font-family:monospace">09:40</span><span><span class="sb ss">SIU Hold</span></span><span style="color:#f59e0b;font-size:8px">71%</span><span style="color:#f87171;font-size:8px">84</span><span style="color:#a78bfa;font-size:8px">Hold</span></div>
+          </div>
+        </div>
+        <div class="ip"><div class="ipl">🤖 83% auto-adjudicated — zero human touch</div><div class="ipl">⚡ 4.2hr TAT vs 3.8-day benchmark</div><div class="ipl">🛡️ $1.84M fraud stopped pre-payment</div></div>
       </div>
     </div>
-    <div class="dframe" id="df2">
-      <div class="topbar"><div class="dlogo"><span>Clarity</span>AI Claims ✦</div><div class="nav-tabs"><div class="nav-tab">Executive Dashboard</div><div class="nav-tab act">Examiner Workbench</div><div class="nav-tab">Fraud Investigation</div><div class="nav-tab">Plan Config</div></div><div class="badge-demo">Demo Mode</div></div>
-      <div class="dcontent"><div class="page-title">Examiner Workbench</div><div class="page-sub">AI-prioritised review queue · 47 items awaiting human decision</div><div class="examiner-grid"><div class="queue-list"><div class="queue-header">Review Queue <span style="color:#f59e0b;margin-left:4px">47 pending</span></div><div class="queue-item sel"><div><div class="qi-id">CLM-2026-084714</div><div class="qi-info">PPO · $4,200 · Orthopedic</div></div><span class="risk-chip rh">High Risk</span></div><div class="queue-item"><div><div class="qi-id">CLM-2026-084719</div><div class="qi-info">PPO · $1,870 · ER Visit</div></div><span class="risk-chip rm">Med Risk</span></div><div class="queue-item"><div><div class="qi-id">CLM-2026-084731</div><div class="qi-info">HMO · $9,100 · Surgery</div></div><span class="risk-chip rh">High Risk</span></div><div class="queue-item"><div><div class="qi-id">CLM-2026-084742</div><div class="qi-info">EPO · $620 · Imaging</div></div><span class="risk-chip rm">Med Risk</span></div></div><div class="detail-panel"><div class="detail-title">CLM-2026-084714 · Examiner Review</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;font-size:9px"><div style="color:#6b7280">Member: <span style="color:#e2e8f0">John M. (ID 482919)</span></div><div style="color:#6b7280">Provider: <span style="color:#e2e8f0">Apex Orthopedic</span></div><div style="color:#6b7280">Service: <span style="color:#e2e8f0">Knee Replacement (27447)</span></div><div style="color:#6b7280">Amount: <span style="color:#e2e8f0">$4,200.00</span></div></div><div class="ai-box"><div class="ai-lbl">✦ AI Analysis</div><div class="ai-text">Claim amount is 2.3× above peer benchmark for CPT 27447. Provider shows 4 similar claims this week — pattern matches potential upcoding. Surgical notes verification recommended.</div><div style="font-size:8px;color:#6b7280;margin-top:5px">Confidence score</div><div class="conf-bar"><div class="conf-fill" id="dcfill" style="width:0%;background:#f59e0b"></div></div><div style="display:flex;justify-content:space-between;font-size:8px;color:#6b7280"><span>58% — below auto-approve threshold</span><span>58/100</span></div></div><div style="display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap"><span style="background:#1c1400;color:#f59e0b;padding:2px 6px;border-radius:3px;font-size:8px">High-value outlier</span><span style="background:#1c1400;color:#f59e0b;padding:2px 6px;border-radius:3px;font-size:8px">Provider volume spike</span><span style="background:#1c1400;color:#f59e0b;padding:2px 6px;border-radius:3px;font-size:8px">Peer benchmark breach</span></div><div class="action-row"><button class="action-btn btn-ap">✓ Approve</button><button class="action-btn btn-dn">✕ Deny</button><button class="action-btn btn-hl">⏸ SIU Hold</button></div></div></div></div>
+
+    <!-- SCENE CARD: Examiner Workbench -->
+    <div class="sc" id="sc1">
+      <div class="sc-mod">Module 02</div>
+      <div class="sc-title">Examiner Workbench</div>
+      <div class="sc-sub">AI-prioritised queue · claim review · decision support</div>
     </div>
-    <div class="dframe" id="df3">
-      <div class="topbar"><div class="dlogo"><span>Clarity</span>AI Claims ✦</div><div class="nav-tabs"><div class="nav-tab">Executive Dashboard</div><div class="nav-tab">Examiner Workbench</div><div class="nav-tab act">Fraud Investigation</div><div class="nav-tab">Plan Config</div></div><div class="badge-demo">Demo Mode</div></div>
-      <div class="dcontent"><div class="page-title">Fraud Investigation · Graph Intelligence</div><div class="page-sub">AI-detected fraud rings · network analysis · pre-payment intervention</div><div class="fraud-grid"><div class="chart-card"><div class="card-title">Fraud Ring #7 · Detected 09:38 ET</div><div style="position:relative;height:160px;background:#0d0f18;border-radius:5px;overflow:hidden"><svg width="100%" height="100%" viewBox="0 0 220 160"><line x1="110" y1="80" x2="55" y2="40" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/><line x1="110" y1="80" x2="165" y2="40" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/><line x1="110" y1="80" x2="35" y2="120" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/><line x1="110" y1="80" x2="185" y2="120" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/><line x1="55" y1="40" x2="165" y2="40" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/><circle cx="110" cy="80" r="16" fill="#7c1313" stroke="#f87171" stroke-width="2"/><text x="110" y="77" text-anchor="middle" fill="#f87171" font-size="7" font-weight="700">FRAUD</text><text x="110" y="86" text-anchor="middle" fill="#f87171" font-size="6">RING</text><circle cx="55" cy="40" r="12" fill="#0d2818" stroke="#10b981" stroke-width="1.5"/><text x="55" y="43" text-anchor="middle" fill="#10b981" font-size="6">Prov A</text><circle cx="165" cy="40" r="12" fill="#0d2818" stroke="#10b981" stroke-width="1.5"/><text x="165" y="43" text-anchor="middle" fill="#10b981" font-size="6">Prov B</text><circle cx="35" cy="120" r="10" fill="#1c1400" stroke="#f59e0b" stroke-width="1.5"/><text x="35" y="123" text-anchor="middle" fill="#f59e0b" font-size="6">Mem 1</text><circle cx="185" cy="120" r="10" fill="#1c1400" stroke="#f59e0b" stroke-width="1.5"/><text x="185" y="123" text-anchor="middle" fill="#f59e0b" font-size="6">Mem 2</text><circle cx="110" cy="140" r="8" fill="#1a0d2e" stroke="#a78bfa" stroke-width="1.5"><animate attributeName="r" values="8;11;8" dur="2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle><text x="110" y="143" text-anchor="middle" fill="#a78bfa" font-size="6">New</text></svg></div><div style="margin-top:6px;font-size:8px;color:#4b5563">2 providers · 2 members · 1 emerging node</div></div><div style="display:flex;flex-direction:column;gap:8px"><div class="chart-card"><div class="card-title">Pre-payment Intervention</div><div style="display:flex;gap:10px;margin-bottom:8px"><div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#10b981;font-family:monospace">47</div><div style="font-size:8px;color:#4b5563">Claims held</div></div><div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#f59e0b;font-family:monospace">$612K</div><div style="font-size:8px;color:#4b5563">Prevented</div></div><div style="text-align:center"><div style="font-size:18px;font-weight:700;color:#3b82f6;font-family:monospace">2.1h</div><div style="font-size:8px;color:#4b5563">Avg detection</div></div></div><div style="background:#0d1420;border:1px solid #1e3a5f;border-radius:4px;padding:6px 8px;font-size:9px;color:#9ca3af">✦ Ring #7 flagged autonomously — 2.1hrs before first payment run</div></div><div class="chart-card"><div class="card-title">Active Fraud Rings</div><div style="display:flex;flex-direction:column;gap:5px"><div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#0d0f18;border-radius:4px;border-left:2px solid #f87171"><div><div style="font-size:9px;color:#e2e8f0">Ring #5 · Billing scheme</div><div style="font-size:8px;color:#4b5563">$218K exposure</div></div><span class="risk-chip rh">Active</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:5px 7px;background:#0d0f18;border-radius:4px;border-left:2px solid #a78bfa"><div><div style="font-size:9px;color:#e2e8f0">Ring #7 · Provider collusion</div><div style="font-size:8px;color:#4b5563">$612K exposure</div></div><span class="risk-chip" style="background:#1a0d2e;color:#a78bfa">Emerging</span></div></div></div></div></div></div>
+
+    <!-- FRAME 2a: Examiner — Queue view -->
+    <div class="df" id="df2">
+      <div class="tb">
+        <div class="tl"><span>Clarity</span>AI Claims ✦</div>
+        <div class="nt">
+          <div class="nt-i">Executive Dashboard</div>
+          <div class="nt-i a">Examiner Workbench</div>
+          <div class="nt-i">Fraud Investigation</div>
+          <div class="nt-i">Provider Portal</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="pt">Examiner Workbench <span style="font-size:9px;color:#4b5563;font-weight:400">· Sarah Mitchell</span></div>
+        <div class="ps">AI-prioritised review queue · 47 claims · Est. 2.8 hrs · ⚠ High volume day +28%</div>
+        <div class="eg">
+          <div class="ql">
+            <div class="qh">Review Queue <span style="color:#f59e0b">47</span></div>
+            <div class="qi s" id="dqi1"><div><div class="qid">CLM-2026-084721 ⚡</div><div class="qin">PPO · $4,280 · Dr Torres</div></div><span class="rc rr">High</span></div>
+            <div class="qi" id="dqi2"><div><div class="qid">CLM-2026-084722</div><div class="qin">HMO · $1,240 · Dr Chen</div></div><span class="rc rm2">Med</span></div>
+            <div class="qi" id="dqi3"><div><div class="qid">CLM-2026-084723 ⚡</div><div class="qin">EPO · $8,920 · Surgery</div></div><span class="rc rr">High</span></div>
+            <div class="qi" id="dqi4"><div><div class="qid">CLM-2026-084724</div><div class="qin">POS · $612 · Imaging</div></div><span class="rc rlo">Low</span></div>
+            <div class="qi"><div><div class="qid">CLM-2026-084727 ⚡</div><div class="qin">PPO · $14,200 · Ortho</div></div><span class="rc rr">High</span></div>
+            <div class="qi"><div><div class="qid">CLM-2026-084731</div><div class="qin">HMO · $1,810 · ER</div></div><span class="rc rm2">Med</span></div>
+          </div>
+          <div class="dp2" id="ddetail" style="overflow-y:hidden;max-height:340px;">
+            <div class="dpt">CLM-2026-084721 · Examiner Review</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:7px;font-size:8px">
+              <div style="color:#6b7280">Member: <span style="color:#e2e8f0">J. Kowalski (PPO Gold)</span></div>
+              <div style="color:#6b7280">Provider: <span style="color:#e2e8f0">Dr Angela Torres</span></div>
+              <div style="color:#6b7280">CPT: <span style="color:#e2e8f0">99215 · E&amp;M Office Visit</span></div>
+              <div style="color:#6b7280">Billed: <span style="color:#e2e8f0">$4,280 · Allowed: $3,612</span></div>
+            </div>
+            <div class="ab">
+              <div class="al">✦ AI Recommendation</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                <div style="font-size:10px;font-weight:600;color:#10b981">APPROVE — Pay $3,612.00</div>
+                <div style="font-size:8px;background:#0d2818;color:#10b981;padding:2px 6px;border-radius:3px;border:1px solid #10b981">Fraud Risk: 18 LOW</div>
+              </div>
+              <div class="at">CPT 99215 billed; documentation supports 99214 — recommend downcode (−$170). PA verified. In-network confirmed.</div>
+            </div>
+            <!-- Claim lines -->
+            <div class="cl">
+              <div class="cl-h"><span>CPT Code</span><span>Billed</span><span>Allowed</span><span>Action</span></div>
+              <div class="cl-r hl"><span style="color:#3b82f6;font-family:monospace;font-size:7px">99215</span><span>$280</span><span style="color:#f59e0b">$170</span><span><span class="cl-badge" style="background:#1c1400;color:#f59e0b">↓ Downcode</span></span></div>
+              <div class="cl-r"><span style="color:#3b82f6;font-family:monospace;font-size:7px">73721</span><span>$1,420</span><span style="color:#10b981">$1,205</span><span><span class="cl-badge" style="background:#0d2818;color:#10b981">✓ Pass</span></span></div>
+              <div class="cl-r"><span style="color:#3b82f6;font-family:monospace;font-size:7px">20610</span><span>$420</span><span style="color:#10b981">$357</span><span><span class="cl-badge" style="background:#0d2818;color:#10b981">✓ Pass</span></span></div>
+              <div class="cl-r"><span style="color:#3b82f6;font-family:monospace;font-size:7px">J1100</span><span>$2,160</span><span style="color:#10b981">$1,880</span><span><span class="cl-badge" style="background:#0d2818;color:#10b981">✓ Pass</span></span></div>
+            </div>
+            <!-- Benefit calc -->
+            <div class="bc2">
+              <div class="bc-row"><span style="color:#6b7280">Deductible</span><span style="color:#e2e8f0">$0 met</span></div>
+              <div class="bc-row"><span style="color:#6b7280">Coinsurance</span><span style="color:#e2e8f0">20%</span></div>
+              <div class="bc-row"><span style="color:#6b7280">Plan pays</span><span style="color:#e2e8f0">$2,890</span></div>
+              <div class="bc-row"><span style="color:#6b7280">Member owes</span><span>$722</span></div>
+            </div>
+            <div class="arow" id="dactions" style="margin-top:8px;">
+              <button class="ab2 ba">✓ Approve $3,612</button>
+              <button class="ab2 ab2" style="background:#162033;color:#60a5fa;border:1px solid #1e3a5f">↓ Reduce &amp; Approve $3,442</button>
+              <button class="ab2 bd">✕ Deny</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="dcursor" id="dcursor"><div class="cursor-ring"></div><div class="cursor-dot"></div></div>
-    <div class="progress-bar" id="dpbar"></div>
+
+    <!-- FRAME 2b: After approval animation -->
+    <div class="df" id="df2b">
+      <div class="tb">
+        <div class="tl"><span>Clarity</span>AI Claims ✦</div>
+        <div class="nt">
+          <div class="nt-i">Executive Dashboard</div>
+          <div class="nt-i a">Examiner Workbench</div>
+          <div class="nt-i">Fraud Investigation</div>
+          <div class="nt-i">Provider Portal</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="pt">Examiner Workbench <span style="font-size:9px;color:#4b5563;font-weight:400">· Sarah Mitchell</span></div>
+        <div class="ps">AI-prioritised review queue · 46 claims remaining</div>
+        <div class="eg">
+          <div class="ql">
+            <div class="qh">Review Queue <span style="color:#f59e0b">46</span></div>
+            <div class="qi s" id="dqi1b"><div><div class="qid">CLM-2026-084722</div><div class="qin">HMO · $1,240 · Dr Chen</div></div><span class="rc rm2">Med</span></div>
+            <div class="qi"><div><div class="qid">CLM-2026-084723 ⚡</div><div class="qin">EPO · $8,920 · Surgery</div></div><span class="rc rr">High</span></div>
+            <div class="qi"><div><div class="qid">CLM-2026-084724</div><div class="qin">POS · $612 · Imaging</div></div><span class="rc rlo">Low</span></div>
+            <div class="qi"><div><div class="qid">CLM-2026-084727 ⚡</div><div class="qin">PPO · $14,200 · Ortho</div></div><span class="rc rr">High</span></div>
+          </div>
+          <div class="dp2">
+            <div style="text-align:center;padding:20px 10px;">
+              <div style="width:40px;height:40px;background:#0d2818;border:2px solid #10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 10px;">✓</div>
+              <div style="font-size:11px;font-weight:600;color:#10b981;margin-bottom:4px;">CLM-2026-084721 Approved</div>
+              <div style="font-size:8px;color:#4b5563;margin-bottom:12px;">$3,612.00 · Posted to payment run · 09:43 ET</div>
+              <div style="background:#0d1420;border:1px solid #1e3a5f;border-radius:4px;padding:7px 10px;text-align:left;margin-bottom:8px;">
+                <div style="font-size:7px;color:#3b82f6;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:3px;">✦ AI Audit Trail</div>
+                <div style="font-size:8px;color:#9ca3af;line-height:1.6;">Decision logged · Examiner: S.Mitchell · AI recommendation: Followed · Downcode applied · Benefit calc confirmed · NCCI edits cleared</div>
+              </div>
+              <div style="font-size:8px;color:#4b5563;">Loading next claim in queue →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE CARD: Fraud Investigation -->
+    <div class="sc" id="sc2">
+      <div class="sc-mod">Module 03</div>
+      <div class="sc-title">Fraud Investigation</div>
+      <div class="sc-sub">Graph intelligence · pre-payment intervention</div>
+    </div>
+
+    <!-- FRAME 3: Fraud Investigation -->
+    <div class="df" id="df3">
+      <div class="tb">
+        <div class="tl"><span>Clarity</span>AI Claims ✦</div>
+        <div class="nt">
+          <div class="nt-i">Executive Dashboard</div>
+          <div class="nt-i">Examiner Workbench</div>
+          <div class="nt-i a">Fraud Investigation</div>
+          <div class="nt-i">Provider Portal</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="pt">Fraud Investigation · Graph Intelligence</div>
+        <div class="ps">AI-detected fraud rings · network analysis · pre-payment intervention</div>
+        <div class="fg">
+          <div>
+            <div class="cc" style="margin-bottom:6px;"><div class="ct">Fraud Ring #7 · Detected 09:38 ET</div>
+              <div style="position:relative;height:150px;background:#0d0f18;border-radius:4px;overflow:hidden">
+                <svg width="100%" height="100%" viewBox="0 0 220 150">
+                  <line x1="110" y1="75" x2="55" y2="35" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+                  <line x1="110" y1="75" x2="165" y2="35" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+                  <line x1="110" y1="75" x2="35" y2="115" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+                  <line x1="110" y1="75" x2="185" y2="115" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+                  <line x1="55" y1="35" x2="165" y2="35" stroke="#a78bfa" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+                  <circle cx="110" cy="75" r="16" fill="#7c1313" stroke="#f87171" stroke-width="2"/>
+                  <text x="110" y="72" text-anchor="middle" fill="#f87171" font-size="6" font-weight="700">FRAUD</text>
+                  <text x="110" y="81" text-anchor="middle" fill="#f87171" font-size="5">RING #7</text>
+                  <circle cx="55" cy="35" r="11" fill="#0d2818" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="55" y="38" text-anchor="middle" fill="#10b981" font-size="6">Prov A</text>
+                  <circle cx="165" cy="35" r="11" fill="#0d2818" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="165" y="38" text-anchor="middle" fill="#10b981" font-size="6">Prov B</text>
+                  <circle cx="35" cy="115" r="9" fill="#1c1400" stroke="#f59e0b" stroke-width="1.5"/>
+                  <text x="35" y="118" text-anchor="middle" fill="#f59e0b" font-size="5">Mem 1</text>
+                  <circle cx="185" cy="115" r="9" fill="#1c1400" stroke="#f59e0b" stroke-width="1.5"/>
+                  <text x="185" y="118" text-anchor="middle" fill="#f59e0b" font-size="5">Mem 2</text>
+                  <circle cx="110" cy="135" r="7" fill="#1a0d2e" stroke="#a78bfa" stroke-width="1.5"><animate attributeName="r" values="7;10;7" dur="2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
+                  <text x="110" y="138" text-anchor="middle" fill="#a78bfa" font-size="5">Emerging</text>
+                </svg>
+              </div>
+              <div style="margin-top:5px;font-size:7px;color:#4b5563;">2 providers · 2 members · 1 emerging node · $612K exposure</div>
+            </div>
+            <div class="cc"><div class="ct">Active Rings</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#0d0f18;border-radius:3px;border-left:2px solid #f87171"><div><div style="font-size:8px;color:#e2e8f0">Ring #5 · Billing scheme</div><div style="font-size:7px;color:#4b5563">$218K exposure</div></div><span class="rc rr">Active</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#0d0f18;border-radius:3px;border-left:2px solid #a78bfa"><div><div style="font-size:8px;color:#e2e8f0">Ring #7 · Provider collusion</div><div style="font-size:7px;color:#4b5563">$612K exposure</div></div><span class="rc" style="background:#1a0d2e;color:#a78bfa">Emerging</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cc" style="margin-bottom:6px;"><div class="ct">Pre-payment Intervention</div>
+              <div style="display:flex;gap:8px;margin-bottom:7px;">
+                <div style="text-align:center;flex:1"><div style="font-size:16px;font-weight:700;color:#10b981;font-family:monospace">47</div><div style="font-size:7px;color:#4b5563">Claims held</div></div>
+                <div style="text-align:center;flex:1"><div style="font-size:16px;font-weight:700;color:#f59e0b;font-family:monospace">$612K</div><div style="font-size:7px;color:#4b5563">Prevented</div></div>
+                <div style="text-align:center;flex:1"><div style="font-size:16px;font-weight:700;color:#3b82f6;font-family:monospace">2.1h</div><div style="font-size:7px;color:#4b5563">Detection</div></div>
+              </div>
+              <div style="background:#0d1420;border:1px solid #1e3a5f;border-radius:3px;padding:5px 7px;font-size:8px;color:#9ca3af">✦ Ring #7 flagged autonomously — before payment deadline</div>
+            </div>
+            <div class="cc"><div class="ct">SIU Referral Queue</div>
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <div style="display:flex;justify-content:space-between;font-size:8px;padding:4px 6px;background:#0d0f18;border-radius:3px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084717</span><span style="color:#a78bfa">SIU Hold · $8,200</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:8px;padding:4px 6px;background:#0d0f18;border-radius:3px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084698</span><span style="color:#a78bfa">SIU Hold · $14,600</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:8px;padding:4px 6px;background:#0d0f18;border-radius:3px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084651</span><span style="color:#a78bfa">SIU Hold · $6,900</span></div>
+              </div>
+            </div>
+            <div class="cc" style="margin-top:6px;"><div class="ct">MTD Fraud Summary</div>
+              <div class="fs"><span class="fsl">Total Flagged</span><span class="fsv a">214</span></div>
+              <div class="fs"><span class="fsl">Pre-pay Holds</span><span class="fsv a">47</span></div>
+              <div class="fs"><span class="fsl">Confirmed Fraud</span><span class="fsv" style="color:#f87171">31</span></div>
+              <div class="fs"><span class="fsl">Recovered MTD</span><span class="fsv g">$612K</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE CARD: Provider Portal -->
+    <div class="sc" id="sc3">
+      <div class="sc-mod">Module 04</div>
+      <div class="sc-title">Provider Portal</div>
+      <div class="sc-sub">Real-time claim status · remittance · appeals</div>
+    </div>
+
+    <!-- FRAME 4: Provider Portal -->
+    <div class="df" id="df4">
+      <div class="tb">
+        <div class="tl"><span>Clarity</span>AI Claims ✦</div>
+        <div class="nt">
+          <div class="nt-i">Executive Dashboard</div>
+          <div class="nt-i">Examiner Workbench</div>
+          <div class="nt-i">Fraud Investigation</div>
+          <div class="nt-i a">Provider Portal</div>
+        </div>
+      </div>
+      <div class="co">
+        <div class="pt">Provider Portal <span style="font-size:9px;color:#4b5563;font-weight:400">· Apex Orthopedic · NPI 1538291046</span></div>
+        <div class="ps">Real-time claim tracking · remittance · appeal management · eligibility verification</div>
+        <div class="pg">
+          <div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:6px;">
+              <div class="pstat"><div class="psn">142</div><div class="psl">Claims submitted MTD</div><div class="psub" style="color:#10b981">↑ 12% vs last month</div></div>
+              <div class="pstat"><div class="psn">$2.4M</div><div class="psl">Expected remittance</div><div class="psub" style="color:#10b981">98.2% clean claim rate</div></div>
+              <div class="pstat"><div class="psn">4.2h</div><div class="psl">Avg adjudication TAT</div><div class="psub" style="color:#10b981">↓ from 3.8 days</div></div>
+              <div class="pstat"><div class="psn">3</div><div class="psl">Open appeals</div><div class="psub" style="color:#f59e0b">2 pending · 1 in review</div></div>
+            </div>
+            <div class="cc"><div class="ct">Recent Claim Status</div>
+              <div style="display:flex;flex-direction:column;gap:3px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#0d0f18;border-radius:3px;font-size:8px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084721</span><span style="color:#10b981">Approved · $3,612</span><span style="font-size:7px;color:#4b5563">Posted</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#0d0f18;border-radius:3px;font-size:8px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084698</span><span style="color:#a78bfa">SIU Hold</span><span style="font-size:7px;color:#4b5563">Pending</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#0d0f18;border-radius:3px;font-size:8px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084633</span><span style="color:#10b981">Approved · $8,240</span><span style="font-size:7px;color:#4b5563">Posted</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#0d0f18;border-radius:3px;font-size:8px;"><span style="color:#3b82f6;font-family:monospace;font-size:7px">CLM-2026-084610</span><span style="color:#f87171">Denied · NCCI edit</span><span style="font-size:7px;color:#f59e0b">Appeal →</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="cc" style="margin-bottom:6px;"><div class="ct">Eligibility Verification</div>
+              <div style="background:#0d1f0d;border:1px solid #10b981;border-radius:4px;padding:7px 9px;margin-bottom:6px;">
+                <div style="font-size:8px;color:#10b981;font-weight:600;margin-bottom:3px;">✓ Member Eligible — Real Time</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;font-size:7px;color:#9ca3af;">
+                  <span>Plan: PPO Gold</span><span>Effective: 01/01/2026</span>
+                  <span>Deductible: $0 met</span><span>OOP Max: $2,100 remaining</span>
+                </div>
+              </div>
+              <div style="font-size:8px;color:#4b5563;text-align:center;">Verified in &lt;200ms · No phone call required</div>
+            </div>
+            <div class="cc"><div class="ct">ERA / Remittance</div>
+              <div style="display:flex;flex-direction:column;gap:3px;margin-bottom:6px;">
+                <div style="display:flex;justify-content:space-between;font-size:8px;padding:3px 0;border-bottom:1px solid #1e2235;"><span style="color:#6b7280">Payment run 2026-05-19</span><span style="color:#10b981;font-weight:600">$184,200</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:8px;padding:3px 0;border-bottom:1px solid #1e2235;"><span style="color:#6b7280">Payment run 2026-05-12</span><span style="color:#10b981;font-weight:600">$212,800</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:8px;padding:3px 0;"><span style="color:#6b7280">Payment run 2026-05-05</span><span style="color:#10b981;font-weight:600">$198,450</span></div>
+              </div>
+              <div style="background:#0d1420;border:1px solid #1e3a5f;border-radius:3px;padding:5px 7px;font-size:8px;color:#9ca3af;">✦ ERA auto-posted to practice management system · Zero manual reconciliation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="dc" id="dc"><div class="cr"></div><div class="cd"></div></div>
+    <div class="pb" id="dpb"></div>
   </div>
-  <div class="caption-bar"><div class="caption-main visible" id="dcaption">Auto adjudication of claims. <em>Zero human touch.</em></div><div class="scene-dots"><div class="scene-dot active-dot" id="dsd0"></div><div class="scene-dot" id="dsd1"></div><div class="scene-dot" id="dsd2"></div><div class="scene-dot" id="dsd3"></div></div></div>
+
+  <!-- Caption bar -->
+  <div class="cap">
+    <div class="cm v" id="dcap">AI adjudicates 83% of claims. <em>Zero human touch.</em></div>
+    <div class="sds">
+      <div class="sdt a" id="ds0"></div>
+      <div class="sdt" id="ds1"></div>
+      <div class="sdt" id="ds2"></div>
+      <div class="sdt" id="ds3"></div>
+    </div>
+  </div>
 </div>`;
 
-// Run demo animation
+// ── Demo Animation Engine ──
 (function(){
-  const cursor=document.getElementById('dcursor'),pbar=document.getElementById('dpbar'),screen=document.getElementById('dscreen'),captionEl=document.getElementById('dcaption');
-  if(!cursor||!pbar||!screen||!captionEl)return;
-  const captions=["Auto adjudication of claims. <em>Zero human touch.</em>","AI flags the risk. <em>Human makes the call.</em>","<em>Fraud caught autonomously.</em> Before payment deadline.","AI-redesigned. <strong>10× ROI.</strong> <em>Governed by design.</em>"];
-  const dots=['dsd0','dsd1','dsd2','dsd3'];
-  const moveCursor=(x,y)=>{cursor.style.left=x+'px';cursor.style.top=y+'px';};
-  const clickAt=(x,y)=>{cursor.classList.add('clicking');const r=document.createElement('div');r.className='dripple';r.style.left=(x-18)+'px';r.style.top=(y-18)+'px';screen.appendChild(r);setTimeout(()=>{cursor.classList.remove('clicking');r.remove();},500);};
-  const showFrame=id=>{document.querySelectorAll('.dframe').forEach(f=>f.classList.remove('active'));document.getElementById(id)?.classList.add('active');};
-  const setProgress=(pct,dur)=>{pbar.style.transition=`width ${dur}ms linear`;pbar.style.width=pct+'%';};
-  const setCaption=idx=>{captionEl.classList.remove('visible');setTimeout(()=>{captionEl.innerHTML=captions[idx];document.querySelectorAll('.scene-dot').forEach(d=>d.classList.remove('active-dot'));document.getElementById(dots[idx])?.classList.add('active-dot');captionEl.classList.add('visible');},350);};
-  const TOTAL=16000;
-  const seq=[
-    {t:0,fn:()=>{showFrame('df1');moveCursor(300,40);setProgress(0,100);setCaption(0);}},
-    {t:800,fn:()=>moveCursor(340,200)},{t:1600,fn:()=>moveCursor(380,320)},
-    {t:2400,fn:()=>{const tb=document.getElementById('dtbody');if(!tb)return;const row=document.createElement('div');row.className='table-row new-row';row.innerHTML='<span class="claim-id">CLM-2026-084720</span><span>PPO</span><span style="font-size:8px;color:#374151;font-family:monospace">09:43</span><span><span class="sbadge s-ok">Auto-Approved</span></span><span style="color:#10b981;font-size:9px">98%</span><span style="color:#10b981;font-size:9px">Posted</span>';tb.insertBefore(row,tb.firstChild);if(tb.children.length>4)tb.removeChild(tb.lastChild);}},
-    {t:3200,fn:()=>{moveCursor(230,40);setProgress(22,500);}},{t:3900,fn:()=>{clickAt(230,40);setProgress(26,200);}},
-    {t:4200,fn:()=>{showFrame('df2');setProgress(28,200);setCaption(1);setTimeout(()=>{const cf=document.getElementById('dcfill');if(cf)cf.style.width='58%';},600);}},
-    {t:4800,fn:()=>moveCursor(440,200)},{t:5800,fn:()=>moveCursor(360,310)},{t:6800,fn:()=>{moveCursor(420,350);setProgress(50,500);}},
-    {t:7800,fn:()=>{moveCursor(320,40);setProgress(58,400);}},{t:8500,fn:()=>{clickAt(320,40);setProgress(62,200);}},
-    {t:8800,fn:()=>{showFrame('df3');setProgress(65,200);setCaption(2);}},
-    {t:9400,fn:()=>moveCursor(110,180)},{t:10200,fn:()=>moveCursor(360,250)},{t:11200,fn:()=>{moveCursor(360,340);setProgress(82,700);}},
-    {t:12500,fn:()=>{moveCursor(170,40);setProgress(90,600);}},{t:13400,fn:()=>clickAt(170,40)},
-    {t:13800,fn:()=>{showFrame('df1');setProgress(96,500);setCaption(3);}},
-    {t:15200,fn:()=>moveCursor(300,200)},
-    {t:16200,fn:()=>{setProgress(0,100);setTimeout(()=>{setProgress(100,TOTAL);runSeq();},200);}}
-  ];
-  function runSeq(){seq.forEach(({t,fn})=>setTimeout(fn,t));}
-  moveCursor(300,40);
-  setTimeout(()=>{setProgress(100,TOTAL);runSeq();},400);
+  const cursor=document.getElementById('dc');
+  const pbar=document.getElementById('dpb');
+  const capEl=document.getElementById('dcap');
+  if(!cursor||!pbar||!capEl) return;
+
+  const TOTAL = 32000; // 32 second loop
+  let timers = [];
+
+  const mv=(x,y)=>{cursor.style.left=x+'px';cursor.style.top=y+'px';};
+  const scrollDetail=(to)=>{
+    const panel=document.getElementById('ddetail');
+    if(!panel) return;
+    const start=panel.scrollTop;
+    const diff=to-start;
+    const dur=900;
+    const startTime=performance.now();
+    function step(now){
+      const elapsed=now-startTime;
+      const progress=Math.min(elapsed/dur,1);
+      const ease=progress<0.5?2*progress*progress:1-Math.pow(-2*progress+2,2)/2;
+      panel.scrollTop=start+diff*ease;
+      if(progress<1) requestAnimationFrame(step);
+    }
+    panel.style.overflowY='scroll';
+    requestAnimationFrame(step);
+  };
+  const clk=(x,y)=>{
+    cursor.classList.add('ck');
+    const r=document.createElement('div');r.className='rp';
+    r.style.left=(x-16)+'px';r.style.top=(y-16)+'px';
+    document.getElementById('dscr').appendChild(r);
+    setTimeout(()=>{cursor.classList.remove('ck');r.remove();},500);
+  };
+
+  const showScene=(id,navIdx,url)=>{
+    // Hide all scenes and frames
+    document.querySelectorAll('.sc').forEach(s=>s.classList.remove('act'));
+    document.querySelectorAll('.df').forEach(f=>f.classList.remove('act'));
+    // Show scene card
+    const sc=document.getElementById(id);
+    if(sc) sc.classList.add('act');
+    // Update nav
+    document.querySelectorAll('.mn').forEach((m,i)=>m.classList.toggle('a',i===navIdx));
+    // Update URL
+    const urlEl=document.getElementById('durl');
+    if(urlEl&&url) urlEl.textContent=url;
+    // Update dots
+    document.querySelectorAll('.sdt').forEach((d,i)=>d.classList.toggle('a',i===navIdx));
+  };
+
+  const showFrame=(id,navIdx,url)=>{
+    document.querySelectorAll('.sc').forEach(s=>s.classList.remove('act'));
+    document.querySelectorAll('.df').forEach(f=>f.classList.remove('act'));
+    const fr=document.getElementById(id);
+    if(fr) fr.classList.add('act');
+    document.querySelectorAll('.mn').forEach((m,i)=>m.classList.toggle('a',i===navIdx));
+    const urlEl=document.getElementById('durl');
+    if(urlEl&&url) urlEl.textContent=url;
+    document.querySelectorAll('.sdt').forEach((d,i)=>d.classList.toggle('a',i===navIdx));
+  };
+
+  const setProgress=(pct,dur)=>{
+    pbar.style.transition=`width ${dur}ms linear`;
+    pbar.style.width=pct+'%';
+  };
+
+  const setCaption=(txt)=>{
+    capEl.classList.remove('v');
+    setTimeout(()=>{capEl.innerHTML=txt;capEl.classList.add('v');},350);
+  };
+
+  const t=(ms,fn)=>{ const id=setTimeout(fn,ms); timers.push(id); };
+
+  function runSeq(){
+    timers.forEach(clearTimeout); timers=[];
+
+    // ── SCENE 1: Executive Dashboard (0–6s) ──
+    t(0,()=>{
+      showScene('sc0',0,'/dashboard');
+      mv(400,200);
+      setProgress(0,100);
+      setCaption('AI adjudicates 83% of claims. <em>Zero human touch.</em>');
+    });
+    t(1800,()=>{ showFrame('df1',0,'/dashboard'); setProgress(20,4200); });
+    t(2400,()=>mv(500,120));
+    t(3000,()=>mv(500,220));
+    // New row appears
+    t(3600,()=>{
+      const tb=document.getElementById('dtbody');
+      if(!tb) return;
+      const row=document.createElement('div');
+      row.className='tr2 nr';
+      row.innerHTML='<span class="ci">CLM-2026-084720</span><span>PPO</span><span style="font-size:7px;font-family:monospace">09:43</span><span><span class="sb so">Auto-Approved</span></span><span style="color:#10b981;font-size:8px">98%</span><span style="color:#10b981;font-size:8px">6</span><span style="color:#10b981;font-size:8px">Posted</span>';
+      tb.insertBefore(row,tb.firstChild);
+      if(tb.children.length>5) tb.removeChild(tb.lastChild);
+    });
+    t(4400,()=>mv(350,320));
+    t(5200,()=>mv(200,40));
+
+    // ── TRANSITION → Examiner (6–8s) ──
+    t(6000,()=>{
+      showScene('sc1',1,'/examiner');
+      setCaption('AI flags the risk. <em>Human makes the call.</em>');
+      setProgress(22,12000);
+    });
+
+    // ── SCENE 2: Examiner Workbench (8–20s) ──
+    t(8000,()=>{ showFrame('df2',1,'/examiner'); mv(300,150); });
+    t(8800,()=>mv(180,120)); // hover queue item
+    t(9400,()=>{ clk(180,120); }); // click claim
+    t(10000,()=>mv(550,180)); // move to AI panel
+    t(10800,()=>{
+      setCaption('CPT 99215 billed. <em>AI recommends downcode</em> — saves $170.');
+      mv(550,220);
+    });
+    // Slow scroll down the detail panel to reveal claim lines
+    t(11600,()=>{ scrollDetail(0); mv(570,250); });
+    t(12200,()=>{ scrollDetail(80); mv(570,280); }); // reveal claim lines
+    t(12800,()=>{
+      setCaption('Line-by-line review. <em>Three lines pass.</em> One downcoded.');
+      scrollDetail(140); mv(570,310);
+    });
+    t(13800,()=>{ scrollDetail(210); mv(570,340); }); // reveal benefit calc
+    t(14400,()=>{
+      setCaption('Benefit calculated. <em>Plan pays $2,890.</em> Member owes $722.');
+    });
+    t(15200,()=>{ scrollDetail(280); mv(430,390); }); // reveal action buttons
+    t(15800,()=>{
+      clk(300,390);
+      setCaption('Examiner approves. <em>Decision logged.</em> AI audit trail complete.');
+    });
+    t(16800,()=>{
+      showFrame('df2b',1,'/examiner');
+      const panel=document.getElementById('ddetail');
+      if(panel){ panel.scrollTop=0; panel.style.overflowY='hidden'; }
+    });
+    t(17600,()=>mv(400,200));
+
+    // ── TRANSITION → Fraud (18–20s) ──
+    t(18500,()=>{
+      showScene('sc2',2,'/fraud');
+      setCaption('<em>Fraud caught autonomously.</em> Before payment deadline.');
+      setProgress(62,10000);
+    });
+
+    // ── SCENE 3: Fraud Investigation (20–26s) ──
+    t(20000,()=>{ showFrame('df3',2,'/fraud'); mv(150,150); });
+    t(20800,()=>mv(150,200)); // look at graph
+    t(21800,()=>mv(150,280)); // active rings
+    t(22600,()=>{
+      setCaption('Graph AI detects Ring #7. <em>$612K exposure.</em> 2 providers, 2 members.');
+      mv(550,160);
+    });
+    t(23800,()=>mv(550,260)); // pre-payment stats
+    t(24800,()=>mv(550,340));
+
+    // ── TRANSITION → Provider Portal (26–28s) ──
+    t(25800,()=>{
+      showScene('sc3',3,'/provider-portal');
+      setCaption('Provider sees everything. <em>Real time.</em> No phone calls.');
+      setProgress(85,7000);
+    });
+
+    // ── SCENE 4: Provider Portal (28–32s) ──
+    t(27500,()=>{ showFrame('df4',3,'/provider-portal'); mv(250,150); });
+    t(28200,()=>mv(250,250));
+    t(29000,()=>{
+      setCaption('ERA auto-posted. <em>Zero manual reconciliation.</em> 4.2hr TAT.');
+      mv(550,280);
+    });
+    t(30000,()=>mv(550,360));
+    t(31000,()=>{
+      setCaption('AI-redesigned. <strong>End-to-end.</strong> <em>Governed by design.</em>');
+    });
+
+    // ── LOOP ──
+    t(32200,()=>{
+      const panel=document.getElementById('ddetail');
+      if(panel){ panel.scrollTop=0; panel.style.overflowY='hidden'; }
+      setProgress(0,100);
+      setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },200);
+    });
+  }
+
+  mv(400,200);
+  setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },500);
 })();
 
-// ── Pillars ──
+
+// ── Pillars ───
 const pillarBars = document.getElementById('pillarBars');
 pillarBars.innerHTML = pillars.map(p=>`<div class="pillar-row"><div class="pillar-label"><span>${p.label}</span><strong>${p.score.toFixed(1)}</strong></div><div class="pillar-bar"><div class="pillar-fill" data-width="${(p.score/4)*100}"></div></div></div>`).join('');
 const observer = new IntersectionObserver(([e])=>{
