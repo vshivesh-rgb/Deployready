@@ -313,6 +313,14 @@ h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.15;}
 .impl-demo-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
 .impl-demo-label::before{content:'';width:20px;height:1px;background:#b91c1c;display:inline-block;}
 .impl-demo-container{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.07);box-shadow:0 32px 80px rgba(0,0,0,0.5);}
+.impl-tabs{display:flex;gap:0;margin-bottom:40px;border-bottom:2px solid rgba(255,255,255,0.1);}
+.impl-tab{padding:14px 32px;font-size:14px;font-weight:600;color:rgba(255,255,255,0.3);cursor:pointer;border:none;background:transparent;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all 0.2s;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;white-space:nowrap;}
+.impl-tab:hover{color:rgba(255,255,255,0.7);}
+.impl-tab.act{color:#ffffff;border-bottom-color:#b91c1c;}
+.impl-tab-panel{display:none;}
+.impl-tab-panel.act{display:block;}
+.impl-panel-heading{padding:28px 0 20px;}
+.impl-panel-heading h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;line-height:1.35;color:#ffffff;}
 
 
 
@@ -418,6 +426,12 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
   /* Fix 3: Demo mobile */
   .impl-demo-wrap{max-width:100%;}
   .impl-demo-container{border-radius:8px;}
+
+  /* Fix 5: Impl tabs mobile — scrollable */
+  .impl-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:0;gap:0;margin-bottom:28px;}
+  .impl-tabs::-webkit-scrollbar{display:none;}
+  .impl-tab{padding:12px 20px;font-size:12px;flex-shrink:0;}
+  .impl-panel-heading h3{font-size:18px !important;}
 }
 @media(max-width:960px){
   /* Demo internals — scoped separately to avoid conflicts */
@@ -435,6 +449,32 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
   #demoContainer .sc-title{font-size:16px !important;}
   #demoContainer .ql{display:none !important;}
   #demoContainer .eg{grid-template-columns:1fr !important;}
+
+  /* Markdown demo mobile */
+  #mdContainer .dscr{height:380px !important;}
+  #mdContainer .layout{grid-template-columns:1fr !important;}
+  #mdContainer .sidebar{display:none !important;}
+  #mdContainer .two-col{grid-template-columns:1fr !important;}
+  #mdContainer .kr{grid-template-columns:repeat(3,1fr) !important;}
+  #mdContainer .cap{min-height:52px !important;padding:0 10px !important;}
+  #mdContainer .cm{font-size:12px !important;}
+  #mdContainer .co{padding:8px 10px !important;}
+
+  /* ClauseIQ demo mobile */
+  #ciContainer .layout{grid-template-columns:1fr !important;}
+  #ciContainer .lpanel{display:none !important;}
+  #ciContainer .mod-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  #ciContainer .mod-tabs::-webkit-scrollbar{display:none;}
+  #ciContainer .mod-tab{font-size:10px !important;padding:8px 12px !important;flex-shrink:0;}
+  #ciContainer .risk-strip{grid-template-columns:repeat(2,1fr) !important;}
+  #ciContainer .ext-thead{display:none !important;}
+  #ciContainer .ext-row{grid-template-columns:1fr !important;gap:4px !important;}
+  #ciContainer .matrix-head{display:none !important;}
+  #ciContainer .matrix-row{grid-template-columns:1.5fr repeat(3,1fr) !important;}
+  #ciContainer .cap{min-height:52px !important;padding:0 10px !important;}
+  #ciContainer .cm{font-size:12px !important;}
+  #ciContainer .co{padding:8px 10px !important;}
+  #ciContainer .co-hdr{padding:8px 10px !important;}
 
   /* Fix 4: Team — 1 column with horizontal card layout */
   .team-grid{grid-template-columns:1fr !important;}
@@ -607,10 +647,38 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
       <span class="eyebrow">Implementation Examples</span>
       <h2 class="display">What AI-redesigned workflows look like in practice.</h2>
     </div>
-    <div class="impl-demo-wrap">
-      <div class="impl-demo-label">Health Insurance · Claims Adjudication Workflow. Built by DeployReady.</div>
-      <div class="impl-demo-container" id="demoContainer"></div>
+    <!-- Tab nav -->
+    <div class="impl-tabs">
+      <button class="impl-tab act" onclick="switchImplTab(0)">Health Insurance</button>
+      <button class="impl-tab" onclick="switchImplTab(1)">Retail</button>
+      <button class="impl-tab" onclick="switchImplTab(2)">Legal & KPO</button>
     </div>
+    <!-- Panel 1: Claims -->
+    <div class="impl-tab-panel act" id="impl-panel-0">
+      <div class="impl-demo-wrap">
+        <div class="impl-panel-heading">
+          <h3>Health Insurance · Claims Adjudication Workflow. Built by DeployReady.</h3>
+        </div>
+        <div class="impl-demo-container" id="demoContainer"></div>
+      </div>
+    </div>
+    <!-- Panel 2: Markdown -->
+    <div class="impl-tab-panel" id="impl-panel-1">
+      <div class="impl-demo-wrap">
+        <div class="impl-panel-heading">
+          <h3>Retail Clearance Agent. AI-driven markdown planning replacing Excel.</h3>
+        </div>
+        <div class="impl-demo-container" id="mdContainer"></div>
+      </div>
+    </div>
+    <!-- Panel 3: ClauseIQ -->
+    <div class="impl-tab-panel" id="impl-panel-2">
+      <div class="impl-demo-wrap">
+        <div class="impl-panel-heading">
+          <h3>Legal & KPO · Contract Intelligence. Due diligence reviewed in hours, not weeks.</h3>
+        </div>
+        <div class="impl-demo-container" id="ciContainer"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -816,6 +884,21 @@ document.getElementById('engagements').innerHTML = engagements.map(e=>`
 </div>`).join('');
 
 // ── Demo ──
+// ── Tab switching ──
+let activeImplTab = 0;
+let mdInited = false;
+let ciInited = false;
+
+function switchImplTab(idx) {
+  if(idx === activeImplTab) return;
+  activeImplTab = idx;
+  document.querySelectorAll('.impl-tab').forEach((t,i)=>t.classList.toggle('act',i===idx));
+  document.querySelectorAll('.impl-tab-panel').forEach((p,i)=>p.classList.toggle('act',i===idx));
+  if(idx===1 && !mdInited){ initMarkdownDemo(); mdInited=true; }
+  if(idx===2 && !ciInited){ initClauseIQDemo(); ciInited=true; }
+}
+
+// ── Claims Demo (Tab 1) ──
 document.getElementById('demoContainer').innerHTML = `
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -1463,6 +1546,1574 @@ document.getElementById('demoContainer').innerHTML = `
   setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },500);
 })();
 
+
+
+
+// ── Markdown Demo (Tab 2) — lazy init ──
+function initMarkdownDemo(){
+  document.getElementById('mdContainer').innerHTML = `
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.dw{width:100%;background:#f5f6f8;border-radius:12px;overflow:hidden;font-family:'Inter',system-ui,sans-serif;position:relative;box-shadow:0 8px 40px rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.08);}
+
+/* Browser chrome */
+.bc{background:#ffffff;padding:10px 16px 10px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e5e7eb;}
+.dots{display:flex;gap:6px;}
+.dot{width:11px;height:11px;border-radius:50%;}
+.dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
+.ub{flex:1;background:#f3f4f6;border-radius:6px;padding:5px 14px;font-size:11px;color:#9ca3af;display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;}
+.ud{color:#374151;font-weight:500;}.up{color:#9ca3af;}
+.dm{background:#fef3c7;color:#92400e;font-size:8px;padding:2px 8px;border-radius:4px;font-weight:600;letter-spacing:0.5px;border:1px solid #fde68a;}
+
+/* Sidebar + main layout */
+.layout{display:grid;grid-template-columns:180px 1fr;min-height:520px;}
+
+/* Sidebar */
+.sidebar{background:#ffffff;border-right:1px solid #e5e7eb;padding:16px 0;display:flex;flex-direction:column;}
+.sb-logo{padding:0 16px 16px;border-bottom:1px solid #f3f4f6;margin-bottom:8px;}
+.sb-logo-text{font-size:14px;font-weight:700;color:#111827;letter-spacing:-0.3px;}
+.sb-logo-text span{color:#166534;}
+.sb-logo-sub{font-size:9px;color:#9ca3af;letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
+.sb-section{font-size:9px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;padding:8px 16px 4px;}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 16px;font-size:11px;color:#6b7280;cursor:pointer;transition:all 0.15s;border-left:2px solid transparent;font-weight:500;}
+.sb-item:hover{background:#f9fafb;color:#111827;}
+.sb-item.a{background:#f0fdf4;color:#166534;border-left-color:#166534;font-weight:600;}
+.sb-icon{width:14px;height:14px;opacity:0.7;}
+.sb-badge{margin-left:auto;font-size:8px;background:#fef3c7;color:#92400e;padding:1px 5px;border-radius:8px;font-weight:600;}
+.sb-badge.g{background:#dcfce7;color:#166534;}
+.sidebar-bottom{margin-top:auto;padding:12px 16px;border-top:1px solid #f3f4f6;}
+.sb-user{display:flex;align-items:center;gap:8px;}
+.sb-avatar{width:26px;height:26px;border-radius:50%;background:#166534;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.sb-uname{font-size:10px;color:#374151;font-weight:500;}
+.sb-urole{font-size:8px;color:#9ca3af;}
+
+/* Main content */
+.main{background:#f5f6f8;overflow:hidden;position:relative;}
+.topbar{background:#ffffff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;}
+.tb-title{font-size:13px;font-weight:600;color:#111827;}
+.tb-sub{font-size:10px;color:#9ca3af;margin-top:1px;}
+.tb-actions{display:flex;gap:6px;align-items:center;}
+.tb-btn{padding:5px 12px;border-radius:5px;font-size:10px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.tb-btn-p{background:#166534;color:#fff;}
+.tb-btn-s{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;}
+.tb-tag{font-size:8px;background:#fef3c7;color:#92400e;padding:3px 8px;border-radius:12px;font-weight:600;border:1px solid #fde68a;display:flex;align-items:center;gap:4px;}
+.tb-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:#f59e0b;display:inline-block;}
+
+/* Content area */
+.co{padding:16px 20px;height:100%;overflow:hidden;}
+
+/* Frames */
+.df{position:absolute;inset:0;opacity:0;transition:opacity 0.6s ease;display:flex;flex-direction:column;}
+.df.act{opacity:1;position:relative;}
+
+/* Scene cards */
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#ffffff;z-index:10;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
+.sc.act{opacity:1;}
+.sc-pill{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;background:#166534;padding:4px 14px;border-radius:20px;margin-bottom:14px;}
+.sc-title{font-size:24px;font-weight:700;color:#111827;text-align:center;line-height:1.25;max-width:360px;letter-spacing:-0.5px;}
+.sc-sub{font-size:12px;color:#6b7280;margin-top:8px;text-align:center;line-height:1.6;max-width:320px;}
+.sc-divider{width:40px;height:2px;background:#166534;margin:14px auto;}
+
+/* KPI cards */
+.kr{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px;}
+.kc{background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;opacity:0;transform:translateY(8px);transition:opacity 0.4s ease,transform 0.4s ease;}
+.kc.show{opacity:1;transform:translateY(0);}
+.kc.warn{border-top:2px solid #f59e0b;}
+.kc.danger{border-top:2px solid #ef4444;}
+.kc.good{border-top:2px solid #166534;}
+.kl{font-size:8px;color:#6b7280;margin-bottom:4px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;}
+.kv{font-size:16px;font-weight:700;color:#111827;letter-spacing:-0.5px;font-family:'JetBrains Mono',monospace;}
+.kd{font-size:8px;margin-top:3px;font-weight:500;}
+.kd.g{color:#166534;}.kd.r{color:#ef4444;}.kd.a{color:#f59e0b;}
+
+/* Table */
+.tbl-wrap{background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:10px;}
+.tbl-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #f3f4f6;}
+.tbl-title{font-size:11px;font-weight:600;color:#111827;}
+.tbl-meta{font-size:9px;color:#9ca3af;}
+.tbl-th{display:grid;grid-template-columns:1.8fr 0.6fr 0.6fr 0.7fr 0.8fr 0.9fr 1fr 1fr;padding:6px 14px;font-size:8px;color:#9ca3af;border-bottom:1px solid #f3f4f6;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;background:#f9fafb;}
+.tbl-row{display:grid;grid-template-columns:1.8fr 0.6fr 0.6fr 0.7fr 0.8fr 0.9fr 1fr 1fr;padding:8px 14px;border-bottom:1px solid #f9fafb;align-items:center;font-size:9px;color:#6b7280;opacity:0;transform:translateX(-6px);transition:opacity 0.35s ease,transform 0.35s ease;}
+.tbl-row.show{opacity:1;transform:translateX(0);}
+.tbl-row.hl{background:#fffbeb;}
+.tbl-row.focus{background:#f0fdf4;border-left:3px solid #166534;}
+.sku-name{font-size:9px;font-weight:600;color:#111827;font-family:'JetBrains Mono',monospace;}
+.sku-desc{font-size:8px;color:#9ca3af;font-weight:400;font-family:'Inter',sans-serif;}
+.age-chip{padding:2px 6px;border-radius:4px;font-size:8px;font-weight:600;font-family:'JetBrains Mono',monospace;}
+.age-r{background:#fee2e2;color:#991b1b;}
+.age-a{background:#fef3c7;color:#92400e;}
+.age-g{background:#dcfce7;color:#166534;}
+.st-bar{height:4px;background:#f3f4f6;border-radius:2px;overflow:hidden;width:48px;display:inline-block;}
+.st-fill{height:100%;border-radius:2px;transition:width 1s ease;}
+.act-chip{font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.act-r{background:#fef3c7;color:#92400e;}
+.act-g{background:#dcfce7;color:#166534;}
+
+/* Two-col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+
+/* Card base */
+.card{background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;padding:12px;opacity:0;transform:translateY(6px);transition:opacity 0.4s ease,transform 0.4s ease;}
+.card.show{opacity:1;transform:translateY(0);}
+.card-title{font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.card-title-tag{font-size:8px;color:#166534;background:#dcfce7;padding:2px 6px;border-radius:4px;font-weight:600;text-transform:none;letter-spacing:0;}
+
+/* AI recommendation */
+.ai-panel{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;margin-bottom:10px;opacity:0;transform:translateY(8px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.ai-panel.show{opacity:1;transform:translateY(0);}
+.ai-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.ai-label{font-size:9px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.8px;display:flex;align-items:center;gap:5px;}
+.ai-conf{font-size:9px;background:#166534;color:#fff;padding:3px 8px;border-radius:12px;font-weight:600;}
+.ai-rec-text{font-size:13px;font-weight:700;color:#111827;margin-bottom:5px;letter-spacing:-0.3px;}
+.ai-rec-text em{color:#166534;font-style:normal;}
+.ai-reason{font-size:9px;color:#374151;line-height:1.7;}
+
+/* Markdown options */
+.md-option{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:6px;margin-bottom:4px;border:1px solid #f3f4f6;opacity:0;transition:opacity 0.3s ease;}
+.md-option.show{opacity:1;}
+.md-option.recommended{background:#f0fdf4;border-color:#bbf7d0;}
+.md-option.insufficient{background:#fff7ed;border-color:#fed7aa;}
+.md-option.aggressive{background:#fef2f2;border-color:#fecaca;}
+.md-depth{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.md-price{font-size:9px;color:#6b7280;}
+.md-st{font-size:9px;font-weight:600;}
+.md-margin-txt{font-size:8px;}
+.md-tag{font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.tag-rec{background:#166534;color:#fff;}
+.tag-insuf{background:#fed7aa;color:#92400e;}
+.tag-bad{background:#fecaca;color:#991b1b;}
+
+/* Elasticity SVG */
+.elas-wrap{background:#f9fafb;border-radius:6px;padding:8px;margin-bottom:8px;opacity:0;transition:opacity 0.4s ease;}
+.elas-wrap.show{opacity:1;}
+
+/* Simulator table */
+.sim-row-item{display:grid;grid-template-columns:1.6fr 0.6fr 0.7fr 0.5fr 0.6fr 0.8fr;gap:4px;padding:6px 10px;border-bottom:1px solid #f3f4f6;align-items:center;font-size:9px;color:#6b7280;opacity:0;transform:translateX(-4px);transition:opacity 0.3s ease,transform 0.3s ease;}
+.sim-row-item.show{opacity:1;transform:translateX(0);}
+.sim-row-item.approved{background:#f0fdf4;}
+.sim-sku{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;color:#111827;}
+.sim-cat{font-size:7px;color:#9ca3af;}
+.sim-price-old{color:#9ca3af;text-decoration:line-through;font-family:'JetBrains Mono',monospace;font-size:8px;}
+.sim-price-new{color:#166534;font-weight:700;font-family:'JetBrains Mono',monospace;font-size:9px;}
+.sim-depth{font-weight:700;color:#f59e0b;font-family:'JetBrains Mono',monospace;}
+.sim-margin.ok{color:#166534;font-weight:600;}
+.sim-margin.warn{color:#f59e0b;}
+.sim-margin.bad{color:#ef4444;}
+.approve-btn{padding:3px 8px;border-radius:4px;font-size:8px;font-weight:700;border:none;cursor:pointer;background:#dcfce7;color:#166534;font-family:'Inter',sans-serif;}
+.approve-btn.approved{background:#166534;color:#fff;}
+
+/* Waterfall */
+.wf{display:flex;align-items:flex-end;gap:4px;height:80px;margin:8px 0 4px;}
+.wf-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
+.wf-bar2{width:100%;border-radius:3px 3px 0 0;opacity:0;transition:height 0.8s ease,opacity 0.4s ease;}
+.wf-bar2.show{opacity:1;}
+.wf-lbl{font-size:7px;color:#9ca3af;text-align:center;line-height:1.3;}
+
+/* Approval */
+.appr-steps{display:flex;align-items:flex-start;gap:0;margin-bottom:14px;}
+.appr-step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
+.appr-step::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:1.5px;background:#e5e7eb;z-index:0;}
+.appr-step:last-child::after{display:none;}
+.appr-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;position:relative;z-index:1;transition:all 0.4s ease;}
+.apc-done{background:#dcfce7;border:2px solid #166534;color:#166534;}
+.apc-active{background:#166534;border:2px solid #166534;color:#fff;animation:gpulse 1.5s infinite;}
+@keyframes gpulse{0%,100%{box-shadow:0 0 0 0 rgba(22,101,52,0.3)}50%{box-shadow:0 0 0 6px rgba(22,101,52,0)}}
+.apc-pending{background:#f9fafb;border:2px solid #e5e7eb;color:#9ca3af;}
+.appr-lbl{font-size:8px;color:#6b7280;text-align:center;margin-top:5px;line-height:1.4;font-weight:500;}
+.appr-active-txt{color:#166534;font-weight:700;}
+
+/* POS rows */
+.pos-item{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:#f9fafb;border-radius:6px;margin-bottom:4px;border:1px solid #f3f4f6;opacity:0;transform:translateY(4px);transition:opacity 0.3s,transform 0.3s;}
+.pos-item.show{opacity:1;transform:translateY(0);}
+.pos-item.live{background:#f0fdf4;border-color:#bbf7d0;}
+.pos-store{font-size:10px;font-weight:600;color:#111827;}
+.pos-sku{font-size:8px;color:#9ca3af;font-family:'JetBrains Mono',monospace;}
+.pos-price-old{font-size:9px;color:#9ca3af;text-decoration:line-through;}
+.pos-price-new{font-size:10px;font-weight:700;color:#166534;font-family:'JetBrains Mono',monospace;}
+.pos-chip{font-size:8px;font-weight:600;padding:3px 8px;border-radius:12px;}
+.chip-live{background:#dcfce7;color:#166534;}
+.chip-sched{background:#f3f4f6;color:#9ca3af;}
+
+/* Audit trail */
+.audit-row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;font-size:9px;opacity:0;transition:opacity 0.3s;}
+.audit-row.show{opacity:1;}
+.audit-row:last-child{border-bottom:none;}
+.audit-time{color:#9ca3af;font-family:'JetBrains Mono',monospace;flex-shrink:0;font-size:8px;}
+.audit-text{color:#374151;}
+.audit-text.success{color:#166534;font-weight:600;}
+
+/* Summary strip */
+.summary-strip{background:#111827;border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-top:8px;opacity:0;transition:opacity 0.5s ease;}
+.summary-strip.show{opacity:1;}
+.ss-item{text-align:center;}
+.ss-num{font-size:18px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;letter-spacing:-0.5px;}
+.ss-lbl{font-size:8px;color:#6b7280;margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;}
+.ss-num.g{color:#4ade80;}
+.ss-divider{width:1px;height:36px;background:#374151;}
+
+/* Progress bar */
+.pb{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#166534,#4ade80);transition:width linear;z-index:50;border-radius:0 2px 2px 0;}
+
+/* Caption bar */
+.cap{background:#ffffff;border-top:1px solid #e5e7eb;padding:0 20px;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;}
+.cm{font-size:16px;font-weight:700;color:#111827;letter-spacing:-0.3px;opacity:0;transition:opacity 0.4s ease;line-height:1.3;flex:1;}
+.cm.v{opacity:1;}
+.cm em{color:#166534;font-style:normal;}
+.cm strong{color:#166534;font-style:normal;}
+.sds{display:flex;gap:6px;align-items:center;flex-shrink:0;}
+.sdt{width:6px;height:6px;border-radius:50%;background:#e5e7eb;transition:background 0.3s;}
+.sdt.a{background:#166534;}
+
+/* AI Scan scene */
+.scan-scene{position:absolute;inset:0;background:#ffffff;z-index:15;opacity:0;transition:opacity 0.4s ease;pointer-events:none;display:flex;flex-direction:column;}
+.scan-scene.act{opacity:1;}
+.scan-topbar{background:#f9fafb;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;}
+.scan-content{padding:16px 20px;flex:1;display:flex;flex-direction:column;gap:10px;}
+.scan-header{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.scan-spinner{width:18px;height:18px;border:2px solid #e5e7eb;border-top-color:#166534;border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scan-title{font-size:13px;font-weight:600;color:#111827;}
+.scan-sub{font-size:10px;color:#9ca3af;}
+.scan-progress-wrap{background:#f3f4f6;border-radius:6px;height:6px;overflow:hidden;margin-bottom:2px;}
+.scan-progress-fill{height:100%;background:linear-gradient(90deg,#166534,#4ade80);border-radius:6px;width:0%;transition:width 0.1s linear;}
+.scan-progress-lbl{font-size:9px;color:#9ca3af;display:flex;justify-content:space-between;}
+.scan-log{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;flex:1;overflow:hidden;}
+.scan-log-title{font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
+.scan-log-row{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #f3f4f6;font-size:9px;opacity:0;transition:opacity 0.3s ease;}
+.scan-log-row.show{opacity:1;}
+.scan-log-row:last-child{border-bottom:none;}
+.scan-log-icon{width:14px;height:14px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;}
+.sli-ok{background:#dcfce7;color:#166534;}
+.sli-warn{background:#fef3c7;color:#92400e;}
+.sli-scan{background:#dbeafe;color:#1d4ed8;animation:dp2 1s infinite;}
+@keyframes dp2{0%,100%{opacity:1}50%{opacity:0.4}}
+.scan-log-text{color:#374151;font-weight:500;}
+.scan-log-meta{margin-left:auto;color:#9ca3af;font-size:8px;font-family:'JetBrains Mono',monospace;}
+.scan-emerging{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
+.scan-em-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:6px;padding:8px 10px;opacity:0;transform:translateY(4px);transition:opacity 0.35s ease,transform 0.35s ease;}
+.scan-em-card.show{opacity:1;transform:translateY(0);}
+.scan-em-card.flagged{border-top:2px solid #ef4444;}
+.scan-em-card.warn{border-top:2px solid #f59e0b;}
+.scan-em-card.ok{border-top:2px solid #166534;}
+.scan-em-num{font-size:18px;font-weight:700;color:#111827;font-family:'JetBrains Mono',monospace;letter-spacing:-0.5px;}
+.scan-em-lbl{font-size:8px;color:#6b7280;margin-top:2px;}
+.scan-em-delta{font-size:8px;font-weight:600;margin-top:3px;}
+.scan-result{background:#111827;border-radius:8px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;opacity:0;transition:opacity 0.5s ease;}
+.scan-result.show{opacity:1;}
+.scan-result-left{display:flex;align-items:center;gap:10px;}
+.scan-result-icon{width:32px;height:32px;border-radius:50%;background:#166534;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.scan-result-text{font-size:12px;font-weight:700;color:#fff;letter-spacing:-0.2px;}
+.scan-result-sub{font-size:9px;color:#6b7280;margin-top:2px;}
+.scan-result-action{background:#166534;color:#fff;border:none;padding:6px 14px;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* Approved badge overlay *//* Approved badge overlay */
+.appr-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border:1px solid #bbf7d0;border-radius:12px;padding:20px 28px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);z-index:20;opacity:0;pointer-events:none;transition:opacity 0.4s ease;min-width:240px;}
+.appr-overlay.show{opacity:1;}
+.appr-overlay-icon{width:44px;height:44px;border-radius:50%;background:#dcfce7;border:2px solid #166534;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 10px;}
+.appr-overlay-title{font-size:13px;font-weight:700;color:#166534;margin-bottom:4px;}
+.appr-overlay-sub{font-size:10px;color:#6b7280;line-height:1.6;}
+</style>
+
+<div class="dw">
+  <!-- Browser chrome -->
+  <div class="bc">
+    <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+    <div class="ub"><span style="color:#9ca3af;">🔒</span><span class="ud">markdowniq.internal</span><span class="up" id="durl">/clearance-planner</span></div>
+    <div class="dm">DEMO MODE</div>
+  </div>
+
+  <!-- App layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sb-logo">
+        <div class="sb-logo-text"><span>Markdown</span>IQ</div>
+        <div class="sb-logo-sub">Clearance Intelligence</div>
+      </div>
+      <div class="sb-section">Planning</div>
+      <div class="sb-item a" id="sb0">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" fill="#166534"/><rect x="9" y="1" width="6" height="6" rx="1" fill="#d1fae5"/><rect x="1" y="9" width="6" height="6" rx="1" fill="#d1fae5"/><rect x="9" y="9" width="6" height="6" rx="1" fill="#d1fae5"/></svg>
+        Clearance Planner
+        <span class="sb-badge">847</span>
+      </div>
+      <div class="sb-item" id="sb1">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#6b7280" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+        AI Recommendations
+        <span class="sb-badge">798</span>
+      </div>
+      <div class="sb-item" id="sb2">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><path d="M2 12 L5 8 L8 10 L11 5 L14 3" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Margin Simulator
+      </div>
+      <div class="sb-section">Execution</div>
+      <div class="sb-item" id="sb3">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="14" height="10" rx="1.5" stroke="#6b7280" stroke-width="1.5"/><path d="M5 4V3a3 3 0 016 0v1" stroke="#6b7280" stroke-width="1.5"/></svg>
+        Approval & POS Push
+        <span class="sb-badge" style="background:#fef3c7;color:#92400e;">1</span>
+      </div>
+      <div class="sb-item">
+        <svg class="sb-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#6b7280" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Audit Trail
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sb-user">
+          <div class="sb-avatar">RM</div>
+          <div><div class="sb-uname">R. Mehta</div><div class="sb-urole">Head of Merchandising</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main area -->
+    <div class="main">
+      <div style="position:relative;height:100%;display:flex;flex-direction:column;">
+
+        <!-- SCAN SCENE: AI overnight analysis -->
+        <div class="scan-scene" id="scanScene">
+          <div class="scan-topbar">
+            <div><div class="tb-title">MarkdownIQ — AI Inventory Scan</div><div class="tb-sub">Overnight analysis · SS26 Summer · 12,847 SKUs</div></div>
+            <div class="tb-actions"><div class="tb-tag" id="scanTag">Scanning...</div></div>
+          </div>
+          <div class="scan-content">
+            <!-- Progress -->
+            <div>
+              <div class="scan-header">
+                <div class="scan-spinner" id="scanSpinner"></div>
+                <div><div class="scan-title" id="scanTitle">Scanning inventory — checking sell-through against targets</div><div class="scan-sub" id="scanSubtitle">Analysing 12,847 SKUs across 47 stores · Week 21 · SS26</div></div>
+              </div>
+              <div class="scan-progress-wrap"><div class="scan-progress-fill" id="scanFill"></div></div>
+              <div class="scan-progress-lbl"><span id="scanCount">0 SKUs scanned</span><span id="scanPct">0%</span></div>
+            </div>
+            <!-- Scan log -->
+            <div class="scan-log">
+              <div class="scan-log-title">Live Detection Log</div>
+              <div class="scan-log-row" id="sl1"><div class="scan-log-icon sli-ok">✓</div><span class="scan-log-text">Footwear · 2,140 SKUs · Sell-through on track</span><span class="scan-log-meta">avg 61%</span></div>
+              <div class="scan-log-row" id="sl2"><div class="scan-log-icon sli-ok">✓</div><span class="scan-log-text">Accessories · 1,820 SKUs · Within target range</span><span class="scan-log-meta">avg 58%</span></div>
+              <div class="scan-log-row" id="sl3"><div class="scan-log-icon sli-warn">⚠</div><span class="scan-log-text">Tops · 3,240 SKUs · <strong style="color:#92400e;">847 SKUs below 40% sell-through</strong></span><span class="scan-log-meta">avg 38%</span></div>
+              <div class="scan-log-row" id="sl4"><div class="scan-log-icon sli-warn">⚠</div><span class="scan-log-text">Bottoms · 2,180 SKUs · 312 SKUs ageing past 60 days</span><span class="scan-log-meta">avg 44%</span></div>
+              <div class="scan-log-row" id="sl5"><div class="scan-log-icon sli-ok">✓</div><span class="scan-log-text">Dresses · 1,940 SKUs · Seasonal mix healthy</span><span class="scan-log-meta">avg 55%</span></div>
+              <div class="scan-log-row" id="sl6"><div class="scan-log-icon sli-scan">●</div><span class="scan-log-text">Outerwear · 1,527 SKUs · Scanning...</span><span class="scan-log-meta">—</span></div>
+            </div>
+            <!-- Emerging numbers -->
+            <div class="scan-emerging">
+              <div class="scan-em-card flagged" id="sec1"><div class="scan-em-num" id="secn1">0</div><div class="scan-em-lbl">SKUs at risk</div><div class="scan-em-delta" style="color:#ef4444;">↓ below sell-thru target</div></div>
+              <div class="scan-em-card warn" id="sec2"><div class="scan-em-num" id="secn2">₹0</div><div class="scan-em-lbl">Margin at risk</div><div class="scan-em-delta" style="color:#f59e0b;">If no action taken</div></div>
+              <div class="scan-em-card ok" id="sec3"><div class="scan-em-num" id="secn3">0%</div><div class="scan-em-lbl">AI rec coverage</div><div class="scan-em-delta" style="color:#166534;">SKUs with rec ready</div></div>
+            </div>
+            <!-- Result strip -->
+            <div class="scan-result" id="scanResult">
+              <div class="scan-result-left">
+                <div class="scan-result-icon">✓</div>
+                <div><div class="scan-result-text">Scan complete · 847 SKUs flagged · AI recommendations ready</div><div class="scan-result-sub">Sorted by recovery opportunity · Margin floor applied · Ready for merchant review</div></div>
+              </div>
+              <button class="scan-result-action" id="scanCTA">Review Now →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scene card: Intro -->
+        <div class="sc act" id="sc0">
+          <div class="sc-pill">MarkdownIQ · Retail Clearance Intelligence</div>
+          <div class="sc-title">AI-powered markdown planning.<br/>Built for merchandising teams.</div>
+          <div class="sc-divider"></div>
+          <div class="sc-sub">Replaces Excel. Surfaces optimal clearance depth.<br/>Margin-floor guardrails. One-click POS push.</div>
+        </div>
+
+        <!-- FRAME 1: Clearance Planner -->
+        <div class="df" id="df1" style="position:absolute;inset:0;flex-direction:column;">
+          <div class="topbar">
+            <div><div class="tb-title">Clearance Planner — SS26 Summer</div><div class="tb-sub">Week 21 · 847 SKUs flagged · 24 days to season end</div></div>
+            <div class="tb-actions">
+              <div class="tb-tag">⚠ 847 SKUs past threshold</div>
+              <button class="tb-btn tb-btn-p">Run AI Analysis</button>
+            </div>
+          </div>
+          <div class="co" style="overflow-y:auto;">
+            <!-- KPIs -->
+            <div class="kr" id="kpis1">
+              <div class="kc danger" id="k1"><div class="kl">At-Risk Value</div><div class="kv">₹4.2Cr</div><div class="kd r">847 SKUs flagged</div></div>
+              <div class="kc danger" id="k2"><div class="kl">Avg Sell-Through</div><div class="kv">38%</div><div class="kd r">↓ vs 62% target</div></div>
+              <div class="kc warn" id="k3"><div class="kl">Days to Season End</div><div class="kv">24d</div><div class="kd a">Action needed now</div></div>
+              <div class="kc danger" id="k4"><div class="kl">Margin at Risk</div><div class="kv">₹1.8Cr</div><div class="kd r">If no action</div></div>
+              <div class="kc good" id="k5"><div class="kl">AI Rec Coverage</div><div class="kv">94%</div><div class="kd g">798 SKUs ready</div></div>
+            </div>
+            <!-- Table -->
+            <div class="tbl-wrap">
+              <div class="tbl-header">
+                <div class="tbl-title">Flagged Inventory — Sorted by Recovery Opportunity</div>
+                <div class="tbl-meta">Showing 5 of 847 · <span style="color:#166534;font-weight:600;">AI recs available</span></div>
+              </div>
+              <div class="tbl-th"><span>SKU / Description</span><span>Cat.</span><span>Age</span><span>Units</span><span>Sell-Thru</span><span>Price</span><span>AI Action</span><span>Est. Recovery</span></div>
+              <div class="tbl-row hl" id="r1">
+                <div><div class="sku-name">WS-LIN-BLU-M</div><div class="sku-desc">Linen Shirt Blue M</div></div>
+                <span>Tops</span>
+                <span><span class="age-chip age-r">84d</span></span>
+                <span>312</span>
+                <span><div class="st-bar"><div class="st-fill" id="sf1" style="width:0%;background:#ef4444;"></div></div> <span style="font-size:8px;color:#ef4444;">22%</span></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9px;">₹2,499</span>
+                <span><span class="act-chip act-r">↓ 40% off</span></span>
+                <span style="color:#166534;font-weight:700;font-size:9px;">₹4.67L</span>
+              </div>
+              <div class="tbl-row hl" id="r2">
+                <div><div class="sku-name">TR-CHN-KHK-32</div><div class="sku-desc">Chino Khaki W32</div></div>
+                <span>Bottoms</span>
+                <span><span class="age-chip age-r">91d</span></span>
+                <span>189</span>
+                <span><div class="st-bar"><div class="st-fill" id="sf2" style="width:0%;background:#ef4444;"></div></div> <span style="font-size:8px;color:#ef4444;">31%</span></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9px;">₹3,299</span>
+                <span><span class="act-chip act-r">↓ 35% off</span></span>
+                <span style="color:#166534;font-weight:700;font-size:9px;">₹4.03L</span>
+              </div>
+              <div class="tbl-row" id="r3">
+                <div><div class="sku-name">DR-FLR-YLW-S</div><div class="sku-desc">Floral Dress Yellow S</div></div>
+                <span>Dresses</span>
+                <span><span class="age-chip age-a">62d</span></span>
+                <span>94</span>
+                <span><div class="st-bar"><div class="st-fill" id="sf3" style="width:0%;background:#f59e0b;"></div></div> <span style="font-size:8px;color:#f59e0b;">48%</span></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9px;">₹4,199</span>
+                <span><span class="act-chip act-r">↓ 20% off</span></span>
+                <span style="color:#166534;font-weight:700;font-size:9px;">₹1.59L</span>
+              </div>
+              <div class="tbl-row" id="r4">
+                <div><div class="sku-name">JK-DNM-BLK-L</div><div class="sku-desc">Denim Jacket Black L</div></div>
+                <span>Outwear</span>
+                <span><span class="age-chip age-a">55d</span></span>
+                <span>67</span>
+                <span><div class="st-bar"><div class="st-fill" id="sf4" style="width:0%;background:#f59e0b;"></div></div> <span style="font-size:8px;color:#f59e0b;">41%</span></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9px;">₹5,999</span>
+                <span><span class="act-chip act-r">↓ 25% off</span></span>
+                <span style="color:#166534;font-weight:700;font-size:9px;">₹2.39L</span>
+              </div>
+              <div class="tbl-row" id="r5">
+                <div><div class="sku-name">SH-PPR-WHT-41</div><div class="sku-desc">Slip-on White 41</div></div>
+                <span>Footwear</span>
+                <span><span class="age-chip age-g">38d</span></span>
+                <span>143</span>
+                <span><div class="st-bar"><div class="st-fill" id="sf5" style="width:0%;background:#166534;"></div></div> <span style="font-size:8px;color:#166534;">58%</span></span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9px;">₹2,199</span>
+                <span><span class="act-chip act-g">Hold price</span></span>
+                <span style="color:#9ca3af;font-size:9px;">—</span>
+              </div>
+            </div>
+            <div style="font-size:9px;color:#9ca3af;text-align:right;">+ 842 more SKUs · <span style="color:#166534;font-weight:600;">Export full list →</span></div>
+          </div>
+        </div>
+
+        <!-- SCENE 1 -->
+        <div class="sc" id="sc1">
+          <div class="sc-pill">Module 02</div>
+          <div class="sc-title">AI Markdown Recommendations</div>
+          <div class="sc-divider"></div>
+          <div class="sc-sub">Elasticity-adjusted · margin-floor guardrails<br/>Confidence-scored per SKU</div>
+        </div>
+
+        <!-- FRAME 2: AI Recommendations -->
+        <div class="df" id="df2" style="position:absolute;inset:0;flex-direction:column;">
+          <div class="topbar">
+            <div><div class="tb-title">AI Recommendations — WS-LIN-BLU-M</div><div class="tb-sub">Linen Shirt Blue M · 312 units · 84 days aged · HIGH PRIORITY</div></div>
+            <div class="tb-actions">
+              <button class="tb-btn tb-btn-s">← Back to list</button>
+              <button class="tb-btn tb-btn-p">Apply Recommendation</button>
+            </div>
+          </div>
+          <div class="co" style="overflow-y:auto;">
+            <!-- AI panel -->
+            <div class="ai-panel" id="aip">
+              <div class="ai-header">
+                <div class="ai-label">✦ AI Recommendation Engine</div>
+                <div class="ai-conf">Confidence: 91%</div>
+              </div>
+              <div class="ai-rec-text">Recommend <em>40% markdown</em> → New price ₹1,499 · Push by Thursday Week 21</div>
+              <div class="ai-reason">84-day age · 22% sell-through vs 62% category benchmark · 24 days remaining · Price elasticity −1.8 (Tops SS26) · Margin floor ₹820/unit · At 40% off: <strong style="color:#166534;">87% probability of full clearance before season end.</strong></div>
+            </div>
+            <div class="two-col">
+              <div>
+                <div class="card" id="mocard" style="margin-bottom:8px;">
+                  <div class="card-title">Markdown Options <span class="card-title-tag">AI recommended ★</span></div>
+                  <div class="md-option insufficient" id="mo1">
+                    <div><div class="md-depth" style="color:#f59e0b;">−20%</div><div class="md-price">₹1,999 · Low impact</div></div>
+                    <div style="text-align:right"><div class="md-st" style="color:#374151;">Est. 51% sell-thru</div><div class="md-margin-txt" style="color:#f59e0b;">Margin ₹1,180 · Insufficient</div></div>
+                    <div class="md-tag tag-insuf">Insufficient</div>
+                  </div>
+                  <div class="md-option recommended" id="mo2">
+                    <div><div class="md-depth" style="color:#166534;">−40% ★</div><div class="md-price">₹1,499 · Optimal</div></div>
+                    <div style="text-align:right"><div class="md-st" style="color:#166534;font-weight:700;">Est. 87% sell-thru</div><div class="md-margin-txt" style="color:#166534;">Margin ₹820 ✓ Above floor</div></div>
+                    <div class="md-tag tag-rec">Recommended</div>
+                  </div>
+                  <div class="md-option aggressive" id="mo3">
+                    <div><div class="md-depth" style="color:#ef4444;">−50%</div><div class="md-price">₹1,249 · Aggressive</div></div>
+                    <div style="text-align:right"><div class="md-st" style="color:#166534;">Est. 96% sell-thru</div><div class="md-margin-txt" style="color:#ef4444;">Margin ₹570 ✗ Below floor</div></div>
+                    <div class="md-tag tag-bad">Below floor</div>
+                  </div>
+                </div>
+                <!-- Historical -->
+                <div class="card" id="histcard">
+                  <div class="card-title">Historical Benchmark <span style="font-size:8px;color:#9ca3af;font-weight:400;">Same category · 3 seasons</span></div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:4px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">SS25 Linen · 40% markdown</span><span style="color:#166534;font-weight:600;">89% clearance · 22d</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:4px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">SS24 Cotton shirts · 35% markdown</span><span style="color:#f59e0b;font-weight:600;">71% clearance · 28d</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:4px 0;"><span style="color:#6b7280;">SS24 Linen · 50% markdown</span><span style="color:#166534;font-weight:600;">97% clearance · 14d</span></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <!-- Elasticity chart -->
+                <div class="elas-wrap" id="elaswrap">
+                  <div style="font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Price Elasticity Curve · Tops SS26</div>
+                  <svg width="100%" height="100" viewBox="0 0 240 100">
+                    <defs>
+                      <linearGradient id="egr" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#166534" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="#166534" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <line x1="28" y1="8" x2="28" y2="78" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="28" y1="78" x2="232" y2="78" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="28" y1="25" x2="232" y2="25" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="28" y1="45" x2="232" y2="45" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="28" y1="62" x2="232" y2="62" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+                    <path d="M32 72 Q70 70 100 58 Q130 44 158 28 Q178 18 228 10" fill="none" stroke="#166534" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M32 72 Q70 70 100 58 Q130 44 158 28 Q178 18 228 10 L228 78 L32 78 Z" fill="url(#egr)"/>
+                    <!-- 40% marker -->
+                    <line x1="158" y1="8" x2="158" y2="78" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,2"/>
+                    <circle cx="158" cy="28" r="5" fill="#166534" stroke="#fff" stroke-width="2"/>
+                    <text x="162" y="26" font-size="8" fill="#166534" font-weight="700" font-family="'JetBrains Mono',monospace">40%→87%</text>
+                    <!-- Margin floor -->
+                    <line x1="28" y1="55" x2="232" y2="55" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+                    <text x="30" y="52" font-size="7" fill="#ef4444" font-family="Inter,sans-serif">Margin floor</text>
+                    <!-- Axis labels -->
+                    <text x="14" y="82" font-size="7" fill="#9ca3af" font-family="Inter,sans-serif">0%</text>
+                    <text x="216" y="82" font-size="7" fill="#9ca3af" font-family="Inter,sans-serif">60%</text>
+                    <text x="2" y="30" font-size="7" fill="#9ca3af" font-family="Inter,sans-serif" transform="rotate(-90 10 50)">Sell-thru</text>
+                    <text x="100" y="90" font-size="7" fill="#9ca3af" font-family="Inter,sans-serif">Markdown depth</text>
+                  </svg>
+                </div>
+                <!-- Simulation -->
+                <div class="card" id="simcard">
+                  <div class="card-title">Outcome Simulation <span class="card-title-tag">40% scenario</span></div>
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">Units to clear</span><span style="font-family:'JetBrains Mono',monospace;color:#111827;font-weight:600;">271 / 312</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">Revenue recovered</span><span style="color:#166534;font-weight:700;font-family:'JetBrains Mono',monospace;">₹4,06,629</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:3px 0;border-bottom:1px solid #f3f4f6;"><span style="color:#6b7280;">Margin per unit</span><span style="color:#166534;font-weight:600;font-family:'JetBrains Mono',monospace;">₹820 ✓</span></div>
+                    <div style="display:flex;justify-content:space-between;font-size:9px;padding:3px 0;"><span style="color:#6b7280;">Estimated clear-by</span><span style="color:#166534;font-weight:600;">Week 23 · 14 days</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 2 -->
+        <div class="sc" id="sc2">
+          <div class="sc-pill">Module 03</div>
+          <div class="sc-title">Margin Simulator</div>
+          <div class="sc-divider"></div>
+          <div class="sc-sub">Bulk review · what-if modelling<br/>All SKUs validated against margin floor</div>
+        </div>
+
+        <!-- FRAME 3: Margin Simulator -->
+        <div class="df" id="df3" style="position:absolute;inset:0;flex-direction:column;">
+          <div class="topbar">
+            <div><div class="tb-title">Margin Simulator — Bulk Review</div><div class="tb-sub">14 SKUs selected · Week 21 batch · Tops & Bottoms</div></div>
+            <div class="tb-actions">
+              <button class="tb-btn tb-btn-s">Adjust filters</button>
+              <button class="tb-btn tb-btn-p" id="approveAllBtn">✓ Approve All</button>
+            </div>
+          </div>
+          <div class="co" style="overflow-y:auto;">
+            <div class="two-col">
+              <div>
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:8px;">
+                  <div style="padding:8px 12px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:10px;font-weight:600;color:#111827;">Recommended Markdowns</span>
+                    <span style="font-size:9px;color:#166534;font-weight:600;">14 SKUs · All margin-compliant</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:1.6fr 0.6fr 0.7fr 0.5fr 0.6fr 0.8fr;gap:4px;padding:5px 10px;font-size:8px;color:#9ca3af;border-bottom:1px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;">
+                    <span>SKU</span><span>Current</span><span>New</span><span>Depth</span><span>Margin</span><span>Action</span>
+                  </div>
+                  <div id="simtable">
+                    <div class="sim-row-item" id="sr1"><div><div class="sim-sku">WS-LIN-BLU-M</div><div class="sim-cat">Linen Shirt</div></div><span class="sim-price-old">₹2,499</span><span class="sim-price-new">₹1,499</span><span class="sim-depth">−40%</span><span class="sim-margin ok">₹820</span><button class="approve-btn" id="ab1">Approve</button></div>
+                    <div class="sim-row-item" id="sr2"><div><div class="sim-sku">TR-CHN-KHK-32</div><div class="sim-cat">Chino Khaki</div></div><span class="sim-price-old">₹3,299</span><span class="sim-price-new">₹2,144</span><span class="sim-depth">−35%</span><span class="sim-margin ok">₹940</span><button class="approve-btn" id="ab2">Approve</button></div>
+                    <div class="sim-row-item" id="sr3"><div><div class="sim-sku">DR-FLR-YLW-S</div><div class="sim-cat">Floral Dress</div></div><span class="sim-price-old">₹4,199</span><span class="sim-price-new">₹3,359</span><span class="sim-depth">−20%</span><span class="sim-margin ok">₹1,620</span><button class="approve-btn" id="ab3">Approve</button></div>
+                    <div class="sim-row-item" id="sr4"><div><div class="sim-sku">JK-DNM-BLK-L</div><div class="sim-cat">Denim Jacket</div></div><span class="sim-price-old">₹5,999</span><span class="sim-price-new">₹4,499</span><span class="sim-depth">−25%</span><span class="sim-margin warn">₹1,240</span><button class="approve-btn" id="ab4">Approve</button></div>
+                    <div style="font-size:9px;color:#9ca3af;padding:8px 10px;text-align:center;border-top:1px solid #f3f4f6;">+ 10 more SKUs in batch</div>
+                  </div>
+                </div>
+                <!-- Summary strip -->
+                <div class="summary-strip" id="sumstrip">
+                  <div class="ss-item"><div class="ss-num">14</div><div class="ss-lbl">SKUs</div></div>
+                  <div class="ss-divider"></div>
+                  <div class="ss-item"><div class="ss-num">32%</div><div class="ss-lbl">Avg depth</div></div>
+                  <div class="ss-divider"></div>
+                  <div class="ss-item"><div class="ss-num g">84%</div><div class="ss-lbl">Proj. sell-thru</div></div>
+                  <div class="ss-divider"></div>
+                  <div class="ss-item"><div class="ss-num g">₹3.1Cr</div><div class="ss-lbl">Recovery</div></div>
+                  <div class="ss-divider"></div>
+                  <div class="ss-item"><div class="ss-num" style="color:#f87171;">14/14</div><div class="ss-lbl">Floor compliant</div></div>
+                </div>
+              </div>
+              <div>
+                <!-- Waterfall -->
+                <div class="card show" style="margin-bottom:8px;">
+                  <div class="card-title">P&L Impact — Week 21 Batch</div>
+                  <div class="wf" id="wfall">
+                    <div class="wf-col"><div class="wf-bar2" id="wb1" style="height:0;background:#e5e7eb;border:1px solid #d1d5db;"></div><div class="wf-lbl">Current<br/>value<br/>₹4.2Cr</div></div>
+                    <div class="wf-col" style="font-size:10px;color:#9ca3af;justify-content:center;padding-bottom:20px;display:flex;align-items:center;">−</div>
+                    <div class="wf-col"><div class="wf-bar2" id="wb2" style="height:0;background:#fee2e2;border:1px solid #fecaca;"></div><div class="wf-lbl">Markdown<br/>cost<br/>₹1.1Cr</div></div>
+                    <div class="wf-col" style="font-size:10px;color:#9ca3af;justify-content:center;padding-bottom:20px;display:flex;align-items:center;">=</div>
+                    <div class="wf-col"><div class="wf-bar2" id="wb3" style="height:0;background:#dcfce7;border:1px solid #bbf7d0;"></div><div class="wf-lbl" style="color:#166534;">Recovered<br/>₹3.1Cr</div></div>
+                    <div class="wf-col" style="font-size:10px;color:#9ca3af;justify-content:center;padding-bottom:20px;display:flex;align-items:center;">vs</div>
+                    <div class="wf-col"><div class="wf-bar2" id="wb4" style="height:0;background:#fee2e2;border:1px solid #fecaca;"></div><div class="wf-lbl" style="color:#ef4444;">No action<br/>loss ₹1.8Cr</div></div>
+                  </div>
+                </div>
+                <!-- Category breakdown -->
+                <div class="card show">
+                  <div class="card-title">Category Breakdown</div>
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:#374151;font-weight:500;">Tops (6 SKUs)</span><div style="display:flex;align-items:center;gap:6px;"><div style="width:80px;height:5px;background:#f3f4f6;border-radius:2px;overflow:hidden;"><div style="width:82%;height:100%;background:#166534;border-radius:2px;"></div></div><span style="color:#166534;font-weight:600;">82% proj</span></div></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:#374151;font-weight:500;">Bottoms (4 SKUs)</span><div style="display:flex;align-items:center;gap:6px;"><div style="width:80px;height:5px;background:#f3f4f6;border-radius:2px;overflow:hidden;"><div style="width:78%;height:100%;background:#166534;border-radius:2px;"></div></div><span style="color:#166534;font-weight:600;">78% proj</span></div></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:#374151;font-weight:500;">Dresses (3 SKUs)</span><div style="display:flex;align-items:center;gap:6px;"><div style="width:80px;height:5px;background:#f3f4f6;border-radius:2px;overflow:hidden;"><div style="width:91%;height:100%;background:#166534;border-radius:2px;"></div></div><span style="color:#166534;font-weight:600;">91% proj</span></div></div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;font-size:9px;"><span style="color:#374151;font-weight:500;">Outerwear (1 SKU)</span><div style="display:flex;align-items:center;gap:6px;"><div style="width:80px;height:5px;background:#f3f4f6;border-radius:2px;overflow:hidden;"><div style="width:68%;height:100%;background:#f59e0b;border-radius:2px;"></div></div><span style="color:#f59e0b;font-weight:600;">68% proj</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Approved overlay -->
+            <div class="appr-overlay" id="approvedOverlay">
+              <div class="appr-overlay-icon">✓</div>
+              <div class="appr-overlay-title">14 SKUs Approved</div>
+              <div class="appr-overlay-sub">Sending to GMM for final sign-off.<br/>POS push scheduled Thursday 06:00.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCENE 3 -->
+        <div class="sc" id="sc3">
+          <div class="sc-pill">Module 04</div>
+          <div class="sc-title">Approval & POS Push</div>
+          <div class="sc-divider"></div>
+          <div class="sc-sub">GMM sign-off · automated price sync<br/>47 stores · ERP · E-commerce · App</div>
+        </div>
+
+        <!-- FRAME 4: Approval & POS Push -->
+        <div class="df" id="df4" style="position:absolute;inset:0;flex-direction:column;">
+          <div class="topbar">
+            <div><div class="tb-title">Approval & POS Push — MD-2026-W21-TOPS</div><div class="tb-sub">14 SKUs · ₹3.1Cr recovery · Pending GMM approval</div></div>
+            <div class="tb-actions">
+              <div class="tb-tag">1 pending approval</div>
+            </div>
+          </div>
+          <div class="co" style="overflow-y:auto;">
+            <!-- Approval flow -->
+            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px;margin-bottom:10px;">
+              <div style="font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px;">Approval Workflow</div>
+              <div class="appr-steps">
+                <div class="appr-step"><div class="appr-circle apc-done">✓</div><div class="appr-lbl">AI Analysis<br/>Complete</div></div>
+                <div class="appr-step"><div class="appr-circle apc-done">✓</div><div class="appr-lbl">Margin Floor<br/>Validated</div></div>
+                <div class="appr-step"><div class="appr-circle apc-done">✓</div><div class="appr-lbl">Merchant<br/>Review Done</div></div>
+                <div class="appr-step"><div class="appr-circle apc-active" id="gmmCircle">4</div><div class="appr-lbl appr-active-txt">GMM<br/>Approval</div></div>
+                <div class="appr-step"><div class="appr-circle apc-pending" id="posCircle">5</div><div class="appr-lbl">POS<br/>Push</div></div>
+              </div>
+              <!-- GMM card -->
+              <div style="background:#f9fafb;border-radius:6px;padding:12px;border:1px solid #f3f4f6;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:30px;height:30px;border-radius:50%;background:#166534;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">PS</div>
+                    <div><div style="font-size:11px;font-weight:600;color:#111827;">Priya Sharma — GMM</div><div style="font-size:8px;color:#9ca3af;">Notified 14 min ago via email + app</div></div>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center;">
+                    <div><div style="font-size:14px;font-weight:700;color:#111827;font-family:'JetBrains Mono',monospace;">14</div><div style="font-size:7px;color:#9ca3af;">SKUs</div></div>
+                    <div><div style="font-size:14px;font-weight:700;color:#f59e0b;font-family:'JetBrains Mono',monospace;">32%</div><div style="font-size:7px;color:#9ca3af;">Avg depth</div></div>
+                    <div><div style="font-size:14px;font-weight:700;color:#166534;font-family:'JetBrains Mono',monospace;">₹3.1Cr</div><div style="font-size:7px;color:#9ca3af;">Recovery</div></div>
+                    <div><div style="font-size:14px;font-weight:700;color:#166534;font-family:'JetBrains Mono',monospace;">14/14</div><div style="font-size:7px;color:#9ca3af;">Floor ✓</div></div>
+                  </div>
+                </div>
+                <div style="display:flex;gap:6px;" id="gmmBtns">
+                  <button style="flex:1;padding:8px 14px;background:#166534;color:#fff;border:none;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;" id="gmmApprBtn">✓ Approve & Schedule POS Push</button>
+                  <button style="padding:8px 14px;background:#fff;color:#6b7280;border:1px solid #e5e7eb;border-radius:6px;font-size:10px;cursor:pointer;font-family:'Inter',sans-serif;">Request Changes</button>
+                </div>
+              </div>
+            </div>
+            <div class="two-col">
+              <!-- POS push -->
+              <div>
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
+                  <div style="padding:8px 12px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;">
+                    <span style="font-size:10px;font-weight:600;color:#111827;">POS Push Status</span>
+                    <span id="posStatusLbl" style="font-size:9px;color:#9ca3af;">Awaiting approval</span>
+                  </div>
+                  <div style="padding:8px;">
+                    <div class="pos-item" id="pi1"><div><div class="pos-store">All 47 Stores</div><div class="pos-sku">WS-LIN-BLU-M + 13 SKUs</div></div><div><div class="pos-price-old">Various</div><div class="pos-price-new">−30–40%</div></div><span class="pos-chip chip-sched" id="pc1">Scheduled Thu 06:00</span></div>
+                    <div class="pos-item" id="pi2"><div><div class="pos-store">E-commerce</div><div class="pos-sku">Auto-sync on approval</div></div><div></div><span class="pos-chip chip-sched" id="pc2">Queued</span></div>
+                    <div class="pos-item" id="pi3"><div><div class="pos-store">Mobile App</div><div class="pos-sku">Push notification + price update</div></div><div></div><span class="pos-chip chip-sched" id="pc3">Queued</span></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Audit trail -->
+              <div>
+                <div style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;">
+                  <div style="padding:8px 12px;border-bottom:1px solid #f3f4f6;"><span style="font-size:10px;font-weight:600;color:#111827;">Audit Trail</span></div>
+                  <div style="padding:8px 12px;">
+                    <div class="audit-row show"><span class="audit-time">14:22</span><span class="audit-text">AI analysis complete · 798 SKUs processed</span></div>
+                    <div class="audit-row show"><span class="audit-time">14:24</span><span class="audit-text">Margin floor validation passed · 14/14</span></div>
+                    <div class="audit-row show"><span class="audit-time">14:31</span><span class="audit-text">Merchant review · R. Mehta approved batch</span></div>
+                    <div class="audit-row show"><span class="audit-time">14:45</span><span class="audit-text">GMM notification sent · Priya Sharma</span></div>
+                    <div class="audit-row" id="finalAudit"><span class="audit-time">—</span><span class="audit-text" style="color:#9ca3af;">Awaiting GMM approval...</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pb" id="dpb"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caption -->
+  <div class="cap">
+    <div class="cm v" id="dcap">847 SKUs. ₹4.2Cr at risk. <em>AI has a clearance plan.</em></div>
+    <div class="sds">
+      <div class="sdt a" id="ds0"></div><div class="sdt" id="ds1"></div><div class="sdt" id="ds2"></div><div class="sdt" id="ds3"></div>
+    </div>
+  </div>
+</div>`;
+  (function(){
+  // ── Animation Engine — Progressive Reveal ──
+(function(){
+  const pbar = document.getElementById('dpb');
+  const capEl = document.getElementById('dcap');
+  if(!pbar||!capEl) return;
+
+  const TOTAL = 39000;
+  let timers = [];
+  const t = (ms,fn) => { const id=setTimeout(fn,ms); timers.push(id); };
+
+  const show = (id) => { const el=document.getElementById(id); if(el) el.classList.add('show'); };
+  const hide = (id) => { const el=document.getElementById(id); if(el) el.classList.remove('show'); };
+  const setProgress = (pct,dur) => { pbar.style.transition=`width ${dur}ms linear`; pbar.style.width=pct+'%'; };
+  const setCaption = txt => { capEl.classList.remove('v'); setTimeout(()=>{ capEl.innerHTML=txt; capEl.classList.add('v'); },350); };
+
+  const setDots = idx => { document.querySelectorAll('.sdt').forEach((d,i)=>d.classList.toggle('a',i===idx)); };
+  const setUrl = url => { const u=document.getElementById('durl'); if(u) u.textContent=url; };
+  const setSidebar = idx => {
+    document.querySelectorAll('.sb-item').forEach((s,i)=>s.classList.toggle('a',i===idx));
+  };
+
+  const showScene = (scId, navIdx, url) => {
+    document.querySelectorAll('.sc').forEach(s=>s.classList.remove('act'));
+    document.querySelectorAll('.df').forEach(f=>{ f.classList.remove('act'); f.style.position='absolute'; });
+    const sc=document.getElementById(scId); if(sc) sc.classList.add('act');
+    setDots(navIdx); setSidebar(navIdx); setUrl(url);
+  };
+
+  const showFrame = (frId, navIdx, url) => {
+    document.querySelectorAll('.sc').forEach(s=>s.classList.remove('act'));
+    document.querySelectorAll('.df').forEach(f=>{ f.classList.remove('act'); f.style.position='absolute'; });
+    const fr=document.getElementById(frId);
+    if(fr){ fr.classList.add('act'); fr.style.position='relative'; }
+    setDots(navIdx); setSidebar(navIdx); setUrl(url);
+  };
+
+  const animateWaterfall = () => {
+    const bars = [
+      {id:'wb1', h:'90%', delay:0},
+      {id:'wb2', h:'40%', delay:300},
+      {id:'wb3', h:'60%', delay:600},
+      {id:'wb4', h:'18%', delay:900},
+    ];
+    bars.forEach(({id,h,delay}) => {
+      setTimeout(()=>{
+        const el=document.getElementById(id);
+        if(el){ el.style.height=h; el.classList.add('show'); }
+      }, delay);
+    });
+  };
+
+  function runSeq(){
+    timers.forEach(clearTimeout); timers=[];
+
+    // Hide scan scene initially (handled by loop reset)
+    const ssi=document.getElementById('scanScene'); if(ssi) ssi.classList.remove('act');
+
+    // Reset all reveals
+    document.querySelectorAll('.kc,.tbl-row,.card,.ai-panel,.md-option,.elas-wrap,.sim-row-item,.pos-item,.audit-row,.summary-strip,.appr-overlay').forEach(el=>{
+      el.classList.remove('show','approved');
+    });
+    ['wb1','wb2','wb3','wb4'].forEach(id=>{ const el=document.getElementById(id); if(el){el.style.height='0';el.classList.remove('show');} });
+    ['sf1','sf2','sf3','sf4','sf5'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.width='0%'; });
+    const gc=document.getElementById('gmmCircle'); if(gc){gc.className='appr-circle apc-active';gc.textContent='4';}
+    const pc=document.getElementById('posCircle'); if(pc){pc.className='appr-circle apc-pending';pc.textContent='5';}
+    ['pc1','pc2','pc3'].forEach(id=>{ const el=document.getElementById(id); if(el){el.className='pos-chip chip-sched';el.textContent=id==='pc1'?'Scheduled Thu 06:00':'Queued';} });
+    const fa=document.getElementById('finalAudit'); if(fa){fa.classList.remove('show'); fa.innerHTML='<span class="audit-time">—</span><span class="audit-text" style="color:#9ca3af;">Awaiting GMM approval...</span>';}
+    const ps=document.getElementById('posStatusLbl'); if(ps){ps.textContent='Awaiting approval';ps.style.color='#9ca3af';}
+    const gb=document.getElementById('gmmBtns'); if(gb) gb.style.opacity='1';
+    ['ab1','ab2','ab3','ab4'].forEach(id=>{ const el=document.getElementById(id); if(el){el.className='approve-btn';el.textContent='Approve';} });
+    const ao=document.getElementById('approvedOverlay'); if(ao) ao.classList.remove('show');
+    ['pi1','pi2','pi3'].forEach(id=>{ const el=document.getElementById(id); if(el){el.classList.remove('show','live');} });
+
+    // ── SCAN SCENE: AI overnight scan (0–7s) ──
+    t(0,()=>{
+      // Show scan scene
+      document.querySelectorAll('.sc,.df').forEach(el=>{el.classList.remove('act');if(el.classList.contains('df')) el.style.position='absolute';});
+      const ss=document.getElementById('scanScene'); if(ss) ss.classList.add('act');
+      setProgress(0,100);
+      setCaption('Every Monday. 12,847 SKUs. <em>Which ones are bleeding margin?</em>');
+      setDots(0); setSidebar(0);
+      setUrl('/inventory-scan');
+      // Animate progress bar fill
+      const fill=document.getElementById('scanFill');
+      const count=document.getElementById('scanCount');
+      const pct=document.getElementById('scanPct');
+      let progress=0;
+      const scanInterval=setInterval(()=>{
+        progress+=2.2;
+        if(progress>=100){ progress=100; clearInterval(scanInterval); }
+        if(fill) fill.style.width=progress+'%';
+        const scanned=Math.round((progress/100)*12847);
+        if(count) count.textContent=scanned.toLocaleString()+' SKUs scanned';
+        if(pct) pct.textContent=Math.round(progress)+'%';
+      },60);
+    });
+    // Log rows appear
+    t(600,()=>show('sl1'));
+    t(1100,()=>show('sl2'));
+    t(1700,()=>{
+      show('sl3');
+      setCaption('847 SKUs. Tops category. <em>38% sell-through vs 62% target.</em>');
+    });
+    t(2300,()=>show('sl4'));
+    t(2800,()=>show('sl5'));
+    t(3100,()=>show('sl6'));
+    // Emerging numbers count up
+    t(3400,()=>{
+      show('sec1'); show('sec2'); show('sec3');
+      // Count up SKUs
+      let n=0; const ni=setInterval(()=>{ n+=47; if(n>=847){n=847;clearInterval(ni);} const el=document.getElementById('secn1'); if(el) el.textContent=n; },40);
+      // Count up margin
+      let m=0; const mi=setInterval(()=>{ m+=0.09; if(m>=1.8){m=1.8;clearInterval(mi);} const el=document.getElementById('secn2'); if(el) el.textContent='₹'+m.toFixed(1)+'Cr'; },50);
+      // Count up coverage
+      let c=0; const ci=setInterval(()=>{ c+=5; if(c>=94){c=94;clearInterval(ci);} const el=document.getElementById('secn3'); if(el) el.textContent=c+'%'; },40);
+    });
+    // Update log row 6 to done
+    t(4200,()=>{
+      const sl6=document.getElementById('sl6');
+      if(sl6) sl6.innerHTML='<div class="scan-log-icon sli-ok">✓</div><span class="scan-log-text">Outerwear · 1,527 SKUs · On track</span><span class="scan-log-meta">avg 52%</span>';
+      const st=document.getElementById('scanTag'); if(st){st.textContent='✓ Scan complete';st.style.background='#dcfce7';st.style.color='#166534';st.style.borderColor='#bbf7d0';}
+      const sp=document.getElementById('scanSpinner'); if(sp){sp.style.animation='none';sp.style.borderColor='#166534';sp.style.borderTopColor='#166534';sp.textContent='✓';sp.style.display='flex';sp.style.alignItems='center';sp.style.justifyContent='center';sp.style.fontSize='10px';sp.style.color='#166534';}
+      const st2=document.getElementById('scanTitle'); if(st2) st2.textContent='Scan complete — 847 SKUs require clearance action';
+      show('scanResult');
+      setCaption('Scan complete. <em>847 SKUs flagged.</em> AI recommendations ready.');
+    });
+    t(6200,()=>{
+      // Transition out scan scene
+      const ss=document.getElementById('scanScene'); if(ss) ss.classList.remove('act');
+    });
+
+    t(6200,()=>{
+      // Transition out scan scene — handled above
+    });
+
+    // ── FRAME 1: Clearance Planner (8–14s) ──
+    t(8000,()=>{ showFrame('df1',0,'/clearance-planner'); setProgress(20,32000); });
+    t(8400,()=>show('k1'));
+    t(8650,()=>show('k2'));
+    t(8900,()=>show('k3'));
+    t(9150,()=>show('k4'));
+    t(9400,()=>show('k5'));
+    t(9800,()=>{ show('r1'); setTimeout(()=>{ const e=document.getElementById('sf1'); if(e) e.style.width='22%'; },200); });
+    t(10150,()=>{ show('r2'); setTimeout(()=>{ const e=document.getElementById('sf2'); if(e) e.style.width='31%'; },200); });
+    t(10500,()=>{ show('r3'); setTimeout(()=>{ const e=document.getElementById('sf3'); if(e) e.style.width='48%'; },200); });
+    t(10850,()=>{ show('r4'); setTimeout(()=>{ const e=document.getElementById('sf4'); if(e) e.style.width='41%'; },200); });
+    t(11200,()=>{ show('r5'); setTimeout(()=>{ const e=document.getElementById('sf5'); if(e) e.style.width='58%'; },200); });
+    t(11800,()=>setCaption('38% sell-through. 24 days left. <em>Every day costs margin.</em>'));
+
+    // ── TRANSITION: AI Recommendations (14s) ──
+    t(14000,()=>{
+      showScene('sc1',1,'/ai-recommendations');
+      setCaption('40% markdown. <em>87% sell-through projected.</em> Margin floor: ₹820.');
+    });
+
+    // ── FRAME 2: AI Recommendations (16–21s) ──
+    t(16000,()=>{ showFrame('df2',1,'/ai-recommendations'); });
+    t(16400,()=>show('aip'));
+    t(16900,()=>show('mocard'));
+    t(17200,()=>show('mo1'));
+    t(17550,()=>show('mo2'));
+    t(17900,()=>show('mo3'));
+    t(18300,()=>show('elaswrap'));
+    t(18800,()=>show('histcard'));
+    t(19200,()=>show('simcard'));
+    t(19600,()=>setCaption('Margin floor guardrail active. <em>50% markdown blocked.</em> 40% is optimal.'));
+
+    // ── TRANSITION: Margin Simulator (21s) ──
+    t(21000,()=>{
+      showScene('sc2',2,'/margin-simulator');
+      setCaption('14 SKUs. Bulk review. <em>₹3.1Cr recovered vs ₹1.8Cr lost.</em>');
+    });
+
+    // ── FRAME 3: Margin Simulator (23–30s) ──
+    t(23000,()=>{ showFrame('df3',2,'/margin-simulator'); });
+    t(23400,()=>show('sr1'));
+    t(23700,()=>show('sr2'));
+    t(24000,()=>show('sr3'));
+    t(24300,()=>show('sr4'));
+    t(24800,()=>animateWaterfall());
+    t(25600,()=>show('sumstrip'));
+    t(26400,()=>{
+      setCaption('Merchant reviews. <em>One click.</em> All 14 SKUs approved.');
+      ['ab1','ab2','ab3','ab4'].forEach((id,i)=>{
+        setTimeout(()=>{
+          const el=document.getElementById(id);
+          const row=document.getElementById('sr'+(i+1));
+          if(el){el.className='approve-btn approved';el.textContent='✓ Approved';}
+          if(row) row.classList.add('approved');
+        }, i*250);
+      });
+    });
+    t(27600,()=>{
+      const ao=document.getElementById('approvedOverlay');
+      if(ao){ ao.classList.add('show'); setTimeout(()=>ao.classList.remove('show'),2000); }
+    });
+
+    // ── TRANSITION: Approval & POS (29s) ──
+    t(29000,()=>{
+      showScene('sc3',3,'/approval-pos');
+      setCaption('GMM approves. <em>47 stores.</em> Price synced to POS · ERP · App.');
+    });
+
+    // ── FRAME 4: Approval & POS (31–40s) ──
+    t(31000,()=>{ showFrame('df4',3,'/approval-pos'); });
+    t(31400,()=>{ show('pi1'); show('pi2'); show('pi3'); });
+    t(33000,()=>{
+      setCaption('<strong>Approved.</strong> Price update live across 47 stores. <em>Zero manual effort.</em>');
+      const gc=document.getElementById('gmmCircle'); if(gc){gc.className='appr-circle apc-done';gc.textContent='✓';}
+      const pc=document.getElementById('posCircle'); if(pc){pc.className='appr-circle apc-done';pc.textContent='✓';}
+      setTimeout(()=>{
+        ['pc1','pc2','pc3'].forEach(id=>{
+          const el=document.getElementById(id);
+          const pi=document.getElementById('pi'+id.slice(2));
+          if(el){el.className='pos-chip chip-live';el.textContent='● Live';}
+          if(pi) pi.classList.add('live');
+        });
+        const ps=document.getElementById('posStatusLbl'); if(ps){ps.textContent='✓ Live across all channels';ps.style.color='#166534';}
+        const fa=document.getElementById('finalAudit');
+        if(fa){ fa.innerHTML='<span class="audit-time" style="color:#166534;">15:02</span><span class="audit-text success">GMM approved · Priya Sharma · POS push live</span>'; fa.classList.add('show'); }
+        const gb=document.getElementById('gmmBtns'); if(gb) gb.style.opacity='0.4';
+      }, 600);
+    });
+    t(36000,()=>setCaption('Excel replaced. End-to-end in one platform. <em>₹3.1Cr recovered.</em>'));
+
+    // ── LOOP ──
+    t(39000,()=>{
+      // Reset scan scene state
+      const ss=document.getElementById('scanScene'); if(ss) ss.classList.remove('act');
+      ['sl1','sl2','sl3','sl4','sl5','sl6'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.remove('show'); });
+      ['sec1','sec2','sec3'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.remove('show'); });
+      const sr=document.getElementById('scanResult'); if(sr) sr.classList.remove('show');
+      const fill=document.getElementById('scanFill'); if(fill) fill.style.width='0%';
+      const sc=document.getElementById('scanCount'); if(sc) sc.textContent='0 SKUs scanned';
+      const sp2=document.getElementById('scanPct'); if(sp2) sp2.textContent='0%';
+      const secn1=document.getElementById('secn1'); if(secn1) secn1.textContent='0';
+      const secn2=document.getElementById('secn2'); if(secn2) secn2.textContent='₹0';
+      const secn3=document.getElementById('secn3'); if(secn3) secn3.textContent='0%';
+      const sl6el=document.getElementById('sl6'); if(sl6el) sl6el.innerHTML='<div class="scan-log-icon sli-scan">●</div><span class="scan-log-text">Outerwear · 1,527 SKUs · Scanning...</span><span class="scan-log-meta">—</span>';
+      const stag=document.getElementById('scanTag'); if(stag){stag.textContent='Scanning...';stag.style.background='';stag.style.color='';stag.style.borderColor='';}
+      const spin=document.getElementById('scanSpinner'); if(spin){spin.style.animation='spin 0.8s linear infinite';spin.style.borderColor='#e5e7eb';spin.style.borderTopColor='#166534';spin.textContent='';spin.style.fontSize='';}
+      const sti=document.getElementById('scanTitle'); if(sti) sti.textContent='Scanning inventory — checking sell-through against targets';
+      setProgress(0,100);
+      setTimeout(()=>{ setProgress(100,39000); runSeq(); },200);
+    });
+  }
+
+  setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },500);
+})();
+
+  })();
+}
+
+// ── ClauseIQ Demo (Tab 3) — lazy init ──
+function initClauseIQDemo(){
+  document.getElementById('ciContainer').innerHTML = `
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.app{width:100%;background:#fafaf8;border-radius:14px;overflow:hidden;font-family:'Inter',system-ui,sans-serif;box-shadow:0 40px 100px rgba(0,0,0,0.35),0 0 0 1px rgba(0,0,0,0.08);}
+.chrome{background:#2d2d2d;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a1a1a;}
+.dots{display:flex;gap:6px;}.dot{width:11px;height:11px;border-radius:50%;}
+.dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
+.urlbar{flex:1;background:#1a1a1a;border-radius:6px;padding:5px 14px;font-size:11px;color:#6b7280;display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;}
+.urlbar-d{color:#d1d5db;font-weight:500;}
+.dm-tag{background:rgba(251,191,36,0.15);color:#f59e0b;font-size:8px;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:0.8px;border:1px solid rgba(251,191,36,0.3);}
+/* Top nav */
+.topnav{background:#ffffff;border-bottom:1px solid #e5e7eb;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:48px;flex-shrink:0;}
+.nav-brand{display:flex;align-items:center;gap:8px;}
+.nav-logo{width:28px;height:28px;border-radius:6px;background:#1c1917;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#f59e0b;}
+.nav-name{font-size:13px;font-weight:700;color:#1c1917;letter-spacing:-0.3px;}
+.nav-name span{color:#d97706;}
+.nav-right{display:flex;gap:8px;align-items:center;}
+.nav-btn{padding:6px 14px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border:none;}
+.nb-p{background:#1c1917;color:#fff;}.nb-s{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;}
+.nav-credit{font-size:10px;color:#9ca3af;display:flex;align-items:center;gap:4px;}
+.nav-credit-dot{width:6px;height:6px;border-radius:50%;background:#10b981;}
+/* Layout */
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:520px;}
+/* Left panel */
+.lpanel{background:#f5f4f0;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;overflow:hidden;}
+.lp-header{padding:14px 16px;border-bottom:1px solid #e5e7eb;background:#fff;flex-shrink:0;}
+.lp-proj{font-size:12px;font-weight:700;color:#1c1917;margin-bottom:2px;}
+.lp-sub{font-size:9px;color:#9ca3af;}
+.lp-section{padding:10px 16px 4px;font-size:9px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.8px;flex-shrink:0;}
+.doc-item{display:flex;align-items:center;gap:8px;padding:7px 12px;margin:0 4px;border-radius:6px;cursor:pointer;transition:background 0.15s;}
+.doc-item.sel{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.08);border:1px solid #e5e7eb;}
+.doc-item.sel .doc-name{color:#1c1917;font-weight:600;}
+.doc-icon{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.di-pdf{background:#fee2e2;color:#dc2626;}.di-doc{background:#dbeafe;color:#2563eb;}.di-xls{background:#dcfce7;color:#16a34a;}
+.doc-info{flex:1;min-width:0;}
+.doc-name{font-size:10px;font-weight:500;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.doc-meta{font-size:8px;color:#9ca3af;margin-top:1px;}
+.doc-status{flex-shrink:0;}
+.ds{width:7px;height:7px;border-radius:50%;}
+.ds-done{background:#10b981;}.ds-proc{background:#f59e0b;animation:blink 1s infinite;}.ds-wait{background:#d1d5db;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+/* Stats */
+.lp-stats{margin:10px 12px;background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #e5e7eb;flex-shrink:0;}
+.lp-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:9px;padding:3px 0;border-bottom:1px solid #f3f4f6;}
+.lp-stat-row:last-child{border-bottom:none;}
+.lp-stat-lbl{color:#6b7280;}
+.lp-stat-val{font-weight:700;font-family:'JetBrains Mono',monospace;font-size:10px;}
+.lp-stat-val.r{color:#dc2626;}.lp-stat-val.a{color:#d97706;}.lp-stat-val.g{color:#16a34a;}
+/* Right panel */
+.rpanel{background:#ffffff;display:flex;flex-direction:column;overflow:hidden;}
+/* Module tabs */
+.mod-tabs{display:flex;border-bottom:2px solid #f3f4f6;background:#fff;flex-shrink:0;}
+.mod-tab{padding:11px 18px;font-size:11px;font-weight:600;color:#9ca3af;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.15s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;}
+.mod-tab:hover{color:#374151;}
+.mod-tab.act{color:#1c1917;border-bottom-color:#d97706;}
+/* Content area */
+.content-area{flex:1;overflow:hidden;position:relative;}
+.fr{position:absolute;inset:0;opacity:0;pointer-events:none;overflow-y:auto;}
+.fr.act{opacity:1;pointer-events:all;position:relative;}
+/* Scene */
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fafaf8;z-index:20;opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.sc.act{opacity:1;}
+.sc-pill{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;background:#1c1917;padding:4px 14px;border-radius:20px;margin-bottom:14px;}
+.sc-title{font-size:24px;font-weight:700;color:#1c1917;text-align:center;line-height:1.25;max-width:380px;letter-spacing:-0.5px;font-family:'Merriweather',serif;}
+.sc-line{width:40px;height:2px;background:linear-gradient(90deg,#d97706,#1c1917);margin:14px auto;}
+.sc-sub{font-size:12px;color:#6b7280;margin-top:4px;text-align:center;line-height:1.6;max-width:340px;}
+/* Content padding */
+.co{padding:16px 20px;}
+.co-hdr{padding:10px 20px;background:#f9f7f4;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.co-title{font-size:12px;font-weight:700;color:#1c1917;}
+.co-sub{font-size:9px;color:#9ca3af;margin-top:1px;}
+/* Risk strip */
+.risk-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.risk-card{background:#f9f7f4;border-radius:6px;padding:10px 12px;border:1px solid #e5e7eb;text-align:center;}
+.risk-num{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1;}
+.risk-lbl{font-size:8px;color:#6b7280;margin-top:3px;line-height:1.3;font-weight:500;}
+.risk-card.r .risk-num{color:#dc2626;}.risk-card.a .risk-num{color:#d97706;}.risk-card.g .risk-num{color:#16a34a;}.risk-card.n .risk-num{color:#374151;}
+/* Extraction table */
+.ext-table{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.ext-thead{display:grid;padding:7px 12px;background:#f9f7f4;font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e5e7eb;}
+.ext-row{display:grid;padding:8px 12px;border-bottom:1px solid #f3f4f6;align-items:start;font-size:9px;}
+.ext-row:last-child{border-bottom:none;}
+.ext-row.flag{background:#fffbeb;border-left:3px solid #d97706;}
+.ext-row.risk{background:#fef2f2;border-left:3px solid #dc2626;}
+.ext-row.ok{background:#f0fdf4;border-left:3px solid #16a34a;}
+.ext-col-lbl{color:#374151;font-weight:600;font-size:9px;}
+.ext-col-val{color:#6b7280;line-height:1.6;font-size:9px;}
+.ext-col-val strong{color:#1c1917;}
+.ext-badge{display:inline-flex;align-items:center;gap:3px;font-size:7px;font-weight:700;padding:2px 6px;border-radius:3px;}
+.eb-miss{background:#fee2e2;color:#dc2626;}.eb-flag{background:#fef3c7;color:#92400e;}.eb-ok{background:#dcfce7;color:#16a34a;}.eb-na{background:#f3f4f6;color:#6b7280;}
+/* Clause viewer */
+.clause-viewer{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.clause-toolbar{background:#f9f7f4;padding:7px 12px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;}
+.clause-tb-title{font-size:9px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:0.5px;}
+.clause-body{padding:12px 14px;font-size:10px;color:#374151;line-height:1.9;font-family:'Merriweather',serif;max-height:110px;overflow-y:auto;}
+.clause-hl{background:#fef3c7;border-radius:2px;padding:1px 2px;border-bottom:1.5px solid #d97706;}
+.clause-hl.risk{background:#fee2e2;border-bottom-color:#dc2626;}
+.clause-comment{display:flex;align-items:flex-start;gap:6px;background:#fffbeb;border-top:1px solid #fde68a;padding:8px 12px;font-size:9px;color:#92400e;line-height:1.6;}
+/* Matrix */
+.matrix{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.matrix-head{display:grid;padding:7px 10px;background:#f9f7f4;font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e5e7eb;}
+.matrix-row{display:grid;padding:7px 10px;border-bottom:1px solid #f3f4f6;align-items:center;font-size:9px;}
+.matrix-row:last-child{border-bottom:none;}
+.matrix-row.hl{background:#fffbeb;}
+.mat-cell{display:flex;align-items:center;justify-content:center;}
+.mc-ok{color:#16a34a;font-size:12px;font-weight:700;}.mc-no{color:#dc2626;font-size:12px;font-weight:700;}.mc-na{color:#d1d5db;font-size:10px;}.mc-flag{color:#d97706;font-size:10px;font-weight:700;}
+/* AI box */
+.ai-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-bottom:12px;}
+.ai-box-label{font-size:8px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;}
+.ai-box-text{font-size:10px;color:#451a03;line-height:1.75;}
+.ai-box-text strong{color:#1c1917;font-weight:700;}
+.ai-box-text em{color:#b45309;font-style:normal;}
+/* Query */
+.qblock{background:#f9f7f4;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:8px;}
+.q-question{padding:10px 12px;display:flex;gap:8px;align-items:flex-start;border-bottom:1px solid #e5e7eb;background:#fff;}
+.q-icon{width:20px;height:20px;border-radius:50%;background:#1c1917;color:#f59e0b;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.q-text{font-size:10px;font-weight:600;color:#1c1917;line-height:1.5;}
+.q-answer{padding:10px 12px;font-size:10px;color:#374151;line-height:1.75;}
+.q-answer strong{color:#1c1917;font-weight:700;}
+.q-answer em{color:#b45309;font-style:normal;}
+.q-sources{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;}
+.q-src{font-size:8px;padding:2px 7px;border-radius:3px;background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb;}
+/* Risk report rows */
+.rpt-table{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.rpt-thead{display:grid;padding:7px 12px;background:#f9f7f4;font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e5e7eb;}
+.rpt-row{display:grid;padding:9px 12px;border-bottom:1px solid #f3f4f6;align-items:start;font-size:9px;}
+.rpt-row:last-child{border-bottom:none;}
+.rpt-row.p1{border-left:3px solid #dc2626;background:#fef2f2;}
+.rpt-row.p2{border-left:3px solid #d97706;background:#fffbeb;}
+.rpt-row.p3{border-left:3px solid #9ca3af;background:#fafaf8;}
+.p-badge{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;}
+.p1-b{background:#fee2e2;color:#dc2626;}.p2-b{background:#fef3c7;color:#92400e;}.p3-b{background:#f3f4f6;color:#6b7280;}
+.act-badge{font-size:8px;font-weight:700;padding:2px 7px;border-radius:3px;}
+.act-imm{background:#fee2e2;color:#dc2626;}.act-pre{background:#fef3c7;color:#92400e;}.act-mon{background:#f3f4f6;color:#6b7280;}
+/* Progress */
+.pb{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#d97706,#1c1917);transition:width linear;z-index:50;}
+/* Caption */
+.cap{background:#1c1917;padding:0 20px;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;}
+.cm{font-size:15px;font-weight:600;color:#f9f7f4;letter-spacing:-0.2px;opacity:0;transition:opacity 0.4s ease;line-height:1.4;flex:1;}
+.cm.v{opacity:1;}
+.cm em{color:#fbbf24;font-style:normal;}
+.cm strong{color:#fbbf24;}
+.sds{display:flex;gap:5px;align-items:center;flex-shrink:0;}
+.sdt{width:5px;height:5px;border-radius:50%;background:#374151;transition:background 0.3s;}
+.sdt.a{background:#d97706;}
+</style>
+
+<div class="app">
+  <div class="chrome">
+    <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+    <div class="urlbar"><span style="color:#4b5563">🔒</span><span class="urlbar-d">clauseiq.ai</span><span id="durl" style="color:#4b5563">/workspace/atlas-acquisition</span></div>
+    <div class="dm-tag">DEMO MODE</div>
+  </div>
+
+  <div class="topnav">
+    <div class="nav-brand">
+      <div class="nav-logo">C</div>
+      <div class="nav-name"><span>Clause</span>IQ</div>
+    </div>
+    <div style="font-size:11px;color:#6b7280;">Project: <strong style="color:#1c1917;">Atlas Corp — M&A Due Diligence</strong> &nbsp;·&nbsp; 40 contracts uploaded &nbsp;·&nbsp; <span style="color:#10b981;font-weight:600;">34 reviewed</span></div>
+    <div class="nav-right">
+      <div class="nav-credit"><div class="nav-credit-dot"></div>42 credits</div>
+      <button class="nav-btn nb-s">Export Report</button>
+      <button class="nav-btn nb-p">Share with Team</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- Left: Document list -->
+    <div class="lpanel">
+      <div class="lp-header">
+        <div class="lp-proj">Atlas Corp Acquisition</div>
+        <div class="lp-sub">M&A Due Diligence · 40 contracts</div>
+      </div>
+      <div class="lp-section">Vendor Agreements</div>
+      <div class="doc-item sel">
+        <div class="doc-icon di-pdf">PDF</div>
+        <div class="doc-info"><div class="doc-name">MSA_Nexigen_2024.pdf</div><div class="doc-meta">IT Services · 18 pages</div></div>
+        <div class="doc-status"><div class="ds ds-done"></div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon di-pdf">PDF</div>
+        <div class="doc-info"><div class="doc-name">MSA_DataBridge_2023.pdf</div><div class="doc-meta">Data Services · 24 pages</div></div>
+        <div class="doc-status"><div class="ds ds-done"></div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon di-pdf">PDF</div>
+        <div class="doc-info"><div class="doc-name">SaaS_CloudStack_2024.pdf</div><div class="doc-meta">SaaS · 31 pages · $240K</div></div>
+        <div class="doc-status"><div class="ds ds-done"></div></div>
+      </div>
+      <div class="lp-section">Leases & Premises</div>
+      <div class="doc-item">
+        <div class="doc-icon di-doc">DOC</div>
+        <div class="doc-info"><div class="doc-name">Lease_HQ_Mumbai.docx</div><div class="doc-meta">Office Lease · 42 pages</div></div>
+        <div class="doc-status"><div class="ds ds-done"></div></div>
+      </div>
+      <div class="lp-section">NDAs & Partnerships</div>
+      <div class="doc-item">
+        <div class="doc-icon di-doc">DOC</div>
+        <div class="doc-info"><div class="doc-name">NDA_PartnerVenture.docx</div><div class="doc-meta">Mutual NDA · 6 pages</div></div>
+        <div class="doc-status"><div class="ds ds-done"></div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon di-pdf">PDF</div>
+        <div class="doc-info"><div class="doc-name">Agency_LogisticsCo.pdf</div><div class="doc-meta">Logistics · Processing...</div></div>
+        <div class="doc-status"><div class="ds ds-proc"></div></div>
+      </div>
+      <div class="lp-stats">
+        <div class="lp-stat-row"><span class="lp-stat-lbl">Contracts reviewed</span><span class="lp-stat-val">34 / 40</span></div>
+        <div class="lp-stat-row"><span class="lp-stat-lbl">High risk flags</span><span class="lp-stat-val r">4</span></div>
+        <div class="lp-stat-row"><span class="lp-stat-lbl">Missing clauses</span><span class="lp-stat-val a">6</span></div>
+        <div class="lp-stat-row"><span class="lp-stat-lbl">Auto-renewals expiring</span><span class="lp-stat-val a">3</span></div>
+        <div class="lp-stat-row"><span class="lp-stat-lbl">Review time saved</span><span class="lp-stat-val g">3.2 days</span></div>
+      </div>
+    </div>
+
+    <!-- Right: Main workspace -->
+    <div class="rpanel">
+      <!-- Module tabs -->
+      <div class="mod-tabs">
+        <button class="mod-tab act" id="mt0" onclick="switchTab(0)">Clause Extraction</button>
+        <button class="mod-tab" id="mt1" onclick="switchTab(1)">Cross-Contract Matrix</button>
+        <button class="mod-tab" id="mt2" onclick="switchTab(2)">Contract Query</button>
+        <button class="mod-tab" id="mt3" onclick="switchTab(3)">Risk Report</button>
+      </div>
+
+      <div class="content-area" style="position:relative;">
+
+        <!-- Intro scene -->
+        <div class="sc act" id="sc0">
+          <div class="sc-pill">ClauseIQ · Contract Intelligence</div>
+          <div class="sc-title">40 contracts reviewed.<br/>In hours, not weeks.</div>
+          <div class="sc-line"></div>
+          <div class="sc-sub">Structured contract review for M&A due diligence.<br/>Extract, compare, query, and flag risk — in one workspace.</div>
+        </div>
+
+        <!-- TAB 1: Clause Extraction -->
+        <div class="fr act" id="fr0">
+          <div class="co-hdr">
+            <div>
+              <div class="co-title">Clause Extraction — MSA_Nexigen_2024.pdf</div>
+              <div class="co-sub">18 pages · 14 clauses extracted · 3 require attention</div>
+            </div>
+            <button class="nav-btn nb-s" style="font-size:10px;">Export CSV</button>
+          </div>
+          <div class="co">
+            <div class="ext-table">
+              <div class="ext-thead" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <span>Clause</span><span>Summary</span><span>Status</span>
+              </div>
+              <div class="ext-row ok" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">Liability Cap</div>
+                <div class="ext-col-val">Capped at <strong>12 months of fees</strong> in the preceding year. Mutual cap. Standard market terms.</div>
+                <span><span class="ext-badge eb-ok">✓ Standard</span></span>
+              </div>
+              <div class="ext-row flag" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">Auto-renewal</div>
+                <div class="ext-col-val">Auto-renews annually. <strong>Written notice required 90 days prior.</strong> Notice window closes in 34 days.</div>
+                <span><span class="ext-badge eb-flag">⚠ Action needed</span></span>
+              </div>
+              <div class="ext-row risk" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">IP Assignment</div>
+                <div class="ext-col-val">Work product IP assigned to <strong>vendor by default.</strong> Client receives licence only. Schedule A (IP transfer list) is blank.</div>
+                <span><span class="ext-badge eb-miss">✗ High Risk</span></span>
+              </div>
+              <div class="ext-row ok" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">Governing Law</div>
+                <div class="ext-col-val"><strong>Maharashtra, India.</strong> Disputes resolved by arbitration in Mumbai under UNCITRAL rules.</div>
+                <span><span class="ext-badge eb-ok">✓ Standard</span></span>
+              </div>
+              <div class="ext-row flag" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">Data Protection</div>
+                <div class="ext-col-val">References IT Act 2000. <strong>No DPDP Act 2023 obligations.</strong> Data processor requirements unaddressed.</div>
+                <span><span class="ext-badge eb-flag">⚠ Update needed</span></span>
+              </div>
+              <div class="ext-row ok" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">Termination</div>
+                <div class="ext-col-val"><strong>30-day notice</strong> for convenience. Immediate for material breach. Survival: IP, confidentiality, payment obligations.</div>
+                <span><span class="ext-badge eb-ok">✓ Standard</span></span>
+              </div>
+              <div class="ext-row risk" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
+                <div class="ext-col-lbl">Change of Control</div>
+                <div class="ext-col-val"><strong>No change of control clause.</strong> Acquisition does not trigger consent rights or renegotiation obligations for either party.</div>
+                <span><span class="ext-badge eb-miss">✗ Missing</span></span>
+              </div>
+            </div>
+            <!-- Clause spotlight -->
+            <div class="clause-viewer">
+              <div class="clause-toolbar">
+                <div class="clause-tb-title">Original Clause — IP Assignment (§8.2)</div>
+                <span style="font-size:8px;color:#9ca3af;">MSA_Nexigen_2024.pdf · Page 11</span>
+              </div>
+              <div class="clause-body">
+                "All work product, deliverables, and intellectual property created by <span class="clause-hl risk">the Vendor in the course of performing Services under this Agreement shall be and remain the exclusive property of the Vendor</span>, unless specifically identified and transferred in writing via Schedule A attached hereto. <span class="clause-hl">Schedule A may be amended by mutual written consent of both parties.</span> The Client acknowledges that standard deliverables are provided under a limited, non-exclusive, non-transferable licence only."
+              </div>
+              <div class="clause-comment">
+                <span>⚠</span>
+                <span><strong>Flag:</strong> IP defaults to vendor. Schedule A is blank in this agreement. All work product — including custom builds, reports, and analysis — is technically vendor-owned until Schedule A is completed.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Cross-Contract Matrix -->
+        <div class="fr" id="fr1">
+          <div class="co-hdr">
+            <div>
+              <div class="co-title">Cross-Contract Comparison Matrix</div>
+              <div class="co-sub">6 vendor agreements · 7 key clauses · Gaps highlighted</div>
+            </div>
+            <button class="nav-btn nb-p" style="font-size:10px;">Export Matrix</button>
+          </div>
+          <div class="co">
+            <div class="risk-strip">
+              <div class="risk-card r"><div class="risk-num">4</div><div class="risk-lbl">High Risk<br/>Clauses</div></div>
+              <div class="risk-card a"><div class="risk-num">6</div><div class="risk-lbl">Missing<br/>Clauses</div></div>
+              <div class="risk-card a"><div class="risk-num">3</div><div class="risk-lbl">Auto-renewals<br/>Expiring 90d</div></div>
+              <div class="risk-card g"><div class="risk-num">34</div><div class="risk-lbl">Contracts<br/>Reviewed</div></div>
+            </div>
+            <div class="matrix">
+              <div class="matrix-head" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span>Clause</span>
+                <span style="text-align:center;font-size:7px;">Nexigen</span>
+                <span style="text-align:center;font-size:7px;">DataBridge</span>
+                <span style="text-align:center;font-size:7px;">CloudStack</span>
+                <span style="text-align:center;font-size:7px;">PartnerVenture</span>
+                <span style="text-align:center;font-size:7px;">LogisticsCo</span>
+                <span style="text-align:center;font-size:7px;">Others</span>
+              </div>
+              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">Liability Cap</span>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-na">—</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">4/5</span></div>
+              </div>
+              <div class="matrix-row hl" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">Change of Control</span>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#dc2626;font-weight:700;">2/5 ⚠</span></div>
+              </div>
+              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">IP Assignment</span>
+                <div class="mat-cell"><span class="mc-flag">⚠</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-na">—</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">Partial</span></div>
+              </div>
+              <div class="matrix-row hl" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">DPDP Compliance</span>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span class="mc-ok">✓</span></div>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span class="mc-no">✗</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#dc2626;font-weight:700;">1/5 ⚠</span></div>
+              </div>
+              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">Auto-renewal Notice</span>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;font-weight:700;">34d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">120d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">Annual</span></div>
+                <div class="mat-cell"><span class="mc-na">—</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#dc2626;font-weight:700;">12d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">⚠ 2 urgent</span></div>
+              </div>
+              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">Termination Notice</span>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">30d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">30d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;font-weight:700;">180d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">60d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">30d</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">1 outlier</span></div>
+              </div>
+              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
+                <span style="font-size:9px;font-weight:600;color:#374151;">Governing Law</span>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">MH</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">MH</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">IE</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">DL</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">MH</span></div>
+                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">Mixed</span></div>
+              </div>
+            </div>
+            <div class="ai-box">
+              <div class="ai-box-label">Summary</div>
+              <div class="ai-box-text">Change of control clause absent in 3 of 5 vendor agreements — this acquisition will not trigger renegotiation rights. <em>DPDP Act 2023 compliance absent in 4 of 5 agreements</em> — addenda required before close. <strong>LogisticsCo auto-renewal window closes in 12 days.</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: Contract Query -->
+        <div class="fr" id="fr2">
+          <div class="co-hdr">
+            <div>
+              <div class="co-title">Contract Query</div>
+              <div class="co-sub">Plain English questions answered from across all 40 contracts</div>
+            </div>
+            <span style="font-size:9px;color:#9ca3af;">847 clauses indexed</span>
+          </div>
+          <div class="co">
+            <div class="qblock">
+              <div class="q-question">
+                <div class="q-icon">Q</div>
+                <div class="q-text">Which contracts have auto-renewal clauses expiring within 90 days?</div>
+              </div>
+              <div class="q-answer">
+                3 contracts: <strong>MSA_Nexigen_2024</strong> (34 days — notice due this week), <strong>Agency_LogisticsCo</strong> (12 days — <em>critical, action required immediately</em>), <strong>Lease_HQ_Mumbai</strong> (61 days). Total annual commitment at risk of auto-renewal: <strong>₹9.1Cr.</strong>
+                <div class="q-sources">
+                  <span class="q-src">MSA_Nexigen_2024 · §4.1</span>
+                  <span class="q-src">Agency_LogisticsCo · §3.2</span>
+                  <span class="q-src">Lease_HQ_Mumbai · §7.4</span>
+                </div>
+              </div>
+            </div>
+            <div class="qblock">
+              <div class="q-question">
+                <div class="q-icon">Q</div>
+                <div class="q-text">Which contracts have no limitation of liability clause?</div>
+              </div>
+              <div class="q-answer">
+                6 contracts have no limitation of liability: NDA_PartnerVenture, Lease_Delhi_Branch, Consulting_AdvisoryFirm, Agency_PR_2023, IT_Support_Tier2, Freelance_Design_2024. Of these, <em>3 involve vendors with direct access to customer data</em> — highest exposure. Addenda recommended for these 3 before close.
+                <div class="q-sources">
+                  <span class="q-src">6 contracts identified</span>
+                  <span class="q-src">3 high-exposure</span>
+                </div>
+              </div>
+            </div>
+            <div class="qblock">
+              <div class="q-question">
+                <div class="q-icon">Q</div>
+                <div class="q-text">Are there any unusual termination notice periods across vendor agreements?</div>
+              </div>
+              <div class="q-answer">
+                Most vendor agreements use 30-day convenience termination — standard. <strong>SaaS_CloudStack_2024 requires 180-day notice</strong> — significantly above market standard. At current run rate, this creates a <em>₹1.2Cr committed spend</em> post-acquisition if not renegotiated before close.
+                <div class="q-sources">
+                  <span class="q-src">SaaS_CloudStack_2024 · §12.3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: Risk Report -->
+        <div class="fr" id="fr3">
+          <div class="co-hdr">
+            <div>
+              <div class="co-title">Risk Report — Atlas Corp Acquisition</div>
+              <div class="co-sub">34 contracts reviewed · 4 critical · 6 medium · 12 low · Ready to share</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="nav-btn nb-s" style="font-size:10px;">Share with Deal Team</button>
+              <button class="nav-btn nb-p" style="font-size:10px;">Export PDF</button>
+            </div>
+          </div>
+          <div class="co">
+            <div class="risk-strip">
+              <div class="risk-card r"><div class="risk-num">4</div><div class="risk-lbl">Critical<br/>Issues</div></div>
+              <div class="risk-card a"><div class="risk-num">6</div><div class="risk-lbl">Medium<br/>Issues</div></div>
+              <div class="risk-card n"><div class="risk-num">12</div><div class="risk-lbl">Low<br/>Issues</div></div>
+              <div class="risk-card g"><div class="risk-num">3.2d</div><div class="risk-lbl">Time<br/>Saved</div></div>
+            </div>
+            <div class="rpt-table">
+              <div class="rpt-thead" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
+                <span>Priority</span><span>Issue</span><span>Contracts</span><span>Deadline</span>
+              </div>
+              <div class="rpt-row p1" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
+                <span><span class="p-badge p1-b">P1</span></span>
+                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>IP defaults to vendor.</strong> Schedule A blank — all work product under MSA_Nexigen technically vendor-owned.</div>
+                <div style="font-size:8px;color:#6b7280;">MSA_Nexigen_2024</div>
+                <span><span class="act-badge act-imm">Immediate</span></span>
+              </div>
+              <div class="rpt-row p1" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
+                <span><span class="p-badge p1-b">P1</span></span>
+                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>Auto-renewal window closes in 12 days.</strong> Agency_LogisticsCo auto-renews for 12 months at ₹2.4Cr.</div>
+                <div style="font-size:8px;color:#6b7280;">Agency_LogisticsCo</div>
+                <span><span class="act-badge act-imm">12 days</span></span>
+              </div>
+              <div class="rpt-row p2" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
+                <span><span class="p-badge p2-b">P2</span></span>
+                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>Change of control missing</strong> in 3 vendor agreements. Vendors may claim breach or renegotiate post-acquisition.</div>
+                <div style="font-size:8px;color:#6b7280;">Nexigen, PartnerVenture, LogisticsCo</div>
+                <span><span class="act-badge act-pre">Pre-close</span></span>
+              </div>
+              <div class="rpt-row p2" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
+                <span><span class="p-badge p2-b">P2</span></span>
+                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>DPDP Act 2023 absent</strong> in 4 of 5 vendor MSAs. Data processor obligations unaddressed — regulatory exposure post-close.</div>
+                <div style="font-size:8px;color:#6b7280;">4 vendor MSAs</div>
+                <span><span class="act-badge act-pre">30 days</span></span>
+              </div>
+              <div class="rpt-row p3" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
+                <span><span class="p-badge p3-b">P3</span></span>
+                <div style="font-size:9px;color:#374151;line-height:1.6;">CloudStack 180-day termination notice — ₹1.2Cr committed spend if not renegotiated before close.</div>
+                <div style="font-size:8px;color:#6b7280;">SaaS_CloudStack_2024</div>
+                <span><span class="act-badge act-mon">Monitor</span></span>
+              </div>
+            </div>
+            <div class="ai-box">
+              <div class="ai-box-label">Deal Team Summary</div>
+              <div class="ai-box-text">2 issues require action before close. Complete Schedule A on MSA_Nexigen immediately. Send notice on Agency_LogisticsCo within 12 days to avoid ₹2.4Cr auto-renewal. <strong>Estimated exposure without remediation: ₹8–12Cr.</strong> <em>Estimated cost to remediate: ₹4–6L in legal addenda fees.</em></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pb" id="dpb"></div>
+      </div>
+
+      <div class="cap">
+        <div class="cm v" id="dcap">40 contracts. 4 analysts. <em>3.2 days saved on first review.</em></div>
+        <div class="sds">
+          <div class="sdt a" id="ds0"></div><div class="sdt" id="ds1"></div><div class="sdt" id="ds2"></div><div class="sdt" id="ds3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`;
+  (function(){
+  // ── Tab switching + auto-advance ──
+(function(){
+  const pbar  = document.getElementById('dpb');
+  const capEl = document.getElementById('dcap');
+  if(!pbar||!capEl) return;
+
+  const TOTAL = 36000;
+  let currentTab = -1;
+  let timers = [];
+  const t = (ms,fn)=>{ const id=setTimeout(fn,ms); timers.push(id); };
+  const setProgress = (pct,dur)=>{ pbar.style.transition=`width ${dur}ms linear`; pbar.style.width=pct+'%'; };
+  const setCaption  = txt=>{ capEl.classList.remove('v'); setTimeout(()=>{ capEl.innerHTML=txt; capEl.classList.add('v'); },350); };
+  const setDots     = i=>{ document.querySelectorAll('.sdt').forEach((d,j)=>d.classList.toggle('a',j===i)); };
+
+  const captions = [
+    '40 contracts reviewed. <em>14 clauses extracted per contract.</em> Flags surfaced on load.',
+    'IP missing in 1. Change of control absent in 3. <em>DPDP compliance in 1 of 5.</em> One matrix.',
+    '₹9.1Cr at risk of auto-renewal. <em>3 contracts. Found in seconds.</em>',
+    '<strong>4 critical issues. ₹8–12Cr exposure.</strong> <em>Cost to remediate: ₹4–6L.</em> Report ready to share.'
+  ];
+
+  window.switchTab = function(idx){
+    currentTab = idx;
+    document.querySelectorAll('.mod-tab').forEach((t,i)=>t.classList.toggle('act',i===idx));
+    document.querySelectorAll('.fr').forEach((f,i)=>{ f.classList.toggle('act',i===idx); });
+    document.getElementById('sc0').classList.remove('act');
+    setDots(idx);
+    setCaption(captions[idx]);
+  };
+
+  function runSeq(){
+    timers.forEach(clearTimeout); timers=[];
+    // Show intro scene first
+    document.getElementById('sc0').classList.add('act');
+    document.querySelectorAll('.fr').forEach(f=>f.classList.remove('act'));
+    document.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('act'));
+    setDots(0);
+    setProgress(0,100);
+    setCaption('40 contracts reviewed. <em>14 clauses extracted per contract.</em> Flags surfaced on load.');
+
+    t(2000,()=>{ switchTab(0); setProgress(25,34000); });
+    t(10000,()=>switchTab(1));
+    t(19000,()=>switchTab(2));
+    t(27000,()=>switchTab(3));
+    t(36200,()=>{ setProgress(0,100); setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },200); });
+  }
+
+  setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },500);
+})();
+
+  })();
+}
 
 // ── Pillars ───
 const pillarBars = document.getElementById('pillarBars');
