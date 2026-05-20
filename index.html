@@ -460,21 +460,15 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
   #mdContainer .cm{font-size:12px !important;}
   #mdContainer .co{padding:8px 10px !important;}
 
-  /* ClauseIQ demo mobile */
-  #ciContainer .layout{grid-template-columns:1fr !important;}
-  #ciContainer .lpanel{display:none !important;}
-  #ciContainer .mod-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  #ciContainer .mod-tabs::-webkit-scrollbar{display:none;}
-  #ciContainer .mod-tab{font-size:10px !important;padding:8px 12px !important;flex-shrink:0;}
-  #ciContainer .risk-strip{grid-template-columns:repeat(2,1fr) !important;}
-  #ciContainer .ext-thead{display:none !important;}
-  #ciContainer .ext-row{grid-template-columns:1fr !important;gap:4px !important;}
-  #ciContainer .matrix-head{display:none !important;}
-  #ciContainer .matrix-row{grid-template-columns:1.5fr repeat(3,1fr) !important;}
-  #ciContainer .cap{min-height:52px !important;padding:0 10px !important;}
-  #ciContainer .cm{font-size:12px !important;}
-  #ciContainer .co{padding:8px 10px !important;}
-  #ciContainer .co-hdr{padding:8px 10px !important;}
+  /* RevIntel demo mobile */
+  #riContainer .layout{grid-template-columns:1fr !important;}
+  #riContainer .sb{display:none !important;}
+  #riContainer .screen{height:380px !important;}
+  #riContainer .two{grid-template-columns:1fr !important;}
+  #riContainer .cap{min-height:52px !important;padding:0 10px !important;}
+  #riContainer .cm{font-size:12px !important;}
+  #riContainer .co{padding:8px 10px !important;}
+  #riContainer .kpi-strip{grid-template-columns:repeat(2,1fr) !important;}
 
   /* Fix 4: Team — 1 column with horizontal card layout */
   .team-grid{grid-template-columns:1fr !important;}
@@ -651,7 +645,7 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
     <div class="impl-tabs">
       <button class="impl-tab act" onclick="switchImplTab(0)">Health Insurance</button>
       <button class="impl-tab" onclick="switchImplTab(1)">Retail</button>
-      <button class="impl-tab" onclick="switchImplTab(2)">Legal & KPO</button>
+      <button class="impl-tab" onclick="switchImplTab(2)">B2B Sales</button>
     </div>
     <!-- Panel 1: Claims -->
     <div class="impl-tab-panel act" id="impl-panel-0">
@@ -671,13 +665,13 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
         <div class="impl-demo-container" id="mdContainer"></div>
       </div>
     </div>
-    <!-- Panel 3: ClauseIQ -->
+    <!-- Panel 3: RevIntel -->
     <div class="impl-tab-panel" id="impl-panel-2">
       <div class="impl-demo-wrap">
         <div class="impl-panel-heading">
-          <h3>Legal & KPO · Contract Intelligence. Due diligence reviewed in hours, not weeks.</h3>
+          <h3>Enterprise B2B ABM Automation. Account research and outreach in minutes.</h3>
         </div>
-        <div class="impl-demo-container" id="ciContainer"></div>
+        <div class="impl-demo-container" id="riContainer"></div>
       </div>
     </div>
   </div>
@@ -887,7 +881,7 @@ document.getElementById('engagements').innerHTML = engagements.map(e=>`
 // ── Tab switching ──
 let activeImplTab = 0;
 let mdInited = false;
-let ciInited = false;
+let riInited = false;
 
 function switchImplTab(idx) {
   if(idx === activeImplTab) return;
@@ -895,7 +889,7 @@ function switchImplTab(idx) {
   document.querySelectorAll('.impl-tab').forEach((t,i)=>t.classList.toggle('act',i===idx));
   document.querySelectorAll('.impl-tab-panel').forEach((p,i)=>p.classList.toggle('act',i===idx));
   if(idx===1 && !mdInited){ initMarkdownDemo(); mdInited=true; }
-  if(idx===2 && !ciInited){ initClauseIQDemo(); ciInited=true; }
+  if(idx===2 && !riInited){ initRevIntelDemo(); riInited=true; }
 }
 
 // ── Claims Demo (Tab 1) ──
@@ -2533,580 +2527,835 @@ function initMarkdownDemo(){
   })();
 }
 
-// ── ClauseIQ Demo (Tab 3) — lazy init ──
-function initClauseIQDemo(){
-  document.getElementById('ciContainer').innerHTML = `
+// ── RevIntel Demo (Tab 3) — lazy init ──
+function initRevIntelDemo(){
+  document.getElementById('riContainer').innerHTML = `
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-.app{width:100%;background:#fafaf8;border-radius:14px;overflow:hidden;font-family:'Inter',system-ui,sans-serif;box-shadow:0 40px 100px rgba(0,0,0,0.35),0 0 0 1px rgba(0,0,0,0.08);}
-.chrome{background:#2d2d2d;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a1a1a;}
-.dots{display:flex;gap:6px;}.dot{width:11px;height:11px;border-radius:50%;}
+.app{width:100%;background:#0d1117;border-radius:14px;overflow:hidden;font-family:'Inter',system-ui,sans-serif;box-shadow:0 40px 120px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.06);}
+
+/* Chrome */
+.chrome{background:#161b27;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.dots{display:flex;gap:6px;}
+.dot{width:11px;height:11px;border-radius:50%;}
 .dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
-.urlbar{flex:1;background:#1a1a1a;border-radius:6px;padding:5px 14px;font-size:11px;color:#6b7280;display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;}
-.urlbar-d{color:#d1d5db;font-weight:500;}
-.dm-tag{background:rgba(251,191,36,0.15);color:#f59e0b;font-size:8px;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:0.8px;border:1px solid rgba(251,191,36,0.3);}
-/* Top nav */
-.topnav{background:#ffffff;border-bottom:1px solid #e5e7eb;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:48px;flex-shrink:0;}
-.nav-brand{display:flex;align-items:center;gap:8px;}
-.nav-logo{width:28px;height:28px;border-radius:6px;background:#1c1917;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#f59e0b;}
-.nav-name{font-size:13px;font-weight:700;color:#1c1917;letter-spacing:-0.3px;}
-.nav-name span{color:#d97706;}
-.nav-right{display:flex;gap:8px;align-items:center;}
-.nav-btn{padding:6px 14px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border:none;}
-.nb-p{background:#1c1917;color:#fff;}.nb-s{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;}
-.nav-credit{font-size:10px;color:#9ca3af;display:flex;align-items:center;gap:4px;}
-.nav-credit-dot{width:6px;height:6px;border-radius:50%;background:#10b981;}
+.urlbar{flex:1;background:#0d1117;border-radius:6px;padding:5px 14px;font-size:11px;color:#4b5563;display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;}
+.urlbar-d{color:#94a3b8;font-weight:500;}
+.dm-tag{background:rgba(59,130,246,0.15);color:#60a5fb;font-size:8px;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:0.8px;border:1px solid rgba(59,130,246,0.25);}
+
 /* Layout */
-.layout{display:grid;grid-template-columns:260px 1fr;min-height:520px;}
-/* Left panel */
-.lpanel{background:#f5f4f0;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;overflow:hidden;}
-.lp-header{padding:14px 16px;border-bottom:1px solid #e5e7eb;background:#fff;flex-shrink:0;}
-.lp-proj{font-size:12px;font-weight:700;color:#1c1917;margin-bottom:2px;}
-.lp-sub{font-size:9px;color:#9ca3af;}
-.lp-section{padding:10px 16px 4px;font-size:9px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.8px;flex-shrink:0;}
-.doc-item{display:flex;align-items:center;gap:8px;padding:7px 12px;margin:0 4px;border-radius:6px;cursor:pointer;transition:background 0.15s;}
-.doc-item.sel{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.08);border:1px solid #e5e7eb;}
-.doc-item.sel .doc-name{color:#1c1917;font-weight:600;}
-.doc-icon{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
-.di-pdf{background:#fee2e2;color:#dc2626;}.di-doc{background:#dbeafe;color:#2563eb;}.di-xls{background:#dcfce7;color:#16a34a;}
-.doc-info{flex:1;min-width:0;}
-.doc-name{font-size:10px;font-weight:500;color:#374151;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.doc-meta{font-size:8px;color:#9ca3af;margin-top:1px;}
-.doc-status{flex-shrink:0;}
-.ds{width:7px;height:7px;border-radius:50%;}
-.ds-done{background:#10b981;}.ds-proc{background:#f59e0b;animation:blink 1s infinite;}.ds-wait{background:#d1d5db;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-/* Stats */
-.lp-stats{margin:10px 12px;background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #e5e7eb;flex-shrink:0;}
-.lp-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:9px;padding:3px 0;border-bottom:1px solid #f3f4f6;}
-.lp-stat-row:last-child{border-bottom:none;}
-.lp-stat-lbl{color:#6b7280;}
-.lp-stat-val{font-weight:700;font-family:'JetBrains Mono',monospace;font-size:10px;}
-.lp-stat-val.r{color:#dc2626;}.lp-stat-val.a{color:#d97706;}.lp-stat-val.g{color:#16a34a;}
-/* Right panel */
-.rpanel{background:#ffffff;display:flex;flex-direction:column;overflow:hidden;}
-/* Module tabs */
-.mod-tabs{display:flex;border-bottom:2px solid #f3f4f6;background:#fff;flex-shrink:0;}
-.mod-tab{padding:11px 18px;font-size:11px;font-weight:600;color:#9ca3af;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.15s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;}
-.mod-tab:hover{color:#374151;}
-.mod-tab.act{color:#1c1917;border-bottom-color:#d97706;}
-/* Content area */
-.content-area{flex:1;overflow:hidden;position:relative;}
-.fr{position:absolute;inset:0;opacity:0;pointer-events:none;overflow-y:auto;}
-.fr.act{opacity:1;pointer-events:all;position:relative;}
-/* Scene */
-.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fafaf8;z-index:20;opacity:0;transition:opacity 0.4s;pointer-events:none;}
+.layout{display:grid;grid-template-columns:200px 1fr;min-height:540px;}
+
+/* Sidebar */
+.sb{background:#111827;border-right:1px solid rgba(255,255,255,0.05);padding:16px 0;display:flex;flex-direction:column;}
+.sb-brand{padding:0 16px 14px;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:10px;}
+.sb-brand-name{font-size:15px;font-weight:700;letter-spacing:-0.3px;}
+.sb-brand-name .rev{color:#60a5fb;}.sb-brand-name .intel{color:#e2e8f0;}
+.sb-brand-sub{font-size:8px;color:#4b5563;text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+.sb-section{font-size:8px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:1.2px;padding:8px 16px 4px;}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 16px;font-size:11px;color:#6b7280;cursor:pointer;border-left:2px solid transparent;font-weight:500;transition:all 0.15s;}
+.sb-item.act{background:rgba(59,130,246,0.08);color:#60a5fb;border-left-color:#3b82f6;font-weight:600;}
+.sb-item:hover:not(.act){background:rgba(255,255,255,0.03);color:#94a3b8;}
+.sb-dot{width:6px;height:6px;border-radius:50%;background:#374151;flex-shrink:0;}
+.sb-item.act .sb-dot{background:#3b82f6;}
+.sb-badge{margin-left:auto;font-size:8px;background:rgba(239,68,68,0.15);color:#f87171;padding:1px 5px;border-radius:8px;font-weight:700;border:1px solid rgba(239,68,68,0.2);}
+.sb-badge.b{background:rgba(59,130,246,0.15);color:#60a5fb;border-color:rgba(59,130,246,0.2);}
+.sb-bottom{margin-top:auto;padding:12px 16px;border-top:1px solid rgba(255,255,255,0.05);}
+.sb-user{display:flex;align-items:center;gap:8px;}
+.sb-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.sb-uname{font-size:10px;color:#94a3b8;font-weight:500;}
+.sb-urole{font-size:8px;color:#4b5563;}
+
+/* Main */
+.main{background:#0d1117;overflow:hidden;position:relative;display:flex;flex-direction:column;}
+.topbar{background:#111827;border-bottom:1px solid rgba(255,255,255,0.05);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.tb-left{display:flex;flex-direction:column;}
+.tb-title{font-size:13px;font-weight:600;color:#e2e8f0;}
+.tb-sub{font-size:9px;color:#4b5563;margin-top:1px;}
+.tb-right{display:flex;gap:6px;align-items:center;}
+.tb-btn{padding:5px 12px;border-radius:5px;font-size:10px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.tb-btn-p{background:#3b82f6;color:#fff;}
+.tb-btn-s{background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.08);}
+.tb-pill{font-size:8px;background:rgba(59,130,246,0.12);color:#60a5fb;padding:3px 8px;border-radius:12px;font-weight:600;border:1px solid rgba(59,130,246,0.2);}
+
+/* Screen area */
+.screen{flex:1;position:relative;overflow:hidden;}
+
+/* Frames */
+.fr{position:absolute;inset:0;opacity:0;transition:opacity 0.7s ease;overflow:hidden;}
+.fr.act{opacity:1;}
+
+/* Scene cards */
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0d1117;z-index:20;opacity:0;transition:opacity 0.4s ease;pointer-events:none;}
 .sc.act{opacity:1;}
-.sc-pill{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#fff;background:#1c1917;padding:4px 14px;border-radius:20px;margin-bottom:14px;}
-.sc-title{font-size:24px;font-weight:700;color:#1c1917;text-align:center;line-height:1.25;max-width:380px;letter-spacing:-0.5px;font-family:'Merriweather',serif;}
-.sc-line{width:40px;height:2px;background:linear-gradient(90deg,#d97706,#1c1917);margin:14px auto;}
-.sc-sub{font-size:12px;color:#6b7280;margin-top:4px;text-align:center;line-height:1.6;max-width:340px;}
-/* Content padding */
-.co{padding:16px 20px;}
-.co-hdr{padding:10px 20px;background:#f9f7f4;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.co-title{font-size:12px;font-weight:700;color:#1c1917;}
-.co-sub{font-size:9px;color:#9ca3af;margin-top:1px;}
-/* Risk strip */
-.risk-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
-.risk-card{background:#f9f7f4;border-radius:6px;padding:10px 12px;border:1px solid #e5e7eb;text-align:center;}
-.risk-num{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1;}
-.risk-lbl{font-size:8px;color:#6b7280;margin-top:3px;line-height:1.3;font-weight:500;}
-.risk-card.r .risk-num{color:#dc2626;}.risk-card.a .risk-num{color:#d97706;}.risk-card.g .risk-num{color:#16a34a;}.risk-card.n .risk-num{color:#374151;}
-/* Extraction table */
-.ext-table{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
-.ext-thead{display:grid;padding:7px 12px;background:#f9f7f4;font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e5e7eb;}
-.ext-row{display:grid;padding:8px 12px;border-bottom:1px solid #f3f4f6;align-items:start;font-size:9px;}
-.ext-row:last-child{border-bottom:none;}
-.ext-row.flag{background:#fffbeb;border-left:3px solid #d97706;}
-.ext-row.risk{background:#fef2f2;border-left:3px solid #dc2626;}
-.ext-row.ok{background:#f0fdf4;border-left:3px solid #16a34a;}
-.ext-col-lbl{color:#374151;font-weight:600;font-size:9px;}
-.ext-col-val{color:#6b7280;line-height:1.6;font-size:9px;}
-.ext-col-val strong{color:#1c1917;}
-.ext-badge{display:inline-flex;align-items:center;gap:3px;font-size:7px;font-weight:700;padding:2px 6px;border-radius:3px;}
-.eb-miss{background:#fee2e2;color:#dc2626;}.eb-flag{background:#fef3c7;color:#92400e;}.eb-ok{background:#dcfce7;color:#16a34a;}.eb-na{background:#f3f4f6;color:#6b7280;}
-/* Clause viewer */
-.clause-viewer{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
-.clause-toolbar{background:#f9f7f4;padding:7px 12px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;}
-.clause-tb-title{font-size:9px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:0.5px;}
-.clause-body{padding:12px 14px;font-size:10px;color:#374151;line-height:1.9;font-family:'Merriweather',serif;max-height:110px;overflow-y:auto;}
-.clause-hl{background:#fef3c7;border-radius:2px;padding:1px 2px;border-bottom:1.5px solid #d97706;}
-.clause-hl.risk{background:#fee2e2;border-bottom-color:#dc2626;}
-.clause-comment{display:flex;align-items:flex-start;gap:6px;background:#fffbeb;border-top:1px solid #fde68a;padding:8px 12px;font-size:9px;color:#92400e;line-height:1.6;}
-/* Matrix */
-.matrix{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
-.matrix-head{display:grid;padding:7px 10px;background:#f9f7f4;font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e5e7eb;}
-.matrix-row{display:grid;padding:7px 10px;border-bottom:1px solid #f3f4f6;align-items:center;font-size:9px;}
-.matrix-row:last-child{border-bottom:none;}
-.matrix-row.hl{background:#fffbeb;}
-.mat-cell{display:flex;align-items:center;justify-content:center;}
-.mc-ok{color:#16a34a;font-size:12px;font-weight:700;}.mc-no{color:#dc2626;font-size:12px;font-weight:700;}.mc-na{color:#d1d5db;font-size:10px;}.mc-flag{color:#d97706;font-size:10px;font-weight:700;}
-/* AI box */
-.ai-box{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px;margin-bottom:12px;}
-.ai-box-label{font-size:8px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;}
-.ai-box-text{font-size:10px;color:#451a03;line-height:1.75;}
-.ai-box-text strong{color:#1c1917;font-weight:700;}
-.ai-box-text em{color:#b45309;font-style:normal;}
-/* Query */
-.qblock{background:#f9f7f4;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:8px;}
-.q-question{padding:10px 12px;display:flex;gap:8px;align-items:flex-start;border-bottom:1px solid #e5e7eb;background:#fff;}
-.q-icon{width:20px;height:20px;border-radius:50%;background:#1c1917;color:#f59e0b;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.q-text{font-size:10px;font-weight:600;color:#1c1917;line-height:1.5;}
-.q-answer{padding:10px 12px;font-size:10px;color:#374151;line-height:1.75;}
-.q-answer strong{color:#1c1917;font-weight:700;}
-.q-answer em{color:#b45309;font-style:normal;}
-.q-sources{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;}
-.q-src{font-size:8px;padding:2px 7px;border-radius:3px;background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb;}
-/* Risk report rows */
-.rpt-table{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:12px;}
-.rpt-thead{display:grid;padding:7px 12px;background:#f9f7f4;font-size:8px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #e5e7eb;}
-.rpt-row{display:grid;padding:9px 12px;border-bottom:1px solid #f3f4f6;align-items:start;font-size:9px;}
-.rpt-row:last-child{border-bottom:none;}
-.rpt-row.p1{border-left:3px solid #dc2626;background:#fef2f2;}
-.rpt-row.p2{border-left:3px solid #d97706;background:#fffbeb;}
-.rpt-row.p3{border-left:3px solid #9ca3af;background:#fafaf8;}
-.p-badge{display:inline-block;font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;}
-.p1-b{background:#fee2e2;color:#dc2626;}.p2-b{background:#fef3c7;color:#92400e;}.p3-b{background:#f3f4f6;color:#6b7280;}
-.act-badge{font-size:8px;font-weight:700;padding:2px 7px;border-radius:3px;}
-.act-imm{background:#fee2e2;color:#dc2626;}.act-pre{background:#fef3c7;color:#92400e;}.act-mon{background:#f3f4f6;color:#6b7280;}
-/* Progress */
-.pb{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,#d97706,#1c1917);transition:width linear;z-index:50;}
+.sc-pill{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#0d1117;background:#3b82f6;padding:4px 14px;border-radius:20px;margin-bottom:14px;}
+.sc-title{font-size:24px;font-weight:700;color:#e2e8f0;text-align:center;line-height:1.25;max-width:380px;letter-spacing:-0.5px;}
+.sc-line{width:40px;height:2px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);margin:14px auto;}
+.sc-sub{font-size:12px;color:#4b5563;margin-top:4px;text-align:center;line-height:1.6;max-width:340px;}
+
+/* Content */
+.co{padding:14px 18px;height:100%;overflow:hidden;}
+
+/* Reveal animations */
+.rv{opacity:0;transform:translateY(8px);transition:opacity 0.4s ease,transform 0.4s ease;}
+.rv.show{opacity:1;transform:translateY(0);}
+.rvx{opacity:0;transform:translateX(-6px);transition:opacity 0.35s ease,transform 0.35s ease;}
+.rvx.show{opacity:1;transform:translateX(0);}
+
+/* Cards */
+.card{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;}
+.card-title{font-size:8px;font-weight:700;color:#4b5563;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;}
+.card-tag{font-size:7px;padding:2px 6px;border-radius:4px;font-weight:700;text-transform:none;letter-spacing:0;}
+.tag-blue{background:rgba(59,130,246,0.15);color:#60a5fb;border:1px solid rgba(59,130,246,0.2);}
+.tag-purple{background:rgba(139,92,246,0.15);color:#a78bfa;border:1px solid rgba(139,92,246,0.2);}
+.tag-green{background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.2);}
+.tag-amber{background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.2);}
+
+/* Search bar */
+.search-bar{background:#0d1117;border:1px solid rgba(59,130,246,0.3);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.search-bar input{background:none;border:none;outline:none;font-family:'Inter',sans-serif;font-size:13px;color:#e2e8f0;flex:1;}
+.search-bar input::placeholder{color:#374151;}
+.search-btn{background:#3b82f6;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* Account card */
+.acc-card{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;cursor:pointer;transition:border-color 0.2s;}
+.acc-card.sel{border-color:#3b82f6;background:rgba(59,130,246,0.05);}
+.acc-logo{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;}
+.acc-info{flex:1;}
+.acc-name{font-size:12px;font-weight:600;color:#e2e8f0;margin-bottom:2px;}
+.acc-meta{font-size:9px;color:#4b5563;}
+.acc-tags{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap;}
+.acc-tag{font-size:7px;padding:2px 6px;border-radius:3px;font-weight:600;}
+.acc-score{text-align:right;flex-shrink:0;}
+.acc-score-num{font-size:16px;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.acc-score-lbl{font-size:7px;color:#4b5563;margin-top:1px;}
+
+/* Org chart */
+.org{display:flex;flex-direction:column;gap:3px;}
+.org-row{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#0d1117;border-radius:5px;border:1px solid rgba(255,255,255,0.04);}
+.org-row.hl{border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.04);}
+.org-indent{width:12px;height:1px;background:#374151;flex-shrink:0;}
+.org-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;}
+.org-name{font-size:9px;font-weight:600;color:#e2e8f0;}
+.org-role{font-size:8px;color:#4b5563;}
+.org-badge{margin-left:auto;font-size:7px;padding:2px 5px;border-radius:3px;font-weight:700;}
+.ob-dm{background:rgba(59,130,246,0.15);color:#60a5fb;}
+.ob-ch{background:rgba(139,92,246,0.15);color:#a78bfa;}
+.ob-inf{background:rgba(16,185,129,0.15);color:#34d399;}
+.ob-end{background:rgba(245,158,11,0.15);color:#fbbf24;}
+
+/* KPI strip */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px;}
+.kpi{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;}
+.kpi-lbl{font-size:7px;color:#4b5563;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;}
+.kpi-val{font-size:15px;font-weight:700;font-family:'JetBrains Mono',monospace;color:#e2e8f0;line-height:1;}
+.kpi-sub{font-size:7px;margin-top:2px;font-weight:500;}
+
+/* Two col */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+
+/* Intel sections */
+.intel-section{margin-bottom:8px;}
+.intel-row{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:9px;}
+.intel-row:last-child{border-bottom:none;}
+.intel-icon{width:16px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;margin-top:1px;}
+.intel-text{color:#94a3b8;line-height:1.5;flex:1;}
+.intel-text strong{color:#e2e8f0;font-weight:600;}
+.signal-bar{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.signal-bar:last-child{border-bottom:none;}
+.signal-lbl{font-size:8px;color:#6b7280;width:100px;flex-shrink:0;}
+.signal-track{flex:1;height:4px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden;}
+.signal-fill{height:100%;border-radius:2px;transition:width 1s ease;width:0%;}
+.signal-val{font-size:8px;font-weight:600;font-family:'JetBrains Mono',monospace;width:28px;text-align:right;}
+
+/* Persona card */
+.persona{background:#0d1117;border-radius:6px;padding:10px;border:1px solid rgba(255,255,255,0.05);}
+.persona-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.persona-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;}
+.persona-name{font-size:11px;font-weight:600;color:#e2e8f0;}
+.persona-role{font-size:8px;color:#4b5563;}
+.kpi-chips{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px;}
+.kpi-chip{font-size:7px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.04);color:#6b7280;border:1px solid rgba(255,255,255,0.06);}
+.motiv-row{display:flex;align-items:center;gap:6px;font-size:8px;color:#94a3b8;padding:3px 0;}
+.motiv-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;}
+
+/* Knowledge graph */
+.kg-interface{background:#0d1117;border-radius:8px;border:1px solid rgba(255,255,255,0.06);overflow:hidden;}
+.kg-topbar{background:#111827;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:8px;}
+.kg-dot{width:6px;height:6px;border-radius:50%;}
+.kg-title{font-size:9px;font-weight:600;color:#94a3b8;}
+.kg-query-row{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.kg-query{font-size:11px;font-weight:500;color:#e2e8f0;display:flex;align-items:center;gap:8px;}
+.kg-query-icon{width:18px;height:18px;border-radius:4px;background:rgba(59,130,246,0.15);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;}
+.kg-thinking{display:flex;align-items:center;gap:6px;padding:8px 12px;font-size:9px;color:#4b5563;}
+.kg-think-dot{width:5px;height:5px;border-radius:50%;background:#3b82f6;animation:kgpulse 1s infinite;}
+.kg-think-dot:nth-child(2){animation-delay:0.2s;}
+.kg-think-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes kgpulse{0%,100%{opacity:0.3}50%{opacity:1}}
+.kg-answer{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.kg-answer-label{font-size:8px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.kg-answer-text{font-size:10px;color:#94a3b8;line-height:1.7;}
+.kg-answer-text strong{color:#e2e8f0;}
+.kg-sources{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;}
+.kg-source{font-size:7px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.04);color:#4b5563;border:1px solid rgba(255,255,255,0.06);}
+.kg-proof{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:5px;padding:8px 10px;margin:8px 12px;font-size:9px;color:#94a3b8;line-height:1.6;}
+.kg-proof strong{color:#60a5fb;}
+
+/* Coach interface */
+.coach-panel{background:#111827;border-radius:8px;border:1px solid rgba(255,255,255,0.06);overflow:hidden;margin-bottom:8px;}
+.coach-header{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+.coach-title{font-size:9px;font-weight:700;color:#60a5fb;display:flex;align-items:center;gap:6px;}
+.coach-status{font-size:8px;color:#34d399;display:flex;align-items:center;gap:4px;}
+.coach-status::before{content:'';width:5px;height:5px;border-radius:50%;background:#10b981;display:inline-block;animation:kgpulse 1.5s infinite;}
+.coach-messages{padding:10px 12px;display:flex;flex-direction:column;gap:8px;max-height:200px;}
+.msg{display:flex;gap:8px;align-items:flex-start;}
+.msg-av{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;}
+.msg-av.ai{background:linear-gradient(135deg,#3b82f6,#8b5cf6);}
+.msg-av.usr{background:#374151;color:#94a3b8;}
+.msg-bubble{background:#0d1117;border-radius:6px;padding:8px 10px;font-size:9px;color:#94a3b8;line-height:1.6;flex:1;border:1px solid rgba(255,255,255,0.05);}
+.msg-bubble strong{color:#e2e8f0;}
+.msg-bubble.ai-bubble{border-color:rgba(59,130,246,0.15);}
+.msg-bubble em{color:#60a5fb;font-style:normal;}
+
+/* Draft panel */
+.draft-panel{background:#0d1117;border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+.draft-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.draft-title{font-size:9px;font-weight:700;color:#60a5fb;display:flex;align-items:center;gap:5px;}
+.draft-channel{display:flex;gap:4px;}
+.channel-btn{font-size:8px;padding:3px 8px;border-radius:4px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;}
+.ch-active{background:#3b82f6;color:#fff;}
+.ch-inactive{background:rgba(255,255,255,0.05);color:#4b5563;}
+.draft-to{font-size:9px;color:#4b5563;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.draft-to-name{color:#60a5fb;font-weight:600;}
+.draft-body{font-size:10px;color:#94a3b8;line-height:1.7;padding:8px;background:rgba(255,255,255,0.02);border-radius:4px;border:1px solid rgba(255,255,255,0.04);}
+.draft-body strong{color:#e2e8f0;}
+.draft-body em{color:#60a5fb;font-style:normal;}
+.draft-actions{display:flex;gap:6px;margin-top:8px;}
+.draft-btn{padding:5px 12px;border-radius:4px;font-size:9px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.draft-send{background:#3b82f6;color:#fff;}
+.draft-edit{background:rgba(255,255,255,0.05);color:#94a3b8;}
+
+/* Next actions */
+.nba-row{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#111827;border-radius:5px;margin-bottom:4px;border:1px solid rgba(255,255,255,0.05);}
+.nba-priority{font-size:7px;font-weight:700;padding:2px 5px;border-radius:3px;}
+.p-high{background:rgba(239,68,68,0.15);color:#f87171;}
+.p-med{background:rgba(245,158,11,0.15);color:#fbbf24;}
+.p-low{background:rgba(16,185,129,0.15);color:#34d399;}
+.nba-text{font-size:9px;color:#94a3b8;flex:1;}
+.nba-text strong{color:#e2e8f0;}
+.nba-due{font-size:8px;color:#4b5563;font-family:'JetBrains Mono',monospace;}
+
+/* Comms log */
+.comms-row{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.comms-row:last-child{border-bottom:none;}
+.comms-ch{width:16px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;}
+.comms-body{flex:1;}
+.comms-sender{font-size:8px;font-weight:600;color:#e2e8f0;}
+.comms-preview{font-size:8px;color:#4b5563;margin-top:1px;line-height:1.4;}
+.comms-time{font-size:7px;color:#374151;font-family:'JetBrains Mono',monospace;flex-shrink:0;}
+
+/* Progress bar */
+.pb{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#3b82f6);transition:width linear;z-index:50;}
+
 /* Caption */
-.cap{background:#1c1917;padding:0 20px;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;}
-.cm{font-size:15px;font-weight:600;color:#f9f7f4;letter-spacing:-0.2px;opacity:0;transition:opacity 0.4s ease;line-height:1.4;flex:1;}
+.cap{background:#111827;border-top:1px solid rgba(255,255,255,0.05);padding:0 20px;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;}
+.cm{font-size:16px;font-weight:700;color:#f8fafc;letter-spacing:-0.3px;opacity:0;transition:opacity 0.4s ease;line-height:1.3;flex:1;}
 .cm.v{opacity:1;}
-.cm em{color:#fbbf24;font-style:normal;}
-.cm strong{color:#fbbf24;}
-.sds{display:flex;gap:5px;align-items:center;flex-shrink:0;}
-.sdt{width:5px;height:5px;border-radius:50%;background:#374151;transition:background 0.3s;}
-.sdt.a{background:#d97706;}
+.cm em{color:#60a5fb;font-style:normal;}
+.cm strong{color:#a78bfa;font-style:normal;}
+.sds{display:flex;gap:5px;align-items:center;}
+.sdt{width:5px;height:5px;border-radius:50%;background:#1e2d40;transition:background 0.3s;}
+.sdt.a{background:#3b82f6;}
 </style>
 
 <div class="app">
+  <!-- Chrome -->
   <div class="chrome">
     <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
-    <div class="urlbar"><span style="color:#4b5563">🔒</span><span class="urlbar-d">clauseiq.ai</span><span id="durl" style="color:#4b5563">/workspace/atlas-acquisition</span></div>
+    <div class="urlbar"><span style="color:#4b5563">🔒</span><span class="urlbar-d">revintel.ai</span><span id="durl" style="color:#4b5563">/accounts</span></div>
     <div class="dm-tag">DEMO MODE</div>
   </div>
 
-  <div class="topnav">
-    <div class="nav-brand">
-      <div class="nav-logo">C</div>
-      <div class="nav-name"><span>Clause</span>IQ</div>
+  <!-- Layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sb">
+      <div class="sb-brand">
+        <div class="sb-brand-name"><span class="rev">Rev</span><span class="intel">Intel</span></div>
+        <div class="sb-brand-sub">Revenue Intelligence</div>
+      </div>
+      <div class="sb-section">Intelligence</div>
+      <div class="sb-item act" id="sb0"><div class="sb-dot"></div>Account Discovery<span class="sb-badge b">12</span></div>
+      <div class="sb-item" id="sb1"><div class="sb-dot"></div>Persona Intelligence</div>
+      <div class="sb-item" id="sb2"><div class="sb-dot"></div>Knowledge Graph</div>
+      <div class="sb-section">Execution</div>
+      <div class="sb-item" id="sb3"><div class="sb-dot"></div>AI Account Coach<span class="sb-badge">3</span></div>
+      <div class="sb-item" id="sb4"><div class="sb-dot"></div>Unified Comms</div>
+      <div class="sb-item" id="sb5"><div class="sb-dot"></div>Campaign Sequences</div>
+      <div class="sb-section">Analytics</div>
+      <div class="sb-item"><div class="sb-dot"></div>Deal Intelligence</div>
+      <div class="sb-item"><div class="sb-dot"></div>Team Collaboration</div>
+      <div class="sb-bottom">
+        <div class="sb-user">
+          <div class="sb-av">RK</div>
+          <div><div class="sb-uname">R. Kumar</div><div class="sb-urole">Enterprise AE · West India</div></div>
+        </div>
+      </div>
     </div>
-    <div style="font-size:11px;color:#6b7280;">Project: <strong style="color:#1c1917;">Atlas Corp — M&A Due Diligence</strong> &nbsp;·&nbsp; 40 contracts uploaded &nbsp;·&nbsp; <span style="color:#10b981;font-weight:600;">34 reviewed</span></div>
-    <div class="nav-right">
-      <div class="nav-credit"><div class="nav-credit-dot"></div>42 credits</div>
-      <button class="nav-btn nb-s">Export Report</button>
-      <button class="nav-btn nb-p">Share with Team</button>
+
+    <!-- Main -->
+    <div class="main">
+      <!-- Scene: Intro -->
+      <div class="sc act" id="sc0">
+        <div class="sc-pill">RevIntel · AI Revenue Intelligence</div>
+        <div class="sc-title">From research to outreach.<br/>In minutes, not days.</div>
+        <div class="sc-line"></div>
+        <div class="sc-sub">AI-powered account intelligence, knowledge graph,<br/>and personalised outreach — built for enterprise sales.</div>
+      </div>
+
+      <!-- FRAME 1: Account Discovery -->
+      <div class="fr" id="fr1" style="display:flex;flex-direction:column;">
+        <div class="topbar">
+          <div class="tb-left"><div class="tb-title">Account Discovery</div><div class="tb-sub">Search · map org structure · assign access</div></div>
+          <div class="tb-right"><div class="tb-pill">● 12 accounts tracked</div><button class="tb-btn tb-btn-p">+ Add Account</button></div>
+        </div>
+        <div class="co" style="overflow:hidden;">
+          <!-- Search -->
+          <div class="search-bar rv" id="f1s1">
+            <span style="color:#374151;font-size:14px;">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search account — e.g. HDFC Bank, Reliance, Infosys..." readonly/>
+            <button class="search-btn">Search</button>
+          </div>
+          <!-- Account results -->
+          <div class="rv" id="f1s2" style="margin-bottom:10px;">
+            <div style="font-size:9px;color:#374151;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">Top Match</div>
+            <div class="acc-card sel" id="acc1">
+              <div class="acc-logo" style="background:rgba(59,130,246,0.15);color:#60a5fb;">HB</div>
+              <div class="acc-info">
+                <div class="acc-name">HDFC Bank Ltd.</div>
+                <div class="acc-meta">Financial Services · Mumbai · 177,000 employees · NSE: HDFCBANK</div>
+                <div class="acc-tags">
+                  <span class="acc-tag" style="background:rgba(59,130,246,0.12);color:#60a5fb;">Enterprise</span>
+                  <span class="acc-tag" style="background:rgba(16,185,129,0.12);color:#34d399;">Active ICP</span>
+                  <span class="acc-tag" style="background:rgba(139,92,246,0.12);color:#a78bfa;">Digital Transformation</span>
+                  <span class="acc-tag" style="background:rgba(245,158,11,0.12);color:#fbbf24;">AI Buying Signal</span>
+                </div>
+              </div>
+              <div class="acc-score">
+                <div class="acc-score-num" style="color:#34d399;">87</div>
+                <div class="acc-score-lbl">ICP Score</div>
+              </div>
+            </div>
+            <div class="acc-card" style="opacity:0.5;">
+              <div class="acc-logo" style="background:rgba(139,92,246,0.12);color:#a78bfa;">AT</div>
+              <div class="acc-info">
+                <div class="acc-name">Axis Bank Ltd.</div>
+                <div class="acc-meta">Financial Services · Mumbai · 84,000 employees</div>
+              </div>
+              <div class="acc-score"><div class="acc-score-num" style="color:#fbbf24;">72</div><div class="acc-score-lbl">ICP Score</div></div>
+            </div>
+          </div>
+          <!-- Org chart -->
+          <div class="rv" id="f1s3">
+            <div style="font-size:9px;color:#374151;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;">HDFC Bank — Org Structure · Technology & Digital</div>
+            <div class="org">
+              <div class="org-row hl rvx" id="o1">
+                <div class="org-av" style="background:rgba(59,130,246,0.15);color:#60a5fb;">SS</div>
+                <div><div class="org-name">Sashidhar Jagdishan</div><div class="org-role">MD & CEO</div></div>
+                <span class="org-badge ob-end">Economic Buyer</span>
+              </div>
+              <div class="org-row rvx" id="o2">
+                <div class="org-indent"></div>
+                <div class="org-av" style="background:rgba(139,92,246,0.15);color:#a78bfa;">RV</div>
+                <div><div class="org-name">Ramesh Venkatesan</div><div class="org-role">Chief Technology Officer</div></div>
+                <span class="org-badge ob-dm">Decision Maker</span>
+              </div>
+              <div class="org-row rvx" id="o3">
+                <div class="org-indent"></div><div class="org-indent"></div>
+                <div class="org-av" style="background:rgba(16,185,129,0.15);color:#34d399;">PK</div>
+                <div><div class="org-name">Priya Krishnan</div><div class="org-role">Head of Digital Banking</div></div>
+                <span class="org-badge ob-ch">Champion</span>
+              </div>
+              <div class="org-row rvx" id="o4">
+                <div class="org-indent"></div><div class="org-indent"></div>
+                <div class="org-av" style="background:rgba(245,158,11,0.15);color:#fbbf24;">AM</div>
+                <div><div class="org-name">Amit Mehta</div><div class="org-role">VP — Enterprise Architecture</div></div>
+                <span class="org-badge ob-inf">Influencer</span>
+              </div>
+              <div class="org-row rvx" id="o5">
+                <div class="org-indent"></div><div class="org-indent"></div>
+                <div class="org-av" style="background:rgba(239,68,68,0.15);color:#f87171;">SR</div>
+                <div><div class="org-name">Sunita Rao</div><div class="org-role">Chief Risk & Compliance Officer</div></div>
+                <span class="org-badge ob-inf">Influencer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene: Persona Intel -->
+      <div class="sc" id="sc1">
+        <div class="sc-pill">Module 02</div>
+        <div class="sc-title">Account & Persona Intelligence</div>
+        <div class="sc-line"></div>
+        <div class="sc-sub">360° deep intel · buying motivations · live signals<br/>from News API, LinkedIn, website</div>
+      </div>
+
+      <!-- FRAME 2: Persona Intelligence -->
+      <div class="fr" id="fr2" style="display:flex;flex-direction:column;">
+        <div class="topbar">
+          <div class="tb-left"><div class="tb-title">Account Intelligence — HDFC Bank</div><div class="tb-sub">360° view · industry trends · persona motivations · buying signals</div></div>
+          <div class="tb-right"><div class="tb-pill">Last refreshed: 2 hrs ago</div><button class="tb-btn tb-btn-s">Refresh Intel</button></div>
+        </div>
+        <div class="co" style="overflow:hidden;">
+          <div class="kpi-strip">
+            <div class="kpi rv" id="f2k1"><div class="kpi-lbl">ICP Score</div><div class="kpi-val" style="color:#34d399;">87</div><div class="kpi-sub" style="color:#34d399;">Strong fit</div></div>
+            <div class="kpi rv" id="f2k2"><div class="kpi-lbl">Buying Stage</div><div class="kpi-val" style="color:#60a5fb;font-size:11px;">Evaluating</div><div class="kpi-sub" style="color:#60a5fb;">Active signals</div></div>
+            <div class="kpi rv" id="f2k3"><div class="kpi-lbl">Stakeholders</div><div class="kpi-val">5</div><div class="kpi-sub" style="color:#a78bfa;">Mapped</div></div>
+            <div class="kpi rv" id="f2k4"><div class="kpi-lbl">Engagement</div><div class="kpi-val" style="color:#fbbf24;">Medium</div><div class="kpi-sub" style="color:#fbbf24;">1 open email</div></div>
+          </div>
+          <div class="two">
+            <div>
+              <!-- Account priorities -->
+              <div class="card rv" id="f2c1" style="margin-bottom:6px;">
+                <div class="card-title">Account Priorities <span class="card-tag tag-blue">AI Analysed</span></div>
+                <div class="intel-section">
+                  <div class="intel-row">
+                    <div class="intel-icon" style="background:rgba(59,130,246,0.12);color:#60a5fb;">📋</div>
+                    <div class="intel-text"><strong>Core Banking Modernisation</strong> — ₹3,200Cr digital investment announced Q3 FY26. Migrating to cloud-native architecture by 2027.</div>
+                  </div>
+                  <div class="intel-row">
+                    <div class="intel-icon" style="background:rgba(139,92,246,0.12);color:#a78bfa;">🤖</div>
+                    <div class="intel-text"><strong>AI & GenAI Adoption</strong> — CTO stated "AI-first" mandate in Jan 2026 earnings call. Evaluating AI vendors across credit, fraud, and ops.</div>
+                  </div>
+                  <div class="intel-row">
+                    <div class="intel-icon" style="background:rgba(239,68,68,0.12);color:#f87171;">🛡️</div>
+                    <div class="intel-text"><strong>RBI Compliance</strong> — Model Risk Management guidelines effective Apr 2026. Actively seeking governance tooling.</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Buying signals -->
+              <div class="card rv" id="f2c2">
+                <div class="card-title">Buying Signals <span class="card-tag tag-amber">Live · News API</span></div>
+                <div class="signal-bar">
+                  <span class="signal-lbl">Budget intent</span>
+                  <div class="signal-track"><div class="signal-fill" id="sig1" style="background:#34d399;"></div></div>
+                  <span class="signal-val" style="color:#34d399;">91%</span>
+                </div>
+                <div class="signal-bar">
+                  <span class="signal-lbl">Tech stack fit</span>
+                  <div class="signal-track"><div class="signal-fill" id="sig2" style="background:#60a5fb;"></div></div>
+                  <span class="signal-val" style="color:#60a5fb;">84%</span>
+                </div>
+                <div class="signal-bar">
+                  <span class="signal-lbl">Urgency</span>
+                  <div class="signal-track"><div class="signal-fill" id="sig3" style="background:#fbbf24;"></div></div>
+                  <span class="signal-val" style="color:#fbbf24;">76%</span>
+                </div>
+                <div class="signal-bar">
+                  <span class="signal-lbl">Competitor risk</span>
+                  <div class="signal-track"><div class="signal-fill" id="sig4" style="background:#f87171;"></div></div>
+                  <span class="signal-val" style="color:#f87171;">62%</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <!-- Persona report -->
+              <div class="card rv" id="f2c3">
+                <div class="card-title">Persona Report — Champion <span class="card-tag tag-purple">Deep Analysis</span></div>
+                <div class="persona">
+                  <div class="persona-header">
+                    <div class="persona-av" style="background:rgba(16,185,129,0.15);color:#34d399;">PK</div>
+                    <div>
+                      <div class="persona-name">Priya Krishnan</div>
+                      <div class="persona-role">Head of Digital Banking · HDFC Bank</div>
+                    </div>
+                  </div>
+                  <div style="font-size:8px;color:#4b5563;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">KPIs she owns</div>
+                  <div class="kpi-chips">
+                    <span class="kpi-chip">Digital txn volume</span>
+                    <span class="kpi-chip">App NPS score</span>
+                    <span class="kpi-chip">STP rate</span>
+                    <span class="kpi-chip">Downtime SLA</span>
+                    <span class="kpi-chip">Cost per txn</span>
+                  </div>
+                  <div style="font-size:8px;color:#4b5563;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Buying motivations</div>
+                  <div class="motiv-row"><div class="motiv-dot" style="background:#34d399;"></div><span>Wants to reduce manual ops cost by 40% — key board KPI</span></div>
+                  <div class="motiv-row"><div class="motiv-dot" style="background:#60a5fb;"></div><span>Needs AI that integrates with existing Finacle stack</span></div>
+                  <div class="motiv-row"><div class="motiv-dot" style="background:#a78bfa;"></div><span>RBI compliance is non-negotiable — any AI must be auditable</span></div>
+                  <div class="motiv-row"><div class="motiv-dot" style="background:#fbbf24;"></div><span>Prefers proof-of-concept before full commitment</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene: Knowledge Graph -->
+      <div class="sc" id="sc2">
+        <div class="sc-pill">Module 03</div>
+        <div class="sc-title">GTM Knowledge Graph</div>
+        <div class="sc-line"></div>
+        <div class="sc-sub">Query your product, collaterals, CRM, and case studies.<br/>AI surfaces the right proof point in real-time.</div>
+      </div>
+
+      <!-- FRAME 3: Knowledge Graph -->
+      <div class="fr" id="fr3" style="display:flex;flex-direction:column;">
+        <div class="topbar">
+          <div class="tb-left"><div class="tb-title">GTM Knowledge Graph</div><div class="tb-sub">Sources: Product docs · Case studies · CRM · SharePoint · Website · 847 documents indexed</div></div>
+          <div class="tb-right"><div class="tb-pill">847 docs indexed</div><button class="tb-btn tb-btn-s">Add Source</button></div>
+        </div>
+        <div class="co" style="overflow:hidden;">
+          <div class="two">
+            <div>
+              <!-- Query interface -->
+              <div class="kg-interface rv" id="f3q1" style="margin-bottom:8px;">
+                <div class="kg-topbar">
+                  <div class="kg-dot" style="background:#34d399;"></div>
+                  <div class="kg-dot" style="background:#fbbf24;"></div>
+                  <div class="kg-dot" style="background:#f87171;"></div>
+                  <div class="kg-title">Knowledge Query Interface</div>
+                </div>
+                <div class="kg-query-row">
+                  <div class="kg-query">
+                    <div class="kg-query-icon">?</div>
+                    <span id="kgQueryText" style="color:#4b5563;font-style:italic;">What proof points do we have for AI in banking fraud detection?</span>
+                  </div>
+                </div>
+                <div class="kg-thinking" id="kgThinking" style="display:none;">
+                  <div class="kg-think-dot"></div><div class="kg-think-dot"></div><div class="kg-think-dot"></div>
+                  <span>Searching 847 documents...</span>
+                </div>
+                <div class="kg-answer" id="kgAnswer" style="display:none;">
+                  <div class="kg-answer-label">✦ Knowledge Graph Result</div>
+                  <div class="kg-answer-text">Found <strong>3 relevant case studies</strong> and <strong>2 product datasheets</strong> matching fraud detection in banking. Top match: <strong>Axis Bank pilot — 43% reduction in false positives</strong> using our real-time transaction scoring module. Also surfaced RBI Model Risk Management alignment documentation.</div>
+                  <div class="kg-sources">
+                    <span class="kg-source">📄 Axis Bank Case Study</span>
+                    <span class="kg-source">📄 Fraud Detection Datasheet</span>
+                    <span class="kg-source">📋 RBI MRM Compliance Doc</span>
+                    <span class="kg-source">📊 BFSI ROI Calculator</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Second query -->
+              <div class="kg-interface rv" id="f3q2">
+                <div class="kg-topbar">
+                  <div class="kg-dot" style="background:#34d399;"></div><div class="kg-dot" style="background:#fbbf24;"></div><div class="kg-dot" style="background:#f87171;"></div>
+                  <div class="kg-title">Knowledge Query Interface</div>
+                </div>
+                <div class="kg-query-row">
+                  <div class="kg-query">
+                    <div class="kg-query-icon">?</div>
+                    <span>Best value proposition for a Head of Digital Banking persona?</span>
+                  </div>
+                </div>
+                <div class="kg-answer">
+                  <div class="kg-answer-label">✦ Knowledge Graph Result</div>
+                  <div class="kg-answer-text">For <strong>Head of Digital Banking</strong> persona: lead with <strong>operational cost reduction</strong> (avg 38% reduction in manual processing) and <strong>STP rate improvement</strong>. Reference the ICICI Digital Banking deployment — <em>STP improved from 61% to 89% in 6 months.</em> Pair with RBI compliance narrative — critical for HDFC specifically.</div>
+                  <div class="kg-sources">
+                    <span class="kg-source">📄 ICICI Case Study</span>
+                    <span class="kg-source">📊 Digital Banking ROI</span>
+                    <span class="kg-source">📋 Persona Playbook</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <!-- Proof point card -->
+              <div class="card rv" id="f3p1" style="margin-bottom:8px;">
+                <div class="card-title">Recommended Proof Points <span class="card-tag tag-purple">For HDFC · Priya Krishnan</span></div>
+                <div class="intel-row">
+                  <div class="intel-icon" style="background:rgba(16,185,129,0.12);color:#34d399;">✓</div>
+                  <div class="intel-text"><strong>Axis Bank:</strong> 43% reduction in fraud false positives. 18-week deployment. RBI-compliant audit trail.</div>
+                </div>
+                <div class="intel-row">
+                  <div class="intel-icon" style="background:rgba(59,130,246,0.12);color:#60a5fb;">✓</div>
+                  <div class="intel-text"><strong>ICICI Bank:</strong> STP rate 61%→89% in 6 months. Cost per txn down 34%. Finacle-integrated.</div>
+                </div>
+                <div class="intel-row">
+                  <div class="intel-icon" style="background:rgba(139,92,246,0.12);color:#a78bfa;">✓</div>
+                  <div class="intel-text"><strong>Kotak Mahindra:</strong> AI governance framework certified under RBI MRM guidelines. Model explainability built-in.</div>
+                </div>
+              </div>
+              <!-- Value prop -->
+              <div class="card rv" id="f3p2">
+                <div class="card-title">AI-Generated Value Prop <span class="card-tag tag-blue">Context-matched</span></div>
+                <div class="kg-proof" style="margin:0;border-radius:5px;">
+                  For <strong>HDFC Bank's digital banking mandate</strong>, our platform delivers: <em>40% reduction in ops cost</em> through AI-driven STP, <em>RBI MRM-compliant</em> model governance out of the box, and <em>Finacle-native integration</em> — no rip-and-replace. Proven across 3 Tier-1 Indian banks. Typical POC to production: <strong>12 weeks.</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene: AI Coach -->
+      <div class="sc" id="sc3">
+        <div class="sc-pill">Module 04</div>
+        <div class="sc-title">AI Account Coach</div>
+        <div class="sc-line"></div>
+        <div class="sc-sub">Hyper-personalised outreach · next-best-action<br/>Unified comms · deal coaching</div>
+      </div>
+
+      <!-- FRAME 4: AI Account Coach -->
+      <div class="fr" id="fr4" style="display:flex;flex-direction:column;">
+        <div class="topbar">
+          <div class="tb-left"><div class="tb-title">AI Account Coach — HDFC Bank</div><div class="tb-sub">Priya Krishnan · Head of Digital Banking · Champion</div></div>
+          <div class="tb-right"><div class="tb-pill">● 3 pending actions</div><button class="tb-btn tb-btn-p">Launch Campaign</button></div>
+        </div>
+        <div class="co" style="overflow:hidden;">
+          <div class="two">
+            <div>
+              <!-- Coach chat -->
+              <div class="coach-panel rv" id="f4c1">
+                <div class="coach-header">
+                  <div class="coach-title">✦ AI Account Coach</div>
+                  <div class="coach-status">Active</div>
+                </div>
+                <div class="coach-messages">
+                  <div class="msg rv" id="f4m1">
+                    <div class="msg-av usr">RK</div>
+                    <div class="msg-bubble">Draft a first outreach email to Priya Krishnan. Use the fraud detection proof points.</div>
+                  </div>
+                  <div class="msg rv" id="f4m2">
+                    <div class="msg-av ai">✦</div>
+                    <div class="msg-bubble ai-bubble">Drafting a hyper-personalised email for <em>Priya Krishnan</em> using the Axis Bank fraud case study, RBI MRM compliance angle, and her KPI context (STP rate, ops cost). Generating now...</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Draft email -->
+              <div class="draft-panel rv" id="f4d1">
+                <div class="draft-header">
+                  <div class="draft-title">✦ AI-Generated Outreach</div>
+                  <div class="draft-channel">
+                    <button class="channel-btn ch-active">Email</button>
+                    <button class="channel-btn ch-inactive">LinkedIn</button>
+                    <button class="channel-btn ch-inactive">WhatsApp</button>
+                  </div>
+                </div>
+                <div class="draft-to">To: <span class="draft-to-name">Priya Krishnan</span> · Head of Digital Banking · HDFC Bank · priya.krishnan@hdfcbank.com</div>
+                <div class="draft-body" id="draftBody" style="min-height:80px;"></div>
+                <div class="draft-actions">
+                  <button class="draft-btn draft-send">Send Now</button>
+                  <button class="draft-btn draft-edit">Edit</button>
+                  <button class="draft-btn draft-edit">Regenerate</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <!-- Next best actions -->
+              <div class="card rv" id="f4n1" style="margin-bottom:8px;">
+                <div class="card-title">Next Best Actions <span class="card-tag tag-blue">AI Recommended</span></div>
+                <div class="nba-row">
+                  <span class="nba-priority p-high">HIGH</span>
+                  <div class="nba-text"><strong>Send intro email</strong> to Priya Krishnan — fraud detection angle · RBI compliance hook</div>
+                  <span class="nba-due">Today</span>
+                </div>
+                <div class="nba-row">
+                  <span class="nba-priority p-high">HIGH</span>
+                  <div class="nba-text"><strong>Connect on LinkedIn</strong> with Ramesh Venkatesan (CTO) — reference ICICI case study</div>
+                  <span class="nba-due">+2d</span>
+                </div>
+                <div class="nba-row">
+                  <span class="nba-priority p-med">MED</span>
+                  <div class="nba-text"><strong>Share RBI MRM whitepaper</strong> with Sunita Rao (Risk & Compliance)</div>
+                  <span class="nba-due">+3d</span>
+                </div>
+                <div class="nba-row">
+                  <span class="nba-priority p-low">LOW</span>
+                  <div class="nba-text"><strong>Propose POC</strong> on claims fraud detection — 4-week timeline, no commitment</div>
+                  <span class="nba-due">+7d</span>
+                </div>
+              </div>
+              <!-- Comms log -->
+              <div class="card rv" id="f4n2">
+                <div class="card-title">Unified Comms Log <span class="card-tag tag-purple">All channels</span></div>
+                <div class="comms-row">
+                  <div class="comms-ch" style="background:rgba(59,130,246,0.12);color:#60a5fb;">✉</div>
+                  <div class="comms-body"><div class="comms-sender">Priya Krishnan → R. Kumar</div><div class="comms-preview">Thanks for sharing the Axis Bank case study. Could we schedule a 30-min call this...</div></div>
+                  <span class="comms-time">2h ago</span>
+                </div>
+                <div class="comms-row">
+                  <div class="comms-ch" style="background:rgba(16,185,129,0.12);color:#34d399;">in</div>
+                  <div class="comms-body"><div class="comms-sender">R. Kumar → Ramesh Venkatesan</div><div class="comms-preview">Connection accepted · Shared ICICI Digital Banking ROI study</div></div>
+                  <span class="comms-time">1d ago</span>
+                </div>
+                <div class="comms-row">
+                  <div class="comms-ch" style="background:rgba(37,211,102,0.12);color:#25d366;">W</div>
+                  <div class="comms-body"><div class="comms-sender">Amit Mehta → R. Kumar</div><div class="comms-preview">Does your platform support Finacle APIs? We're standardised on Infosys stack</div></div>
+                  <span class="comms-time">2d ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb" id="dpb"></div>
     </div>
   </div>
 
-  <div class="layout">
-    <!-- Left: Document list -->
-    <div class="lpanel">
-      <div class="lp-header">
-        <div class="lp-proj">Atlas Corp Acquisition</div>
-        <div class="lp-sub">M&A Due Diligence · 40 contracts</div>
-      </div>
-      <div class="lp-section">Vendor Agreements</div>
-      <div class="doc-item sel">
-        <div class="doc-icon di-pdf">PDF</div>
-        <div class="doc-info"><div class="doc-name">MSA_Nexigen_2024.pdf</div><div class="doc-meta">IT Services · 18 pages</div></div>
-        <div class="doc-status"><div class="ds ds-done"></div></div>
-      </div>
-      <div class="doc-item">
-        <div class="doc-icon di-pdf">PDF</div>
-        <div class="doc-info"><div class="doc-name">MSA_DataBridge_2023.pdf</div><div class="doc-meta">Data Services · 24 pages</div></div>
-        <div class="doc-status"><div class="ds ds-done"></div></div>
-      </div>
-      <div class="doc-item">
-        <div class="doc-icon di-pdf">PDF</div>
-        <div class="doc-info"><div class="doc-name">SaaS_CloudStack_2024.pdf</div><div class="doc-meta">SaaS · 31 pages · $240K</div></div>
-        <div class="doc-status"><div class="ds ds-done"></div></div>
-      </div>
-      <div class="lp-section">Leases & Premises</div>
-      <div class="doc-item">
-        <div class="doc-icon di-doc">DOC</div>
-        <div class="doc-info"><div class="doc-name">Lease_HQ_Mumbai.docx</div><div class="doc-meta">Office Lease · 42 pages</div></div>
-        <div class="doc-status"><div class="ds ds-done"></div></div>
-      </div>
-      <div class="lp-section">NDAs & Partnerships</div>
-      <div class="doc-item">
-        <div class="doc-icon di-doc">DOC</div>
-        <div class="doc-info"><div class="doc-name">NDA_PartnerVenture.docx</div><div class="doc-meta">Mutual NDA · 6 pages</div></div>
-        <div class="doc-status"><div class="ds ds-done"></div></div>
-      </div>
-      <div class="doc-item">
-        <div class="doc-icon di-pdf">PDF</div>
-        <div class="doc-info"><div class="doc-name">Agency_LogisticsCo.pdf</div><div class="doc-meta">Logistics · Processing...</div></div>
-        <div class="doc-status"><div class="ds ds-proc"></div></div>
-      </div>
-      <div class="lp-stats">
-        <div class="lp-stat-row"><span class="lp-stat-lbl">Contracts reviewed</span><span class="lp-stat-val">34 / 40</span></div>
-        <div class="lp-stat-row"><span class="lp-stat-lbl">High risk flags</span><span class="lp-stat-val r">4</span></div>
-        <div class="lp-stat-row"><span class="lp-stat-lbl">Missing clauses</span><span class="lp-stat-val a">6</span></div>
-        <div class="lp-stat-row"><span class="lp-stat-lbl">Auto-renewals expiring</span><span class="lp-stat-val a">3</span></div>
-        <div class="lp-stat-row"><span class="lp-stat-lbl">Review time saved</span><span class="lp-stat-val g">3.2 days</span></div>
-      </div>
-    </div>
-
-    <!-- Right: Main workspace -->
-    <div class="rpanel">
-      <!-- Module tabs -->
-      <div class="mod-tabs">
-        <button class="mod-tab act" id="mt0" onclick="switchTab(0)">Clause Extraction</button>
-        <button class="mod-tab" id="mt1" onclick="switchTab(1)">Cross-Contract Matrix</button>
-        <button class="mod-tab" id="mt2" onclick="switchTab(2)">Contract Query</button>
-        <button class="mod-tab" id="mt3" onclick="switchTab(3)">Risk Report</button>
-      </div>
-
-      <div class="content-area" style="position:relative;">
-
-        <!-- Intro scene -->
-        <div class="sc act" id="sc0">
-          <div class="sc-pill">ClauseIQ · Contract Intelligence</div>
-          <div class="sc-title">40 contracts reviewed.<br/>In hours, not weeks.</div>
-          <div class="sc-line"></div>
-          <div class="sc-sub">Structured contract review for M&A due diligence.<br/>Extract, compare, query, and flag risk — in one workspace.</div>
-        </div>
-
-        <!-- TAB 1: Clause Extraction -->
-        <div class="fr act" id="fr0">
-          <div class="co-hdr">
-            <div>
-              <div class="co-title">Clause Extraction — MSA_Nexigen_2024.pdf</div>
-              <div class="co-sub">18 pages · 14 clauses extracted · 3 require attention</div>
-            </div>
-            <button class="nav-btn nb-s" style="font-size:10px;">Export CSV</button>
-          </div>
-          <div class="co">
-            <div class="ext-table">
-              <div class="ext-thead" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <span>Clause</span><span>Summary</span><span>Status</span>
-              </div>
-              <div class="ext-row ok" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">Liability Cap</div>
-                <div class="ext-col-val">Capped at <strong>12 months of fees</strong> in the preceding year. Mutual cap. Standard market terms.</div>
-                <span><span class="ext-badge eb-ok">✓ Standard</span></span>
-              </div>
-              <div class="ext-row flag" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">Auto-renewal</div>
-                <div class="ext-col-val">Auto-renews annually. <strong>Written notice required 90 days prior.</strong> Notice window closes in 34 days.</div>
-                <span><span class="ext-badge eb-flag">⚠ Action needed</span></span>
-              </div>
-              <div class="ext-row risk" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">IP Assignment</div>
-                <div class="ext-col-val">Work product IP assigned to <strong>vendor by default.</strong> Client receives licence only. Schedule A (IP transfer list) is blank.</div>
-                <span><span class="ext-badge eb-miss">✗ High Risk</span></span>
-              </div>
-              <div class="ext-row ok" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">Governing Law</div>
-                <div class="ext-col-val"><strong>Maharashtra, India.</strong> Disputes resolved by arbitration in Mumbai under UNCITRAL rules.</div>
-                <span><span class="ext-badge eb-ok">✓ Standard</span></span>
-              </div>
-              <div class="ext-row flag" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">Data Protection</div>
-                <div class="ext-col-val">References IT Act 2000. <strong>No DPDP Act 2023 obligations.</strong> Data processor requirements unaddressed.</div>
-                <span><span class="ext-badge eb-flag">⚠ Update needed</span></span>
-              </div>
-              <div class="ext-row ok" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">Termination</div>
-                <div class="ext-col-val"><strong>30-day notice</strong> for convenience. Immediate for material breach. Survival: IP, confidentiality, payment obligations.</div>
-                <span><span class="ext-badge eb-ok">✓ Standard</span></span>
-              </div>
-              <div class="ext-row risk" style="grid-template-columns:1.3fr 2.2fr 0.9fr;">
-                <div class="ext-col-lbl">Change of Control</div>
-                <div class="ext-col-val"><strong>No change of control clause.</strong> Acquisition does not trigger consent rights or renegotiation obligations for either party.</div>
-                <span><span class="ext-badge eb-miss">✗ Missing</span></span>
-              </div>
-            </div>
-            <!-- Clause spotlight -->
-            <div class="clause-viewer">
-              <div class="clause-toolbar">
-                <div class="clause-tb-title">Original Clause — IP Assignment (§8.2)</div>
-                <span style="font-size:8px;color:#9ca3af;">MSA_Nexigen_2024.pdf · Page 11</span>
-              </div>
-              <div class="clause-body">
-                "All work product, deliverables, and intellectual property created by <span class="clause-hl risk">the Vendor in the course of performing Services under this Agreement shall be and remain the exclusive property of the Vendor</span>, unless specifically identified and transferred in writing via Schedule A attached hereto. <span class="clause-hl">Schedule A may be amended by mutual written consent of both parties.</span> The Client acknowledges that standard deliverables are provided under a limited, non-exclusive, non-transferable licence only."
-              </div>
-              <div class="clause-comment">
-                <span>⚠</span>
-                <span><strong>Flag:</strong> IP defaults to vendor. Schedule A is blank in this agreement. All work product — including custom builds, reports, and analysis — is technically vendor-owned until Schedule A is completed.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 2: Cross-Contract Matrix -->
-        <div class="fr" id="fr1">
-          <div class="co-hdr">
-            <div>
-              <div class="co-title">Cross-Contract Comparison Matrix</div>
-              <div class="co-sub">6 vendor agreements · 7 key clauses · Gaps highlighted</div>
-            </div>
-            <button class="nav-btn nb-p" style="font-size:10px;">Export Matrix</button>
-          </div>
-          <div class="co">
-            <div class="risk-strip">
-              <div class="risk-card r"><div class="risk-num">4</div><div class="risk-lbl">High Risk<br/>Clauses</div></div>
-              <div class="risk-card a"><div class="risk-num">6</div><div class="risk-lbl">Missing<br/>Clauses</div></div>
-              <div class="risk-card a"><div class="risk-num">3</div><div class="risk-lbl">Auto-renewals<br/>Expiring 90d</div></div>
-              <div class="risk-card g"><div class="risk-num">34</div><div class="risk-lbl">Contracts<br/>Reviewed</div></div>
-            </div>
-            <div class="matrix">
-              <div class="matrix-head" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span>Clause</span>
-                <span style="text-align:center;font-size:7px;">Nexigen</span>
-                <span style="text-align:center;font-size:7px;">DataBridge</span>
-                <span style="text-align:center;font-size:7px;">CloudStack</span>
-                <span style="text-align:center;font-size:7px;">PartnerVenture</span>
-                <span style="text-align:center;font-size:7px;">LogisticsCo</span>
-                <span style="text-align:center;font-size:7px;">Others</span>
-              </div>
-              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">Liability Cap</span>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-na">—</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">4/5</span></div>
-              </div>
-              <div class="matrix-row hl" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">Change of Control</span>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#dc2626;font-weight:700;">2/5 ⚠</span></div>
-              </div>
-              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">IP Assignment</span>
-                <div class="mat-cell"><span class="mc-flag">⚠</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-na">—</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">Partial</span></div>
-              </div>
-              <div class="matrix-row hl" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">DPDP Compliance</span>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span class="mc-ok">✓</span></div>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span class="mc-no">✗</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#dc2626;font-weight:700;">1/5 ⚠</span></div>
-              </div>
-              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">Auto-renewal Notice</span>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;font-weight:700;">34d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">120d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">Annual</span></div>
-                <div class="mat-cell"><span class="mc-na">—</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#dc2626;font-weight:700;">12d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">⚠ 2 urgent</span></div>
-              </div>
-              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">Termination Notice</span>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">30d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">30d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;font-weight:700;">180d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">60d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">30d</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">1 outlier</span></div>
-              </div>
-              <div class="matrix-row" style="grid-template-columns:1.5fr repeat(6,1fr);">
-                <span style="font-size:9px;font-weight:600;color:#374151;">Governing Law</span>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">MH</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">MH</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">IE</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">DL</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#6b7280;">MH</span></div>
-                <div class="mat-cell"><span style="font-size:8px;color:#d97706;">Mixed</span></div>
-              </div>
-            </div>
-            <div class="ai-box">
-              <div class="ai-box-label">Summary</div>
-              <div class="ai-box-text">Change of control clause absent in 3 of 5 vendor agreements — this acquisition will not trigger renegotiation rights. <em>DPDP Act 2023 compliance absent in 4 of 5 agreements</em> — addenda required before close. <strong>LogisticsCo auto-renewal window closes in 12 days.</strong></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 3: Contract Query -->
-        <div class="fr" id="fr2">
-          <div class="co-hdr">
-            <div>
-              <div class="co-title">Contract Query</div>
-              <div class="co-sub">Plain English questions answered from across all 40 contracts</div>
-            </div>
-            <span style="font-size:9px;color:#9ca3af;">847 clauses indexed</span>
-          </div>
-          <div class="co">
-            <div class="qblock">
-              <div class="q-question">
-                <div class="q-icon">Q</div>
-                <div class="q-text">Which contracts have auto-renewal clauses expiring within 90 days?</div>
-              </div>
-              <div class="q-answer">
-                3 contracts: <strong>MSA_Nexigen_2024</strong> (34 days — notice due this week), <strong>Agency_LogisticsCo</strong> (12 days — <em>critical, action required immediately</em>), <strong>Lease_HQ_Mumbai</strong> (61 days). Total annual commitment at risk of auto-renewal: <strong>₹9.1Cr.</strong>
-                <div class="q-sources">
-                  <span class="q-src">MSA_Nexigen_2024 · §4.1</span>
-                  <span class="q-src">Agency_LogisticsCo · §3.2</span>
-                  <span class="q-src">Lease_HQ_Mumbai · §7.4</span>
-                </div>
-              </div>
-            </div>
-            <div class="qblock">
-              <div class="q-question">
-                <div class="q-icon">Q</div>
-                <div class="q-text">Which contracts have no limitation of liability clause?</div>
-              </div>
-              <div class="q-answer">
-                6 contracts have no limitation of liability: NDA_PartnerVenture, Lease_Delhi_Branch, Consulting_AdvisoryFirm, Agency_PR_2023, IT_Support_Tier2, Freelance_Design_2024. Of these, <em>3 involve vendors with direct access to customer data</em> — highest exposure. Addenda recommended for these 3 before close.
-                <div class="q-sources">
-                  <span class="q-src">6 contracts identified</span>
-                  <span class="q-src">3 high-exposure</span>
-                </div>
-              </div>
-            </div>
-            <div class="qblock">
-              <div class="q-question">
-                <div class="q-icon">Q</div>
-                <div class="q-text">Are there any unusual termination notice periods across vendor agreements?</div>
-              </div>
-              <div class="q-answer">
-                Most vendor agreements use 30-day convenience termination — standard. <strong>SaaS_CloudStack_2024 requires 180-day notice</strong> — significantly above market standard. At current run rate, this creates a <em>₹1.2Cr committed spend</em> post-acquisition if not renegotiated before close.
-                <div class="q-sources">
-                  <span class="q-src">SaaS_CloudStack_2024 · §12.3</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 4: Risk Report -->
-        <div class="fr" id="fr3">
-          <div class="co-hdr">
-            <div>
-              <div class="co-title">Risk Report — Atlas Corp Acquisition</div>
-              <div class="co-sub">34 contracts reviewed · 4 critical · 6 medium · 12 low · Ready to share</div>
-            </div>
-            <div style="display:flex;gap:6px;">
-              <button class="nav-btn nb-s" style="font-size:10px;">Share with Deal Team</button>
-              <button class="nav-btn nb-p" style="font-size:10px;">Export PDF</button>
-            </div>
-          </div>
-          <div class="co">
-            <div class="risk-strip">
-              <div class="risk-card r"><div class="risk-num">4</div><div class="risk-lbl">Critical<br/>Issues</div></div>
-              <div class="risk-card a"><div class="risk-num">6</div><div class="risk-lbl">Medium<br/>Issues</div></div>
-              <div class="risk-card n"><div class="risk-num">12</div><div class="risk-lbl">Low<br/>Issues</div></div>
-              <div class="risk-card g"><div class="risk-num">3.2d</div><div class="risk-lbl">Time<br/>Saved</div></div>
-            </div>
-            <div class="rpt-table">
-              <div class="rpt-thead" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
-                <span>Priority</span><span>Issue</span><span>Contracts</span><span>Deadline</span>
-              </div>
-              <div class="rpt-row p1" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
-                <span><span class="p-badge p1-b">P1</span></span>
-                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>IP defaults to vendor.</strong> Schedule A blank — all work product under MSA_Nexigen technically vendor-owned.</div>
-                <div style="font-size:8px;color:#6b7280;">MSA_Nexigen_2024</div>
-                <span><span class="act-badge act-imm">Immediate</span></span>
-              </div>
-              <div class="rpt-row p1" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
-                <span><span class="p-badge p1-b">P1</span></span>
-                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>Auto-renewal window closes in 12 days.</strong> Agency_LogisticsCo auto-renews for 12 months at ₹2.4Cr.</div>
-                <div style="font-size:8px;color:#6b7280;">Agency_LogisticsCo</div>
-                <span><span class="act-badge act-imm">12 days</span></span>
-              </div>
-              <div class="rpt-row p2" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
-                <span><span class="p-badge p2-b">P2</span></span>
-                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>Change of control missing</strong> in 3 vendor agreements. Vendors may claim breach or renegotiate post-acquisition.</div>
-                <div style="font-size:8px;color:#6b7280;">Nexigen, PartnerVenture, LogisticsCo</div>
-                <span><span class="act-badge act-pre">Pre-close</span></span>
-              </div>
-              <div class="rpt-row p2" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
-                <span><span class="p-badge p2-b">P2</span></span>
-                <div style="font-size:9px;color:#374151;line-height:1.6;"><strong>DPDP Act 2023 absent</strong> in 4 of 5 vendor MSAs. Data processor obligations unaddressed — regulatory exposure post-close.</div>
-                <div style="font-size:8px;color:#6b7280;">4 vendor MSAs</div>
-                <span><span class="act-badge act-pre">30 days</span></span>
-              </div>
-              <div class="rpt-row p3" style="grid-template-columns:0.4fr 1.8fr 1.3fr 0.7fr;">
-                <span><span class="p-badge p3-b">P3</span></span>
-                <div style="font-size:9px;color:#374151;line-height:1.6;">CloudStack 180-day termination notice — ₹1.2Cr committed spend if not renegotiated before close.</div>
-                <div style="font-size:8px;color:#6b7280;">SaaS_CloudStack_2024</div>
-                <span><span class="act-badge act-mon">Monitor</span></span>
-              </div>
-            </div>
-            <div class="ai-box">
-              <div class="ai-box-label">Deal Team Summary</div>
-              <div class="ai-box-text">2 issues require action before close. Complete Schedule A on MSA_Nexigen immediately. Send notice on Agency_LogisticsCo within 12 days to avoid ₹2.4Cr auto-renewal. <strong>Estimated exposure without remediation: ₹8–12Cr.</strong> <em>Estimated cost to remediate: ₹4–6L in legal addenda fees.</em></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="pb" id="dpb"></div>
-      </div>
-
-      <div class="cap">
-        <div class="cm v" id="dcap">40 contracts. 4 analysts. <em>3.2 days saved on first review.</em></div>
-        <div class="sds">
-          <div class="sdt a" id="ds0"></div><div class="sdt" id="ds1"></div><div class="sdt" id="ds2"></div><div class="sdt" id="ds3"></div>
-        </div>
-      </div>
+  <!-- Caption -->
+  <div class="cap">
+    <div class="cm v" id="dcap">60–70% of sales rep time. <em>Not selling.</em> RevIntel changes that.</div>
+    <div class="sds">
+      <div class="sdt a" id="ds0"></div><div class="sdt" id="ds1"></div><div class="sdt" id="ds2"></div><div class="sdt" id="ds3"></div>
     </div>
   </div>
 </div>`;
   (function(){
-  // ── Tab switching + auto-advance ──
+  // ── Animation Engine ──
 (function(){
   const pbar  = document.getElementById('dpb');
   const capEl = document.getElementById('dcap');
   if(!pbar||!capEl) return;
 
-  const TOTAL = 36000;
-  let currentTab = -1;
+  const TOTAL = 40000;
   let timers = [];
-  const t = (ms,fn)=>{ const id=setTimeout(fn,ms); timers.push(id); };
-  const setProgress = (pct,dur)=>{ pbar.style.transition=`width ${dur}ms linear`; pbar.style.width=pct+'%'; };
-  const setCaption  = txt=>{ capEl.classList.remove('v'); setTimeout(()=>{ capEl.innerHTML=txt; capEl.classList.add('v'); },350); };
-  const setDots     = i=>{ document.querySelectorAll('.sdt').forEach((d,j)=>d.classList.toggle('a',j===i)); };
+  const t   = (ms,fn) => { const id=setTimeout(fn,ms); timers.push(id); };
+  const show = id => { const el=document.getElementById(id); if(el) el.classList.add('show'); };
+  const setProgress = (pct,dur) => { pbar.style.transition=`width ${dur}ms linear`; pbar.style.width=pct+'%'; };
+  const setCaption  = txt => { capEl.classList.remove('v'); setTimeout(()=>{ capEl.innerHTML=txt; capEl.classList.add('v'); },350); };
+  const setUrl      = u => { const el=document.getElementById('durl'); if(el) el.textContent=u; };
+  const setDots     = i => { document.querySelectorAll('.sdt').forEach((d,j)=>d.classList.toggle('a',j===i)); };
+  const setSB       = i => { document.querySelectorAll('.sb-item').forEach((s,j)=>s.classList.toggle('act',j===i)); };
 
-  const captions = [
-    '40 contracts reviewed. <em>14 clauses extracted per contract.</em> Flags surfaced on load.',
-    'IP missing in 1. Change of control absent in 3. <em>DPDP compliance in 1 of 5.</em> One matrix.',
-    '₹9.1Cr at risk of auto-renewal. <em>3 contracts. Found in seconds.</em>',
-    '<strong>4 critical issues. ₹8–12Cr exposure.</strong> <em>Cost to remediate: ₹4–6L.</em> Report ready to share.'
-  ];
+  const showScene = (scId,nav,url) => {
+    document.querySelectorAll('.sc').forEach(s=>s.classList.remove('act'));
+    document.querySelectorAll('.fr').forEach(f=>f.classList.remove('act'));
+    const sc=document.getElementById(scId); if(sc) sc.classList.add('act');
+    setDots(nav); setSB(nav); setUrl(url);
+  };
+  const showFrame = (frId,nav,url) => {
+    document.querySelectorAll('.sc').forEach(s=>s.classList.remove('act'));
+    document.querySelectorAll('.fr').forEach(f=>f.classList.remove('act'));
+    const fr=document.getElementById(frId); if(fr) fr.classList.add('act');
+    setDots(nav); setSB(nav); setUrl(url);
+  };
 
-  window.switchTab = function(idx){
-    currentTab = idx;
-    document.querySelectorAll('.mod-tab').forEach((t,i)=>t.classList.toggle('act',i===idx));
-    document.querySelectorAll('.fr').forEach((f,i)=>{ f.classList.toggle('act',i===idx); });
-    document.getElementById('sc0').classList.remove('act');
-    setDots(idx);
-    setCaption(captions[idx]);
+  // Typewriter for search input
+  const typeSearch = (text, delay=0) => {
+    const el=document.getElementById('searchInput'); if(!el) return;
+    el.value=''; let i=0;
+    setTimeout(()=>{
+      const iv=setInterval(()=>{ el.value+=text[i]; i++; if(i>=text.length) clearInterval(iv); },40);
+    },delay);
+  };
+
+  // KG query reveal
+  const revealKGAnswer = () => {
+    const qt=document.getElementById('kgQueryText');
+    if(qt){ qt.style.color='#e2e8f0'; qt.style.fontStyle='normal'; }
+    const th=document.getElementById('kgThinking');
+    if(th) th.style.display='flex';
+    setTimeout(()=>{
+      if(th) th.style.display='none';
+      const ans=document.getElementById('kgAnswer'); if(ans) ans.style.display='block';
+    },2200);
+  };
+
+  // Draft email typewriter
+  const typeDraft = () => {
+    const el=document.getElementById('draftBody'); if(!el) return;
+    const text=`Subject: Reducing fraud ops cost at HDFC Bank — 43% improvement at Axis\n\nDear Priya,\n\nI came across HDFC Bank's <strong>AI-first mandate for FY26</strong> and your focus on reducing digital ops cost. Given the <em>RBI Model Risk Management</em> guidelines effective this quarter, I thought you'd find this relevant.\n\nAt <strong>Axis Bank</strong>, we reduced fraud false positives by 43% in 18 weeks — fully RBI MRM compliant, Finacle-integrated, with complete model explainability.\n\nWould a 30-minute call make sense this week to explore if a similar POC fits your timeline?\n\nBest,\nRahul Kumar`;
+    el.innerHTML=''; let i=0;
+    const iv=setInterval(()=>{
+      if(i<text.length){ el.innerHTML=text.substring(0,i+1); i++; }
+      else clearInterval(iv);
+    },18);
   };
 
   function runSeq(){
     timers.forEach(clearTimeout); timers=[];
-    // Show intro scene first
-    document.getElementById('sc0').classList.add('act');
-    document.querySelectorAll('.fr').forEach(f=>f.classList.remove('act'));
-    document.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('act'));
-    setDots(0);
-    setProgress(0,100);
-    setCaption('40 contracts reviewed. <em>14 clauses extracted per contract.</em> Flags surfaced on load.');
 
-    t(2000,()=>{ switchTab(0); setProgress(25,34000); });
-    t(10000,()=>switchTab(1));
-    t(19000,()=>switchTab(2));
-    t(27000,()=>switchTab(3));
-    t(36200,()=>{ setProgress(0,100); setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },200); });
+    // Reset
+    document.querySelectorAll('.rv,.rvx').forEach(el=>el.classList.remove('show'));
+    const kgA=document.getElementById('kgAnswer'); if(kgA) kgA.style.display='none';
+    const kgT=document.getElementById('kgThinking'); if(kgT) kgT.style.display='none';
+    const qt=document.getElementById('kgQueryText'); if(qt){qt.style.color='#4b5563';qt.style.fontStyle='italic';}
+    const db=document.getElementById('draftBody'); if(db) db.innerHTML='';
+    const si=document.getElementById('searchInput'); if(si) si.value='';
+    ['sig1','sig2','sig3','sig4'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.width='0%'; });
+
+    // ── SCENE 0: Intro (0–2s) ──
+    t(0,()=>{
+      showScene('sc0',0,'/accounts');
+      setProgress(0,100);
+      setCaption('60–70% of sales rep time. <em>Not selling.</em> RevIntel changes that.');
+    });
+
+    // ── FRAME 1: Account Discovery (2–12s) ──
+    t(2000,()=>{ showFrame('fr1',0,'/accounts'); setProgress(20,38000); });
+    t(2400,()=>show('f1s1'));
+    t(3000,()=>typeSearch('HDFC Bank'));
+    t(4200,()=>show('f1s2'));
+    t(5000,()=>setCaption('HDFC Bank. ICP score 87. <em>AI buying signal detected.</em>'));
+    t(6000,()=>show('f1s3'));
+    t(6400,()=>show('o1'));
+    t(6800,()=>show('o2'));
+    t(7200,()=>show('o3'));
+    t(7600,()=>show('o4'));
+    t(8000,()=>show('o5'));
+    t(8800,()=>setCaption('Full org mapped. <em>Champion identified.</em> Decision maker, influencers — all tracked.'));
+
+    // ── TRANSITION: Persona Intel (12s) ──
+    t(12000,()=>{
+      showScene('sc1',1,'/persona-intelligence');
+      setCaption('360° intel. <em>Buying motivations.</em> Live signals from LinkedIn and News API.');
+    });
+
+    // ── FRAME 2: Persona Intelligence (14–22s) ──
+    t(14000,()=>{ showFrame('fr2',1,'/persona-intelligence'); });
+    t(14400,()=>show('f2k1'));
+    t(14700,()=>show('f2k2'));
+    t(15000,()=>show('f2k3'));
+    t(15300,()=>show('f2k4'));
+    t(15800,()=>show('f2c1'));
+    t(16400,()=>show('f2c2'));
+    // Animate signal bars
+    t(16800,()=>{
+      setTimeout(()=>{ const e=document.getElementById('sig1'); if(e) e.style.width='91%'; },0);
+      setTimeout(()=>{ const e=document.getElementById('sig2'); if(e) e.style.width='84%'; },200);
+      setTimeout(()=>{ const e=document.getElementById('sig3'); if(e) e.style.width='76%'; },400);
+      setTimeout(()=>{ const e=document.getElementById('sig4'); if(e) e.style.width='62%'; },600);
+    });
+    t(17400,()=>show('f2c3'));
+    t(18200,()=>setCaption('RBI compliance mandate. AI-first board directive. <em>Urgency is real.</em>'));
+
+    // ── TRANSITION: Knowledge Graph (22s) ──
+    t(22000,()=>{
+      showScene('sc2',2,'/knowledge-graph');
+      setCaption('Query your collaterals. <em>AI surfaces the right proof point.</em> In seconds.');
+    });
+
+    // ── FRAME 3: Knowledge Graph (24–31s) ──
+    t(24000,()=>{ showFrame('fr2b',2,'/knowledge-graph'); showFrame('fr3',2,'/knowledge-graph'); });
+    t(24400,()=>show('f3q1'));
+    t(25000,()=>revealKGAnswer());
+    t(27400,()=>show('f3q2'));
+    t(28200,()=>show('f3p1'));
+    t(29000,()=>show('f3p2'));
+    t(29600,()=>setCaption('Axis Bank. ICICI. Kotak. <em>Right proof point, right persona.</em> Instantly.'));
+
+    // ── TRANSITION: AI Coach (31s) ──
+    t(31000,()=>{
+      showScene('sc3',3,'/ai-coach');
+      setCaption('AI drafts the email. <em>Context from 847 documents.</em> Personalised to Priya Krishnan.');
+    });
+
+    // ── FRAME 4: AI Coach (33–40s) ──
+    t(33000,()=>{ showFrame('fr4',3,'/ai-coach'); });
+    t(33400,()=>show('f4c1'));
+    t(33800,()=>show('f4m1'));
+    t(34400,()=>show('f4m2'));
+    t(35200,()=>{ show('f4d1'); typeDraft(); });
+    t(37000,()=>show('f4n1'));
+    t(37800,()=>show('f4n2'));
+    t(38600,()=>setCaption('<strong>Research done. Outreach ready. Comms logged.</strong> <em>12–15 hours back per rep per week.</em>'));
+
+    // ── LOOP ──
+    t(40200,()=>{ setProgress(0,100); setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },200); });
   }
 
   setTimeout(()=>{ setProgress(100,TOTAL); runSeq(); },500);
