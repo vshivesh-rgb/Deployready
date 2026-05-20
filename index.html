@@ -218,6 +218,26 @@ h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.15;}
 .btn-primary:hover{background:#991b1b;}
 .btn-secondary{background:transparent;color:#0f1c2e;border:1.5px solid #0f1c2e;cursor:pointer;padding:13px 28px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;border-radius:6px;transition:all 0.2s;}
 .btn-secondary:hover{background:#0f1c2e;color:#fff;}
+@keyframes readinessPulseWhite{
+  0%{box-shadow:0 0 0 0 rgba(255,255,255,0.25);}
+  50%{box-shadow:0 0 0 10px rgba(255,255,255,0);}
+  100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}
+}
+@keyframes readinessPulse{
+  0%{box-shadow:0 0 0 0 rgba(185,28,28,0.45);}
+  50%{box-shadow:0 0 0 10px rgba(185,28,28,0);}
+  100%{box-shadow:0 0 0 0 rgba(185,28,28,0);}
+}
+.btn-readiness-pulse{
+  animation:readinessPulse 2s ease-in-out infinite;
+  border-color:#b91c1c !important;
+  color:#b91c1c !important;
+}
+.btn-readiness-pulse:hover{
+  background:#b91c1c !important;
+  color:#fff !important;
+  border-color:#b91c1c !important;
+}
 .hero-visual{display:flex;align-items:center;justify-content:center;}
 .stats-band{background:#0f1c2e;padding:72px 0;}
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);}
@@ -376,18 +396,58 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
   nav .nav-links{display:none;}
   .hero-grid,.readiness-grid,.footer-grid{grid-template-columns:1fr;gap:40px;}
   .hero h1{font-size:38px;}
+  .hero{padding-top:100px;padding-bottom:60px;}
   .stats-grid{grid-template-columns:1fr;}
   .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:36px;}
   .stat-item:last-child{border-bottom:none;}
   .why-grid{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:repeat(2,1fr);}
   .arch-panel{grid-template-columns:1fr;gap:36px;padding:32px;}
   .arch-snapshot-grid{grid-template-columns:repeat(2,1fr);}
   .engagement-card{grid-template-columns:1fr;}
   .eng-card-right{padding:24px 32px 40px;}
   .closing-cta h2{font-size:34px;}
 
+  /* Fix 1: Hero image */
+  .hero-visual{min-height:300px;margin-top:8px;}
+  .hero-visual svg{width:122% !important;max-width:122% !important;height:auto !important;margin-left:-11% !important;}
+
+  /* Fix 2: Arch tabs — hide, show dropdown */
+  .arch-tabs{display:none !important;}
+  .arch-tab-dropdown{display:block !important;}
+
+  /* Fix 3: Demo mobile */
+  .impl-demo-wrap{max-width:100%;}
+  .impl-demo-container{border-radius:8px;}
 }
+@media(max-width:960px){
+  /* Demo internals — scoped separately to avoid conflicts */
+  #demoContainer .dscr{height:420px !important;}
+  #demoContainer .mni .mn{font-size:6px !important;padding:4px 2px !important;}
+  #demoContainer .kr{grid-template-columns:repeat(3,1fr) !important;}
+  #demoContainer .mr{grid-template-columns:1fr !important;}
+  #demoContainer .eg{grid-template-columns:1fr !important;}
+  #demoContainer .fg{grid-template-columns:1fr !important;}
+  #demoContainer .pg{grid-template-columns:1fr !important;}
+  #demoContainer .cap{min-height:52px !important;padding:0 10px !important;}
+  #demoContainer .cm{font-size:12px !important;}
+  #demoContainer .co{padding:7px 9px !important;}
+  #demoContainer .kv{font-size:11px !important;}
+  #demoContainer .sc-title{font-size:16px !important;}
+  #demoContainer .ql{display:none !important;}
+  #demoContainer .eg{grid-template-columns:1fr !important;}
+
+  /* Fix 4: Team — 1 column with horizontal card layout */
+  .team-grid{grid-template-columns:1fr !important;}
+  .team-card{text-align:left !important;display:grid !important;grid-template-columns:72px 1fr !important;gap:0 16px !important;align-items:start !important;}
+  .team-avatar{margin:0 !important;grid-row:1/4 !important;}
+  .team-name{grid-column:2 !important;}
+  .team-role{grid-column:2 !important;}
+  .team-years{grid-column:2 !important;margin-bottom:0 !important;}
+  .team-bio{grid-column:1/3 !important;margin-top:14px !important;text-align:left !important;}
+  .team-tags{grid-column:1/3 !important;justify-content:flex-start !important;}
+}
+/* Desktop: hide dropdown */
+.arch-tab-dropdown{display:none;}
 </style>
 </head>
 <body>
@@ -414,7 +474,7 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
         <p>DeployReady is an implementation partner for the full AI journey. We diagnose the gaps, build the structure, and drive adoption across every stage — with post-deployment support built in.</p>
         <div class="cta-group">
           <button class="btn-primary" onclick="openConsultModal()">Book a Consultation</button>
-          <button class="btn-secondary" onclick="window.open('assessment.html','_blank')">Check Your AI Readiness</button>
+          <button class="btn-secondary btn-readiness-pulse" onclick="window.open('assessment.html','_blank')">Check Your AI Readiness</button>
         </div>
       </div>
       <div class="hero-visual">
@@ -515,6 +575,13 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
       <p>Eight structured stages, from first readiness assessment to enterprise-scale deployment. Each stage has a defined tool, a defined output, and a senior advisor accountable for delivery.</p>
     </div>
     <div class="arch-tabs" id="archTabs"></div>
+    <div class="arch-tab-dropdown" style="margin-bottom:20px;">
+      <select id="archDropdown" onchange="setTab(parseInt(this.value))" style="width:100%;padding:14px 16px;font-size:15px;font-family:'DM Sans',sans-serif;color:#0f1c2e;background:#fff;border:1.5px solid #e8e8e8;border-radius:8px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 24 24%22%3E%3Cpath fill=%22%23b91c1c%22 d=%22M7 10l5 5 5-5z%22/%3E%3C/svg%3E');background-repeat:no-repeat;background-position:right 14px center;background-size:20px;padding-right:44px;"></select>
+    </div>
+    <div class="arch-tab-dropdown">
+      <select id="archDropdown" onchange="setTab(parseInt(this.value))" style="width:100%;padding:14px 16px;font-size:15px;font-family:'DM Sans',sans-serif;color:#0f1c2e;background:#fff;border:1.5px solid #e8e8e8;border-radius:8px;outline:none;cursor:pointer;appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22><path fill=%22%23b91c1c%22 d=%22M7 10l5 5 5-5z%22/></svg>');background-repeat:no-repeat;background-position:right 14px center;background-size:20px;padding-right:44px;">
+      </select>
+    </div>
     <div class="arch-panel" id="archPanel"></div>
     <div class="arch-footer"><span><b>8 stages</b> · full lifecycle · <b>senior-led</b> · outcome-accountable</span></div>
     <div class="arch-snapshot-grid" id="archSnapshot"></div>
@@ -616,7 +683,7 @@ footer{background:#080f18;color:rgba(255,255,255,0.45);padding:56px 0 32px;}
     <p>Talk to one of our advisors about a specific initiative, a stuck pilot, or which engagement type fits where your organisation currently stands.</p>
     <div class="closing-btns">
       <button class="btn-white" onclick="openConsultModal()">Talk to Us</button>
-      <button class="btn-ghost" onclick="window.open('assessment.html','_blank')">Or take the free Readiness Meter — 15 questions, 5 minutes</button>
+      <button class="btn-ghost btn-readiness-pulse" style="border-color:rgba(185,28,28,0.5);color:rgba(255,255,255,0.8);animation-name:readinessPulseWhite;" onclick="window.open('assessment.html','_blank')">Or take the free Readiness Meter — 15 questions, 5 minutes</button>
     </div>
   </div>
 </section>
@@ -723,8 +790,15 @@ function renderArch(){
   const tabsEl = document.getElementById('archTabs');
   const panelEl = document.getElementById('archPanel');
   const snapEl = document.getElementById('archSnapshot');
+  const dropEl = document.getElementById('archDropdown');
   const T = tools[activeTab];
   tabsEl.innerHTML = tools.map((t,i)=>`<button class="arch-tab${i===activeTab?' active':''}" onclick="setTab(${i})"><span class="arch-tab-num">${t.num}</span><span class="arch-tab-name">${t.name}</span></button>`).join('');
+  if(dropEl){
+    if(dropEl.options.length===0){
+      tools.forEach((t,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=t.num+' · '+t.name+' — '+t.stage; dropEl.appendChild(o); });
+    }
+    dropEl.value=activeTab;
+  }
   panelEl.innerHTML = `<div><div class="arch-panel-stage">${ico(T.icon,'#b91c1c',13)} Stage ${T.num} · ${T.stage}</div><div class="arch-panel-name display">${T.name}</div><p class="arch-panel-desc">${T.desc}</p><button class="arch-panel-cta" onclick="openConsultModal()">Talk to us about this stage →</button></div><div><span class="arch-deliv-label">Key Deliverables</span><ul class="arch-deliv-list">${T.deliverables.map(d=>`<li><span class="deliv-sq"></span>${d}</li>`).join('')}</ul></div>`;
   snapEl.innerHTML = tools.map((t,i)=>`<div class="arch-snapshot-card${i===activeTab?' arch-snapshot-active':''}" onclick="setTab(${i})"><div class="arch-snapshot-top"><span class="arch-snapshot-num">${t.num}</span>${ico(t.icon,i===activeTab?'#fff':'#b91c1c',24)}</div><div class="arch-snapshot-name">${t.name}</div><div class="arch-snapshot-stage">${t.stage}</div></div>`).join('');
 }
